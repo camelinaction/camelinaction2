@@ -16,6 +16,7 @@
         <module>file-jms</module>
         <module>cbr</module>
         <module>filter</module>
+        <module>multicast</module>
         <module>wiretap</module>
     </modules>
 </project>
