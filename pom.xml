@@ -46,6 +46,7 @@
 
   <modules>
     <module>chapter2</module>
+    <module>chapter9</module>
   </modules>
 
   <scm>
@@ -55,7 +56,7 @@
   </scm>
 
   <properties>
-    <camel-version>2.0.0</camel-version>
+    <camel-version>2.1-SNAPSHOT</camel-version>
   </properties>
 
   <build>
