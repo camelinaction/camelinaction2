@@ -16,8 +16,16 @@
  */
 package camelinaction;
 
+import java.net.ConnectException;
+import java.util.List;
 import javax.sql.DataSource;
 
+import org.apache.camel.Route;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.ProcessDefinition;
+import org.apache.camel.model.ProcessorDefinition;
+import org.apache.camel.model.RouteDefinition;
+import org.apache.camel.model.RoutesDefinition;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -60,6 +68,34 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
 
         // there should be 1 row in the database
         assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
+    }
+
+    @Test
+    public void testNoConnectionToDatabase() throws Exception {
+        RouteBuilder rb = new RouteBuilder() {
+            @Override
+            public void configure() throws Exception {
+                interceptSendToEndpoint("jdbc:*")
+                    .skipSendToOriginalEndpoint()
+                    .throwException(new ConnectException("Cannot connect to the database"));
+            }
+        };
+
+        // adviseWith enhances our route by adding the interceptor from the route builder
+        // this allows us here directly in the unit test to add interceptors so we can simulate the connection failure
+        context.getRouteDefinitions().get(0).adviceWith(rb);
+
+        // there should be 0 row in the database when we start
+        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
+
+        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>200911150815</date><code>200</code><time>4387</time></partner>";
+        template.sendBody("activemq:topic:partners", xml);
+
+        // wait for the route to complete (note we can use use mock to be notified when the route is complete)
+        Thread.sleep(5000);
+
+        // data not inserted so there should be 0 rows
+        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
     }
 
     @Override
