@@ -28,7 +28,7 @@
 
     <!-- Camel and the route used -->
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <route>
+        <route id="partnerToDB">
             <from uri="activemq:topic:partners"/>
             <bean ref="partner" method="toSql"/>
             <to uri="jdbc:myDataSource"/>

@@ -17,15 +17,9 @@
 package camelinaction;
 
 import java.net.ConnectException;
-import java.util.List;
 import javax.sql.DataSource;
 
-import org.apache.camel.Route;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.ProcessDefinition;
-import org.apache.camel.model.ProcessorDefinition;
-import org.apache.camel.model.RouteDefinition;
-import org.apache.camel.model.RoutesDefinition;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -83,7 +77,7 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
 
         // adviseWith enhances our route by adding the interceptor from the route builder
         // this allows us here directly in the unit test to add interceptors so we can simulate the connection failure
-        context.getRouteDefinitions().get(0).adviceWith(rb);
+        context.getRouteDefinition("partnerToDB").adviceWith(rb);
 
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
