@@ -18,6 +18,7 @@
         <module>cbr</module>
         <module>filter</module>
         <module>multicast</module>
+        <module>recipientlist</module>
         <module>wiretap</module>
     </modules>
 </project>
