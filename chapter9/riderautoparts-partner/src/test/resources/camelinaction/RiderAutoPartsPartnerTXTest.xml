@@ -30,6 +30,8 @@
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="partnerToDB">
             <from uri="activemq:queue:partners"/>
+            <!-- denote that this route is transacted -->
+            <transacted/>
             <bean ref="partner" method="toSql"/>
             <to uri="jdbc:myDataSource"/>
         </route>
@@ -37,6 +39,20 @@
 
     <!-- define the activemq Camel component so we can integrate with the AMQ broker below -->
     <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <!-- must indicate that we use transacted acknowledge mode -->
+        <property name="transacted" value="true"/>
+        <!-- refer to the transaction manager -->
+        <property name="transactionManager" ref="txManager"/>
+    </bean>
+
+    <!-- the transaction manager which is a Spring JMS TransactionManager -->
+    <bean id="txManager" class="org.springframework.jms.connection.JmsTransactionManager">
+        <!-- must know how to connect to the JMS Broker so refer to a connection factory -->
+        <property name="connectionFactory" ref="jmsConnectionFactory"/>
+    </bean>
+
+    <!-- Is the ConnectionFactory to connect to the JMS broker -->
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://localhost:61616"/>
     </bean>
 

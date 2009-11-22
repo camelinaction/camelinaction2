@@ -19,6 +19,7 @@ package camelinaction;
 import java.net.ConnectException;
 import javax.sql.DataSource;
 
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.After;
@@ -31,7 +32,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 /**
  * @version $Revision$
  */
-public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
+public class RiderAutoPartsPartnerTXTest extends CamelSpringTestSupport {
 
     private JdbcTemplate jdbc;
 
@@ -85,16 +86,55 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>200911150815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
-        // wait for the route to complete (note we can use use mock to be notified when the route is complete)
-        Thread.sleep(5000);
+        // wait for the route to complete
+        Thread.sleep(10000);
 
         // data not inserted so there should be 0 rows
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
+
+        // now check that the message is on the queue by consuming it again
+        String dlq = consumer.receiveBodyNoWait("activemq:queue:ActiveMQ.DLQ", String.class);
+        assertNotNull("Should not lose message", dlq);
+    }
+
+    @Test
+    public void testFailFirstTime() throws Exception {
+        RouteBuilder rb = new RouteBuilder() {
+            @Override
+            public void configure() throws Exception {
+                interceptSendToEndpoint("jdbc:*")
+                    .to("log:intercepted?showAll=true")
+                    .choice()
+                        .when(header("JMSRedelivered").isEqualTo("false"))
+                            .throwException(new ConnectException("Cannot connect to the database"))
+                    .end();
+            }
+        };
+
+        // adviseWith enhances our route by adding the interceptor from the route builder
+        // this allows us here directly in the unit test to add interceptors so we can simulate the connection failure
+        context.getRouteDefinition("partnerToDB").adviceWith(rb);
+
+        // there should be 0 row in the database when we start
+        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
+
+        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>200911150815</date><code>200</code><time>4387</time></partner>";
+        template.sendBody("activemq:queue:partners", xml);
+
+        // wait for the route to complete
+        Thread.sleep(5000);
+
+        // data not inserted so there should be 1 rows
+        assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
+
+        // now check that the message is not on the DLQ
+        String dlq = consumer.receiveBodyNoWait("activemq:queue:ActiveMQ.DLQ", String.class);
+        assertNull("Should not be in the DLQ", dlq);
     }
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("camelinaction/RiderAutoPartsPartnerTest.xml");
+        return new ClassPathXmlApplicationContext("camelinaction/RiderAutoPartsPartnerTXTest.xml");
     }
 
 }
