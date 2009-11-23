@@ -30,10 +30,10 @@ public class PartnerServiceBean {
 
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO PARTNER_METRIC (partner_id, time_occurred, status_code, perf_time) VALUES (");
-        sb.append(partnerId).append(", ");
-        sb.append(date).append(", ");
-        sb.append(statusCode).append(", ");
-        sb.append(responsTime).append(") ");
+        sb.append("'").append(partnerId).append("', ");
+        sb.append("'").append(date).append("', ");
+        sb.append("'").append(statusCode).append("', ");
+        sb.append("'").append(responsTime).append("') ");
 
         return sb.toString();
     }
