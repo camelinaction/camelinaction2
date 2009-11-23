@@ -26,8 +26,6 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
-
 /**
  * A set of routes that watches a directory for new orders, reads them, converts the order 
  * file into a JMS Message and then sends it to the JMS incomingOrders queue hosted 
@@ -58,6 +56,7 @@ public class OrderRouterWithRecipientList {
 
         // add our route to the CamelContext
         context.addRoutes(new RouteBuilder() {
+            @Override
             public void configure() {
                 // load file orders from src/data into the JMS queue
                 from("file:src/data?noop=true").to("jms:incomingOrders");

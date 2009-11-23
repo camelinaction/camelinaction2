@@ -52,6 +52,7 @@ public class OrderRouterOtherwise {
 
         // add our route to the CamelContext
         context.addRoutes(new RouteBuilder() {
+            @Override
             public void configure() {
                 // load file orders from src/data into the JMS queue
                 from("file:src/data?noop=true").to("jms:incomingOrders");

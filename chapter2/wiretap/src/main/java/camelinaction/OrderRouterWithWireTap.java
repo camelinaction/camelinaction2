@@ -20,8 +20,6 @@ import javax.jms.ConnectionFactory;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
@@ -55,6 +53,7 @@ public class OrderRouterWithWireTap {
 
         // add our route to the CamelContext
         context.addRoutes(new RouteBuilder() {
+            @Override
             public void configure() {
                 // load file orders from src/data into the JMS queue
                 from("file:src/data?noop=true").to("jms:incomingOrders");

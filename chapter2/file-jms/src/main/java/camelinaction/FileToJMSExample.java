@@ -46,6 +46,7 @@ public class FileToJMSExample {
 
         // add our route to the CamelContext
         context.addRoutes(new RouteBuilder() {
+            @Override
             public void configure() {
                 from("ftp://riderautoparts.com/orders?username=rider&password=secret").to("jms:incomingOrders");
             }

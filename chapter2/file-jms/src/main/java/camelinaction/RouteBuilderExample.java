@@ -26,6 +26,7 @@ public class RouteBuilderExample {
         CamelContext context = new DefaultCamelContext();
         
         context.addRoutes(new RouteBuilder() {
+            @Override
             public void configure() {
                 // try auto complete in your IDE on the line below
 

@@ -3,6 +3,7 @@ package camelinaction;
 import java.io.Serializable;
 
 public class Order implements Serializable {
+    private static final long serialVersionUID = 3445195052621139633L;
     private String name;
     private int amount;
     
