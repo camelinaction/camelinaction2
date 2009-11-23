@@ -27,9 +27,16 @@ import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 
 /**
- * A route that polls an FTP server for new orders, downloads them, converts the order 
+ * A set of routes that watches a directory for new orders, reads them, converts the order 
  * file into a JMS Message and then sends it to the JMS incomingOrders queue hosted 
  * on an embedded ActiveMQ broker instance.
+ * 
+ * From there a content-based router is used to send the order to either the
+ * xmlOrders or csvOrders queue. If an order file does not end with the
+ * csv, csl, or xml extension the order is sent to the badOrders queue. 
+ * 
+ * Orders with the proper file extension are also sent to the continuedProcessing
+ * queue; bad orders are held back by the "stop" method.
  *
  * @author janstey
  *
@@ -62,7 +69,7 @@ public class OrderRouterWithStop {
                     .otherwise()
                         .to("jms:badOrders").stop()
                 .end()
-                .to("jms:continued");
+                .to("jms:continuedProcessing");
                 
                 from("jms:xmlOrders").process(new Processor() {
                     public void process(Exchange exchange) throws Exception {
@@ -84,7 +91,7 @@ public class OrderRouterWithStop {
                 });   
                 
                 // test that our route is working
-                from("jms:continued").process(new Processor() {
+                from("jms:continuedProcessing").process(new Processor() {
                     public void process(Exchange exchange) throws Exception {
                         System.out.println("Received continued order: " 
                                 + exchange.getIn().getHeader("CamelFileName"));   

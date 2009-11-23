@@ -27,9 +27,15 @@ import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 
 /**
- * A route that polls an FTP server for new orders, downloads them, converts the order 
+ * A set of routes that watches a directory for new orders, reads them, converts the order 
  * file into a JMS Message and then sends it to the JMS incomingOrders queue hosted 
  * on an embedded ActiveMQ broker instance.
+ * 
+ * From there a content-based router is used to send the order to either the
+ * xmlOrders or csvOrders queue. If an order file does not end with the
+ * csv, csl, or xml extension the order is sent to the badOrders queue. 
+ * 
+ * Orders on the xmlOrders queue are also multicasted out to the production and accounting queues.
  *
  * @author janstey
  *
