@@ -10,10 +10,12 @@
 
     <artifactId>chapter9</artifactId>
     <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
     <name>Camel in Action :: Chapter 9</name>
 
     <modules>
         <module>riderautoparts-partner</module>
+        <module>multiple-routes</module>
     </modules>
 </project>
 
