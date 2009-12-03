@@ -57,7 +57,7 @@
   </scm>
 
   <properties>
-    <camel-version>2.1-SNAPSHOT</camel-version>
+    <camel-version>2.2-SNAPSHOT</camel-version>
   </properties>
 
   <build>

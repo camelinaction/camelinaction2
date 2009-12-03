@@ -16,6 +16,7 @@
     <modules>
         <module>riderautoparts-partner</module>
         <module>multiple-routes</module>
+        <module>riderautoparts-order</module>
     </modules>
 </project>
 
