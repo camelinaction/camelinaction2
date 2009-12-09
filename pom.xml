@@ -61,6 +61,27 @@
     <camel-version>2.2-SNAPSHOT</camel-version>
   </properties>
 
+  <profiles>
+      <profile>
+          <id>jdk1.5</id>
+          <activation>
+              <jdk>1.5</jdk>
+          </activation>
+          <dependencies>
+              <dependency>
+                  <groupId>javax.xml.bind</groupId>
+                  <artifactId>jaxb-api</artifactId>
+                  <version>2.1</version>
+              </dependency>
+              <dependency>
+                  <groupId>com.sun.xml.bind</groupId>
+                  <artifactId>jaxb-impl</artifactId>
+                  <version>2.1.12</version>
+              </dependency>
+          </dependencies>
+      </profile>
+  </profiles>
+
   <build>
     <defaultGoal>install</defaultGoal>
 
