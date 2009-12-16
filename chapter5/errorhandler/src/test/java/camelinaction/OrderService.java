@@ -39,4 +39,12 @@ public class OrderService {
         // attach the order status
         return body + ",status=OK";
     }
+
+    public String toCsv(String body) throws OrderException {
+        if (body.contains("xml")) {
+            throw new OrderException("xml files not allowed");
+        }
+
+        return body.replaceAll("#", ",");
+    }
 }
