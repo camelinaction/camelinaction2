@@ -15,6 +15,7 @@
 
     <modules>
         <module>errorhandler</module>
+        <module>onexception</module>
     </modules>
 </project>
 
