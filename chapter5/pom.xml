@@ -16,6 +16,7 @@
     <modules>
         <module>errorhandler</module>
         <module>onexception</module>
+        <module>usecase</module>
     </modules>
 </project>
 
