@@ -15,6 +15,7 @@
 
     <modules>
         <module>firsttest</module>
+        <module>miranda</module>
     </modules>
 </project>
 
