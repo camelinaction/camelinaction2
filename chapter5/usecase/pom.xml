@@ -5,11 +5,11 @@
 
     <parent>
         <groupId>com.camelinaction</groupId>
-        <artifactId>chapter3</artifactId>
+        <artifactId>chapter6</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sample</artifactId>
+    <artifactId>usecase</artifactId>
     <name>Camel in Action :: Chapter 5 :: Error Handler Use Case</name>
 
     <dependencies>
