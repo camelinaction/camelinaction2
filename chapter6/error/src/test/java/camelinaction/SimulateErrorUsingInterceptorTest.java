@@ -24,6 +24,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
@@ -48,9 +49,13 @@ public class SimulateErrorUsingInterceptorTest extends CamelSpringTestSupport {
 
     @Test
     public void testSimulateErrorUsingInterceptors() throws Exception {
+        // first find the route we need to advice. Since we only have one route
+        // then just grab the first from the list
+        RouteDefinition route = context.getRouteDefinitions().get(0);
+
         // advice the route by enriching it with the route builder where
         // we add a couple of interceptors to help simulate the error
-        context.getRouteDefinitions().get(0).adviceWith(new RouteBuilder() {
+        route.adviceWith(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
                 // intercept sending to http and detour to our processor instead
@@ -59,8 +64,8 @@ public class SimulateErrorUsingInterceptorTest extends CamelSpringTestSupport {
                     .skipSendToOriginalEndpoint()
                     .process(new SimulateHttpErrorProcessor());
 
-                // intercept sending to fttp and detour to the mock instead
-                interceptSendToEndpoint("ftp://*")
+                // intercept sending to ftp and detour to the mock instead
+                interceptSendToEndpoint("ftp://ftp.rider.com*")
                     // skip sending to the real ftp endpoint
                     .skipSendToOriginalEndpoint()
                     .to("mock:ftp");
