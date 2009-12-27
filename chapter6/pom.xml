@@ -16,6 +16,7 @@
     <modules>
         <module>firsttest</module>
         <module>miranda</module>
+        <module>error</module>
     </modules>
 </project>
 
