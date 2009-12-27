@@ -65,7 +65,7 @@ public class SimulateErrorUsingInterceptorTest extends CamelSpringTestSupport {
                     .process(new SimulateHttpErrorProcessor());
 
                 // intercept sending to ftp and detour to the mock instead
-                interceptSendToEndpoint("ftp://ftp.rider.com*")
+                interceptSendToEndpoint("ftp://*")
                     // skip sending to the real ftp endpoint
                     .skipSendToOriginalEndpoint()
                     .to("mock:ftp");
