@@ -38,6 +38,8 @@ public class AcmeDataSetTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
+        // this contains the CXF server which we use locally as well for testing
+        // in real situations you may call an external webservice
         return new ClassPathXmlApplicationContext("camelinaction/camel-dataset.xml");
     }
 
