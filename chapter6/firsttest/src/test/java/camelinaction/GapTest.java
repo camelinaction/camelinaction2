@@ -83,7 +83,12 @@ public class GapTest extends CamelTestSupport {
         template.sendBodyAndHeader("jms:topic:quote", "C", "Counter", 4);
 
         // assert that fails since there was a gap
-        assertMockEndpointsSatisfied();
+        try {
+            assertMockEndpointsSatisfied();
+        } catch (AssertionError e) {
+            System.out.println(e.getMessage());
+            assertEquals("Gap detected: last: 2 current: 4", e.getMessage());
+        }
     }
 
     /**
