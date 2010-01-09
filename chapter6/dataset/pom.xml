@@ -12,10 +12,6 @@
     <artifactId>dataset</artifactId>
     <name>Camel in Action :: Chapter 6 :: Using DataSet</name>
 
-    <properties>
-        <!--<camel-version>2.1.0</camel-version>-->
-    </properties>
-
     <dependencies>
 
         <dependency>
