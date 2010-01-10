@@ -15,6 +15,7 @@
 
     <modules>
         <module>health</module>
+        <module>logging</module>
     </modules>
 </project>
 
