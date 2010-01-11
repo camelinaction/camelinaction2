@@ -22,12 +22,22 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
     ">
 
-    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+    <bean id="traceFormatter" class="org.apache.camel.processor.interceptor.DefaultTraceFormatter">
+        <property name="showProperties" value="false"/>
+        <property name="showHeaders" value="false"/>
+    </bean>
+
+    <camelContext id="camel" trace="true" xmlns="http://camel.apache.org/schema/spring">
         <route>
             <from uri="file://target/rider/orders"/>
-            <log message="We got incoming file ${file:name} containing: ${body}"/>
+            <wireTap uri="seda:audit"/>
             <bean beanType="camelinaction.OrderCsvToXmlBean"/>
             <to uri="seda:queue:orders"/>
+        </route>
+
+        <route>
+            <from uri="seda:audit"/>
+            <bean beanType="camelinaction.AuditService"/>
         </route>
     </camelContext>
 
