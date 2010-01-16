@@ -19,13 +19,17 @@ package camelinaction;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Using a Processor in the route to invoke HelloBean.
  *
  * @version $Revision$
  */
-public class InvokeWithProcessorRoute extends RouteBuilder {
+public class InvokeWithProcessorSpringRoute extends RouteBuilder {
+
+    @Autowired
+    private HelloBean hello;
 
     @Override
     public void configure() throws Exception {
@@ -36,9 +40,7 @@ public class InvokeWithProcessorRoute extends RouteBuilder {
                     // when invoking the bean
                     String name = exchange.getIn().getBody(String.class);
 
-                    // now create an instance of the bean
-                    HelloBean hello = new HelloBean();
-                    // and invoke it with the name parameter
+                    // invoke the bean which should have been injected by Spring
                     String answer = hello.hello(name);
 
                     // store the reply from the bean on the OUT message

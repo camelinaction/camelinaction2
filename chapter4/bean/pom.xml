@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>bean</artifactId>
-    <name>Camel in Action :: Chapter 4 :: Introduction to using beans</name>
+    <name>Camel in Action :: Chapter 4 :: Using beans</name>
 
     <dependencies>
 

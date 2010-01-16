@@ -16,11 +16,12 @@
  */
 package camelinaction;
 
+import junit.framework.TestCase;
 import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.SimpleRegistry;
-import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 /**
@@ -29,32 +30,46 @@ import org.junit.Test;
  *
  * @version $Revision$
  */
-public class SimpleRegistryTest extends CamelTestSupport {
+public class SimpleRegistryTest extends TestCase {
+
+    private CamelContext context;
+    private ProducerTemplate template;
 
     @Override
-    protected CamelContext createCamelContext() throws Exception {
+    protected void setUp() throws Exception {
         // create the registry to be the SimpleRegistry which is just a Map based implementation
         SimpleRegistry registry = new SimpleRegistry();
         // register our HelloBean under the name hello
         registry.put("hello", new HelloBean());
+
         // tell Camel to use our SimpleRegistry
-        return new DefaultCamelContext(registry);
+        context = new DefaultCamelContext(registry);
+
+        // create a producer template to use for testing
+        template = context.createProducerTemplate();
+
+        // add the route using an inlined RouteBuilder
+        context.addRoutes(new RouteBuilder() {
+            public void configure() throws Exception {
+                from("direct:hello").beanRef("hello");
+            }
+        });
+        // star Camel
+        context.start();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        // cleanup resources after test
+        template.stop();
+        context.stop();
     }
 
     @Test
     public void testHello() throws Exception {
-        String reply = template.requestBody("direct:hello", "World", String.class);
+        // test by sending in World and expect the reply to be Hello World
+        Object reply = template.requestBody("direct:hello", "World");
         assertEquals("Hello World", reply);
-    }
-
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                from("direct:hello").beanRef("hello");
-            }
-        };
     }
 
 }
