@@ -18,20 +18,27 @@ package camelinaction.bindy;
 
 import java.math.BigDecimal;
 
+import junit.framework.TestCase;
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.model.dataformat.BindyType;
-import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 /**
  * @version $Revision$
  */
-public class PurchaseOrderBindyTest extends CamelTestSupport {
+public class PurchaseOrderBindyTest extends TestCase {
 
     @Test
     public void testBindy() throws Exception {
-        MockEndpoint mock = getMockEndpoint("mock:result");
+        CamelContext context = new DefaultCamelContext();
+        context.addRoutes(createRoute());
+        context.start();
+
+        MockEndpoint mock = context.getEndpoint("mock:result", MockEndpoint.class);
         mock.expectedBodiesReceived("Camel in Action,39.95,1\n");
 
         PurchaseOrder order = new PurchaseOrder();
@@ -39,21 +46,18 @@ public class PurchaseOrderBindyTest extends CamelTestSupport {
         order.setPrice(new BigDecimal("39.95"));
         order.setName("Camel in Action");
 
+        ProducerTemplate template = context.createProducerTemplate();
         template.sendBody("direct:toCsv", order);
 
-        assertMockEndpointsSatisfied();
+        mock.assertIsSatisfied();
     }
 
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
+    public RouteBuilder createRoute() {
         return new RouteBuilder() {
-            @Override
             public void configure() throws Exception {
-                context.setTracing(true);
-
                 from("direct:toCsv")
-                    .marshal().bindy(BindyType.Csv, "camelinaction.bindy")
-                    .to("mock:result");
+                        .marshal().bindy(BindyType.Csv, "camelinaction.bindy")
+                        .to("mock:result");
             }
         };
     }
