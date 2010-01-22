@@ -19,25 +19,20 @@ package camelinaction;
 import java.math.BigDecimal;
 
 import org.apache.camel.Converter;
+import org.apache.camel.Exchange;
 import org.apache.camel.TypeConverter;
-import org.apache.camel.spi.TypeConverterAware;
 
 /**
  * @version $Revision$
  */
 @Converter
-public class PurchaseOrderConverter implements TypeConverterAware {
-
-    private TypeConverter converter;
-
-    public void setTypeConverter(TypeConverter parentTypeConverter) {
-        this.converter = parentTypeConverter;
-    }
+public final class PurchaseOrderConverter {
 
     @Converter
-    public PurchaseOrder toPurchaseOrder(byte[] data) {
-        String s = converter.convertTo(String.class, data);
+    public static PurchaseOrder toPurchaseOrder(byte[] data, Exchange exchange) {
+        TypeConverter converter = exchange.getContext().getTypeConverter();
 
+        String s = converter.convertTo(String.class, data);
         if (s == null || s.length() < 30) {
             throw new IllegalArgumentException("data is invalid");
         }
