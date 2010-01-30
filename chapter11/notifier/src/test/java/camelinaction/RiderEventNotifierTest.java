@@ -40,7 +40,7 @@ public class RiderEventNotifierTest extends CamelTestSupport {
 
         RiderEventNotifier notifier = new RiderEventNotifier("MyRider");
         notifier.setPublisher(dummy);
-        context.getManagementStrategy().setEventNotifier(notifier);
+        context.getManagementStrategy().addEventNotifier(notifier);
 
         return context;
     }
