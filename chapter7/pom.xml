@@ -14,6 +14,7 @@
 
     <modules>
         <module>file</module>
+        <module>ftp</module>
     </modules>
 </project>
 
