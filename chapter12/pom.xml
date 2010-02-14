@@ -8,10 +8,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>chapter11</artifactId>
+    <artifactId>chapter12</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Camel in Action :: Chapter 11</name>
+    <name>Camel in Action :: Chapter 12</name>
 
     <modules>
         <module>health</module>

@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>com.camelinaction</groupId>
-        <artifactId>chapter11</artifactId>
+        <artifactId>chapter12</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>notifier</artifactId>
-    <name>Camel in Action :: Chapter 11 :: Using custom EventNotifier</name>
+    <artifactId>tracer</artifactId>
+    <name>Camel in Action :: Chapter 12 :: Using Tracer</name>
 
     <dependencies>
 

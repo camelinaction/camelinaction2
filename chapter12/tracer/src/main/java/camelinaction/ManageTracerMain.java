@@ -83,7 +83,7 @@ public class ManageTracerMain extends CamelTestSupport {
                 context.getManagementStrategy().setManagementAgent(agent);
 
                 // slow things down a bit
-                context.setDelayer(2000);
+                context.setDelayer(2000L);
 
                 from("file://target/rider/orders")
                         .wireTap("seda:audit")

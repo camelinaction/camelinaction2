@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>com.camelinaction</groupId>
-        <artifactId>chapter11</artifactId>
+        <artifactId>chapter12</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>health</artifactId>
-    <name>Camel in Action :: Chapter 11 :: Health check</name>
+    <artifactId>custom</artifactId>
+    <name>Camel in Action :: Chapter 12 :: Managing custom components</name>
 
     <dependencies>
 
@@ -27,18 +27,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jetty</artifactId>
-            <version>${camel-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-http</artifactId>
-            <version>${camel-version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
@@ -49,22 +37,20 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-test</artifactId>
             <version>${camel-version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.4</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>
 
     <profiles>
         <profile>
-            <id>PingService</id>
+            <id>custom</id>
             <properties>
-                <target.main.class>camelinaction.PingServiceMain</target.main.class>
+                <target.main.class>camelinaction.ERPMain</target.main.class>
             </properties>
         </profile>
     </profiles>
