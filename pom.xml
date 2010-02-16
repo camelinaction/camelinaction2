@@ -62,7 +62,7 @@
   </scm>
 
   <properties>
-    <camel-version>2.2-SNAPSHOT</camel-version>
+    <camel-version>2.2.0</camel-version>
   </properties>
 
   <!-- SNAPSHOT repositories used as some examples uses latest code from Camel -->
