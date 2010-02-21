@@ -57,7 +57,7 @@ public class InventoryXMLTest extends CamelSpringTestSupport {
     @Test
     public void testSingleFile() throws Exception {
         String input = "4444,57123,Bumper,50\n4444,57124,Fender,87";
-        template.sendBodyAndHeader("file:target/inventory/updates", input, Exchange.FILE_NAME, "acme-1.xml");
+        template.sendBodyAndHeader("file:target/inventory/updates", input, Exchange.FILE_NAME, "acme-1.csv");
 
         Thread.sleep(3000);
     }
