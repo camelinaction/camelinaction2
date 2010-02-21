@@ -53,6 +53,7 @@
     <module>chapter7</module>
     <module>chapter9</module>
     <module>chapter12</module>
+    <module>chapter13</module>
   </modules>
 
   <scm>
@@ -62,7 +63,7 @@
   </scm>
 
   <properties>
-    <camel-version>2.2.0</camel-version>
+    <camel-version>2.3-SNAPSHOT</camel-version>
   </properties>
 
   <!-- SNAPSHOT repositories used as some examples uses latest code from Camel -->
