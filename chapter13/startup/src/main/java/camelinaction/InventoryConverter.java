@@ -20,6 +20,11 @@ import camelinaction.inventory.UpdateInventoryInput;
 import org.apache.camel.Converter;
 
 /**
+ * A Camel converter which can convert from CSV (String) to model objects.
+ * <p/>
+ * By annotation this class with @Converter we tell Camel this is a converter class
+ * it should scan and register methods as type converters.
+ *
  * @version $Revision$
  */
 @Converter
@@ -28,6 +33,15 @@ public final class InventoryConverter {
     private InventoryConverter() {
     }
 
+    /**
+     * This method can convert from CSV (String) to model object.
+     * <p/>
+     * By annotation this method with @Converter we tell Camel to include this method
+     * as a type converter in its type converter registry.
+     *
+     * @param csv the from type
+     * @return the to type
+     */
     @Converter
     public static UpdateInventoryInput toInput(String csv) {
         String[] lines = csv.split(",");
