@@ -25,11 +25,11 @@ import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 /**
- * Test to show how to stop a route when its done.
+ * Testing how to stop a route when its done using on completion.
  *
  * @version $Revision$
  */
-public class ManualRouteWithStopTest extends CamelTestSupport {
+public class ManualRouteWithOnCompletionTest extends CamelTestSupport {
 
     @Override
     public void setUp() throws Exception {
@@ -40,7 +40,7 @@ public class ManualRouteWithStopTest extends CamelTestSupport {
     @Override
     protected RouteBuilder[] createRouteBuilders() throws Exception {
         // showing a trick how you can append the two routes together
-        RouteBuilder[] answer = new RouteBuilder[]{new ManualRouteWithStop(), new RouteBuilder() {
+        RouteBuilder[] answer = new RouteBuilder[]{new ManualRouteWithOnCompletion(), new RouteBuilder() {
             @Override
             public void configure() throws Exception {
                 from("direct:update").to("mock:update");
@@ -50,7 +50,7 @@ public class ManualRouteWithStopTest extends CamelTestSupport {
     }
 
     @Test
-    public void testManualRouteWithStop() throws Exception {
+    public void testManualRouteWithOnCompletion() throws Exception {
         // notify us when the exchange is done
         NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
 
@@ -74,6 +74,10 @@ public class ManualRouteWithStopTest extends CamelTestSupport {
 
         // wait for the route to be done
         notify.matches(5, TimeUnit.SECONDS);
+
+        // we gotta wait just a little extra since onCompletion spawns a new thread and runs
+        // after the original route has been done 
+        Thread.sleep(1000);
 
         // it should have stopped itself
         assertTrue("Route should be stopped", context.getRouteStatus("manual").isStopped());
