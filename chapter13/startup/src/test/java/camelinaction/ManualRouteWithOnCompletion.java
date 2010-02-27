@@ -37,7 +37,7 @@ public class ManualRouteWithOnCompletion extends RouteBuilder {
     public void configure() throws Exception {
         // when the exchange is completed then stop the route by
         // running this onCompletion
-        onCompletion().onprocess(new StopRouteProcessor("manual"));
+        onCompletion().process(new StopRouteProcessor("manual"));
 
         // ensure we only pickup one file at any given time
         from("file://target/inventory/manual?maxMessagesPerPoll=1")

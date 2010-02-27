@@ -16,6 +16,7 @@
     <modules>
         <module>startup</module>
         <module>routepolicy</module>
+        <module>shutdown</module>
     </modules>
 </project>
 
