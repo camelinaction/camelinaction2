@@ -25,7 +25,7 @@ import org.apache.camel.builder.RouteBuilder;
  *
  * @version $Revision$
  */
-public class InventoryRoute extends RouteBuilder {
+public class InventoryRouteDefer extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
@@ -45,6 +45,8 @@ public class InventoryRoute extends RouteBuilder {
         // this is the shared route which then must be started first
         from("direct:update")
             .routeId("update").startupOrder(1)
+            // we must defer shutting down this route as its a shared route by the two others
+            .shutdownRoute(ShutdownRoute.Defer)
             .to("bean:inventoryService?method=updateInventory");
     }
 }
