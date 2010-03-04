@@ -15,6 +15,7 @@
     <modules>
         <module>file</module>
         <module>ftp</module>
+        <module>jms</module>
         <module>timer</module>
         <module>quartz</module>
     </modules>
