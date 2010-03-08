@@ -48,8 +48,13 @@
     <!-- and the DAO for accessing the database -->
     <bean id="orderDao" class="camelinaction.OrderDAO"/>
 
+    <!-- bean which ensures the database table is created -->
+    <bean id="orderCreateTable" class="camelinaction.OrderCreateTable">
+        <constructor-arg index="0" ref="camel"/>
+    </bean>
+
     <!-- the camel route -->
-    <camelContext trace="true" xmlns="http://camel.apache.org/schema/spring">
+    <camelContext id="camel" trace="false" xmlns="http://camel.apache.org/schema/spring">
 
         <onException>
             <!-- policy for when any exception occurred -->
@@ -60,6 +65,8 @@
             <handled><constant>true</constant></handled>
             <!-- where we transform a custom reply message with the error -->
             <transform><method bean="order" method="replyError"/></transform>
+            <!-- log a message in the log -->
+            <log message="Order failed"/>
             <!-- and important to mark the transaction to still rollback even if we handled the exception -->
             <!-- this must be done as the last step in onException -->
             <rollback markRollbackOnly="true"/>
@@ -74,6 +81,8 @@
             <bean ref="orderDao" method="insertOrder"/>
             <!-- process the order -->
             <bean ref="order" method="processOrder"/>
+            <!-- log a message in the log -->
+            <log message="Order successfully processed"/>
             <!-- and then create the OK reply for the webservice which is still waiting for a reply -->
             <transform><method bean="order" method="replyOk"/></transform>
         </route>

@@ -37,17 +37,11 @@ public class OrderTest extends CamelSpringTestSupport {
     public void setUp() throws Exception {
         super.setUp();
 
+        // setup JDBC template
         DataSource ds = context.getRegistry().lookup("myDataSource", DataSource.class);
         jdbc = new JdbcTemplate(ds);
 
-        jdbc.execute("create table riders_order "
-            + "( customer_id varchar(10), ref_no varchar(10), part_id varchar(10), amount varchar(10) )");
-    }
-
-    @Override
-    public void tearDown() throws Exception {
-        super.tearDown();
-        jdbc.execute("drop table riders_order");
+        // notice that the table is automatic created using the OrderCreateTable class.
     }
 
     @Override
@@ -65,6 +59,9 @@ public class OrderTest extends CamelSpringTestSupport {
         input.setRefNo("57123");
         input.setPartId("333");
         input.setAmount("50");
+
+        // give CXF time to wake up
+        Thread.sleep(1000);
 
         OutputOrder reply = template.requestBody("cxf:bean:orderEndpoint", input, OutputOrder.class);
         assertEquals("OK", reply.getCode());
@@ -85,6 +82,9 @@ public class OrderTest extends CamelSpringTestSupport {
         input.setPartId("333");
         input.setAmount("50");
 
+        // give CXF time to wake up
+        Thread.sleep(1000);
+
         OutputOrder reply = template.requestBody("cxf:bean:orderEndpoint", input, OutputOrder.class);
         assertEquals("OK", reply.getCode());
 
@@ -103,6 +103,9 @@ public class OrderTest extends CamelSpringTestSupport {
         input.setRefNo("FATAL");
         input.setPartId("333");
         input.setAmount("50");
+
+        // give CXF time to wake up
+        Thread.sleep(1000);
 
         OutputOrder reply = template.requestBody("cxf:bean:orderEndpoint", input, OutputOrder.class);
         assertEquals("ERROR: Simulated fatal error", reply.getCode());

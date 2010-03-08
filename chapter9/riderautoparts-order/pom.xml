@@ -22,43 +22,26 @@
 
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test</artifactId>
-            <version>${camel-version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf</artifactId>
             <version>${camel-version}</version>
+        </dependency>
+
+        <!-- for using JDBC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>2.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>1.8.0.7</version>
         </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.4</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- for using JDBC -->
-        <dependency>
-          <groupId>hsqldb</groupId>
-          <artifactId>hsqldb</artifactId>
-          <version>1.8.0.7</version>
-          <scope>test</scope>
-        </dependency>
-
-        <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-jdbc</artifactId>
-          <version>2.5.6</version>
-          <scope>test</scope>
         </dependency>
 
         <!-- cxf using slf4j -->
@@ -71,13 +54,26 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.5.8</version>
-        </dependency>                                    
+        </dependency>
 
-        <!-- using Jetty for testing with CXF -->
+        <!-- using Jetty with CXF -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http-jetty</artifactId>
             <version>2.2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test</artifactId>
+            <version>${camel-version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
             <scope>test</scope>
         </dependency>
 
@@ -86,13 +82,10 @@
     <build>
         <plugins>
 
-            <!-- Allows the example to be run via 'mvn compile exec:java' -->
+            <!-- Allows the example to be run via 'mvn camel:run' -->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <configuration>
-                    <includePluginDependencies>false</includePluginDependencies>
-                </configuration>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-maven-plugin</artifactId>
             </plugin>
 
             <plugin>
@@ -107,7 +100,7 @@
                             <sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/test/resources/wsdl/order.wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/wsdl/order.wsdl</wsdl>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>

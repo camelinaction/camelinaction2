@@ -26,29 +26,26 @@ import org.apache.camel.Header;
 /**
  * @version $Revision$
  */
-public class OrderService {
+public class OrderService { 
 
-    public String processOrder(InputOrder order, @Header(Exchange.REDELIVERY_COUNTER) int retry) throws Exception {
+    public void processOrder(Exchange exchange, InputOrder order,
+                             @Header(Exchange.REDELIVERED) Boolean redelivered) throws Exception {
 
-        // do some processing with the order
+        // simulate CPU processing of the order by sleeping a bit
         Thread.sleep(1000);
 
-        // simulate error if we refer to a special no
+        // simulate fatal error if we refer to a special no
         if (order.getRefNo().equals("FATAL")) {
             throw new IllegalArgumentException("Simulated fatal error");
         }
 
-        if (order.getRefNo().equals("FAIL-ONCE") && retry < 1) {
+        // simulate fail once if we have not yet redelivered, which means its the first
+        // time processOrder method is called
+        if (order.getRefNo().equals("FAIL-ONCE") && redelivered == null) {
             throw new IOException("Simulated failing once");
         }
 
-        // return some internal format that the order is ok
-        return order.getCustomerId() + ":" + order.getPartId() + ":" + order.getAmount() + "=OK";
-    }
-
-    public String toCsv(String line) {
-        // just replace : with ,
-        return line.replaceAll(":", ",");
+        // processing is okay
     }
 
     public OutputOrder replyOk() {
