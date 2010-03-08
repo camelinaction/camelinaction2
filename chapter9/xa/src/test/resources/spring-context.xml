@@ -32,16 +32,12 @@
         <property name="forceShutdown" value="false"/>
     </bean>
 
+    <!-- this is some atomikos setup you must do -->
     <bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
         <property name="transactionTimeout" value="300"/>
     </bean>
 
-    <bean id="jtaTransactionManager"
-          class="org.springframework.transaction.jta.JtaTransactionManager">
-        <property name="transactionManager" ref="atomikosTransactionManager"/>
-        <property name="userTransaction" ref="atomikosUserTransaction"/>
-    </bean>
-
+    <!-- this is some atomikos setup you must do -->
     <bean id="connectionFactory"
           class="com.atomikos.jms.AtomikosConnectionFactoryBean"
           init-method="init" destroy-method="close">
@@ -49,7 +45,15 @@
         <property name="xaConnectionFactory" ref="jmsXaConnectionFactory"/>
     </bean>
 
+    <!-- this is the Spring JtaTransactionManager which under the hood uses Atomikos -->
+    <bean id="jtaTransactionManager"
+          class="org.springframework.transaction.jta.JtaTransactionManager">
+        <property name="transactionManager" ref="atomikosTransactionManager"/>
+        <property name="userTransaction" ref="atomikosUserTransaction"/>
+    </bean>
+
     <!-- Is the ConnectionFactory to connect to the JMS broker -->
+    <!-- notice how we must use the XA connection factory -->
     <bean id="jmsXaConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
         <property name="brokerURL" value="tcp://localhost:61616"/>
     </bean>

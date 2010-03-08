@@ -30,7 +30,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 /**
  * @version $Revision$
  */
-public class AtomikosXATest extends CamelSpringTestSupport {
+public class AtomikosXACommitTest extends CamelSpringTestSupport {
 
     private JdbcTemplate jdbc;
 
@@ -60,7 +60,7 @@ public class AtomikosXATest extends CamelSpringTestSupport {
     }
 
     @Test
-    public void testXaOkay() throws Exception {
+    public void testXaCommit() throws Exception {
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
 
