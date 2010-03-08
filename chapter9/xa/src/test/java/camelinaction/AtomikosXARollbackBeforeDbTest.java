@@ -30,7 +30,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 /**
  * @version $Revision$
  */
-public class AtomikosXATest extends CamelSpringTestSupport {
+public class AtomikosXARollbackBeforeDbTest extends CamelSpringTestSupport {
 
     private JdbcTemplate jdbc;
 
@@ -60,18 +60,24 @@ public class AtomikosXATest extends CamelSpringTestSupport {
     }
 
     @Test
-    public void testXaOkay() throws Exception {
+    public void testXaRollbackBeforeDb() throws Exception {
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
 
-        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>200911150815</date><code>200</code><time>4387</time></partner>";
+        // partner id as 0 will cause rollback
+        String xml = "<?xml version=\"1.0\"?><partner id=\"0\"><date>200911150927</date><code>500</code><time>8732</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
-        // wait for the route to complete with success
-        Thread.sleep(5000);
+        // wait for the route to complete with failure
+        Thread.sleep(10000);
 
-        // there should be 1 row in the database
-        assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
+        // data not inserted so there should be 0 rows
+        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
+
+        // should be in DLQ
+        // now check that the message is on the queue by consuming it again
+        String dlq = consumer.receiveBodyNoWait("activemq:queue:ActiveMQ.DLQ", String.class);
+        assertNotNull("Should not lose message", dlq);
     }
 
     @Override
@@ -81,10 +87,13 @@ public class AtomikosXATest extends CamelSpringTestSupport {
             public void configure() throws Exception {
                 from("activemq:queue:partners")
                     .transacted()
+                    .log("+++ before database +++")
                     .bean(PartnerServiceBean.class, "toSql")
                     .to("jdbc:myDataSource")
-                    .to("mock:result");
+                    .log("+++ after database +++")
+                    .throwException(new IllegalArgumentException("Forced failure after DB"));
             }
         };
     }
+
 }

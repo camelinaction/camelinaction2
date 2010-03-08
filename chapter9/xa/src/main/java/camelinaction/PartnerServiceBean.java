@@ -28,6 +28,10 @@ public class PartnerServiceBean {
                         @XPath("partner/code/text()") int statusCode,
                         @XPath("partner/time/text()") long responseTime) {
 
+        if (partnerId <= 0) {
+            throw new IllegalArgumentException("PartnerId is invalid, was " + partnerId);
+        }
+
         StringBuilder sb = new StringBuilder();
         sb.append("INSERT INTO PARTNER_METRIC (partner_id, time_occurred, status_code, perf_time) VALUES (");
         sb.append("'").append(partnerId).append("', ");
