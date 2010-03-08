@@ -17,6 +17,7 @@
         <module>riderautoparts-partner</module>
         <module>xa</module>
         <module>multiple-routes</module>
+        <module>riderautoparts-order</module>
         <module>oncompletion</module>
     </modules>
 </project>
