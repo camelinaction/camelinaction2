@@ -32,6 +32,7 @@
     <!-- the camel context -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
 
+        <!-- this is the webservice route which is started 3rd -->
         <route id="webservice" startupOrder="3">
             <from uri="cxf:bean:inventoryEndpoint"/>
             <to uri="direct:update"/>
@@ -40,6 +41,7 @@
             </transform>
         </route>
 
+        <!-- this is the file route which is started 2nd -->
         <route id="file" startupOrder="2">
             <from uri="file://target/inventory/updates"/>
             <split>
@@ -49,7 +51,9 @@
             </split>
         </route>
 
-        <route id="update" startupOrder="1">
+        <!-- this is the update route which is shared and therefore started 1st -->
+        <!-- we must defer shutting down this route as its a shared route by the two others -->
+        <route id="update" startupOrder="1" shutdownRoute="Defer">
             <from uri="direct:update"/>
             <to uri="bean:inventoryService?method=updateInventory"/>
         </route>
