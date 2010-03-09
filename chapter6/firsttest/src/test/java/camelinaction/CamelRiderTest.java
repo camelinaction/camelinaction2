@@ -17,7 +17,6 @@
 package camelinaction;
 
 import java.io.File;
-import java.util.Properties;
 
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Exchange;
@@ -28,27 +27,27 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Our second unit test with the Camel Test Kit testing Spring XML routes.
+ * Our third unit test with the Camel Test Kit testing Spring XML routes.
  * We test the Hello World example of integration kits, which is copying a file.
  * <p/>
- * This time we use spring property placeholders in the route.
+ * This time we use Camel property placeholders in the route.
  * 
  * @version $Revision$
  */
-public class SpringRiderTest extends CamelSpringTestSupport {
+public class CamelRiderTest extends CamelSpringTestSupport {
 
     private String inboxDir;
     private String outboxDir;
 
-    @EndpointInject(ref = "inbox")
+    @EndpointInject(uri = "file:#{file.inbox}")
     private ProducerTemplate inbox;
 
     public void setUp() throws Exception {
         super.setUp();
 
-        Properties prop = context.getRegistry().lookup("properties", Properties.class);
-        inboxDir = prop.getProperty("file.inbox");
-        outboxDir = prop.getProperty("file.outbox");
+        // lookup these endpoints from the properties file
+        inboxDir = context.resolvePropertyPlaceholders("#{file.inbox}");
+        outboxDir = context.resolvePropertyPlaceholders("#{file.outbox}");
 
         // delete directories so we have a clean start
         deleteDirectory(inboxDir);
@@ -57,7 +56,7 @@ public class SpringRiderTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext(new String[]{"camelinaction/rider-spring-prod.xml", "camelinaction/rider-spring-test.xml"});
+        return new ClassPathXmlApplicationContext(new String[]{"camelinaction/rider-camel-prod.xml", "camelinaction/rider-camel-test.xml"});
     }
 
     @Test

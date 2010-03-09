@@ -26,6 +26,9 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
     ">
 
-    <util:properties id="properties" local-override="true" location="classpath:rider-test.properties"/>
+    <!-- override the existing properties from rider-camel-prod.xml with this one for the test environment -->
+    <bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
+        <property name="location" value="classpath:rider-test.properties"/>
+    </bean>
 
 </beans>

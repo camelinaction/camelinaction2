@@ -17,33 +17,16 @@
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:broker="http://activemq.apache.org/schema/core"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
-       http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+    ">
 
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
-        <route>
-            <from uri="direct:greet"/>
-
-            <!-- add on completion which is also a route that is executed
-                 when the real route is complete.
-                 Notice onComplete can also be global -->
-            <onCompletion>
-                <!-- route to our logger bean -->
-                <bean ref="myReplyLogger"/>
-            </onCompletion>
-
-            <!-- here starts the regular route -->
-            <to uri="log:a"/>
-            <transform><simple>Hi ${body}</simple></transform>
-            <to uri="log:b"/>
-            <transform><simple>${body}. How are you?</simple></transform>
-            <to uri="log:c"/>
-        </route>
-    </camelContext>
-
-    <bean id="myReplyLogger" class="camelinaction.MyReplyLogger"/>
+    <!-- override the existing properties from rider-spring-prod.xml with this one for the test environment -->
+    <util:properties id="properties" local-override="true" location="classpath:rider-test.properties"/>
 
 </beans>
