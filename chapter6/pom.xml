@@ -17,7 +17,6 @@
         <module>firsttest</module>
         <module>miranda</module>
         <module>error</module>
-        <module>dataset</module>
     </modules>
 </project>
 
