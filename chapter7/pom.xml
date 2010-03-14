@@ -16,6 +16,8 @@
         <module>file</module>
         <module>ftp</module>
         <module>jms</module>
+        <module>mina</module>
+        <module>seda</module>
         <module>timer</module>
         <module>quartz</module>
     </modules>
