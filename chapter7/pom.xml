@@ -17,6 +17,7 @@
         <module>ftp</module>
         <module>jms</module>
         <module>mina</module>
+        <module>jdbc</module>
         <module>seda</module>
         <module>timer</module>
         <module>quartz</module>
