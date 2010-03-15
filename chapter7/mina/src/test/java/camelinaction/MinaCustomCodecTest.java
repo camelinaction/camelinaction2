@@ -38,7 +38,7 @@ public class MinaCustomCodecTest extends CamelTestSupport {
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
         camelContext.addComponent("jms", jmsComponentClientAcknowledge(connectionFactory));
-camelContext.setTracing(true);
+
         return camelContext;
     }
     
