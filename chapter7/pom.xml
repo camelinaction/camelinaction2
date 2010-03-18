@@ -18,6 +18,7 @@
         <module>jms</module>
         <module>mina</module>
         <module>jdbc</module>
+        <module>jpa</module>
         <module>seda</module>
         <module>timer</module>
         <module>quartz</module>
