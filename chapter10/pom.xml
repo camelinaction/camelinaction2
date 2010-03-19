@@ -15,6 +15,7 @@
 
     <modules>
         <module>bigfile</module>
+        <module>custom</module>
     </modules>
 </project>
 
