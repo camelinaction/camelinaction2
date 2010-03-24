@@ -17,6 +17,7 @@
         <module>bigfile</module>
         <module>custom</module>
         <module>eip</module>
+        <module>synchronicity</module>
     </modules>
 </project>
 

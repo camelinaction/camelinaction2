@@ -24,7 +24,6 @@ import org.apache.camel.processor.aggregate.AggregationStrategy;
  */
 public class CombineDataAggregationStrategy implements AggregationStrategy {
 
-    @Override
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
         // to contains the endpoint which we send to so we know which system
         // has returned data back to us

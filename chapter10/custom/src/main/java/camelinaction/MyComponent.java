@@ -35,12 +35,10 @@ public class MyComponent extends DefaultComponent implements Runnable {
     private static final Log LOG = LogFactory.getLog(MyComponent.class);
     private ScheduledExecutorService executor;
 
-    @Override
     protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {
         return null;
     }
 
-    @Override
     public void run() {
         // this is the task being executed every second
         LOG.info("I run now");
