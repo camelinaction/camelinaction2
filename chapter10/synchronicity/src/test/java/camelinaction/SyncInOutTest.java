@@ -35,7 +35,7 @@ public class SyncInOutTest extends CamelTestSupport {
     public void testSyncInOut() throws Exception {
         String body = "Hello Camel";
 
-        // send an InOut (= requestBody) to Camel using direct which acts synchronous
+        // send an InOut (= requestBody) to Camel
         LOG.info("Caller calling Camel with message: " + body);
         String reply = template.requestBody("direct:start", body, String.class);
 
@@ -49,9 +49,9 @@ public class SyncInOutTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 // route the message to a log so we can see details about MEP and thread name
-                from("direct:start").to("log:Camel")
+                from("direct:start").to("log:A")
                     // and then set a reply to the caller
-                    .transform().constant("Bye Camel");
+                    .transform(constant("Bye Camel")).to("log:B");
             }
         };
     }

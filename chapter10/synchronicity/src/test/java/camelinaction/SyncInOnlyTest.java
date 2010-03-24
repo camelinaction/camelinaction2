@@ -36,7 +36,7 @@ public class SyncInOnlyTest extends CamelTestSupport {
     public void testSyncInOnly() throws Exception {
         String body = "Hello Camel";
 
-        // send an InOnly to Camel using direct which acts synchronous
+        // send an InOnly (= sendBody) to Camel
         LOG.info("Caller calling Camel with message: " + body);
         template.sendBody("direct:start", "Hello Camel");
         LOG.info("Caller finished calling Camel");
@@ -48,7 +48,7 @@ public class SyncInOnlyTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 // route the message to a log so we can see details about MEP and thread name
-                from("direct:start").to("log:Camel");
+                from("direct:start").to("log:A").to("log:B");
             }
         };
     }
