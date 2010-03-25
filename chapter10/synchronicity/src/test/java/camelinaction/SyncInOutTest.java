@@ -49,7 +49,8 @@ public class SyncInOutTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 // route the message to a log so we can see details about MEP and thread name
-                from("seda:start").to("log:A")
+                from("seda:start")
+                    .to("log:A")
                     // and then set a reply to the caller
                     .transform(constant("Bye Camel")).to("log:B");
             }

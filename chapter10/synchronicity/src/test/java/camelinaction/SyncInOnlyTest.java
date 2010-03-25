@@ -38,7 +38,7 @@ public class SyncInOnlyTest extends CamelTestSupport {
 
         // send an InOnly (= sendBody) to Camel
         LOG.info("Caller calling Camel with message: " + body);
-        template.sendBody("seda:start", "Hello Camel");
+        template.sendBody("seda:start", body);
         LOG.info("Caller finished calling Camel");
 
         // give time for route to complete
@@ -51,7 +51,9 @@ public class SyncInOnlyTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 // route the message to a log so we can see details about MEP and thread name
-                from("seda:start").to("log:A").to("log:B");
+                from("seda:start")
+                    .to("log:A")
+                    .to("log:B");
             }
         };
     }
