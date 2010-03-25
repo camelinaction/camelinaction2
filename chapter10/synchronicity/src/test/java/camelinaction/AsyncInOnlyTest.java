@@ -37,7 +37,7 @@ public class AsyncInOnlyTest extends CamelTestSupport {
 
         // send an InOnly (= sendBody) to Camel
         LOG.info("Caller calling Camel with message: " + body);
-        template.sendBody("direct:start", "Hello Camel");
+        template.sendBody("seda:start", "Hello Camel");
         LOG.info("Caller finished calling Camel");
 
         // give Camel time to route the async message
@@ -50,7 +50,7 @@ public class AsyncInOnlyTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 // route the message to a log so we can see details about MEP and thread name
-                from("direct:start").to("log:A")
+                from("seda:start").to("log:A")
                     // cause this route be asynchronous
                     .threads(1)
                     .to("log:B");

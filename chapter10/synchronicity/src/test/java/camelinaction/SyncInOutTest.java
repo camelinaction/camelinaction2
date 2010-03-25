@@ -37,7 +37,7 @@ public class SyncInOutTest extends CamelTestSupport {
 
         // send an InOut (= requestBody) to Camel
         LOG.info("Caller calling Camel with message: " + body);
-        String reply = template.requestBody("direct:start", body, String.class);
+        String reply = template.requestBody("seda:start", body, String.class);
 
         assertEquals("Bye Camel", reply);
         LOG.info("Caller finished calling Camel and received reply: " + reply);
@@ -49,7 +49,7 @@ public class SyncInOutTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 // route the message to a log so we can see details about MEP and thread name
-                from("direct:start").to("log:A")
+                from("seda:start").to("log:A")
                     // and then set a reply to the caller
                     .transform(constant("Bye Camel")).to("log:B");
             }
