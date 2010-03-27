@@ -13,6 +13,7 @@
     <name>Camel in Action :: Chapter 7</name>
 
     <modules>
+        <module>cxf</module>
         <module>file</module>
         <module>ftp</module>
         <module>jms</module>
