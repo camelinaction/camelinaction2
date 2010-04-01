@@ -18,6 +18,7 @@
         <module>custom</module>
         <module>eip</module>
         <module>synchronicity</module>
+        <module>client</module>
     </modules>
 </project>
 
