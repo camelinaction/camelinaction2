@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://inventory.camelinaction"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="http://inventory.camelinaction">
+
+    <!-- Type definitions for input- and output parameters for webservice -->
+    <wsdl:types>
+        <xs:schema targetNamespace="http://inventory.camelinaction">
+            <xs:element name="updateInventoryInput">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="supplierId"/>
+                        <xs:element type="xs:string" name="partId"/>
+                        <xs:element type="xs:string" name="name"/>
+                        <xs:element type="xs:string" name="amount"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateInventoryOutput">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="code"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- Message definitions for input and output -->
+    <wsdl:message name="inputInventory">
+        <wsdl:part name="in" element="tns:updateInventoryInput"/>
+    </wsdl:message>
+    <wsdl:message name="outputInventory">
+        <wsdl:part name="out" element="tns:updateInventoryOutput"/>
+    </wsdl:message>
+
+    <!-- Port (interface) definitions -->
+    <wsdl:portType name="InventoryEndpoint">
+        <wsdl:operation name="Inventory">
+            <wsdl:input message="tns:inputInventory"/>
+            <wsdl:output message="tns:outputInventory"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- Port bindings to transports and encoding - HTTP, document literal encoding is used -->
+    <wsdl:binding name="InventoryBinding" type="tns:InventoryEndpoint">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Inventory">
+            <soap:operation
+                    soapAction="http://http://inventory.camelinaction/Inventory"
+                    style="document"/>
+            <wsdl:input>
+                <soap:body parts="in" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="out" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- Service definition -->
+    <wsdl:service name="InventoryEndpointService">
+        <wsdl:port name="InventoryService" binding="tns:InventoryBinding">
+            <soap:address location="changeme"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
