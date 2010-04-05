@@ -28,8 +28,20 @@
 
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-cxf</artifactId>
+            <artifactId>camel-jms</artifactId>
             <version>${camel-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-camel</artifactId>
+            <version>5.3.1</version>
+        </dependency>
+        <!-- xbean is needed for ActiveMQ broker XML configuration in Spring XML files -->
+        <dependency>
+            <groupId>org.apache.xbean</groupId>
+            <artifactId>xbean-spring</artifactId>
+            <version>3.5</version>
         </dependency>
 
         <dependency>
@@ -50,20 +62,21 @@
             <version>4.4</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>2.2.6</version>
-            <scope>test</scope>
-        </dependency>
 
     </dependencies>
 
     <profiles>
         <profile>
-            <id>CreateBigFile</id>
+            <id>Server</id>
             <properties>
-                <target.main.class>camelinaction.CreateBigFileMain</target.main.class>
+                <target.main.class>org.apache.camel.spring.Main</target.main.class>
+                <target.main.args>-ac META-INF/spring/camel-server.xml</target.main.args>
+            </properties>
+        </profile>
+        <profile>
+            <id>Client</id>
+            <properties>
+                <target.main.class>camelinaction.Client</target.main.class>
             </properties>
         </profile>
     </profiles>
@@ -78,31 +91,8 @@
                 <configuration>
                     <mainClass>${target.main.class}</mainClass>
                     <includePluginDependencies>false</includePluginDependencies>
-                    <commandlineArgs>${lines}</commandlineArgs>
+                    <commandlineArgs>${target.main.args}</commandlineArgs>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-codegen-plugin</artifactId>
-                <version>2.2.6</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
-                            <wsdlOptions>
-                                <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/wsdl/inventory.wsdl</wsdl>
-                                </wsdlOption>
-                            </wsdlOptions>
-                        </configuration>
-                        <goals>
-                            <goal>wsdl2java</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
         </plugins>

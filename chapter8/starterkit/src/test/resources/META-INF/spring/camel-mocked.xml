@@ -34,6 +34,7 @@
 
         <route>
             <from uri="direct:rider"/>
+            <to uri="log:rider"/>
             <to uri="bean:riderMocked"/>
         </route>
 

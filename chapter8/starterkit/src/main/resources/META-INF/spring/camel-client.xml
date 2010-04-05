@@ -23,21 +23,16 @@
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-    <!-- import the other spring xml files -->
-    <import resource="classpath:META-INF/spring/camel-cxf.xml"/>
+    <!-- camel activemq component to connect to the broker -->
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+    </bean>
 
-    <!-- the camel context -->
+    <!-- the camel client -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <proxy id="rider"
                serviceInterface="camelinaction.RiderService"
-               serviceUrl="direct:rider"/>
-
-        <route>
-            <from uri="direct:rider"/>
-            <to uri="log:rider"/>
-            <to uri="cxf:bean:inventoryEndpoint"/>
-        </route>
-
+               serviceUrl="activemq:queue:rider"/>
     </camelContext>
 
 </beans>

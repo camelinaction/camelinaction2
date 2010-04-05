@@ -18,18 +18,29 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:camel="http://camel.apache.org/schema/spring"
        xsi:schemaLocation="
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-         http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
+    <!-- import the ActiveMQ broker to act as server -->
+    <import resource="activemq-broker.xml"/>
 
-    <import resource="classpath:META-INF/cxf/cxf.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml"/>
+    <!-- camel activemq component to connect to the broker -->
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+    </bean>
 
-    <cxf:cxfEndpoint id="inventoryEndpoint"
-                     address="http://localhost:9000/inventory"
-                     serviceClass="camelinaction.inventory.InventoryEndpoint"/>
+    <!-- mock the remote auto rider parts service for local testing -->
+    <bean id="riderMocked" class="camelinaction.AutoRiderPartsMock"/>
+
+    <!-- the camel server -->
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+        <route>
+            <from uri="activemq:queue:rider"/>
+            <to uri="log:server"/>
+            <to uri="bean:riderMocked"/>
+        </route>
+    </camelContext>
 
 </beans>
