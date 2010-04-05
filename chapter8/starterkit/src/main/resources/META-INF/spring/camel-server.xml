@@ -26,11 +26,6 @@
     <!-- import the ActiveMQ broker to act as server -->
     <import resource="activemq-broker.xml"/>
 
-    <!-- camel activemq component to connect to the broker -->
-    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
-        <property name="brokerURL" value="tcp://localhost:61616"/>
-    </bean>
-
     <!-- mock the remote auto rider parts service for local testing -->
     <bean id="riderMocked" class="camelinaction.AutoRiderPartsMock"/>
 

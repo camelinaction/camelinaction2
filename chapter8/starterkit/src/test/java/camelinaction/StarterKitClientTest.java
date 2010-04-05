@@ -32,9 +32,9 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
 
     private static final Log LOG = LogFactory.getLog(StarterKitClientTest.class);
 
-    public boolean isUseRouteBuilder() {
+    protected int getExpectedRouteCount() {
         // we do not have any routes
-        return false;
+        return 0;
     }
 
     protected AbstractXmlApplicationContext createApplicationContext() {
@@ -44,31 +44,30 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
     @Test
     public void testStarterKitUpdateInventory() throws Exception {
         RiderService rider = context.getRegistry().lookup("rider", RiderService.class);
-        updateInventory(rider);
-    }
 
-    private void updateInventory(RiderService rider) {
         Inventory inventory = new Inventory("1234", "4444");
         inventory.setName("Bumper");
         inventory.setAmount("57");
 
         LOG.info("Sending inventory");
         rider.updateInventory(inventory);
+        LOG.info("Sending inventory DONE");
     }
 
     @Test
     public void testStarterShipping() throws Exception {
         RiderService rider = context.getRegistry().lookup("rider", RiderService.class);
-        shipInventory(rider);
-    }
 
-    private void shipInventory(RiderService rider) {
         List<ShippingDetail> details = rider.shipInventory("1234", "4444");
         LOG.info("Received shipping details");
 
         assertEquals(2, details.size());
         assertEquals("Rider Road 66", details.get(0).getAddress());
         assertEquals("Ocean View 123", details.get(1).getAddress());
+
+        for (ShippingDetail detail : details) {
+            LOG.info(detail);
+        }
     }
 
 }
