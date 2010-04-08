@@ -26,6 +26,8 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * An example like StarterKitClientTest but not using ActiveMQ but with SEDA instead.
+ *
  * @version $Revision$
  */
 public class StarterKitMockedSedaTest extends CamelSpringTestSupport {

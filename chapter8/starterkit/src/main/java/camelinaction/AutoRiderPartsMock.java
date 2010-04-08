@@ -23,6 +23,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * A mocked implementation of {@link RiderService} to be used for testing purpose.
+ *
  * @version $Revision$
  */
 public class AutoRiderPartsMock implements RiderService {

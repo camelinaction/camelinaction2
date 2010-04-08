@@ -19,6 +19,11 @@ package camelinaction;
 import java.util.List;
 
 /**
+ * The client interface which clients should use to communicate with Auto Rider Parts.
+ * <p/>
+ * This interface is used to hide the middleware and will at runtime be proxied by Camel Proxy
+ * which will route the method call in Camel routes to external endpoints.
+ *
  * @version $Revision$
  */
 public interface RiderService {

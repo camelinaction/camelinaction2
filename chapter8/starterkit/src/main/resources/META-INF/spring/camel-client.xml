@@ -30,6 +30,7 @@
 
     <!-- the camel client -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
+        <!-- proxy the RiderService interface and send method invocations to the given endpoint url -->
         <proxy id="rider"
                serviceInterface="camelinaction.RiderService"
                serviceUrl="activemq:queue:rider"/>

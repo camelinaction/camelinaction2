@@ -26,6 +26,11 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * Unit test to demonstrate the principle of using Camel Proxy to hide the middleware.
+ * <p/>
+ * Notice the unit test methods does not use any Camel ProducerTemplate to send messages
+ * to Camel. They use a clean interface, the RiderService interface.
+ *
  * @version $Revision$
  */
 public class StarterKitClientTest extends CamelSpringTestSupport {
@@ -33,7 +38,7 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
     private static final Log LOG = LogFactory.getLog(StarterKitClientTest.class);
 
     protected int getExpectedRouteCount() {
-        // we do not have any routes
+        // we do not have any routes (no routes in camel-client.xml)
         return 0;
     }
 
@@ -43,12 +48,15 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
 
     @Test
     public void testStarterKitUpdateInventory() throws Exception {
+        // get the proxied interface for the client to use
         RiderService rider = context.getRegistry().lookup("rider", RiderService.class);
 
+        // prepare an inventory update to be send
         Inventory inventory = new Inventory("1234", "4444");
         inventory.setName("Bumper");
         inventory.setAmount("57");
 
+        // invoke the client
         LOG.info("Sending inventory");
         rider.updateInventory(inventory);
         LOG.info("Sending inventory DONE");
@@ -56,15 +64,19 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
 
     @Test
     public void testStarterShipping() throws Exception {
+        // get the proxied interface for the client to use
         RiderService rider = context.getRegistry().lookup("rider", RiderService.class);
 
+        // invoke client to have shipping details returned
         List<ShippingDetail> details = rider.shipInventory("1234", "4444");
         LOG.info("Received shipping details");
 
+        // assert the returned data
         assertEquals(2, details.size());
         assertEquals("Rider Road 66", details.get(0).getAddress());
         assertEquals("Ocean View 123", details.get(1).getAddress());
 
+        // log the returned data to console
         for (ShippingDetail detail : details) {
             LOG.info(detail);
         }

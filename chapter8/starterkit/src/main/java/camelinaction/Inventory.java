@@ -19,6 +19,10 @@ package camelinaction;
 import java.io.Serializable;
 
 /**
+ * Domain object.
+ * <p/>
+ * Must be serializable to be transferred over the network (from client to server)
+ *
  * @version $Revision$
  */
 public class Inventory implements Serializable {

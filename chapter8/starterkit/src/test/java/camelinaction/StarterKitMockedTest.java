@@ -26,6 +26,10 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * An example like StarterKitClientTest but not using ActiveMQ but with direct instead.
+ * <p/>
+ * This is a simple example you can run without any external ActiveMQ broker etc.
+ *
  * @version $Revision$
  */
 public class StarterKitMockedTest extends CamelSpringTestSupport {
