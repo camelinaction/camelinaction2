@@ -39,15 +39,15 @@ public class CamelRiderTest extends CamelSpringTestSupport {
     private String inboxDir;
     private String outboxDir;
 
-    @EndpointInject(uri = "file:#{file.inbox}")
+    @EndpointInject(uri = "file:{{file.inbox}}")
     private ProducerTemplate inbox;
 
     public void setUp() throws Exception {
         super.setUp();
 
-        // lookup these endpoints from the properties file
-        inboxDir = context.resolvePropertyPlaceholders("#{file.inbox}");
-        outboxDir = context.resolvePropertyPlaceholders("#{file.outbox}");
+        // lookup these endpoints from the properties file using Camel property placeholders - {{key}}
+        inboxDir = context.resolvePropertyPlaceholders("{{file.inbox}}");
+        outboxDir = context.resolvePropertyPlaceholders("{{file.outbox}}");
 
         // delete directories so we have a clean start
         deleteDirectory(inboxDir);

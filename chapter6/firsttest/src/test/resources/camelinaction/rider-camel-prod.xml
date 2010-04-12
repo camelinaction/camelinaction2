@@ -27,10 +27,10 @@
     </bean>
 
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <!-- notice we can use the Camel property placeholders directly in the urls -->
+        <!-- notice we can use the Camel property placeholders directly in the urls {{key}} -->
         <route>
-            <from uri="file:#{file.inbox}"/>
-            <to uri="file:#{file.outbox}"/>
+            <from uri="file:{{file.inbox}}"/>
+            <to uri="file:{{file.outbox}}"/>
         </route>
 
     </camelContext>
