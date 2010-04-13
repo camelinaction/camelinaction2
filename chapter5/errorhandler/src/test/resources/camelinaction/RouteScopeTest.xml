@@ -22,43 +22,23 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
     ">
 
-    <!-- this is the default error handler -->
-    <bean id="defaultEH" class="org.apache.camel.builder.DefaultErrorHandlerBuilder">
-        <!-- where we must refer to a spring bean with the redelivery policy to use -->
-        <property name="redeliveryPolicy" ref="defaultEHPolicy"/>
-    </bean>
-
-    <!-- this is a spring bean with the redelivery policy to use for the default error handler -->
-    <bean id="defaultEHPolicy" class="org.apache.camel.processor.RedeliveryPolicy">
-        <property name="maximumRedeliveries" value="2"/>
-        <property name="retryAttemptedLogLevel" value="WARN"/>
-        <property name="redeliverDelay" value="1000"/>
-    </bean>
-
-    <!-- this is the Dead Letter Channel error handler -->
-    <bean id="dlc" class="org.apache.camel.builder.DeadLetterChannelBuilder">
-        <!-- where we send failed message to a log endpoint -->
-        <property name="deadLetterUri" value="log:DLC"/>
-        <!-- where we must refer to a spring bean with the redelivery policy to use -->
-        <property name="redeliveryPolicy" ref="dlcPolicy"/>
-    </bean>
-
-    <!-- this is a spring bean with the redelivery policy to use for the Dead Letter Channel -->
-    <bean id="dlcPolicy" class="org.apache.camel.processor.RedeliveryPolicy">
-        <property name="maximumRedeliveries" value="5"/>
-        <property name="retryAttemptedLogLevel" value="INFO"/>
-        <property name="redeliverDelay" value="250"/>
-        <property name="backOffMultiplier" value="2"/>
-        <!-- must remember to turn exponential backoff on when using Spring XML -->
-        <property name="useExponentialBackOff" value="true"/>
-    </bean>
-
     <!-- this is the order service bean we use in the routes -->
     <bean id="orderService" class="camelinaction.OrderService"/>
 
     <!-- this is the camel context, notice how we refer to the default error handler
          as the context scoped error handler -->
     <camelContext id="camel" errorHandlerRef="defaultEH" xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- this is the default error handler -->
+        <errorHandler id="defaultEH">
+            <redeliveryPolicy maximumRedeliveries="2" retryAttemptedLogLevel="WARN" redeliveryDelay="1000"/>
+        </errorHandler>
+
+        <!-- this is the Dead Letter Channel error handler, where we send failed message to a log endpoint -->
+        <errorHandler id="dlc" type="DeadLetterChannel" deadLetterUri="log:DLC">
+            <redeliveryPolicy maximumRedeliveries="5" retryAttemptedLogLevel="INFO" redeliveryDelay="250"
+                              backOffMultiplier="2" useExponentialBackOff="true"/>
+        </errorHandler>
 
         <!-- this is the first route which will fallback and use the context scoped error handler -->
         <route>
