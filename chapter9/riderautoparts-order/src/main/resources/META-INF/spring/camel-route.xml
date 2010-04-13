@@ -27,21 +27,6 @@
     <import resource="classpath:META-INF/spring/camel-tx.xml"/>
     <import resource="classpath:META-INF/spring/camel-cxf.xml"/>
 
-    <!-- define the transactional error handler with redelivery policy -->
-    <bean id="myErrorHandler" class="org.apache.camel.spring.spi.TransactionErrorHandlerBuilder">
-        <property name="redeliveryPolicy" ref="myPolicy"/>
-    </bean>
-
-    <!-- we want to redeliver at most 3 times with 5 sec apart -->
-    <bean id="myPolicy" class="org.apache.camel.processor.RedeliveryPolicy">
-        <!-- use 1 sec interval between redeliveries -->
-        <property name="redeliverDelay" value="1000"/>
-        <!-- try at most 5 times -->
-        <property name="maximumRedeliveries" value="5"/>
-        <!-- log at WARN level when a redelivery is attempted -->
-        <property name="retryAttemptedLogLevel" value="WARN"/>
-    </bean>
-
     <!-- the order bean contain all the business logic -->
     <bean id="order" class="camelinaction.OrderService"/>
 
@@ -55,6 +40,14 @@
 
     <!-- the camel route -->
     <camelContext id="camel" trace="false" xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- define the transactional error handler with redelivery policy -->
+        <errorHandler id="myErrorHandler" type="TransactionErrorHandler">
+            <!-- use 1 sec interval between redeliveries -->
+            <!-- try at most 5 times -->
+            <!-- log at WARN level when a redelivery is attempted -->
+            <redeliveryPolicy redeliveryDelay="1000" maximumRedeliveries="5" retryAttemptedLogLevel="WARN"/>
+        </errorHandler>
 
         <onException>
             <!-- policy for when any exception occurred -->

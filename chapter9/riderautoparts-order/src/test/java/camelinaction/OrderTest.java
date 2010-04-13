@@ -61,7 +61,7 @@ public class OrderTest extends CamelSpringTestSupport {
         input.setAmount("50");
 
         // give CXF time to wake up
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         OutputOrder reply = template.requestBody("cxf:bean:orderEndpoint", input, OutputOrder.class);
         assertEquals("OK", reply.getCode());
@@ -83,7 +83,7 @@ public class OrderTest extends CamelSpringTestSupport {
         input.setAmount("50");
 
         // give CXF time to wake up
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         OutputOrder reply = template.requestBody("cxf:bean:orderEndpoint", input, OutputOrder.class);
         assertEquals("OK", reply.getCode());
@@ -105,7 +105,7 @@ public class OrderTest extends CamelSpringTestSupport {
         input.setAmount("50");
 
         // give CXF time to wake up
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         OutputOrder reply = template.requestBody("cxf:bean:orderEndpoint", input, OutputOrder.class);
         assertEquals("ERROR: Simulated fatal error", reply.getCode());
