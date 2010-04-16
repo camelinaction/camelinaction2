@@ -23,20 +23,31 @@
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
+    <!-- this is our aggregation strategy defined as a spring bean -->
     <bean id="myAggregationStrategy" class="camelinaction.MyAggregationStrategy"/>
 
     <camelContext xmlns="http://camel.apache.org/schema/spring">
+
         <route>
             <from uri="direct:start"/>
+            <!-- log the incoming message -->
             <log message="Sending ${body} with correlation key ${header.myId}"/>
+            <!-- aggregate using the aggregation strategy and complete when 3 messages
+                 has been aggregated -->
             <aggregate strategyRef="myAggregationStrategy" completionSize="3">
+                <!-- a correlation expression must be provided -->
                 <correlationExpression>
+                    <!-- we use the header with key myId,
+                         but you can use any Camel Expression you like -->
                     <header>myId</header>
                 </correlationExpression>
+                <!-- log the published outgoing message -->
                 <log message="Sending out ${body}"/>
+                <!-- and send it to a mock endpoint -->
                 <to uri="mock:result"/>
             </aggregate>
         </route>
+
     </camelContext>
 
 </beans>

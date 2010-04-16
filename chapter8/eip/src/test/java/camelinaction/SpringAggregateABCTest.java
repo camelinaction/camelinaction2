@@ -23,6 +23,10 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * The sample example as {@link camelinaction.AggregateABCTest} but using Spring XML instead.
+ * <p/>
+ * Please see code comments in the other example.
+ *
  * @version $Revision$
  */
 public class SpringAggregateABCTest extends CamelSpringTestSupport {
