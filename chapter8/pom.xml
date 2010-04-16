@@ -15,6 +15,7 @@
 
     <modules>
         <module>starterkit</module>
+        <module>eip</module>
     </modules>
 </project>
 
