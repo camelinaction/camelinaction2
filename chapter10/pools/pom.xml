@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>com.camelinaction</groupId>
-        <artifactId>chapter8</artifactId>
+        <artifactId>chapter10</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>eip</artifactId>
-    <name>Camel in Action :: Chapter 8 :: More EIP patterns</name>
+    <artifactId>pools</artifactId>
+    <name>Camel in Action :: Chapter 10 :: Creating custom thread pools</name>
 
     <dependencies>
 
@@ -38,6 +38,7 @@
             <version>${camel-version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

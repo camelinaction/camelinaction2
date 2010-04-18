@@ -15,7 +15,7 @@
 
     <modules>
         <module>bigfile</module>
-        <module>custom</module>
+        <module>pools</module>
         <module>eip</module>
         <module>synchronicity</module>
         <module>client</module>

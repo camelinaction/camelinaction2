@@ -14,7 +14,7 @@
     <name>Camel in Action :: Chapter 8</name>
 
     <modules>
-        <module>eip</module>
+        <module>eips</module>
     </modules>
 </project>
 
