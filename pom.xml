@@ -38,10 +38,6 @@
       <id>claus.ibsen</id>
       <name>Claus Ibsen</name>
     </developer>
-    <developer>
-      <id>hzbarcea</id>
-      <name>Hadrian Zbarcea</name>
-    </developer>
   </developers>
 
   <modules>
@@ -56,6 +52,7 @@
     <module>chapter10</module>
     <module>chapter12</module>
     <module>chapter13</module>
+    <module>chapter14</module>
   </modules>
 
   <scm>
