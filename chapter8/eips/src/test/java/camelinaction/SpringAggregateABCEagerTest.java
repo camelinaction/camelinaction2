@@ -16,31 +16,29 @@
  */
 package camelinaction;
 
-import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
-import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * The sample example as {@link camelinaction.AggregateABCENDTest} but using Spring XML instead.
+ * The sample example as {@link AggregateABCEagerTest} but using Spring XML instead.
  * <p/>
  * Please see code comments in the other example.
  *
  * @see camelinaction.MyEndAggregationStrategy
  * @version $Revision$
  */
-public class SpringAggregateABCENDTest extends CamelSpringTestSupport {
+public class SpringAggregateABCEagerTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/aggregate-abcend.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/aggregate-abc-eager.xml");
     }
 
     @Test
-    public void testABCEND() throws Exception {
+    public void testABCEager() throws Exception {
         MockEndpoint mock = getMockEndpoint("mock:result");
         // we expect ABC in the published message
         // notice: Only 1 message is expected

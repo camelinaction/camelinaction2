@@ -29,7 +29,9 @@ import org.junit.Test;
  * as they use the same correlation key.
  * <p/>
  * This time we use the completionPredicate to know when the END message arrives
- * and thus triggers completion
+ * and thus triggers completion. Notice how we use the eagerCheckCompletion which
+ * cause the completionPredicate to have the arriving Exchange as input. If we <b>did not</b>
+ * do that then the completionPredicate will have the aggregated Exchange as input.
  * <p/>
  * See the class {@link MyEndAggregationStrategy} for how the messages
  * are actually aggregated together. Notice how this class will discard the END message.
@@ -37,7 +39,7 @@ import org.junit.Test;
  * @see MyEndAggregationStrategy
  * @version $Revision$
  */
-public class AggregateABCENDTest extends CamelTestSupport {
+public class AggregateABCEagerTest extends CamelTestSupport {
 
     @Test
     public void testABCEND() throws Exception {
