@@ -9,8 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>eips</artifactId>
-    <name>Camel in Action :: Chapter 8 :: More EIP patterns</name>
+    <artifactId>aggregator</artifactId>
+    <name>Camel in Action :: Chapter 8 :: Aggregator EIP</name>
 
     <dependencies>
 
