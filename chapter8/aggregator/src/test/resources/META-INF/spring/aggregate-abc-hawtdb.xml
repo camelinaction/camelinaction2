@@ -38,6 +38,8 @@
 
         <route>
             <from uri="file://target/inbox"/>
+            <!-- do a little logging when we load the file -->
+            <log message="Consuming ${file:name}"/>
             <!-- aggregate using the aggregation strategy and complete when 3 messages
                  has been aggregated -->
             <aggregate strategyRef="myAggregationStrategy" completionSize="3"

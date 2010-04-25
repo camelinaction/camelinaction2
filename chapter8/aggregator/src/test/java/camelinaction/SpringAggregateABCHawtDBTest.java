@@ -33,13 +33,13 @@ public class SpringAggregateABCHawtDBTest extends CamelSpringTestSupport {
     @Test
     public void testABCHawtDB() throws Exception {
         System.out.println("Copy 3 files to target/inbox to trigger the completion");
-        System.out.println("Files to copy:\n");
-        System.out.println("copy src/test/resources/a.txt target/inbox");
-        System.out.println("copy src/test/resources/b.txt target/inbox");
-        System.out.println("copy src/test/resources/c.txt target/inbox");
+        System.out.println("Files to copy:");
+        System.out.println("  copy src/test/resources/a.txt target/inbox");
+        System.out.println("  copy src/test/resources/b.txt target/inbox");
+        System.out.println("  copy src/test/resources/c.txt target/inbox");
         System.out.println("\nSleeping for 20 seconds");
-        System.out.println("\nYou can let the test terminate and then start it again");
-        System.out.println("\nwhich should let you be able to continue.");
+        System.out.println("You can let the test terminate (or press ctrl +c) and then start it again");
+        System.out.println("Which should let you be able to resume.");
 
         Thread.sleep(20 * 1000);
     }
