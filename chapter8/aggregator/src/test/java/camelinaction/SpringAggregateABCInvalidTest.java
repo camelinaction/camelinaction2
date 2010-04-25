@@ -17,29 +17,27 @@
 package camelinaction;
 
 import org.apache.camel.CamelExecutionException;
-import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.processor.aggregate.ClosedCorrelationKeyException;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
+import org.springframework.context.support.AbstractXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * The ABC example for using the Aggregator EIP.
+ * The sample example as {@link AggregateABCInvalidTest} but using Spring XML instead.
  * <p/>
- * This example have 4 messages send to the aggregator, by which one
- * message is published which contains the aggregation of message 1,2 and 4
- * as they use the same correlation key.
- * <p/>
- * And this time we ignore invalid correlation keys which avoids Camel thrown an exception
- * if the correlation key is missing
- * <p/>
- * See the class {@link camelinaction.MyAggregationStrategy} for how the messages
- * are actually aggregated together.
+ * Please see code comments in the other example.
  *
- * @see camelinaction.MyAggregationStrategy
+ * @see camelinaction.MyEndAggregationStrategy
  * @version $Revision$
  */
-public class AggregateABCInvalidTest extends CamelTestSupport {
+public class SpringAggregateABCInvalidTest extends CamelSpringTestSupport {
+
+    @Override
+    protected AbstractXmlApplicationContext createApplicationContext() {
+        return new ClassPathXmlApplicationContext("META-INF/spring/aggregate-abc-invalid.xml");
+    }
 
     @Test
     public void testABCInvalid() throws Exception {
@@ -62,25 +60,4 @@ public class AggregateABCInvalidTest extends CamelTestSupport {
         assertMockEndpointsSatisfied();
     }
 
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                from("direct:start")
-                    // do a little logging
-                    .log("Sending ${body} with correlation key ${header.myId}")
-                    // aggregate based on header correlation key
-                    // use class MyAggregationStrategy for aggregation
-                    // and complete when we have aggregated 3 messages
-                    .aggregate(header("myId"), new MyAggregationStrategy()).completionSize(3)
-                        // and ignore invalid correlation keys
-                        .ignoreInvalidCorrelationKeys()
-                        // do a little logging for the published message
-                        .log("Sending out ${body}")
-                        // and send it to the mock
-                        .to("mock:result");
-            }
-        };
-    }
 }
