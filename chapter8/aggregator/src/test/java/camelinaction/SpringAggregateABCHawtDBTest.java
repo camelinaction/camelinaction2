@@ -24,7 +24,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * The ABC example for using persistent Aggregator EIP using Spring XML.
  * <p/>
- * See {@link camelinaction.AggregateABCHawtDBTest} for details.
+ * See {@link AggregateABCHawtDBTest} for details.
  *
  * @version $Revision$
  */

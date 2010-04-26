@@ -23,7 +23,7 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * The sample example as {@link camelinaction.AggregateABCTest} but using Spring XML instead.
+ * The sample example as {@link AggregateABCTest} but using Spring XML instead.
  * <p/>
  * Please see code comments in the other example.
  *
