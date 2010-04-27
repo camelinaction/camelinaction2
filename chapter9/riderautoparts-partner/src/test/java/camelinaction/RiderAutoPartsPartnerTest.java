@@ -77,7 +77,7 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
 
         // adviseWith enhances our route by adding the interceptor from the route builder
         // this allows us here directly in the unit test to add interceptors so we can simulate the connection failure
-        context.getRouteDefinition("partnerToDB").adviceWith(rb);
+        context.getRouteDefinition("partnerToDB").adviceWith(context, rb);
 
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));

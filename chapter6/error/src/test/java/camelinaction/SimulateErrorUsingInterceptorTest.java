@@ -55,7 +55,7 @@ public class SimulateErrorUsingInterceptorTest extends CamelSpringTestSupport {
 
         // advice the route by enriching it with the route builder where
         // we add a couple of interceptors to help simulate the error
-        route.adviceWith(new RouteBuilder() {
+        route.adviceWith(context, new RouteBuilder() {
             @Override
             public void configure() throws Exception {
                 // intercept sending to http and detour to our processor instead
