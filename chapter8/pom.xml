@@ -15,6 +15,7 @@
 
     <modules>
         <module>aggregator</module>
+        <module>splitter</module>
     </modules>
 </project>
 
