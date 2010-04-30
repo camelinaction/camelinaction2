@@ -25,25 +25,25 @@ import org.junit.Test;
  * The Splitter using its build in Aggregator example.
  * <p/>
  * This example will split a message into 3 message each containing the letters A, B and C.
- * Each of those message is then translated into a quote using the {@link camelinaction.WordTranslateBean} bean.
+ * Each of those message is then translated into a quote using the {@link WordTranslateBean} bean.
  * The Splitter will then aggregate those messages into a single combined outgoing message.
- * This is done using the {@link camelinaction.MyAggregationStrategy}.
+ * This is done using the {@link MyAggregationStrategy}.
  *
  * @version $Revision$
  */
-public class SplitterAggregateABCTest extends CamelTestSupport {
+public class SplitterAggregateExceptionABCTest extends CamelTestSupport {
 
     @Test
-    public void testSplitAggregateABC() throws Exception {
+    public void testSplitAggregateExceptionABC() throws Exception {
         MockEndpoint split = getMockEndpoint("mock:split");
-        // we expect 3 messages to be split and translated into a quote
-        split.expectedBodiesReceived("Camel rocks", "Hi mom", "Yes it works");
+        // we expect 2 messages successfully to be split and translated into a quote
+        split.expectedBodiesReceived("Camel rocks", "Yes it works");
 
         MockEndpoint result = getMockEndpoint("mock:result");
-        // and one combined aggregated message as output with all the quotes together
-        result.expectedBodiesReceived("Camel rocks+Hi mom+Yes it works");
+        // and one combined aggregated message as output with two two quotes together
+        result.expectedBodiesReceived("Camel rocks+Yes it works");
 
-        template.sendBody("direct:start", "A,B,C");
+        template.sendBody("direct:start", "A,F,C");
 
         assertMockEndpointsSatisfied();
     }

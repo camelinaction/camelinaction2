@@ -33,6 +33,9 @@ public class WordTranslateBean {
     }
 
     public String translate(String key) {
+        if (!words.containsKey(key)) {
+            throw new IllegalArgumentException("Key not a known word " + key);
+        }
         return words.get(key);
     }
 

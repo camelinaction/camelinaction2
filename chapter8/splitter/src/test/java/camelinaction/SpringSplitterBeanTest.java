@@ -23,6 +23,9 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * The Spring based example of {@link SplitterBeanTest}.
+ * See this class for more details.
+ *
  * @version $Revision$
  */
 public class SpringSplitterBeanTest extends CamelSpringTestSupport {

@@ -25,6 +25,12 @@ import org.apache.camel.processor.aggregate.AggregationStrategy;
 public class MyAggregationStrategy implements AggregationStrategy {
 
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
+        // check if there was an exception thrown
+        if (newExchange.getException() != null) {
+            // yes there was, so we just handle it by ignoring it
+            return oldExchange;
+        }
+
         if (oldExchange == null) {
             // this is the first time so no existing aggregated exchange
             return newExchange;
