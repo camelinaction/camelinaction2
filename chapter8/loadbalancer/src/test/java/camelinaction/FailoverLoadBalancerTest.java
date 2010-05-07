@@ -24,31 +24,33 @@ import org.junit.Test;
 /**
  * Demonstrates how to use the Load Balancer EIP pattern.
  * <p/>
- * Using the sticky strategy.
+ * This example sends 4 messages to a Camel route which then sends
+ * the message to external services (A and B). We use a failover load balancer
+ * in between to send failed messages to the secondary service B in case A failed.
+ * <p/>
+ * In this example service A and B are in-jvm services using the Camel SEDA
+ * queues. This is because this is easy to use for testing.
+ * In a real life situation you may balance across external systems such as HTTP/TCP etc.
  *
  * @version $Revision$
  */
-public class StickyLoadBalancerTest extends CamelTestSupport {
+public class FailoverLoadBalancerTest extends CamelTestSupport {
 
     @Test
     public void testLoadBalancer() throws Exception {
-        // A should get the 1st and 4th message
+        // A should get the 1st, 3rd and 4th message
         MockEndpoint a = getMockEndpoint("mock:a");
-        a.expectedBodiesReceived("Hello", "Bye");
+        a.expectedBodiesReceived("Hello", "Cool", "Bye");
 
-        // B should get the 2nd and 3rd message
+        // B should get the 2nd
         MockEndpoint b = getMockEndpoint("mock:b");
-        b.expectedBodiesReceived("Camel rocks", "Cool");
+        b.expectedBodiesReceived("Kaboom");
 
-        // send in 4 messages with id as correlation key
-        // notice that the ids is not an exact number to pick the processor in order.
-        // Camel will use the key to generate a hash value which is used for choosing the processor.
-        // gold will pick A because its the first message
-        // then silver will be bound to pick B as its the next
-        template.sendBodyAndHeader("direct:start", "Hello", "type", "gold");
-        template.sendBodyAndHeader("direct:start", "Camel rocks", "type", "silver");
-        template.sendBodyAndHeader("direct:start", "Cool", "type", "silver");
-        template.sendBodyAndHeader("direct:start", "Bye", "type", "gold");
+        // send in 4 messages
+        template.sendBody("direct:start", "Hello");
+        template.sendBody("direct:start", "Kaboom");
+        template.sendBody("direct:start", "Cool");
+        template.sendBody("direct:start", "Bye");
 
         assertMockEndpointsSatisfied();
     }
@@ -59,22 +61,25 @@ public class StickyLoadBalancerTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("direct:start")
-                    // use load balancer with sticky strategy
-                    .loadBalance()
-                        // sticky requires an expression parameter to be used
-                        // for calculating the correlation key
-                        .sticky(header("type"))
-                        // this is the 2 processors which we will balance across
-                        .to("seda:a").to("seda:b")
+                    // use load balancer with failover strategy
+                    .loadBalance().failover()
+                        // will send to A first, and if fails then send to B afterwards
+                        .to("direct:a").to("direct:b")
                     .end();
 
                 // service A
-                from("seda:a")
+                from("direct:a")
                     .log("A received: ${body}")
+                    // in case of Kaboom the throw an exception to simulate failure
+                    .choice()
+                        .when(body().contains("Kaboom"))
+                            .throwException(new IllegalArgumentException("Damn"))
+                        .end()
+                    .end()
                     .to("mock:a");
 
                 // service B
-                from("seda:b")
+                from("direct:b")
                     .log("B received: ${body}")
                     .to("mock:b");
             }
