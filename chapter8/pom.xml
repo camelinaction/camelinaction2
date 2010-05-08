@@ -17,6 +17,7 @@
         <module>aggregator</module>
         <module>splitter</module>
         <module>loadbalancer</module>
+        <module>routingslip</module>
     </modules>
 </project>
 
