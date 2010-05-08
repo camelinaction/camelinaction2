@@ -33,7 +33,8 @@
             <from uri="direct:start"/>
             <!-- use the load balancer EIP with failover -->
             <loadBalance>
-                <failover/>
+                <!-- use round robin mode and try at most 1 failover attempt -->
+                <failover roundRobin="true" maximumFailoverAttempts="1"/>
                 <to uri="direct:a"/>
                 <to uri="direct:b"/>
             </loadBalance>
@@ -57,6 +58,13 @@
         <route>
             <from uri="direct:b"/>
             <log message="B received: ${body}"/>
+            <choice>
+                <!-- in case of Boom the throw an exception to simulate failure -->
+                <when>
+                    <simple>${body} contains 'Boom'</simple>
+                    <throwException ref="damn"/>
+                </when>
+            </choice>
             <to uri="mock:b"/>
         </route>
 

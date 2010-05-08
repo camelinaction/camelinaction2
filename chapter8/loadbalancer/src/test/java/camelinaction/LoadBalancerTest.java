@@ -27,10 +27,6 @@ import org.junit.Test;
  * This example sends 4 messages to a Camel route which then sends
  * the message to external services (A and B). We use a load balancer
  * in between to spread the load evenly, using the round robin algorithm.
- * <p/>
- * In this example service A and B are in-jvm services using the Camel SEDA
- * queues. This is because this is easy to use for testing.
- * In a real life situation you may balance across external systems such as HTTP/TCP etc.
  *
  * @version $Revision$
  */

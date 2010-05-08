@@ -27,13 +27,21 @@
         <constructor-arg index="0" value="Damn"/>
     </bean>
 
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <camelContext errorHandlerRef="eh" xmlns="http://camel.apache.org/schema/spring">
 
-        <route>
+        <!-- define Camel error handler -->
+        <errorHandler id="eh">
+            <!-- retry at most 3 times with 2 sec delay -->
+            <redeliveryPolicy maximumRedeliveries="3" redeliveryDelay="2000"
+                              retriesExhaustedLogLevel="WARN" retryAttemptedLogLevel="WARN" logStackTrace="false"/>
+        </errorHandler>
+
+        <route id="start">
             <from uri="direct:start"/>
-            <!-- use the load balancer EIP with failover -->
-            <loadBalance>
-                <failover/>
+            <!-- let the load balancer inherit and use the Camel error handler -->
+            <loadBalance inheritErrorHandler="true">
+                <!-- use the load balancer EIP with failover -->
+                <failover maximumFailoverAttempts="1"/>
                 <to uri="direct:a"/>
                 <to uri="direct:b"/>
             </loadBalance>
