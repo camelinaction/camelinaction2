@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>chapter11</artifactId>
+    <groupId>com.camelinaction</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <groupId>camelinaction.component</groupId>
+  <artifactId>custom</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>Camel in Action :: Chapter 11 :: A Camel Component</name>
+  <url>http://www.myorganization.org</url>
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+  </dependencies>
+  <properties>
+    <camel-version>2.3-SNAPSHOT</camel-version>
+  </properties>
+</project>
