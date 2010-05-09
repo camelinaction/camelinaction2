@@ -36,9 +36,9 @@ import org.junit.Test;
  *
  * @version $Revision$
  */
-public class AutoRiderPartsCallbackTest extends CamelTestSupport {
+public class RiderAutoPartsCallbackTest extends CamelTestSupport {
 
-    private static Log LOG = LogFactory.getLog(AutoRiderPartsCallbackTest.class);
+    private static Log LOG = LogFactory.getLog(RiderAutoPartsCallbackTest.class);
     private int numPartners = 5;
 
     @Test
