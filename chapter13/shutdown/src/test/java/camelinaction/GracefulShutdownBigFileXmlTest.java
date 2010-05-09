@@ -22,7 +22,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * @version $Revision$
  */
-public class GracefulShutdownBigFileXmlTest extends GracefulShutdownBigFileFailTest {
+public class GracefulShutdownBigFileXmlTest extends GracefulShutdownBigFileTest {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
