@@ -16,7 +16,6 @@
  */
 package camelinaction;
 
-import org.apache.camel.ExchangePattern;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.apache.commons.logging.Log;
@@ -24,25 +23,26 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
- * A simple example of using synchronous InOnly
+ * A simple example showing a sync caller sending an InOut message to Camel.
+ * The caller blocks while waiting for the reply.
+ * The message is being routed in Camel using only one thread.
  *
  * @version $Revision$
  */
-public class SyncInOnlyTest extends CamelTestSupport {
+public class SyncOneThreadTest extends CamelTestSupport {
 
     private static final Log LOG = LogFactory.getLog("Caller");
 
     @Test
-    public void testSyncInOnly() throws Exception {
+    public void testSyncInOut() throws Exception {
         String body = "Hello Camel";
 
-        // send an InOnly (= sendBody) to Camel
+        // send an InOut (= requestBody) to Camel
         LOG.info("Caller calling Camel with message: " + body);
-        template.sendBody("seda:start", body);
-        LOG.info("Caller finished calling Camel");
+        String reply = template.requestBody("seda:start", body, String.class);
 
-        // give time for route to complete
-        Thread.sleep(1000);
+        assertEquals("Bye Camel", reply);
+        LOG.info("Caller finished calling Camel and received reply: " + reply);
     }
 
     @Override
@@ -53,7 +53,8 @@ public class SyncInOnlyTest extends CamelTestSupport {
                 // route the message to a log so we can see details about MEP and thread name
                 from("seda:start")
                     .to("log:A")
-                    .to("log:B");
+                    // and then set a reply to the caller
+                    .transform(constant("Bye Camel")).to("log:B");
             }
         };
     }

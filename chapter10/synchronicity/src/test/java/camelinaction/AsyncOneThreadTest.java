@@ -23,16 +23,17 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
- * A simple example of using asynchronous InOnly
+ * A simple example showing a async caller sending an InOnly message to Camel.
+ * The message is being routed in Camel using only one thread.
  *
  * @version $Revision$
  */
-public class AsyncInOnlyTest extends CamelTestSupport {
+public class AsyncOneThreadTest extends CamelTestSupport {
 
     private static final Log LOG = LogFactory.getLog("Caller");
 
     @Test
-    public void testAsyncInOnly() throws Exception {
+    public void testSyncInOnly() throws Exception {
         String body = "Hello Camel";
 
         // send an InOnly (= sendBody) to Camel
@@ -40,7 +41,7 @@ public class AsyncInOnlyTest extends CamelTestSupport {
         template.sendBody("seda:start", body);
         LOG.info("Caller finished calling Camel");
 
-        // give Camel time to route the async message
+        // give time for route to complete
         Thread.sleep(1000);
     }
 
@@ -52,8 +53,6 @@ public class AsyncInOnlyTest extends CamelTestSupport {
                 // route the message to a log so we can see details about MEP and thread name
                 from("seda:start")
                     .to("log:A")
-                    // cause this route be asynchronous
-                    .threads(5, 10)
                     .to("log:B");
             }
         };

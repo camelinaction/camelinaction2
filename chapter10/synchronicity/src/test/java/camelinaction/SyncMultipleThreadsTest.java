@@ -23,16 +23,18 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
- * A simple example of using synchronous InOut
- * 
+ * A simple example showing a sync caller sending an InOut message to Camel.
+ * The caller blocks while waiting for the reply.
+ * The message is being routed in Camel using multiple threads.
+ *
  * @version $Revision$
  */
-public class SyncInOutTest extends CamelTestSupport {
+public class SyncMultipleThreadsTest extends CamelTestSupport {
 
     private static final Log LOG = LogFactory.getLog("Caller");
 
     @Test
-    public void testSyncInOut() throws Exception {
+    public void testAsyncInOut() throws Exception {
         String body = "Hello Camel";
 
         // send an InOut (= requestBody) to Camel
@@ -41,6 +43,9 @@ public class SyncInOutTest extends CamelTestSupport {
 
         assertEquals("Bye Camel", reply);
         LOG.info("Caller finished calling Camel and received reply: " + reply);
+
+        // give time for route to complete
+        Thread.sleep(1000);
     }
 
     @Override
@@ -51,6 +56,8 @@ public class SyncInOutTest extends CamelTestSupport {
                 // route the message to a log so we can see details about MEP and thread name
                 from("seda:start")
                     .to("log:A")
+                    // cause this route be use multiple threads
+                    .threads(5, 10)
                     // and then set a reply to the caller
                     .transform(constant("Bye Camel")).to("log:B");
             }

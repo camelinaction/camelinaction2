@@ -23,26 +23,26 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
- * A simple example of using asynchronous InOut
+ * A simple example showing a async caller sending an InOnly message to Camel.
+ * The message is being routed in Camel using multiple threads. However this
+ * wont impact the caller as its async.
  *
  * @version $Revision$
  */
-public class AsyncInOutTest extends CamelTestSupport {
+public class AsyncMultipleThreadsTest extends CamelTestSupport {
 
     private static final Log LOG = LogFactory.getLog("Caller");
 
     @Test
-    public void testAsyncInOut() throws Exception {
+    public void testAsyncInOnly() throws Exception {
         String body = "Hello Camel";
 
-        // send an InOut (= requestBody) to Camel
+        // send an InOnly (= sendBody) to Camel
         LOG.info("Caller calling Camel with message: " + body);
-        String reply = template.requestBody("seda:start", body, String.class);
+        template.sendBody("seda:start", body);
+        LOG.info("Caller finished calling Camel");
 
-        assertEquals("Bye Camel", reply);
-        LOG.info("Caller finished calling Camel and received reply: " + reply);
-
-        // give Camel time to route the async message
+        // give time for route to complete
         Thread.sleep(1000);
     }
 
@@ -54,10 +54,9 @@ public class AsyncInOutTest extends CamelTestSupport {
                 // route the message to a log so we can see details about MEP and thread name
                 from("seda:start")
                     .to("log:A")
-                    // cause this route be asynchronous
+                    // cause this route to use multiple threads
                     .threads(5, 10)
-                    // and then set a reply to the caller
-                    .transform(constant("Bye Camel")).to("log:B");
+                    .to("log:B");
             }
         };
     }
