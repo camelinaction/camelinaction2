@@ -35,9 +35,9 @@ public class OrderTest extends CamelSpringTestSupport {
 
     @Test
     public void testOrderOk() throws Exception {
-        List<String> params = new ArrayList<String>();
+        List<Object> params = new ArrayList<Object>();
         params.add("motor");
-        params.add("1");
+        params.add(1);
         params.add("honda");
         
         String reply = template.requestBody("cxf:bean:orderEndpoint", params, String.class);

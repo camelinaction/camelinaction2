@@ -36,7 +36,7 @@
   <!-- Message definitions for input and output -->
   <wsdl:message name="purchaseOrder">
     <wsdl:part name="partName" element="tns:partName" />
-    <wsdl:part name="amount" element="tns:partName"/>
+    <wsdl:part name="amount" element="tns:amount"/>
     <wsdl:part name="customerName" element="tns:customerName"/>
   </wsdl:message>
   <wsdl:message name="orderResult">
