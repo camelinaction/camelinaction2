@@ -18,6 +18,7 @@
         <module>xa</module>
         <module>multiple-routes</module>
         <module>riderautoparts-order</module>
+        <module>uow</module>
     </modules>
 </project>
 
