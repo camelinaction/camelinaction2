@@ -103,7 +103,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <camel-version>2.3-SNAPSHOT</camel-version>
+    <camel-version>2.3.0</camel-version>
     <scala-version>2.7.7</scala-version>
     <scala-plugin-version>2.9.1</scala-plugin-version>
     <log4j-version>1.2.14</log4j-version>
