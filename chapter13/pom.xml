@@ -18,6 +18,7 @@
         <module>routepolicy</module>
         <module>shutdown</module>
         <module>standalone</module>
+        <module>war</module>
     </modules>
 </project>
 
