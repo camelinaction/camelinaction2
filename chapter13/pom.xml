@@ -19,6 +19,9 @@
         <module>shutdown</module>
         <module>standalone</module>
         <module>war</module>
+        <module>war-servlet</module>
+        <module>war-jboss</module>
+        <module>osgi</module>
     </modules>
 </project>
 
