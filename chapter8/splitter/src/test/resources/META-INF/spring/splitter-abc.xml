@@ -32,7 +32,7 @@
                 <!-- we have to use an Expression to define this, here we use the Camel EL (Simple)
                      to just refer to the message body -->
                 <!-- split the body -->
-                <simple>split</simple>
+                <simple>body</simple>
                 <!-- log each splitted message -->
                 <log message="Split line ${body}"/>
                 <!-- and send it to a mock endpoint -->
