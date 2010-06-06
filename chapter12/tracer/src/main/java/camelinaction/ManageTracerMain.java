@@ -49,10 +49,21 @@ public class ManageTracerMain extends CamelTestSupport {
     }
 
     @Override
+    protected boolean useJmx() {
+        return true;
+    }
+
+    @Override
     protected CamelContext createCamelContext() throws Exception {
         CamelContext context = super.createCamelContext();
         // simulate JMS with the Mock component
         context.addComponent("jms", context.getComponent("mock"));
+
+        // enable connector for remote management
+        DefaultManagementAgent agent = new DefaultManagementAgent(context);
+        agent.setCreateConnector(true);
+        context.getManagementStrategy().setManagementAgent(agent);
+
         return context;
     }
 
@@ -77,21 +88,16 @@ public class ManageTracerMain extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                // enable connector for remote management
-                DefaultManagementAgent agent = new DefaultManagementAgent();
-                agent.setCreateConnector(true);
-                context.getManagementStrategy().setManagementAgent(agent);
-
                 // slow things down a bit
                 context.setDelayer(2000L);
 
                 from("file://target/rider/orders")
-                        .wireTap("seda:audit")
-                        .bean(OrderCsvToXmlBean.class)
-                        .to("jms:queue:orders");
+                    .wireTap("seda:audit")
+                    .bean(OrderCsvToXmlBean.class)
+                    .to("jms:queue:orders");
 
                 from("seda:audit")
-                        .bean(AuditService.class, "auditFile");
+                    .bean(AuditService.class, "auditFile");
             }
         };
     }
