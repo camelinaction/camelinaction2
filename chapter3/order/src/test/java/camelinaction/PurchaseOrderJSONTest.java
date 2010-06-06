@@ -71,7 +71,7 @@ public class PurchaseOrderJSONTest extends CamelTestSupport {
             LOG.info("Finding purchase order for id " + id);
             // just return a fixed response
             PurchaseOrder order = new PurchaseOrder();
-            order.setPrice(39.95);
+            order.setPrice(49.95);
             order.setAmount(1);
             order.setName("Camel in Action");
             return order;

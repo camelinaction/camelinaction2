@@ -38,7 +38,7 @@ public class PurchaseOrderCsvSpringTest extends CamelSpringTestSupport {
 
         List line1 = mock.getReceivedExchanges().get(0).getIn().getBody(List.class);
         assertEquals("Camel in Action", line1.get(0));
-        assertEquals("3995", line1.get(1));
+        assertEquals("4995", line1.get(1));
         assertEquals("1", line1.get(2));
 
         List line2 = mock.getReceivedExchanges().get(1).getIn().getBody(List.class);

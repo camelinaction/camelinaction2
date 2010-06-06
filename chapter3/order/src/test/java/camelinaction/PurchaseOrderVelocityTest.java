@@ -32,11 +32,11 @@ public class PurchaseOrderVelocityTest extends CamelTestSupport {
         mock.expectedMessageCount(1);
         mock.message(0).header("Subject").isEqualTo("Thanks for ordering");
         mock.message(0).header("From").isEqualTo("donotreply@riders.com");
-        mock.message(0).body().contains("Thank you for ordering 1.0 piece(s) of Camel in Action at a cost of 3995.0.");
+        mock.message(0).body().contains("Thank you for ordering 1.0 piece(s) of Camel in Action at a cost of 4995.0.");
 
         PurchaseOrder order = new PurchaseOrder();
         order.setName("Camel in Action");
-        order.setPrice(3995);
+        order.setPrice(4995);
         order.setAmount(1);
 
         template.sendBody("direct:mail", order);
