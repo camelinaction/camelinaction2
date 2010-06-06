@@ -30,7 +30,7 @@
   <url>http://www.myorganization.org</url>
 
   <properties>
-    <camel-version>2.2.0</camel-version>
+    <camel-version>2.3.0</camel-version>
     <log4j-version>1.2.14</log4j-version>
   </properties>
 
