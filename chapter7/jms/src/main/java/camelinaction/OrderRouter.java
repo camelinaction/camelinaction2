@@ -37,57 +37,36 @@ import org.apache.camel.impl.DefaultCamelContext;
  * @author janstey
  *
  */
-public class OrderRouter {
+public class OrderRouter extends RouteBuilder {
 
-    public static void main(String args[]) throws Exception {
-        // create CamelContext
-        CamelContext context = new DefaultCamelContext();
+    @Override
+    public void configure() {
+        // load file orders from src/data into the JMS queue
+        from("file:src/data?noop=true").to("jms:incomingOrders");
+
+        // content-based router
+        from("jms:incomingOrders")
+        .choice()
+            .when(header("CamelFileName").endsWith(".xml"))
+                .to("jms:topic:xmlOrders")  
+            .when(header("CamelFileName").endsWith(".csv"))
+                .to("jms:topic:csvOrders");
+
+        from("jms:topic:xmlOrders").to("jms:accounting");  
+        from("jms:topic:xmlOrders").to("jms:production");  
         
-        // connect to embedded ActiveMQ JMS broker
-        ConnectionFactory connectionFactory = 
-            new ActiveMQConnectionFactory("vm://localhost");
-        context.addComponent("jms",
-            JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
-
-        // add our route to the CamelContext
-        context.addRoutes(new RouteBuilder() {
-            @Override
-            public void configure() {
-                // load file orders from src/data into the JMS queue
-                from("file:src/data?noop=true").to("jms:incomingOrders");
-        
-                // content-based router
-                from("jms:incomingOrders")
-                .choice()
-                    .when(header("CamelFileName").endsWith(".xml"))
-                        .to("jms:topic:xmlOrders")  
-                    .when(header("CamelFileName").endsWith(".csv"))
-                        .to("jms:topic:csvOrders");
-
-                from("jms:topic:xmlOrders").to("jms:accounting");  
-                from("jms:topic:xmlOrders").to("jms:production");  
-                
-                // test that our route is working
-                from("jms:accounting").process(new Processor() {
-                    public void process(Exchange exchange) throws Exception {
-                        System.out.println("Accounting received order: "
-                                + exchange.getIn().getHeader("CamelFileName"));  
-                    }
-                });
-                from("jms:production").process(new Processor() {
-                    public void process(Exchange exchange) throws Exception {
-                        System.out.println("Production received order: "
-                                + exchange.getIn().getHeader("CamelFileName"));  
-                    }
-                });           
+        // test that our route is working
+        from("jms:accounting").process(new Processor() {
+            public void process(Exchange exchange) throws Exception {
+                System.out.println("Accounting received order: "
+                        + exchange.getIn().getHeader("CamelFileName"));  
             }
         });
-
-        // start the route and let it do its work
-        context.start();
-        Thread.sleep(10000);
-
-        // stop the CamelContext
-        context.stop();
-    }
+        from("jms:production").process(new Processor() {
+            public void process(Exchange exchange) throws Exception {
+                System.out.println("Production received order: "
+                        + exchange.getIn().getHeader("CamelFileName"));  
+            }
+        });
+    }    
 }

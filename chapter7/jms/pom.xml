@@ -35,8 +35,16 @@
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-core</artifactId>
-      <version>5.3.0</version>
+      <version>5.3.1</version>
     </dependency>
+
+        <!-- xbean is needed for ActiveMQ broker XML configuration in Spring XML files -->
+        <dependency>
+            <groupId>org.apache.xbean</groupId>
+            <artifactId>xbean-spring</artifactId>
+            <version>3.5</version>
+        </dependency>
+
 
     <dependency>
       <groupId>junit</groupId>
@@ -49,14 +57,13 @@
   <build>
     <plugins>
 
-      <!-- Allows the example to be run via 'mvn compile exec:java' -->
+      <!-- Allows the routes to be run via 'mvn camel:run' -->
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <configuration>
-          <includePluginDependencies>false</includePluginDependencies>
-        </configuration>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-maven-plugin</artifactId>
+        <version>${camel-version}</version>
       </plugin>
+
     </plugins>
   </build>
 
