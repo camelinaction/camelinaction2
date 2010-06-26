@@ -55,11 +55,13 @@ public class RiderAutoPartsCallbackTest extends CamelTestSupport {
             public void onComplete(Exchange exchange) {
                 // get the reply and add it to related
                 relates.add(exchange.getOut().getBody(String.class));
+                // count down the latch
+                latch.countDown();
             }
 
             @Override
-            public void onDone(Exchange exchange) {
-                // count down the latch
+            public void onFailure(Exchange exchange) {
+                // count down the latch even if we failed
                 latch.countDown();
             }
         };
