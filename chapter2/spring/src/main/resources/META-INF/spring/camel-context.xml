@@ -23,7 +23,7 @@
        http://camel.apache.org/schema/spring 
        http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-  <bean name="jms" class="org.apache.camel.component.jms.JmsComponent">
+  <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
     <property name="connectionFactory">
       <bean class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="vm://localhost" />
@@ -31,7 +31,7 @@
     </property>
   </bean>
 
-  <bean name="downloadLogger" class="camelinaction.DownloadLogger"/>
+  <bean id="downloadLogger" class="camelinaction.DownloadLogger"/>
 
   <camelContext xmlns="http://camel.apache.org/schema/spring">
     <route>

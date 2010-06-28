@@ -33,7 +33,7 @@
     </broker:transportConnectors>
   </broker:broker>
 
-  <bean name="jms" class="org.apache.camel.component.jms.JmsComponent">
+  <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
     <property name="connectionFactory">
       <bean class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://localhost:61616" />
