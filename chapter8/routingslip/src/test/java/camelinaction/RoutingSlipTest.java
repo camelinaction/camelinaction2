@@ -14,27 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package camelinaction.camelinaction;
+package camelinaction;
 
-import org.apache.camel.test.junit4.CamelSpringTestSupport;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
-import org.springframework.context.support.AbstractXmlApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * An example how to use Routing Slip EIP.
  * <p/>
- * This example uses a bean to compute the initial routing slip which must
- * be provided as a header to the Routing Slip EIP.
+ * This example uses a bean to compute the initial routing slip
+ * which is used directly on the RoutingSlip EIP
  *
  * @version $Revision$
  */
-public class SpringRoutingSlipTest extends CamelSpringTestSupport {
-
-    @Override
-    protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/routingslip.xml");
-    }
+public class RoutingSlipTest extends CamelTestSupport {
 
     @Test
     public void testRoutingSlip() throws Exception {
@@ -61,4 +55,16 @@ public class SpringRoutingSlipTest extends CamelSpringTestSupport {
         assertMockEndpointsSatisfied();
     }
 
+    @Override
+    protected RouteBuilder createRouteBuilder() throws Exception {
+        return new RouteBuilder() {
+            @Override
+            public void configure() throws Exception {
+                from("direct:start")
+                    // compute the routing slip at runtime using a bean
+                    // use the routing slip EIP
+                    .routingSlip().method(ComputeSlip.class);
+            }
+        };
+    }
 }

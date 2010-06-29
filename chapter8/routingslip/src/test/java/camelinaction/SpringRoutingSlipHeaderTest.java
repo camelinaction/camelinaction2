@@ -14,21 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package camelinaction.camelinaction;
+package camelinaction;
 
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
+import org.springframework.context.support.AbstractXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * A basic example how to use Routing Slip EIP.
+ * An example how to use Routing Slip EIP.
  * <p/>
- * This example is a simple example how to route a message using the routing slip EIP
- * based on an existing header which dictates the sequence steps.
- * 
+ * This example uses a bean to compute the initial routing slip
+ * which is used directly on the RoutingSlip EIP
+ *
  * @version $Revision$
  */
-public class RoutingSlipSimpleTest extends CamelTestSupport {
+public class SpringRoutingSlipHeaderTest extends CamelSpringTestSupport {
+
+    @Override
+    protected AbstractXmlApplicationContext createApplicationContext() {
+        return new ClassPathXmlApplicationContext("META-INF/spring/routingslip.xml");
+    }
 
     @Test
     public void testRoutingSlip() throws Exception {
@@ -37,22 +43,22 @@ public class RoutingSlipSimpleTest extends CamelTestSupport {
         getMockEndpoint("mock:b").expectedMessageCount(0);
         getMockEndpoint("mock:c").expectedMessageCount(1);
 
-        // send the incoming message with the attached slip
-        template.sendBodyAndHeader("direct:start", "Hello World", "mySlip", "mock:a,mock:c");
+        // send the incoming message
+        template.sendBody("direct:start", "Hello World");
 
         assertMockEndpointsSatisfied();
     }
 
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                from("direct:start")
-                    // use routing slip with the attached slip
-                    // as the header with key: mySlip
-                    .routingSlip("mySlip");
-            }
-        };
+    @Test
+    public void testRoutingSlipCool() throws Exception {
+        // setup expectations that all will receive the message
+        getMockEndpoint("mock:a").expectedMessageCount(1);
+        getMockEndpoint("mock:b").expectedMessageCount(1);
+        getMockEndpoint("mock:c").expectedMessageCount(1);
+
+        template.sendBody("direct:start", "We are Cool");
+
+        assertMockEndpointsSatisfied();
     }
+
 }

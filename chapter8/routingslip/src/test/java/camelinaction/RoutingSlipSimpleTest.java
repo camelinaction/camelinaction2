@@ -14,21 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package camelinaction.camelinaction;
+package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 /**
- * An example how to use Routing Slip EIP.
+ * A basic example how to use Routing Slip EIP.
  * <p/>
- * This example uses a bean to compute the initial routing slip which must
- * be provided as a header to the Routing Slip EIP.
- *
+ * This example is a simple example how to route a message using the routing slip EIP
+ * based on an existing header which dictates the sequence steps.
+ * 
  * @version $Revision$
  */
-public class RoutingSlipTest extends CamelTestSupport {
+public class RoutingSlipSimpleTest extends CamelTestSupport {
 
     @Test
     public void testRoutingSlip() throws Exception {
@@ -37,20 +37,8 @@ public class RoutingSlipTest extends CamelTestSupport {
         getMockEndpoint("mock:b").expectedMessageCount(0);
         getMockEndpoint("mock:c").expectedMessageCount(1);
 
-        // send the incoming message
-        template.sendBody("direct:start", "Hello World");
-
-        assertMockEndpointsSatisfied();
-    }
-
-    @Test
-    public void testRoutingSlipCool() throws Exception {
-        // setup expectations that all will receive the message
-        getMockEndpoint("mock:a").expectedMessageCount(1);
-        getMockEndpoint("mock:b").expectedMessageCount(1);
-        getMockEndpoint("mock:c").expectedMessageCount(1);
-
-        template.sendBody("direct:start", "We are Cool");
+        // send the incoming message with the attached slip
+        template.sendBodyAndHeader("direct:start", "Hello World", "mySlip", "mock:a,mock:c");
 
         assertMockEndpointsSatisfied();
     }
@@ -61,9 +49,8 @@ public class RoutingSlipTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("direct:start")
-                    // compute the routing slip at runtime using a bean
-                    .setHeader("mySlip").method(ComputeSlip.class)
-                    // use the routing slip EIP
+                    // use routing slip with the attached slip
+                    // as the header with key: mySlip
                     .routingSlip("mySlip");
             }
         };

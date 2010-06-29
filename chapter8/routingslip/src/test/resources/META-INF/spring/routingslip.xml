@@ -27,13 +27,11 @@
 
         <route>
             <from uri="direct:start"/>
-            <!-- prepare the routing slip header by using a bean to compute it -->
-            <setHeader headerName="mySlip">
-                <!-- this is the bean which computes the header -->
+            <!-- compute the routing slip at runtime using a bean -->
+            <!-- use the routing slip EIP -->
+            <routingSlip>
                 <method beanType="camelinaction.ComputeSlip"/>
-            </setHeader>
-            <!-- use the routing slip EIP to route the message -->
-            <routingSlip headerName="mySlip"/>
+            </routingSlip>
         </route>
 
     </camelContext>

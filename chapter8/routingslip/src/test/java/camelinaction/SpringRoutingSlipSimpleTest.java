@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package camelinaction.camelinaction;
+package camelinaction;
 
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;

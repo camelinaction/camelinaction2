@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package camelinaction.camelinaction;
+package camelinaction;
 
 /**
  * A bean which computes the routing slip to use at runtime.
