@@ -16,22 +16,28 @@
  */
 package camelinaction;
 
-import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
+import org.springframework.context.support.AbstractXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * The Splitter using its build in Aggregator example.
  * <p/>
  * This example will split a message into 3 message each containing the letters A, B and C.
- * Each of those message is then translated into a quote using the {@link WordTranslateBean} bean.
+ * Each of those message is then translated into a quote using the {@link camelinaction.WordTranslateBean} bean.
  * The Splitter will then aggregate those messages into a single combined outgoing message.
- * This is done using the {@link camelinaction.MyIgnoreFailureAggregationStrategy}.
+ * This is done using the {@link MyIgnoreFailureAggregationStrategy}.
  *
  * @version $Revision$
  */
-public class SplitterAggregateExceptionABCTest extends CamelTestSupport {
+public class SpringSplitterAggregateExceptionABCTest extends CamelSpringTestSupport {
+
+    @Override
+    protected AbstractXmlApplicationContext createApplicationContext() {
+        return new ClassPathXmlApplicationContext("META-INF/spring/splitter-aggregate-exception.xml");
+    }
 
     @Test
     public void testSplitAggregateExceptionABC() throws Exception {
@@ -49,28 +55,5 @@ public class SplitterAggregateExceptionABCTest extends CamelTestSupport {
         template.sendBody("direct:start", "A,F,C");
 
         assertMockEndpointsSatisfied();
-    }
-
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                from("direct:start")
-                    // tell Splitter to use the aggregation strategy which handles and ignores exceptions
-                    .split(body(), new MyIgnoreFailureAggregationStrategy())
-                        // log each splitted message
-                        .log("Split line ${body}")
-                        // and have them translated into a quote
-                        .bean(WordTranslateBean.class)
-                        // and send it to a mock
-                        .to("mock:split")
-                    .end()
-                    // log the outgoing aggregated message
-                    .log("Aggregated ${body}")
-                    // and send it to a mock as well
-                    .to("mock:result");
-            }
-        };
     }
 }

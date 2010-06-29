@@ -18,17 +18,18 @@ package camelinaction;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.processor.loadbalancer.LoadBalancerSupport;
+import org.apache.camel.processor.loadbalancer.SimpleLoadBalancerSupport;
 
 /**
  * A custom load balancer which will pick the first processor for gold messages,
  * and the 2nd processor for other kind of messages.
  * <p/>
- * Notice we extend the LoadBalancerSupport which provides all the proper start and stop logic.
+ * Notice we extend the {@link SimpleLoadBalancerSupport} which provides
+ * all the proper start and stop logic.
  *
  * @version $Revision$
  */
-public class MyCustomLoadBalancer extends LoadBalancerSupport {
+public class MyCustomLoadBalancer extends SimpleLoadBalancerSupport {
 
     public void process(Exchange exchange) throws Exception {
         Processor target = chooseProcessor(exchange);
