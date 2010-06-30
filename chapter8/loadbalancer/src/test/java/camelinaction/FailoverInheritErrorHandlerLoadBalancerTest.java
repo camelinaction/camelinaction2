@@ -83,7 +83,7 @@ public class FailoverInheritErrorHandlerLoadBalancerTest extends CamelTestSuppor
                 from("direct:start").routeId("start")
                     // use load balancer with failover strategy
                     // 1 = which will try 1 failover attempt before exhausting
-                    // true = do not use Camel error handling
+                    // true = do use Camel error handling
                     // false = do not use round robin mode
                     .loadBalance().failover(1, true, false)
                         // will send to A first, and if fails then send to B afterwards
