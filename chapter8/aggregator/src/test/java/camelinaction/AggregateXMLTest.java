@@ -21,8 +21,6 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
-import static org.apache.camel.builder.xml.XPathBuilder.xpath;
-
 /**
  * The XML example for using the Aggregator EIP.
  * <p/>
