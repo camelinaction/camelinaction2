@@ -25,10 +25,11 @@ import org.junit.Test;
 
 /**
  * Showing how using default error handler to attempt redelivery
+ * when it runs in async delayed mode.
  *
  * @version $Revision$
  */
-public class DefaultErrorHandlerTest extends CamelTestSupport {
+public class DefaultErrorHandlerAsyncTest extends CamelTestSupport {
 
     @Override
     protected JndiRegistry createRegistry() throws Exception {
@@ -56,7 +57,19 @@ public class DefaultErrorHandlerTest extends CamelTestSupport {
 
         // wait 5 seconds to let this test run as we expect 0 messages
         Thread.sleep(5000);
-        
+
+        assertMockEndpointsSatisfied();
+    }
+
+    @Test
+    public void testOrderFailThenOK() throws Exception {
+        // only the 2nd book will pass
+        MockEndpoint mock = getMockEndpoint("mock:queue.order");
+        mock.expectedBodiesReceived("amount=1,name=Camel in Action,id=123,status=OK");
+
+        template.sendBody("seda:queue.inbox","amount=1,name=ActiveMQ in Action");
+        template.sendBody("seda:queue.inbox","amount=1,name=Camel in Action");
+
         assertMockEndpointsSatisfied();
     }
 
@@ -68,6 +81,8 @@ public class DefaultErrorHandlerTest extends CamelTestSupport {
                 // context.setTracing(true);
 
                 errorHandler(defaultErrorHandler()
+                    // enable async redelivery mode (pay attention to thread names in console output)
+                    .asyncDelayedRedelivery()
                     .maximumRedeliveries(2)
                     .redeliveryDelay(1000)
                     .retryAttemptedLogLevel(LoggingLevel.WARN));
