@@ -16,6 +16,11 @@
  */
 package camelinaction;
 
+import java.io.InputStream;
+
+import org.apache.camel.Exchange;
+import org.w3c.dom.Document;
+
 /**
  * @version $Revision$
  */
@@ -46,5 +51,25 @@ public class OrderService {
         }
 
         return body.replaceAll("#", ",");
+    }
+
+    public void toSoap(Exchange exchange) {
+        String body = exchange.getIn().getBody(String.class);
+        if (body.contains("ActiveMQ in Action")) {
+            // load the soapFault.xml into a DOM
+            InputStream is = exchange.getContext().getClassResolver().loadResourceAsStream("camelinaction/soapFault.xml");
+            Document dom = exchange.getContext().getTypeConverter().convertTo(Document.class, is);
+
+            // set a fault to indicate a failure
+            exchange.getOut().setFault(true);
+            exchange.getOut().setBody(dom);
+        } else {
+            // load the soapOK.xml into a DOM
+            InputStream is = exchange.getContext().getClassResolver().loadResourceAsStream("camelinaction/soapOk.xml");
+            Document dom = exchange.getContext().getTypeConverter().convertTo(Document.class, is);
+
+            // set a xml reply
+            exchange.getOut().setBody(dom);
+        }
     }
 }
