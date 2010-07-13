@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.EventObject;
 
 import org.apache.camel.management.EventNotifierSupport;
-import org.apache.camel.management.event.ExchangeFailureEvent;
+import org.apache.camel.management.event.ExchangeFailedEvent;
 
 /**
  * A custom {@link org.apache.camel.spi.EventNotifier} which is used by
@@ -38,13 +38,13 @@ public class RiderEventNotifier extends EventNotifierSupport {
     }
 
     public void notify(EventObject eventObject) throws Exception {
-        // we only want to notify in vase of failures
-        if (eventObject instanceof ExchangeFailureEvent) {
-            notifyFailure((ExchangeFailureEvent) eventObject);
+        // we only want to notify in case of failures
+        if (eventObject instanceof ExchangeFailedEvent) {
+            notifyFailure((ExchangeFailedEvent) eventObject);
         }
     }
 
-    protected void notifyFailure(ExchangeFailureEvent event) {
+    protected void notifyFailure(ExchangeFailedEvent event) {
         String id = event.getExchange().getExchangeId();
         Exception cause = event.getExchange().getException();
         Date now = new Date();

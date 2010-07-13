@@ -29,7 +29,7 @@
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.14</version>
+      <version>1.2.16</version>
     </dependency>
 
     <!-- cxf using slf4j -->
@@ -48,7 +48,7 @@
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-transports-http-jetty</artifactId>
-      <version>2.2.7</version>
+      <version>2.2.9</version>
     </dependency>
 
     <dependency>
@@ -61,7 +61,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.4</version>
+      <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -72,7 +72,7 @@
       <plugin>
         <groupId>org.apache.cxf</groupId>
         <artifactId>cxf-codegen-plugin</artifactId>
-        <version>2.2.7</version>
+        <version>2.2.9</version>
         <executions>
           <execution>
             <id>generate-sources</id>

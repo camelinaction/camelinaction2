@@ -32,6 +32,6 @@
     </dependency>
   </dependencies>
   <properties>
-    <camel-version>2.3-SNAPSHOT</camel-version>
+    <camel-version>2.4.0</camel-version>
   </properties>
 </project>

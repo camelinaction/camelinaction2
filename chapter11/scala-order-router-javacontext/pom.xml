@@ -129,8 +129,8 @@
     </dependency>
   </dependencies>
   <properties>
-    <camel-version>2.4-SNAPSHOT</camel-version>
-    <scala-version>2.8.0.RC6</scala-version>
+    <camel-version>2.4.0</camel-version>
+    <scala-version>2.8.0.RC7</scala-version>
     <scala-plugin-version>2.9.1</scala-plugin-version>
     <log4j-version>1.2.16</log4j-version>
   </properties>

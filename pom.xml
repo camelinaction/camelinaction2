@@ -64,7 +64,7 @@
   </scm>
 
   <properties>
-    <camel-version>2.4-SNAPSHOT</camel-version>
+    <camel-version>2.4.0</camel-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -75,7 +75,7 @@
 	<repository>
       <id>apache.snapshots</id>
       <name>Apache Development Snapshot Repository</name>
-      <url>https://repository.apache.org/content/repositories/snapshots/</url>
+      <url>https://repository.apache.org/content/repositories/orgapachecamel-053/</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -89,7 +89,7 @@
     <pluginRepository>
       <id>apache.snapshots</id>
       <name>Apache Development Snapshot Repository</name>
-      <url>https://repository.apache.org/content/repositories/snapshots/</url>
+      <url>https://repository.apache.org/content/repositories/orgapachecamel-053/</url>
       <releases>
         <enabled>false</enabled>
       </releases>
