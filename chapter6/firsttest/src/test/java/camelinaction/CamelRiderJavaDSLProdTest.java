@@ -74,7 +74,7 @@ public class CamelRiderJavaDSLProdTest extends CamelTestSupport {
         inbox.sendBodyAndHeader("Hello World", Exchange.FILE_NAME, "hello.txt");
 
         // wait a while to let the file be moved
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         // test the file was copied
         File target = new File(outboxDir + "/hello.txt");

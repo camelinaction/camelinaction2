@@ -19,6 +19,7 @@ package camelinaction;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.Exchange;
@@ -55,11 +56,11 @@ public class OrderTest extends CamelSpringTestSupport {
         NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
 
         // setup order information
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(Locale.US);
         cal.set(Calendar.YEAR, 2010);
         cal.set(Calendar.MONTH, Calendar.APRIL);
         cal.set(Calendar.DAY_OF_MONTH, 20);
-        cal.set(Calendar.HOUR, 15);
+        cal.set(Calendar.HOUR_OF_DAY, 7);
         cal.set(Calendar.MINUTE, 47);
         cal.set(Calendar.SECOND, 58);
         Date date = cal.getTime();
@@ -78,18 +79,18 @@ public class OrderTest extends CamelSpringTestSupport {
         BrowsableEndpoint be = context.getEndpoint("activemq:queue:confirm", BrowsableEndpoint.class);
         List<Exchange> list = be.getExchanges();
         assertEquals(1, list.size());
-        assertEquals("OK,123,2010-04-20T15:47:58,4444,5555", list.get(0).getIn().getBody(String.class));
+        assertEquals("OK,123,2010-04-20T07:47:58,4444,5555", list.get(0).getIn().getBody(String.class));
     }
 
     @Test
     public void testOrderClientInvalid() throws Exception {
         NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
 
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(Locale.US);
         cal.set(Calendar.YEAR, 2010);
         cal.set(Calendar.MONTH, Calendar.APRIL);
         cal.set(Calendar.DAY_OF_MONTH, 20);
-        cal.set(Calendar.HOUR, 15);
+        cal.set(Calendar.HOUR_OF_DAY, 7);
         cal.set(Calendar.MINUTE, 47);
         cal.set(Calendar.SECOND, 58);
         Date date = cal.getTime();
@@ -105,7 +106,7 @@ public class OrderTest extends CamelSpringTestSupport {
         BrowsableEndpoint be = context.getEndpoint("activemq:queue:invalid", BrowsableEndpoint.class);
         List<Exchange> list = be.getExchanges();
         assertEquals(1, list.size());
-        assertEquals("999,2010-04-20T15:47:58,5555,2222", list.get(0).getIn().getBody(String.class));
+        assertEquals("999,2010-04-20T07:47:58,5555,2222", list.get(0).getIn().getBody(String.class));
     }
 
     @Test
@@ -113,11 +114,11 @@ public class OrderTest extends CamelSpringTestSupport {
         // now we expect the message to fail so we use whenFailed
         NotifyBuilder notify = new NotifyBuilder(context).whenFailed(1).create();
 
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(Locale.US);
         cal.set(Calendar.YEAR, 2010);
         cal.set(Calendar.MONTH, Calendar.APRIL);
         cal.set(Calendar.DAY_OF_MONTH, 20);
-        cal.set(Calendar.HOUR, 15);
+        cal.set(Calendar.HOUR_OF_DAY, 7);
         cal.set(Calendar.MINUTE, 47);
         cal.set(Calendar.SECOND, 58);
         Date date = cal.getTime();
