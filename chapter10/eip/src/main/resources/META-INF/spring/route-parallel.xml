@@ -31,7 +31,7 @@
         <property name="ignoreServiceEvents" value="true"/>
         <property name="ignoreExchangeCreatedEvent" value="true"/>
         <property name="ignoreExchangeCompletedEvent" value="true"/>
-        <property name="ignoreExchangeFailureEvents" value="true"/>
+        <property name="ignoreExchangeFailedEvents" value="true"/>
     </bean>
 
     <!-- aggregate data from the three systems -->
