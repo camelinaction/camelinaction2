@@ -19,6 +19,7 @@
         <module>eip</module>
         <module>synchronicity</module>
         <module>client</module>
+        <module>scalability</module>
     </modules>
 </project>
 
