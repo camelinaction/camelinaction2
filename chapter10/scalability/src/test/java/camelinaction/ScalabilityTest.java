@@ -70,6 +70,8 @@ public class ScalabilityTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("jetty:http://localhost:8090/webshop?matchOnUriPrefix=true")
+                    // convert to string so its visible in the log
+                    .convertBodyTo(String.class)
                     // log input
                     .to("log:input")
                     .choice()

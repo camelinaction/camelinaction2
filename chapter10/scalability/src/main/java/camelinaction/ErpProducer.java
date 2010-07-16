@@ -65,6 +65,7 @@ public class ErpProducer extends DefaultAsyncProducer {
 
         // return false to tell Camel that we process asynchronously
         // which enables the Camel routing engine to know this and act accordingly
+        log.info("Returning false");
         return false;
     }
 }
