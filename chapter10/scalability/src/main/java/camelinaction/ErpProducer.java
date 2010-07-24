@@ -41,31 +41,44 @@ public class ErpProducer extends DefaultAsyncProducer {
 
     public boolean process(final Exchange exchange, final AsyncCallback callback) {
         // simulate async communication using a thread pool in which will return a reply in 5 seconds.
-        executor.submit(new Runnable() {
-            public void run() {
-                log.info("Calling ERP");
-                // simulate communication with ERP takes 5 seconds
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    // ignore
-                }
-                log.info("ERP reply received");
-
-                // set reply
-                String in = exchange.getIn().getBody(String.class);
-                exchange.getOut().setBody(in + ";516");
-
-                // notify callback we are done
-                // must must use done(false) because this method returned false
-                log.info("Continue routing");
-                callback.done(false);
-            }
-        });
+        executor.submit(new ERPTask(exchange, callback));
 
         // return false to tell Camel that we process asynchronously
         // which enables the Camel routing engine to know this and act accordingly
-        log.info("Returning false");
+        // notice the ERPTask must invoke the callback.done(false) because what
+        // we return here must match the boolean in the callback.done method.
+        log.info("Returning false (processing will continue asynchronously)");
         return false;
+    }
+
+    private class ERPTask implements Runnable {
+
+        private final Exchange exchange;
+        private final AsyncCallback callback;
+
+        private ERPTask(Exchange exchange, AsyncCallback callback) {
+            this.exchange = exchange;
+            this.callback = callback;
+        }
+
+        public void run() {
+            log.info("Calling ERP");
+            // simulate communication with ERP takes 5 seconds
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                // ignore
+            }
+            log.info("ERP reply received");
+
+            // set reply
+            String in = exchange.getIn().getBody(String.class);
+            exchange.getOut().setBody(in + ";516");
+
+            // notify callback we are done
+            // we must use done(false) because the process method returned false
+            log.info("Continue routing");
+            callback.done(false);
+        }
     }
 }
