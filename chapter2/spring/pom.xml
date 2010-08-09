@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring</artifactId>
+    <artifactId>chapter2-spring</artifactId>
     <name>Camel in Action :: Chapter 2 :: Spring</name>
 
   <dependencies>

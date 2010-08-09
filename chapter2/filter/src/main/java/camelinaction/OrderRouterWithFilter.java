@@ -71,7 +71,7 @@ public class OrderRouterWithFilter {
                         .to("jms:badOrders");
                 
                 // lets filter out the test messages
-                from("jms:xmlOrders").filter().xpath("/order[not(@test)]")           
+                from("jms:xmlOrders").filter(xpath("/order[not(@test)]"))           
                 .process(new Processor() {
                     public void process(Exchange exchange) throws Exception {
                         System.out.println("Received XML order: " 

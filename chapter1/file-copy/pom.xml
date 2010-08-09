@@ -11,7 +11,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>file-copy</artifactId>
+  <artifactId>chapter1-file-copy</artifactId>
   <name>Camel in Action :: Chapter 1 :: File Copy Example</name>
 
   <dependencies>
