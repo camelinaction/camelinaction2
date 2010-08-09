@@ -9,10 +9,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>camelinaction</groupId>
-    <artifactId>pojo-messaging</artifactId>
+    <artifactId>chapter14-pojo-messaging</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Camel in Action :: Chapter 14 :: Routing with Annotations</name>
-    <url>http://www.myorganization.org</url>
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>

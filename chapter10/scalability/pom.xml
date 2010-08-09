@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>scalability</artifactId>
+    <artifactId>chapter10-scalability</artifactId>
     <name>Camel in Action :: Chapter 10 :: Scalability</name>
 
     <dependencies>

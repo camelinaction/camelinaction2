@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>shutdown</artifactId>
+    <artifactId>chapter13-shutdown</artifactId>
     <name>Camel in Action :: Chapter 13 :: Graceful shutdown</name>
 
     <dependencies>

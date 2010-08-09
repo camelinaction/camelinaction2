@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>splitter</artifactId>
+    <artifactId>chapter8-splitter</artifactId>
     <name>Camel in Action :: Chapter 8 :: Splitter EIP</name>
 
     <dependencies>

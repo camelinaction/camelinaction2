@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>war-servlet</artifactId>
+    <artifactId>chapter13-war-servlet</artifactId>
     <name>Camel in Action :: Chapter 13 :: Running Camel as web application (Servlet transport)</name>
     <packaging>war</packaging>
 

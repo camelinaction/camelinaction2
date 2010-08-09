@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>notify</artifactId>
+    <artifactId>chapter6-notify</artifactId>
     <name>Camel in Action :: Chapter 6 :: Testing without mocks</name>
 
     <dependencies>

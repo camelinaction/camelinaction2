@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>onexception</artifactId>
+    <artifactId>chapter5-onexception</artifactId>
     <name>Camel in Action :: Chapter 5 :: OnException Example</name>
 
     <dependencies>

@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>converter</artifactId>
+    <artifactId>chapter3-converter</artifactId>
     <name>Camel in Action :: Chapter 3 :: Custom type converter</name>
 
     <dependencies>

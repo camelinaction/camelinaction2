@@ -22,12 +22,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>camelinaction</groupId>
-  <artifactId>interceptor</artifactId>
+  <artifactId>chapter11-interceptor</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0-SNAPSHOT</version>
 
   <name>Camel in Action :: Chapter 11 :: A Custom Camel Interceptor</name>
-  <url>http://www.myorganization.org</url>
 
   <properties>
     <camel-version>2.4.0</camel-version>

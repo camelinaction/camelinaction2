@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>file</artifactId>
+    <artifactId>chapter7-file</artifactId>
     <name>Camel in Action :: Chapter 7 :: File Component Examples</name>
 
   <dependencies>

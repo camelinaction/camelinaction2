@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>starterkit</artifactId>
+    <artifactId>chapter14-starterkit</artifactId>
     <name>Camel in Action :: Chapter 14 :: Auto Rider Parts - Starter Kit</name>
 
     <dependencies>

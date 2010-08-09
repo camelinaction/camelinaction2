@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>client</artifactId>
+    <artifactId>chapter10-client</artifactId>
     <name>Camel in Action :: Chapter 10 :: Asynchronous client API</name>
 
     <dependencies>

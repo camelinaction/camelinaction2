@@ -8,27 +8,9 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <groupId>camelinaction</groupId>
-  <artifactId>order-router</artifactId>
+  <artifactId>chapter11-order-router</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>Camel in Action :: Chapter 11 :: Order Router</name>
-  <url>http://www.myorganization.org</url>
-  <build>
-    <defaultGoal>install</defaultGoal>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-maven-plugin</artifactId>
-        <version>${camel-version}</version>
-      </plugin>
-    </plugins>
-  </build>
   <dependencies>
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -52,7 +34,6 @@
     </dependency>
   </dependencies>
   <properties>
-    <camel-version>2.4.0</camel-version>
     <log4j-version>1.2.16</log4j-version>
   </properties>
 </project>

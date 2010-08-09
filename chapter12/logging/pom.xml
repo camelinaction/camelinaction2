@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>logging</artifactId>
+    <artifactId>chapter12-logging</artifactId>
     <name>Camel in Action :: Chapter 12 :: Using custom logging</name>
 
     <dependencies>

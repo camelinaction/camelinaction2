@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>pools</artifactId>
+    <artifactId>chapter10-pools</artifactId>
     <name>Camel in Action :: Chapter 10 :: Creating custom thread pools</name>
 
     <dependencies>

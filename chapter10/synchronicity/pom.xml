@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>synchronicity</artifactId>
+    <artifactId>chapter10-synchronicity</artifactId>
     <name>Camel in Action :: Chapter 10 :: Synchronicity and MEP</name>
 
     <dependencies>

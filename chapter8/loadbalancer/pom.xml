@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>loadbalancer</artifactId>
+    <artifactId>chapter8-loadbalancer</artifactId>
     <name>Camel in Action :: Chapter 8 :: Load Balancer EIP</name>
 
     <dependencies>

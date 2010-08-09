@@ -8,11 +8,10 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <groupId>camelinaction</groupId>
-  <artifactId>scala-order-router</artifactId>
+  <artifactId>chapter11-scala-order-router</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Camel in Action :: Chapter 11 :: Scala DSL</name>
-  <url>http://www.myorganization.org</url>
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
     <testSourceDirectory>src/test/scala</testSourceDirectory>
@@ -104,7 +103,6 @@
   </dependencies>
 
   <properties>
-    <camel-version>2.4.0</camel-version>
     <scala-version>2.8.0.RC7</scala-version>
     <scala-plugin-version>2.9.1</scala-plugin-version>
     <log4j-version>1.2.16</log4j-version>

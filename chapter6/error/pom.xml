@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>error</artifactId>
+    <artifactId>chapter6-error</artifactId>
     <name>Camel in Action :: Chapter 6 :: Simulating errors</name>
 
     <dependencies>

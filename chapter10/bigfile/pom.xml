@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bigfile</artifactId>
+    <artifactId>chapter10-bigfile</artifactId>
     <name>Camel in Action :: Chapter 10 :: Process a big file concurrently</name>
 
     <dependencies>

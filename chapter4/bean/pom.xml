@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>bean</artifactId>
+    <artifactId>chapter4-bean</artifactId>
     <name>Camel in Action :: Chapter 4 :: Using beans</name>
 
     <dependencies>

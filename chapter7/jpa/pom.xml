@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jpa</artifactId>
+    <artifactId>chapter7-jpa</artifactId>
     <name>Camel in Action :: Chapter 7 :: JPA Component Examples</name>
 
   <dependencies>

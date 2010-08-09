@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>riderautoparts-partner</artifactId>
+    <artifactId>chapter9-riderautoparts-partner</artifactId>
     <name>Camel in Action :: Chapter 9 :: Rider Auto Parts - Partner</name>
 
   <dependencies>

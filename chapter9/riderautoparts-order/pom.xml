@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>riderautoparts-order</artifactId>
+    <artifactId>chapter9-riderautoparts-order</artifactId>
     <name>Camel in Action :: Chapter 9 :: Rider Auto Parts - Order</name>
 
     <dependencies>

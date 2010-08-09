@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>routepolicy</artifactId>
+    <artifactId>chapter13-routepolicy</artifactId>
     <name>Camel in Action :: Chapter 13 :: Using RoutePolicy</name>
 
     <dependencies>

@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>order</artifactId>
+    <artifactId>chapter3-order</artifactId>
     <name>Camel in Action :: Chapter 3 :: Order Transformation</name>
 
     <dependencies>

@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>firsttest</artifactId>
+    <artifactId>chapter6-firsttest</artifactId>
     <name>Camel in Action :: Chapter 6 :: First test using Camel Test Kit</name>
 
     <dependencies>

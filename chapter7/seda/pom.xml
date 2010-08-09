@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>seda</artifactId>
+    <artifactId>chapter7-seda</artifactId>
     <name>Camel in Action :: Chapter 7 :: SEDA Component Examples</name>
 
   <dependencies>

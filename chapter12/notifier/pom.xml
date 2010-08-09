@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>notifier</artifactId>
+    <artifactId>chapter12-notifier</artifactId>
     <name>Camel in Action :: Chapter 12 :: Using custom EventNotifier</name>
 
     <dependencies>

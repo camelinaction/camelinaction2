@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>standalone</artifactId>
+    <artifactId>chapter13-standalone</artifactId>
     <name>Camel in Action :: Chapter 13 :: Running Camel standalone</name>
     <packaging>jar</packaging>
 

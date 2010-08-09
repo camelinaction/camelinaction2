@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>xa</artifactId>
+    <artifactId>chapter9-xa</artifactId>
     <name>Camel in Action :: Chapter 9 :: XA Transactions</name>
 
     <repositories>

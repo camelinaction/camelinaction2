@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>mina</artifactId>
+    <artifactId>chapter7-mina</artifactId>
     <name>Camel in Action :: Chapter 7 :: MINA Component Examples</name>
 
   <dependencies>

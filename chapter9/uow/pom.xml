@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>uow</artifactId>
+    <artifactId>chapter9-uow</artifactId>
     <name>Camel in Action :: Chapter 9 :: UnitOfWork and OnCompletion</name>
 
     <dependencies>

@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>miranda</artifactId>
+    <artifactId>chapter6-miranda</artifactId>
     <name>Camel in Action :: Chapter 6 :: Mocking a real component</name>
 
     <dependencies>

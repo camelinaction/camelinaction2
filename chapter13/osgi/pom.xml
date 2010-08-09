@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>riderautoparts-osgi</artifactId>
+    <artifactId>chapter13-riderautoparts-osgi</artifactId>
     <name>Camel in Action :: Chapter 13 :: Running Camel in OSGi</name>
     <packaging>bundle</packaging>
 

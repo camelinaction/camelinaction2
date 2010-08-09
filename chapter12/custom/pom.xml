@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>custom</artifactId>
+    <artifactId>chapter12-custom</artifactId>
     <name>Camel in Action :: Chapter 12 :: Managing custom components</name>
 
     <dependencies>

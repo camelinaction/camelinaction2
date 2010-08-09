@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>health</artifactId>
+    <artifactId>chapter12-health</artifactId>
     <name>Camel in Action :: Chapter 12 :: Health check</name>
 
     <dependencies>

@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>usecase</artifactId>
+    <artifactId>chapter5-usecase</artifactId>
     <name>Camel in Action :: Chapter 5 :: Error Handler Use Case</name>
 
     <dependencies>

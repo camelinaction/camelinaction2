@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>startup</artifactId>
+    <artifactId>chapter13-startup</artifactId>
     <name>Camel in Action :: Chapter 13 :: Startup ordering</name>
 
     <dependencies>

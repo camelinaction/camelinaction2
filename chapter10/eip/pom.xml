@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>eip</artifactId>
+    <artifactId>chapter10-eip</artifactId>
     <name>Camel in Action :: Chapter 10 :: Using concurrency with EIPs</name>
 
     <dependencies>

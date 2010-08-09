@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>routingslip</artifactId>
+    <artifactId>chapter8-routingslip</artifactId>
     <name>Camel in Action :: Chapter 8 :: Routing Slip EIP</name>
 
     <dependencies>

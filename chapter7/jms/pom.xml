@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jms</artifactId>
+    <artifactId>chapter7-jms</artifactId>
     <name>Camel in Action :: Chapter 7 :: JMS Component Examples</name>
 
   <dependencies>

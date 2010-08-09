@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>cxf-code-first</artifactId>
+  <artifactId>chapter7-cxf-code-first</artifactId>
   <name>Camel in Action :: Chapter 7 :: CXF Component Examples :: Code First</name>
 
   <dependencies>

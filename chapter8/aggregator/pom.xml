@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>aggregator</artifactId>
+    <artifactId>chapter8-aggregator</artifactId>
     <name>Camel in Action :: Chapter 8 :: Aggregator EIP</name>
 
     <dependencies>

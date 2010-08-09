@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>timer</artifactId>
+  <artifactId>chapter7-timer</artifactId>
   <name>Camel in Action :: Chapter 7 :: Timer Component Examples</name>
 
   <dependencies>
