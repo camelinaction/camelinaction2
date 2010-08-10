@@ -1,0 +1,32 @@
+Prerequisites
+-------------
+
+- SBT 0.7.4 or higher
+  http://code.google.com/p/simple-build-tool/
+  
+- Akka 0.10 (not released yet, needs to be built from sources at the moment)
+  * git clone git://github.com/jboner/akka.git
+  * cd akka
+  * sbt update
+  * sbt dist
+  * sbt publish-local
+  * cd akka-sbt-plugin
+  * sbt publish-local
+
+Setup examples
+--------------
+
+- cd appendixE
+- sbt update
+
+Run examples
+------------
+
+- cd appendixE
+- sbt run
+- select main class to run
+
+Todo
+----
+
+- Write a more detailed guide how to setup and run the examples
