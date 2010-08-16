@@ -10,12 +10,13 @@ import se.scalablesolutions.akka.camel._
  * @author Martin Krasser
  */
 object SectionE22 extends Application {
+  import CamelServiceManager._
   import SampleActors._
 
-  CamelService.start
+  startCamelService
 
   // expect two consumer endpoints to be activated (in the background)
-  val activation = CamelService.expectEndpointActivationCount(2)
+  val activation = service.expectEndpointActivationCount(2)
 
   // start consumers (endpoints will be added to CamelContext asynchronously)
   val httpConsumer1 = actorOf[HttpConsumer1].start
@@ -41,5 +42,5 @@ object SectionE22 extends Application {
   httpConsumer1.stop
   httpConsumer2.stop
 
-  CamelService.stop
+  stopCamelService
 }

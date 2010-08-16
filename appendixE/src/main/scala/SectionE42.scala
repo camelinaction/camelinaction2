@@ -12,9 +12,7 @@ object SectionE42 extends Application {
   import SampleActors._
 
   val appctx = new ClassPathXmlApplicationContext("/sample.xml")
-  val service = appctx.getBean("camelService", classOf[CamelService])
-
-  val activation = service.expectEndpointActivationCount(1)
+  val activation = CamelServiceManager.service.expectEndpointActivationCount(1)
   val consumer = actorOf[HttpConsumer1].start
 
   activation.await

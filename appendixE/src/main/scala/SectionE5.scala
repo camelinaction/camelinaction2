@@ -11,11 +11,13 @@ import se.scalablesolutions.akka.camel._
  * @author Martin Krasser
  */
 object SectionE5 extends Application {
+  import CamelServiceManager._
   import SampleActors._
 
   val producer = actorOf[HttpProducer1].start
 
-  CamelService.start
+  startCamelService
+
   CamelContextManager.context.addRoutes(new CustomRoute(producer.uuid))
   CamelContextManager.template.requestBody("direct:test", "feel good", classOf[String]) match {
     case "<received>feel good</received>" => println("communication ok")
@@ -23,7 +25,7 @@ object SectionE5 extends Application {
     case _                                => println("unexpected response")
   }
 
-  CamelService.stop
+  stopCamelService
   producer.stop
 }
 

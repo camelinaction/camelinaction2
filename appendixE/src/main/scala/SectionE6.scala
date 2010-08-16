@@ -10,7 +10,7 @@ import se.scalablesolutions.akka.camel._
  * @author Martin Krasser
  */
 object SectionE6 extends Application {
-  CamelService.start
+  CamelServiceManager.startCamelService
 
   val httpTransformer = actorOf(new HttpTransformer).start
   val httpProducer = actorOf(new HttpProducer(httpTransformer)).start
