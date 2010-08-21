@@ -16,7 +16,6 @@
  */
 package camelinaction;
 
-import java.io.IOException;
 import java.net.ConnectException;
 
 import org.apache.camel.CamelExecutionException;

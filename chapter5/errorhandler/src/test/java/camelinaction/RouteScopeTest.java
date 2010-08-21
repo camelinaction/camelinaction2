@@ -105,7 +105,7 @@ public class RouteScopeTest extends CamelTestSupport {
                 // this is the default error handler which is context scoped
                 errorHandler(defaultErrorHandler()
                     .maximumRedeliveries(2)
-                    .redeliverDelay(1000)
+                    .redeliveryDelay(1000)
                     .retryAttemptedLogLevel(LoggingLevel.WARN));
 
                 // this first route will fallback and use the context scoped default error handler
@@ -118,7 +118,7 @@ public class RouteScopeTest extends CamelTestSupport {
                 from("seda:queue.inbox")
                     .errorHandler(deadLetterChannel("log:DLC")
                             .maximumRedeliveries(5).retryAttemptedLogLevel(LoggingLevel.INFO)
-                            .redeliverDelay(250).backOffMultiplier(2))
+                            .redeliveryDelay(250).backOffMultiplier(2))
                     .beanRef("orderService", "validate")
                     .beanRef("orderService", "enrich")
                     .to("mock:queue.order");

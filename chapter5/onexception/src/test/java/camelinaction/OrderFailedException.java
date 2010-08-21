@@ -20,8 +20,10 @@ package camelinaction;
  * @version $Revision$
  */
 public class OrderFailedException extends Exception {
+    
+	private static final long serialVersionUID = 6046320314876333963L;
 
-    public OrderFailedException(String s) {
+	public OrderFailedException(String s) {
         super(s);
     }
 

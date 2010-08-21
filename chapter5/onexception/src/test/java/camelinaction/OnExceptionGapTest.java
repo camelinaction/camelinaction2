@@ -49,8 +49,8 @@ public class OnExceptionGapTest extends CamelTestSupport {
                 context.setTracing(true);
 
                 onException(ConnectException.class).maximumRedeliveries(5);
-                onException(IOException.class).maximumRedeliveries(3).redeliverDelay(1000);
-                onException(Exception.class).maximumRedeliveries(1).redeliverDelay(5000);
+                onException(IOException.class).maximumRedeliveries(3).redeliveryDelay(1000);
+                onException(Exception.class).maximumRedeliveries(1).redeliveryDelay(5000);
 
                 from("direct:order")
                     .bean(OrderServiceBean.class, "handleOrder")
