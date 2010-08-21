@@ -41,7 +41,7 @@ public class SimulateErrorUsingProcessorTest extends CamelTestSupport {
                 context.setTracing(true);
 
                 errorHandler(defaultErrorHandler()
-                        .maximumRedeliveries(5).redeliverDelay(1000));
+                        .maximumRedeliveries(5).redeliveryDelay(1000));
 
                 onException(IOException.class).maximumRedeliveries(3)
                         .handled(true)

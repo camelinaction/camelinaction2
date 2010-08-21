@@ -49,7 +49,7 @@ public class UseCaseRoute extends RouteBuilder {
         // general error handler
         errorHandler(defaultErrorHandler()
             .maximumRedeliveries(5)
-            .redeliverDelay(2000)
+            .redeliveryDelay(2000)
             .retryAttemptedLogLevel(LoggingLevel.WARN));
 
         // in case of a http exception then retry at most 3 times
