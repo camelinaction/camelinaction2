@@ -27,7 +27,7 @@
     <!-- to use spring @Autowired for dependency injection -->
     <context:annotation-config/>
 
-    <bean id="hello" class="camelinaction.HelloBean"/>
+    <bean id="helloBean" class="camelinaction.HelloBean"/>
 
     <bean id="route" class="camelinaction.InvokeWithProcessorSpringRoute"/>
 

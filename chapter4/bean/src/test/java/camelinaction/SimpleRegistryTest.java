@@ -39,8 +39,8 @@ public class SimpleRegistryTest extends TestCase {
     protected void setUp() throws Exception {
         // create the registry to be the SimpleRegistry which is just a Map based implementation
         SimpleRegistry registry = new SimpleRegistry();
-        // register our HelloBean under the name hello
-        registry.put("hello", new HelloBean());
+        // register our HelloBean under the name helloBean
+        registry.put("helloBean", new HelloBean());
 
         // tell Camel to use our SimpleRegistry
         context = new DefaultCamelContext(registry);
@@ -51,7 +51,7 @@ public class SimpleRegistryTest extends TestCase {
         // add the route using an inlined RouteBuilder
         context.addRoutes(new RouteBuilder() {
             public void configure() throws Exception {
-                from("direct:hello").beanRef("hello");
+                from("direct:hello").beanRef("helloBean");
             }
         });
         // star Camel
