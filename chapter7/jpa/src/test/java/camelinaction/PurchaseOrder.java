@@ -22,7 +22,9 @@ import javax.persistence.Entity;
 
 @Entity
 public class PurchaseOrder implements Serializable {
-    private String name;
+    
+	private static final long serialVersionUID = 414632787969243627L;
+	private String name;
     private double amount;
     private String customer;
 

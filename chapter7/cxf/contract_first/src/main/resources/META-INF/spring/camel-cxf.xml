@@ -31,5 +31,6 @@
   
   <cxf:cxfEndpoint id="orderEndpoint"
                    address="http://localhost:9000/order/"
-                   serviceClass="camelinaction.order.OrderEndpoint"/>
+                   serviceClass="camelinaction.order.OrderEndpoint"
+                   wsdlURL="wsdl/order.wsdl"/>
 </beans>

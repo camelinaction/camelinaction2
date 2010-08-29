@@ -68,7 +68,8 @@ public class JpaTest extends CamelTestSupport {
         };
     }
 
-    private void assertEntityInDB() throws Exception {
+    @SuppressWarnings("unchecked")
+	private void assertEntityInDB() throws Exception {
         JpaEndpoint endpoint = (JpaEndpoint) context.getEndpoint("jpa:camelinaction.PurchaseOrder");        
         jpaTemplate = endpoint.getTemplate();
 
