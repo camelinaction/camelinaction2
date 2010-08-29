@@ -17,7 +17,6 @@
 package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.spring.SpringRouteBuilder;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
