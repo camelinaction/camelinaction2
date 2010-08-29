@@ -1,23 +1,43 @@
 Prerequisites
 -------------
 
-- SBT 0.7.4 or higher
-  http://code.google.com/p/simple-build-tool/
+Building and running the examples requires SBT [1], a simple build tool
+for Scala projects. Installation instructions can be found at [2]. After
+installation, you should have the 'sbt' command available.
 
-Setup examples
+Build examples
 --------------
 
-- cd appendixE
-- sbt update
+To build the examples, go to the appendixE directory and run
+
+sbt update
+sbt compile
+
+from the command line. The first command downloads all necessary dependencies,
+the second command compiles the sources.
 
 Run examples
 ------------
 
-- cd appendixE
-- sbt run
-- select main class to run
+To run one of the examples, run
 
-Todo
-----
+sbt run
 
-- Write a more detailed guide how to setup and run the examples
+from the command line. This will display a list of main classes. The classes
+are named based on the section numbers in appendix E. Here's an example:
+
+ [1] camelinaction.SectionE1
+ [2] camelinaction.SectionE21
+ [3] camelinaction.SectionE22
+ [4] camelinaction.SectionE3
+ [5] camelinaction.SectionE42
+ [6] camelinaction.SectionE5
+ [7] camelinaction.SectionE6
+
+To run the examples from section 2.1, enter 2 when prompted.
+
+References
+----------
+
+[1] http://code.google.com/p/simple-build-tool/
+[2] http://code.google.com/p/simple-build-tool/wiki/Setup
