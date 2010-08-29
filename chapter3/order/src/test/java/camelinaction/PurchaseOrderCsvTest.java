@@ -28,7 +28,8 @@ import org.junit.Test;
  */
 public class PurchaseOrderCsvTest extends CamelTestSupport {
 
-    @Test
+    @SuppressWarnings("unchecked")
+	@Test
     public void testCsv() throws Exception {
         MockEndpoint mock = getMockEndpoint("mock:queue.csv");
         mock.expectedMessageCount(2);

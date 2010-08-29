@@ -29,7 +29,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class PurchaseOrderCsvSpringTest extends CamelSpringTestSupport {
 
-    @Test
+    @SuppressWarnings("unchecked")
+	@Test
     public void testCsv() throws Exception {
         MockEndpoint mock = getMockEndpoint("mock:queue.csv");
         mock.expectedMessageCount(2);
