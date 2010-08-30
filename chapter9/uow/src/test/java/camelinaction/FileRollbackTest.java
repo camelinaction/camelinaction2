@@ -81,7 +81,7 @@ public class FileRollbackTest extends CamelTestSupport {
                             // register the FileRollback as Synchronization
                             exchange.getUnitOfWork().addSynchronization(new FileRollback());
 
-                            // this can be done a bit easier using:
+                            // this can be done a bit easier by using:
                             // exchange.addOnCompletion(new FileRollback());
                         }
                     })

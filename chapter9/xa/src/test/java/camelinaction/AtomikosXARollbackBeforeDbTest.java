@@ -69,7 +69,7 @@ public class AtomikosXARollbackBeforeDbTest extends CamelSpringTestSupport {
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete with failure
-        Thread.sleep(10000);
+        Thread.sleep(15000);
 
         // data not inserted so there should be 0 rows
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));

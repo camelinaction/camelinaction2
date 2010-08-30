@@ -124,7 +124,7 @@ public class RiderAutoPartsPartnerTXTest extends CamelSpringTestSupport {
         // wait for the route to complete
         Thread.sleep(5000);
 
-        // data not inserted so there should be 1 rows
+        // data is inserted so there should be 1 rows
         assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
 
         // now check that the message is not on the DLQ

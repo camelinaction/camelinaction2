@@ -42,7 +42,8 @@ public class TXToNonTXTest extends CamelSpringTestSupport {
     @Test
     public void testWithCamel() throws Exception {
         template.sendBody("activemq:queue:a", "Hi Camel");
-
+        // Need to sleep a while to make the test passed
+        Thread.sleep(2000);
         String reply = consumer.receiveBody("activemq:queue:b", 10000, String.class);
         assertEquals("Camel rocks", reply);
     }
