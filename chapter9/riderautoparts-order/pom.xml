@@ -56,11 +56,19 @@
             <version>1.5.8</version>
         </dependency>
 
-        <!-- using Jetty with CXF -->
+        <!-- using Jetty with CXF when running it with camel:run -->        
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>2.2.9</version>
+            <version>${cxf-version}</version>
+        </dependency>
+        
+        <!--  using the local transport for test -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-local</artifactId>
+            <version>${cxf-version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -86,12 +94,13 @@
             <plugin>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-maven-plugin</artifactId>
+                <version>${camel-version}</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
-                <version>2.2.9</version>
+                <version>${cxf-version}</version>
                 <executions>
                     <execution>
                         <id>generate-sources</id>
