@@ -39,7 +39,8 @@ public class SpringAggregateABCGroupTest extends CamelSpringTestSupport {
         return new ClassPathXmlApplicationContext("META-INF/spring/aggregate-abc-group.xml");
     }
 
-    @Test
+    @SuppressWarnings("unchecked")
+	@Test
     public void testABCGroup() throws Exception {
         MockEndpoint mock = getMockEndpoint("mock:result");
         // one message expected

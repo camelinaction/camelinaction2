@@ -38,7 +38,8 @@ import org.junit.Test;
  */
 public class AggregateABCGroupTest extends CamelTestSupport {
 
-    @Test
+    @SuppressWarnings("unchecked")
+	@Test
     public void testABCGroup() throws Exception {
         MockEndpoint mock = getMockEndpoint("mock:result");
         // one message expected
