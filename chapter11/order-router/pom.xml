@@ -15,25 +15,19 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
-      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring</artifactId>
-      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-ftp</artifactId>
-      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>${log4j-version}</version>
     </dependency>
   </dependencies>
-  <properties>
-    <log4j-version>1.2.16</log4j-version>
-  </properties>
+ 
 </project>

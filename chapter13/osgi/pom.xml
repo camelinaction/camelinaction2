@@ -18,51 +18,44 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
-            <version>${camel-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring</artifactId>
-            <version>${camel-version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-cxf</artifactId>
-            <version>${camel-version}</version>
         </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.5.8</version>
         </dependency>
 
         <!-- needed to run CXF standalone with Jetty as HTTP server -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>2.2.9</version>
+            <version>${cxf-version}</version>
         </dependency>
 
         <!-- testing -->
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-test</artifactId>
-            <version>${camel-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -101,7 +94,7 @@
             <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-codegen-plugin</artifactId>
-                <version>2.2.9</version>
+                <version>${cxf-version}</version>
                 <executions>
                     <execution>
                         <id>generate-sources</id>
