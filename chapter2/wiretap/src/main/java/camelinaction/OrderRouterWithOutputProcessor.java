@@ -63,7 +63,7 @@ public class OrderRouterWithOutputProcessor {
                 from("jms:incomingOrders")
                 .process(new Processor() {
                     public void process(Exchange exchange) throws Exception {
-                        System.out.println("Received order: " + exchange.getIn().getBody());                        
+                        System.out.println("Received order: " + exchange.getIn().getBody(String.class));                        
                     }
                 })
                 .choice()

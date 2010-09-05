@@ -98,8 +98,10 @@ public class OrderRouterWithParallelMulticast {
         // start the route and let it do its work
         context.start();
         Thread.sleep(2000);
-
+        
         // stop the CamelContext
         context.stop();
+        
+        System.exit(0);
     }
 }

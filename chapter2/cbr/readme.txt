@@ -11,5 +11,8 @@ To run this example, execute the following command:
 
 mvn compile exec:java -Dexec.mainClass=camelinaction.OrderRouterOtherwise
 
+The last example has a CBR with an otherwise clause to catch bad orders and
+stop routing. To run this example, execute the following command:
 
+mvn compile exec:java -Dexec.mainClass=camelinaction.OrderRouterWithStop
 
