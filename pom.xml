@@ -157,9 +157,6 @@
               <fileset>
                 <directory>activemq-data</directory>
               </fileset>
-              <fileset>
-                <directory>data</directory>
-              </fileset>
             </filesets>
           </configuration>
         </plugin>
