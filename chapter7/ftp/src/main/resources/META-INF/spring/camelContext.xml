@@ -30,7 +30,7 @@
   <camelContext xmlns="http://camel.apache.org/schema/spring">
     <route>
       <from uri="stream:in?promptMessage=Enter something:" />
-      <to uri="ftp://rider@localhost:21000/data/outbox?password=secret"/>
+      <to uri="ftp://rider@localhost:21000/target/data/outbox?password=secret"/>
     </route>
   </camelContext>
 

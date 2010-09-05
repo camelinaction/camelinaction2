@@ -17,31 +17,26 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
-      <version>${camel-version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-cxf</artifactId>
-      <version>${camel-version}</version>
     </dependency>
 
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.16</version>
     </dependency>
 
     <!-- cxf using slf4j -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.5.8</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.5.8</version>
     </dependency>
 
     <!-- using Jetty with CXF -->
@@ -54,14 +49,12 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test</artifactId>
-      <version>${camel-version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -15,22 +15,18 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
-      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-ftp</artifactId>
-      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring</artifactId>
-      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-stream</artifactId>
-      <version>${camel-version}</version>
     </dependency>
 
     <!-- for simulating with a FTP server -->
@@ -54,36 +50,21 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.5.8</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.5.8</version>
     </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.2</version>
-      <scope>test</scope>
-    </dependency>
+    
   </dependencies>
 
   <build>
     <plugins>
-
-      <!-- Allows the example to be run via 'mvn compile exec:java' -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-      </plugin>
-
+     
       <!-- Allows the routes to be run via 'mvn camel:run' -->
       <plugin>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-maven-plugin</artifactId>
-        <version>${camel-version}</version>
+        <artifactId>camel-maven-plugin</artifactId>        
       </plugin>
     </plugins>
   </build>
