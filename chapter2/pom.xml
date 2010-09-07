@@ -13,7 +13,7 @@
     <name>Camel in Action :: Chapter 2</name>
 
     <modules>
-        <module>file-jms</module>
+        <module>ftp-jms</module>
         <module>spring</module>
         <module>cbr</module>
         <module>filter</module>
