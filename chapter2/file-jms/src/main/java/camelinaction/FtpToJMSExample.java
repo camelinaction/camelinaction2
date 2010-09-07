@@ -20,8 +20,6 @@ import javax.jms.ConnectionFactory;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
@@ -34,7 +32,7 @@ import org.apache.camel.impl.DefaultCamelContext;
  * @author janstey
  *
  */
-public class FileToJMSWithProcessorExample {
+public class FtpToJMSExample {
 
     public static void main(String args[]) throws Exception {
         // create CamelContext
@@ -50,13 +48,7 @@ public class FileToJMSWithProcessorExample {
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() {
-                from("ftp://riderautoparts.com/orders?username=rider&password=secret").
-                process(new Processor() {                    
-                    public void process(Exchange exchange) throws Exception {
-                        System.out.println("We just downloaded: " + exchange.getIn().getHeader("CamelFileName"));
-                    }
-                }).
-                to("jms:incomingOrders");
+                from("ftp://riderautoparts.com/orders?username=rider&password=secret").to("jms:incomingOrders");
             }
         });
 
