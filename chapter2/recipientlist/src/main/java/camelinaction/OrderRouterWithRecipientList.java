@@ -83,7 +83,7 @@ public class OrderRouterWithRecipientList {
                         exchange.getIn().setHeader("recipients", recipients);
                     }
                 })
-                .recipientList(header("recipients").tokenize(","));
+                .recipientList(header("recipients"));
                 
                 // test that our route is working
                 from("jms:accounting").process(new Processor() {
