@@ -77,7 +77,7 @@ public class OrderRouterWithFilter {
                         System.out.println("Received XML order: " 
                                 + exchange.getIn().getHeader("CamelFileName"));   
                     }
-                });                        
+                });                         
             }
         });
 

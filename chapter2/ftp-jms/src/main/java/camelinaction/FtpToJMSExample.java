@@ -48,7 +48,7 @@ public class FtpToJMSExample {
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() {
-                from("ftp://riderautoparts.com/orders?username=rider&password=secret").to("jms:incomingOrders");
+                from("ftp://rider.com/orders?username=rider&password=secret").to("jms:incomingOrders");
             }
         });
 
