@@ -72,7 +72,7 @@ public class OrderRouterWithRecipientList {
                         .to("jms:badOrders");        
                 
                 from("jms:xmlOrders")
-                .setHeader("customer").xpath("/order/@customer")
+                .setHeader("customer", xpath("/order/@customer"))
                 .process(new Processor() {
                     public void process(Exchange exchange) throws Exception {
                         String recipients = "jms:accounting";
