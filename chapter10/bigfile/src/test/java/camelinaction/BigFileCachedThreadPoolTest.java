@@ -28,34 +28,33 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Processing a big with concurrency using a custom thread pool created by the JDK.
+ * Processing a big with concurrency using the parallelProcessing option.
  *
  * @version $Revision$
  */
-public class BigFileFixedThreadPoolTest extends CamelTestSupport {
+public class BigFileCachedThreadPoolTest extends CamelTestSupport {
+	
+	private ExecutorService threadPool;
+	
+	@Before
+	@Override
+	public void setUp() throws Exception {
+		// must create the custom thread pool before Camel is starting
+		threadPool = Executors.newCachedThreadPool();
+		super.setUp();
+	}
 
-    private ExecutorService threadPool;
-
-    @Before
-    @Override
-    public void setUp() throws Exception {
-        // must create the custom thread pool before Camel is starting
-        threadPool = Executors.newFixedThreadPool(20);
-        super.setUp();
-    }
-
-    @After
-    @Override
-    public void tearDown() throws Exception {
-        // proper cleanup by shutting down the thread pool
-        threadPool.shutdownNow();
-        super.tearDown();
-    }
+	@After
+	@Override
+	public void tearDown() throws Exception {
+		// proper cleanup by shutting down the thread pool
+		threadPool.shutdownNow();
+		super.tearDown();
+	}
 
     @Test
     public void testBigFile() throws Exception {
-        // when the file route is done
-        NotifyBuilder notify = new NotifyBuilder(context).from("file*").whenDone(1).create();
+        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
 
         long start = System.currentTimeMillis();
 
@@ -71,10 +70,12 @@ public class BigFileFixedThreadPoolTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
+            	
                 from("file:target/inventory?noop=true")
                     .log("Starting to process big file: ${header.CamelFileName}")
-                    // use a custom thread pool so the output from the split EIP will
-                    // be processed concurrently
+                    // by enabling the parallel processing the output from the split EIP will
+                    // be processed concurrently using the cached thread pool settings
+                    // which creates new threads as needed 
                     .split(body().tokenize("\n")).streaming().executorService(threadPool)
                         .bean(InventoryService.class, "csvToObject")
                         .to("direct:update")
