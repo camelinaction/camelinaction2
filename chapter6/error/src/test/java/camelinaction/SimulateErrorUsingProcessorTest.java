@@ -71,19 +71,4 @@ public class SimulateErrorUsingProcessorTest extends CamelTestSupport {
         assertMockEndpointsSatisfied();
     }
 
-    public void testSimulateErrorUsingMock() throws Exception {
-        getMockEndpoint("mock:ftp").expectedMessageCount(1);
-
-        MockEndpoint http = getMockEndpoint("mock:http");
-        http.whenAnyExchangeReceived(new Processor() {
-            public void process(Exchange exchange) throws Exception {
-                exchange.setException(new ConnectException("Simulated connection error"));
-            }
-        });
-
-        template.sendBody("direct:file", "Camel rocks");
-
-        assertMockEndpointsSatisfied();
-    }
-
 }

@@ -55,7 +55,7 @@ public class MirandaTest extends CamelTestSupport {
         mock.expectedBodiesReceived("ID=123");
         mock.whenAnyExchangeReceived(new Processor() {
             public void process(Exchange exchange) throws Exception {
-                exchange.getOut().setBody("ID=123,STATUS=IN PROGRESS");
+                exchange.getIn().setBody("ID=123,STATUS=IN PROGRESS");
             }
         });
 
@@ -68,7 +68,7 @@ public class MirandaTest extends CamelTestSupport {
     private class OrderQueryProcessor implements Processor {
         public void process(Exchange exchange) throws Exception {
             String id = exchange.getIn().getHeader("id", String.class);
-            exchange.getOut().setBody("ID=" + id);
+            exchange.getIn().setBody("ID=" + id);
         }
     }
 
@@ -76,7 +76,7 @@ public class MirandaTest extends CamelTestSupport {
         public void process(Exchange exchange) throws Exception {
             String body = exchange.getIn().getBody(String.class);
             String reply = ObjectHelper.after(body, "STATUS=");
-            exchange.getOut().setBody(reply);
+            exchange.getIn().setBody(reply);
         }
     }
 
