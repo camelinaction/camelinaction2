@@ -21,7 +21,7 @@ import org.apache.camel.component.properties.PropertiesComponent;
 
 /**
  * Unit test to show how to use Camel properties component with the Java DSL.
- * We test the Hello World example of integration kits, which is copying a file.
+ * We test the Hello World example of integration kits, which is moving a file.
  * <p/>
  * This unit test is reusing the unit test which was designated to be
  * tested in the production environment. Notice how we extend that class

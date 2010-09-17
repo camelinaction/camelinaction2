@@ -29,7 +29,7 @@ import org.junit.Test;
 
 /**
  * Unit test to show how to use Camel properties component with the Java DSL.
- * We test the Hello World example of integration kits, which is copying a file.
+ * We test the Hello World example of integration kits, which is moving a file.
  * <p/>
  * This time we use Camel property placeholders in the route.
  *
@@ -67,7 +67,7 @@ public class CamelRiderJavaDSLProdTest extends CamelTestSupport {
     }
 
     @Test
-    public void testCopyFile() throws Exception {
+    public void testMoveFile() throws Exception {
         context.setTracing(true);
 
         // create a new file in the inbox folder with the name hello.txt and containing Hello World as body
@@ -76,9 +76,9 @@ public class CamelRiderJavaDSLProdTest extends CamelTestSupport {
         // wait a while to let the file be moved
         Thread.sleep(2000);
 
-        // test the file was copied
+        // test the file was moved
         File target = new File(outboxDir + "/hello.txt");
-        assertTrue("File should have been copied", target.exists());
+        assertTrue("File should have been moved", target.exists());
 
         // test that its content is correct as well
         String content = context.getTypeConverter().convertTo(String.class, target);
