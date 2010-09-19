@@ -42,7 +42,7 @@ public class RequestReplyJmsTest extends CamelTestSupport {
             
             @Override
             public void configure() throws Exception {
-                from("jms:incomingOrders").to("jms:validate?exchangePattern=InOut");                
+                from("jms:incomingOrders").inOut("jms:validate");                
                 from("jms:validate").bean(ValidatorBean.class);
             }
         };
