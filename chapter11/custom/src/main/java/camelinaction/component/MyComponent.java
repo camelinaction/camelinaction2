@@ -22,10 +22,7 @@ import org.apache.camel.Endpoint;
 import org.apache.camel.impl.DefaultComponent;
 
 /**
- * Represents the component that manages {@link MyEndpoint}. It holds the
- * list of named direct endpoints.
- *
- * @version $Revision$
+ * Represents the component that manages {@link HelloWorldEndpoint}.
  */
 public class MyComponent extends DefaultComponent {
 

@@ -23,9 +23,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * The direct producer.
- *
- * @version $Revision$
+ * The HelloWorld producer.
  */
 public class MyProducer extends DefaultProducer {
     private static final transient Log LOG = LogFactory.getLog(MyProducer.class);
@@ -37,13 +35,7 @@ public class MyProducer extends DefaultProducer {
     }
 
     public void process(Exchange exchange) throws Exception {
-        if (endpoint.getConsumers().isEmpty()) {
-            LOG.warn("No consumers available on endpoint: " + endpoint + " to process: " + exchange);
-        } else {
-            for (DefaultConsumer consumer : endpoint.getConsumers()) {
-                consumer.getProcessor().process(exchange);
-            }
-        }
+        System.out.println(exchange.getIn().getBody());    
     }
 
 }

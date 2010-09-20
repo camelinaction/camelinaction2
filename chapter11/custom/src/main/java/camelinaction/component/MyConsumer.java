@@ -16,53 +16,41 @@
  */
 package camelinaction.component;
 
-import org.apache.camel.Endpoint;
+import java.util.Date;
+
+import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.ShutdownRunningTask;
-import org.apache.camel.impl.DefaultConsumer;
-import org.apache.camel.spi.ShutdownAware;
+import org.apache.camel.impl.ScheduledPollConsumer;
 
 /**
- * The direct consumer.
- *
- * @version $Revision$
+ * The MyConsumer.
  */
-public class MyConsumer extends DefaultConsumer implements ShutdownAware {
+public class MyConsumer extends ScheduledPollConsumer {
+    private final MyEndpoint endpoint;
 
-    private MyEndpoint endpoint;
-
-    public MyConsumer(Endpoint endpoint, Processor processor) {
+    public MyConsumer(MyEndpoint endpoint, Processor processor) {
         super(endpoint, processor);
-        this.endpoint = (MyEndpoint) endpoint;
+        this.endpoint = endpoint;
     }
 
     @Override
-    public void start() throws Exception {
-        // only add as consumer if not already registered
-        if (!endpoint.getConsumers().contains(this)) {
-            if (!endpoint.getConsumers().isEmpty()) {
-                throw new IllegalStateException("Endpoint " + endpoint.getEndpointUri() + " only allows 1 active consumer but you attempted to start a 2nd consumer.");
+    // poll method will fire every 500 ms by default 
+    protected void poll() throws Exception {
+        Exchange exchange = endpoint.createExchange();
+
+        // create a message body
+        Date now = new Date();
+        exchange.getIn().setBody("Hello World! The time is " + now);
+
+        try {
+            // send message to next processor in the route
+            getProcessor().process(exchange);
+        } finally {
+            // log exception if an exception occurred and was not handled
+            if (exchange.getException() != null) {
+                getExceptionHandler().handleException("Error processing exchange", exchange, exchange.getException());
             }
-            endpoint.getConsumers().add(this);
-        }
-        super.start();
+        }        
     }
 
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        endpoint.getConsumers().remove(this);
-    }
-
-    public boolean deferShutdown(ShutdownRunningTask shutdownRunningTask) {
-        // deny stopping on shutdown as we want direct consumers to run in case some other queues
-        // depend on this consumer to run, so it can complete its exchanges
-        return true;
-    }
-
-    public int getPendingExchangesSize() {
-        // return 0 as we do not have an internal memory queue with a variable size
-        // of inflight messages. 
-        return 0;
-    }
 }

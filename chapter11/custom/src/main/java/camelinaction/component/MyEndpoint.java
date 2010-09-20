@@ -26,14 +26,9 @@ import org.apache.camel.impl.DefaultConsumer;
 import org.apache.camel.impl.DefaultEndpoint;
 
 /**
- * Represents a direct endpoint that synchronously invokes the consumers of the
- * endpoint when a producer sends a message to it.
- *
- * @version $Revision$
+ * Represents a my endpoint.
  */
 public class MyEndpoint extends DefaultEndpoint {
-    private final CopyOnWriteArrayList<DefaultConsumer> consumers = new CopyOnWriteArrayList<DefaultConsumer>();
-
     public MyEndpoint() {
     }
 
@@ -55,9 +50,5 @@ public class MyEndpoint extends DefaultEndpoint {
 
     public boolean isSingleton() {
         return true;
-    }
-
-    public List<DefaultConsumer> getConsumers() {
-        return consumers;
     }
 }
