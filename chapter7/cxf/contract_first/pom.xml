@@ -75,6 +75,9 @@
               <wsdlOptions>
                 <wsdlOption>
                   <wsdl>${basedir}/src/main/resources/wsdl/order.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-impl</extraarg>
+                  </extraargs>
                 </wsdlOption>
               </wsdlOptions>
             </configuration>
