@@ -13,6 +13,7 @@
   <packaging>bundle</packaging>
   <name>Camel in Action :: Chapter 11 :: Scala DSL mixed with Java</name>
   <build>
+    <sourceDirectory>src/main/scala</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.scala-tools</groupId>
@@ -116,7 +117,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <scala-version>2.8.0.RC7</scala-version>
+    <scala-version>2.8.0</scala-version>
     <scala-plugin-version>2.9.1</scala-plugin-version>
   </properties>
 </project>
