@@ -57,14 +57,14 @@ public class EarlyReplyTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("jetty:http://localhost:8080/early")
+                from("jetty:http://localhost:8080/early").routeId("input")
                     // use wiretap to continue processing the message
                     // in another thread and let this consumer continue
                     .wireTap("direct:incoming")
                     // and return an early reply to the waiting caller
                     .transform().constant("OK");
 
-                from("direct:incoming")
+                from("direct:incoming").routeId("process")
                     // convert the jetty stream to String so we can safely read it multiple times
                     .convertBodyTo(String.class)
                     .log("Incoming ${body}")
