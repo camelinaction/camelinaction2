@@ -18,6 +18,7 @@
         <module>splitter</module>
         <module>loadbalancer</module>
         <module>routingslip</module>
+        <module>dynamicrouter</module>
     </modules>
 </project>
 
