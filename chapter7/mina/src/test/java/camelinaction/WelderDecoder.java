@@ -16,7 +16,6 @@
  */
 package camelinaction;
 
-import org.apache.camel.component.mina.MinaConverter;
 import org.apache.mina.common.ByteBuffer;
 import org.apache.mina.common.IoSession;
 import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
@@ -26,8 +25,10 @@ class WelderDecoder extends CumulativeProtocolDecoder {
     static final int PAYLOAD_SIZE = 8;
     
     protected boolean doDecode(IoSession session, ByteBuffer in, ProtocolDecoderOutput out) throws Exception {
-        if (in.remaining() >= PAYLOAD_SIZE) {         
-            byte[] buf = MinaConverter.toByteArray(in);
+        if (in.remaining() >= PAYLOAD_SIZE) {
+            byte[] buf = new byte[in.remaining()];
+            in.get(buf);
+            
             // first 7 bytes are the sensor ID, last is the status
             // and the result message will look something like
             // MachineID=2371748;Status=Good
