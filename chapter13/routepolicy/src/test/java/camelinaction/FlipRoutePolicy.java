@@ -16,6 +16,8 @@
  */
 package camelinaction;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.Route;
@@ -49,7 +51,7 @@ public class FlipRoutePolicy extends RoutePolicySupport {
 
         CamelContext context = exchange.getContext();
         try {
-            context.stopRoute(stop);
+            context.stopRoute(stop, 1, TimeUnit.SECONDS);
             context.startRoute(start);
         } catch (Exception e) {
             // let the exception handle handle it, which is often just to log it
