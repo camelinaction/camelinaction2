@@ -16,6 +16,8 @@
  */
 package camelinaction;
 
+import java.util.concurrent.TimeUnit;
+
 import camelinaction.inventory.UpdateInventoryInput;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -46,8 +48,10 @@ public class ManualRouteWithOnCompletion extends RouteBuilder {
             .routeId("manual").noAutoStartup()
             .log("Doing manual update with file ${file:name}")
             .split(body().tokenize("\n"))
-            .convertBodyTo(UpdateInventoryInput.class)
-            .to("direct:update");
+                .convertBodyTo(UpdateInventoryInput.class)
+                .to("direct:update")
+            .end();
+            // use end() to denote the end of the splitter sub-route
     }
 
     public class StopRouteProcessor implements Processor {
@@ -58,7 +62,10 @@ public class ManualRouteWithOnCompletion extends RouteBuilder {
         }
 
         public void process(Exchange exchange) throws Exception {
-            exchange.getContext().stopRoute(name);
+            // force stopping it using 1 sec timeout because
+            // we are stopping our self from a route, and hence we need to
+            // use a timeout so Camel can force the stop
+            exchange.getContext().stopRoute(name, 1, TimeUnit.SECONDS);
         }
     }
 

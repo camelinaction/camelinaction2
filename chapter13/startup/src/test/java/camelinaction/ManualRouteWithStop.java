@@ -16,6 +16,8 @@
  */
 package camelinaction;
 
+import java.util.concurrent.TimeUnit;
+
 import camelinaction.inventory.UpdateInventoryInput;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -40,15 +42,21 @@ public class ManualRouteWithStop extends RouteBuilder {
             .routeId("manual").noAutoStartup()
             .log("Doing manual update with file ${file:name}")
             .split(body().tokenize("\n"))
-            .convertBodyTo(UpdateInventoryInput.class)
-            .to("direct:update")
+                .convertBodyTo(UpdateInventoryInput.class)
+                .to("direct:update")
+            .end()
+            // use end() to denote the end of the splitter sub-route
             .process(new Processor() {
                 public void process(Exchange exchange) throws Exception {
                     // stop the route when we are done as we should only
                     // pickup one file at the time. And if you need to
                     // pickup more files then you have to start the route
                     // manually again.
-                    getContext().stopRoute("manual");
+
+                    // force stopping it using 1 sec timeout because
+                    // we are stopping our self from a route, and hence we need to
+                    // use a timeout so Camel can force the stop
+                    getContext().stopRoute("manual", 1, TimeUnit.SECONDS);
                 }
             });
     }

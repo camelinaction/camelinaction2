@@ -43,7 +43,7 @@ public class ManualRouteWithOnCompletionTest extends CamelTestSupport {
         RouteBuilder[] answer = new RouteBuilder[]{new ManualRouteWithOnCompletion(), new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("direct:update").to("mock:update");
+                from("direct:update").to("log:update", "mock:update");
             }
         }};
         return answer;
@@ -57,7 +57,7 @@ public class ManualRouteWithOnCompletionTest extends CamelTestSupport {
         // we actually do not need to use a mock but since we wanted to show the trick
         // in the createRouteBuilders we do both. We could just have relied on using
         // the NotifyBuilder to signal when the exchange is done
-        getMockEndpoint("mock:update").expectedMessageCount(1);
+        getMockEndpoint("mock:update").expectedMessageCount(2);
 
         // route should be stopped at startup
         assertTrue("Route should be stopped at startup", context.getRouteStatus("manual").isStopped());
@@ -75,9 +75,8 @@ public class ManualRouteWithOnCompletionTest extends CamelTestSupport {
         // wait for the route to be done
         notify.matches(5, TimeUnit.SECONDS);
 
-        // we gotta wait just a little extra since onCompletion spawns a new thread and runs
-        // after the original route has been done 
-        Thread.sleep(1000);
+        // we gotta wait just a little extra to stop
+        Thread.sleep(5000);
 
         // it should have stopped itself
         assertTrue("Route should be stopped", context.getRouteStatus("manual").isStopped());
