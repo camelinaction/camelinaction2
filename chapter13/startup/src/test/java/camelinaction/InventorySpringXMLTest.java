@@ -27,7 +27,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * @version $Revision$
  */
-public class InventoryXMLTest extends CamelSpringTestSupport {
+public class InventorySpringXMLTest extends CamelSpringTestSupport {
 
     @Override
     public void setUp() throws Exception {
