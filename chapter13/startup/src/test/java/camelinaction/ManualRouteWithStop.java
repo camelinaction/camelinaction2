@@ -16,8 +16,6 @@
  */
 package camelinaction;
 
-import java.util.concurrent.TimeUnit;
-
 import camelinaction.inventory.UpdateInventoryInput;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -53,10 +51,12 @@ public class ManualRouteWithStop extends RouteBuilder {
                     // pickup more files then you have to start the route
                     // manually again.
 
-                    // force stopping it using 1 sec timeout because
-                    // we are stopping our self from a route, and hence we need to
-                    // use a timeout so Camel can force the stop
-                    getContext().stopRoute("manual", 1, TimeUnit.SECONDS);
+                    // force stopping this route while we are routing an Exchange
+                    // requires two steps:
+                    // 1) unregister from the inflight registry
+                    // 2) stop the route
+                    getContext().getInflightRepository().remove(exchange);
+                    getContext().stopRoute("manual");
                 }
             });
     }

@@ -16,8 +16,6 @@
  */
 package camelinaction;
 
-import java.util.concurrent.TimeUnit;
-
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.Route;
@@ -51,7 +49,13 @@ public class FlipRoutePolicy extends RoutePolicySupport {
 
         CamelContext context = exchange.getContext();
         try {
-            context.stopRoute(stop, 1, TimeUnit.SECONDS);
+            // force stopping this route while we are routing an Exchange
+            // requires two steps:
+            // 1) unregister from the inflight registry
+            // 2) stop the route
+            context.getInflightRepository().remove(exchange);
+            context.stopRoute(stop);
+            // then we can start the other route
             context.startRoute(start);
         } catch (Exception e) {
             // let the exception handle handle it, which is often just to log it
