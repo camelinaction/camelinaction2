@@ -13,7 +13,6 @@
   <packaging>bundle</packaging>
   <name>Camel in Action :: Chapter 11 :: Scala DSL mixed with Java</name>
   <build>
-    <sourceDirectory>src/main/scala</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.scala-tools</groupId>
@@ -89,6 +88,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
           <includePluginDependencies>false</includePluginDependencies>
+          <mainClass>camelinaction.Main</mainClass>
         </configuration>
       </plugin>
     </plugins>
