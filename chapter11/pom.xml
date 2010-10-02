@@ -18,7 +18,7 @@
       <module>order-router</module>
       <module>custom</module>
       <module>interceptor</module>
-      <module>scala-order-router</module>
-      <module>scala-order-router-javacontext</module>
+      <module>scala-router</module>
+      <module>scala-router-javacontext</module>
   </modules>
 </project>
