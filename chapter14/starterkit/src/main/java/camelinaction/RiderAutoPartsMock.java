@@ -25,11 +25,11 @@ import org.apache.commons.logging.LogFactory;
 /**
  * A mocked implementation of {@link RiderService} to be used for testing purpose.
  *
- * @version $Revision$
+ * @version $Revision: 111 $
  */
-public class AutoRiderPartsMock implements RiderService {
+public class RiderAutoPartsMock implements RiderService {
 
-    private static final Log LOG = LogFactory.getLog(AutoRiderPartsMock.class);
+    private static final Log LOG = LogFactory.getLog(RiderAutoPartsMock.class);
 
     public void updateInventory(Inventory inventory) {
         LOG.info("Updating inventory " + inventory);

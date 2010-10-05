@@ -39,7 +39,7 @@ public class StarterKitJavaProxyBuilderTest extends CamelTestSupport {
     protected JndiRegistry createRegistry() throws Exception {
         // bind the mocked bean with the riderMocked id
         JndiRegistry jndi = super.createRegistry();
-        jndi.bind("riderMocked", new AutoRiderPartsMock());
+        jndi.bind("riderMocked", new RiderAutoPartsMock());
         return jndi;
     }
 
