@@ -39,8 +39,8 @@ object SectionE22 extends Application {
   assert("<received>Akka rocks</received>" == exchange2.getOut.getBody(classOf[String]))
   assert("application/xml"                 == exchange2.getOut.getHeader("Content-Type"))
 
+  stopCamelService
+
   httpConsumer1.stop
   httpConsumer2.stop
-
-  stopCamelService
 }
