@@ -19,7 +19,11 @@ public class InventoryUpdater {
     }    
     
     private String toSql(Inventory inventory) {
-        Object[] args = new Object[] {inventory.getSupplierId(), inventory.getPartId(), inventory.getName(), inventory.getAmount()};
-        return String.format("insert into partner_inventory (supplier_id, part_id, name, amount) values ('%s', '%s', '%s', '%s')", args);
+        Object[] args = new Object[] {
+            inventory.getSupplierId(), inventory.getPartId(), 
+            inventory.getName(), inventory.getAmount()};
+        return String.format("insert into partner_inventory " + 
+            "(supplier_id, part_id, name, amount) values " + 
+            "('%s', '%s', '%s', '%s')", args);
     }
 }
