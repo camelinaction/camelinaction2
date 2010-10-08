@@ -32,11 +32,13 @@ public class FileCopier {
         
         File[] files = inboxDirectory.listFiles();
         for (File source : files) {
-            File dest = new File(
-                    outboxDirectory.getPath() 
-                    + File.separator 
-                    + source.getName()); 
-            copyFile(source, dest);
+            if (source.isFile()) {
+                File dest = new File(
+                        outboxDirectory.getPath() 
+                        + File.separator 
+                        + source.getName()); 
+                copyFile(source, dest);
+            }
         }
     }
     
