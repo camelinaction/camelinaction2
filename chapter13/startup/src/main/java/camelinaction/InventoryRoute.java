@@ -38,8 +38,9 @@ public class InventoryRoute extends RouteBuilder {
         from("file://target/inventory/updates")
             .routeId("file").startupOrder(2)
             .split(body().tokenize("\n"))
-            .convertBodyTo(UpdateInventoryInput.class)
-            .to("direct:update");
+                .convertBodyTo(UpdateInventoryInput.class)
+                .to("direct:update")
+            .end();
 
         // this is the shared route which then must be started first
         from("direct:update")
