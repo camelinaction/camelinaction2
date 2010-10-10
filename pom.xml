@@ -20,7 +20,7 @@
 
   <groupId>com.camelinaction</groupId>
   <artifactId>parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>pom</packaging>
   <name>Camel in Action</name>
   <inceptionYear>2009</inceptionYear>

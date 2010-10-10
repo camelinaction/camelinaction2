@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.camelinaction</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>appendixc</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Camel in Action :: Appendix C</name>
 
     <modules>

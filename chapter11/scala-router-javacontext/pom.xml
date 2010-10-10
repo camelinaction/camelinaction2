@@ -5,11 +5,11 @@
   <parent>
     <artifactId>chapter11</artifactId>
     <groupId>com.camelinaction</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>
   <groupId>camelinaction</groupId>
   <artifactId>chapter11-scala-router-javacontext</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>bundle</packaging>
   <name>Camel in Action :: Chapter 11 :: Scala DSL mixed with Java</name>
   <build>
