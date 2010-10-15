@@ -35,7 +35,8 @@ object SectionE3 extends Application {
 
   httpProducer1.stop
   httpProducer2.stop
-  httpConsumer2.stop
 
   stopCamelService
+
+  httpConsumer2.stop
 }

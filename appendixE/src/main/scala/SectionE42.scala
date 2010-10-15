@@ -22,6 +22,6 @@ object SectionE42 extends Application {
 
   assert(result == "received akka-spring rocks")
 
-  consumer.stop
   appctx.destroy
+  consumer.stop
 }
