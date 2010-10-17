@@ -33,10 +33,8 @@ object SectionE3 extends Application {
   // Wait a bit for httpProducer2 to write the response to stdout
   Thread.sleep(2000)
 
+  stopCamelService
   httpProducer1.stop
   httpProducer2.stop
-
-  stopCamelService
-
   httpConsumer2.stop
 }
