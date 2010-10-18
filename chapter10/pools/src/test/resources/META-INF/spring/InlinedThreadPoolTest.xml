@@ -29,7 +29,7 @@
             <from uri="direct:start"/>
             <to uri="log:start"/>
             <!-- define thread pool settings directly on the threads EIP -->
-            <threads threadName="Cool" poolSize="5" maxPoolSize="15" maxQueueSize="250">
+            <threads poolSize="5" maxPoolSize="15" maxQueueSize="250">
                 <!-- this is executed in the threads pool -->
                 <to uri="log:cool"/>
                 <to uri="mock:result"/>
