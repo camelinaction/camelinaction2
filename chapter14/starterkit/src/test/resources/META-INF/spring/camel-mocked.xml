@@ -24,7 +24,7 @@
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
     <!-- mock the remote auto rider parts service for local testing -->
-    <bean id="riderMocked" class="camelinaction.AutoRiderPartsMock"/>
+    <bean id="riderMocked" class="camelinaction.RiderAutoPartsMock"/>
 
     <!-- the camel context -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">

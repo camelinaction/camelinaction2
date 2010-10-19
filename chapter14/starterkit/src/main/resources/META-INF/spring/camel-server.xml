@@ -27,7 +27,7 @@
     <import resource="activemq-broker.xml"/>
 
     <!-- mock the remote auto rider parts service for local testing -->
-    <bean id="riderMocked" class="camelinaction.AutoRiderPartsMock"/>
+    <bean id="riderMocked" class="camelinaction.RiderAutoPartsMock"/>
 
     <!-- the camel server -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">

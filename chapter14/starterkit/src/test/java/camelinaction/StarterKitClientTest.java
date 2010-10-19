@@ -43,7 +43,7 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
     }
 
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/camel-client.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/camel-server.xml", "META-INF/spring/camel-client.xml");
     }
 
     @Test
