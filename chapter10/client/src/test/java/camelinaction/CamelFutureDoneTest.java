@@ -30,12 +30,12 @@ import org.junit.Test;
  *
  * @version $Revision$
  */
-public class CamelFutureTest extends CamelTestSupport {
+public class CamelFutureDoneTest extends CamelTestSupport {
 
-    private static Log LOG = LogFactory.getLog(CamelFutureTest.class);
+    private static Log LOG = LogFactory.getLog(CamelFutureDoneTest.class);
 
     @Test
-    public void testFuture() throws Exception {
+    public void testFutureDone() throws Exception {
         // now send the message to the endpoint in async manner
         // and get the Future handle back so we can later get the result
         LOG.info("Submitting task to Camel");
@@ -51,19 +51,6 @@ public class CamelFutureTest extends CamelTestSupport {
                 Thread.sleep(2000);
             }
         }
-
-        // and get the answer
-        String answer = future.get();
-        LOG.info("The answer is: " + answer);
-    }
-
-    @Test
-    public void testFutureWithoutDone() throws Exception {
-        // now send the message to the endpoint in async manner
-        // and get the Future handle back so we can later get the result
-        LOG.info("Submitting task to Camel");
-        Future<String> future = template.asyncRequestBody("seda:quote", "Hello Camel", String.class);
-        LOG.info("Task submitted and we got a Future handle");
 
         // and get the answer
         String answer = future.get();
