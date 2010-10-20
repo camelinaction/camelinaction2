@@ -69,9 +69,9 @@
   </scm>
 
   <properties>
-    <activemq-version>5.4.1</activemq-version>
+    <activemq-version>5.3.2</activemq-version>
     <camel-version>2.5-SNAPSHOT</camel-version>
-    <cxf-version>2.2.10</cxf-version>
+    <cxf-version>2.2.11</cxf-version>
     <hsqldb-version>1.8.0.7</hsqldb-version>
     <junit-version>4.8.1</junit-version>
     <log4j-version>1.2.16</log4j-version>
