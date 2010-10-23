@@ -9,7 +9,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>chapter13-war</artifactId>
+    <artifactId>riderautoparts-war</artifactId>
     <name>Camel in Action :: Chapter 13 :: Running Camel as web application</name>
     <packaging>war</packaging>
 

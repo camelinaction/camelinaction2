@@ -9,7 +9,7 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>chapter13-standalone</artifactId>
+    <artifactId>riderautoparts-standalone</artifactId>
     <name>Camel in Action :: Chapter 13 :: Running Camel standalone</name>
     <packaging>jar</packaging>
 

@@ -21,20 +21,27 @@
        xmlns:camel="http://camel.apache.org/schema/spring"
        xmlns:cxf="http://camel.apache.org/schema/cxf"
        xsi:schemaLocation="
-         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
          http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
 
+    <!-- mandatory CXF imports -->
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml"/>
 
+    <!-- CXF endpoint we expose -->
     <cxf:cxfEndpoint id="inventoryEndpoint"
                      address="http://localhost:9000/inventory"
                      serviceClass="camelinaction.inventory.InventoryEndpoint"/>
 
-    <bean id="myRouteBuilder" class="camelinaction.InventoryRoute"/>
+    <!-- the order bean contain all the business logic -->
+    <bean id="inventoryService" class="camelinaction.InventoryService"/>
 
+    <!-- the route builder -->
+    <bean id="inventoryRoute" class="camelinaction.InventoryRoute"/>
+
+    <!-- Camel -->
     <camel:camelContext id="myCamelContext">
         <camel:routeBuilder ref="myRouteBuilder"/>
     </camel:camelContext>
