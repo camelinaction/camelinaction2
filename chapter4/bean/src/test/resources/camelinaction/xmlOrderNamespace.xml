@@ -25,8 +25,8 @@
     <!-- guid generator -->
     <bean id="guid" class="camelinaction.GuidGenerator"/>
 
-    <!-- the order service -->
-    <bean id="xmlOrderService" class="camelinaction.XmlOrderService"/>
+    <!-- the order service which uses namespace -->
+    <bean id="xmlOrderService" class="camelinaction.XmlOrderNamespaceService"/>
 
     <!-- route a message from the file to the xmlOrderService bean -->
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
