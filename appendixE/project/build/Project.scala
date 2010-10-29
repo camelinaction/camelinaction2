@@ -1,9 +1,6 @@
 import sbt._
 
 class Project(info: ProjectInfo) extends DefaultProject(info) with AkkaProject {
-  // Temporary (remove when Camel 2.5.0 is released)
-  val camelStaging = MavenRepository("camel-staging", "https://repository.apache.org/content/repositories/orgapachecamel-004/")
-
   val akkaCamel = akkaModule("camel")
   val akkaKernel = akkaModule("spring")
 
