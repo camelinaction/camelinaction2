@@ -14,6 +14,10 @@ Akka development snapshot, are maintained at
 
 http://github.com/krasserm/camelinaction-appendix-e
 
+For a summary of changes since Akka 0.10 refer to the migration guide at
+
+http://doc.akkasource.org/migration-guide-0.10.x-1.0.x
+
 Prerequisites
 -------------
 
