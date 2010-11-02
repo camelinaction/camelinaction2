@@ -70,7 +70,7 @@
 
   <properties>
     <activemq-version>5.3.2</activemq-version>
-    <camel-version>2.5-SNAPSHOT</camel-version>
+    <camel-version>2.5.0</camel-version>
     <cxf-version>2.2.11</cxf-version>
     <hsqldb-version>1.8.0.7</hsqldb-version>
     <junit-version>4.8.1</junit-version>
@@ -82,28 +82,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>apache.snapshots</id>
-      <name>Apache Snapshot Repository</name>
-      <url>http://repository.apache.org/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>apache.snapshots</id>
-      <name>Apache Snapshot Repository</name>
-      <url>http://repository.apache.org/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </pluginRepository>
-  </pluginRepositories>
 
   <profiles>
       <profile>
