@@ -26,7 +26,7 @@ import org.junit.Test;
 /**
  * @version $Revision$
  */
-public class OnExceptionTest extends CamelTestSupport {
+public class OnExceptionFallbackTest extends CamelTestSupport {
 
     @Override
     public boolean isUseRouteBuilder() {
@@ -35,44 +35,18 @@ public class OnExceptionTest extends CamelTestSupport {
     }
 
     /**
-     * This test shows that a direct match will of course trigger the onException
+     * This tests shows no match for onException and therefore fallback on the error handler
+     * and by which there are no explicit configured. Therefore default error handler will be
+     * used which by default does NO redelivery attempts.
      */
     @Test
-    public void testOnExceptionDirectMatch() throws Exception {
+    public void testOnExceptionFallbackToErrorHandler() throws Exception {
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
                 context.setTracing(true);
 
-                onException(OrderFailedException.class).maximumRedeliveries(3);
-
-                from("direct:order")
-                    .bean(OrderServiceBean.class, "handleOrder");
-            }
-        });
-        context.start();
-
-        try {
-            template.requestBody("direct:order", "ActiveMQ in Action");
-            fail("Should throw an exception");
-        } catch (CamelExecutionException e) {
-            assertIsInstanceOf(OrderFailedException.class, e.getCause());
-        }
-    }
-
-
-    /**
-     * This test shows that a wrapped connection exception in OrderFailedException will still
-     * be triggered by the onException.
-     */
-    @Test
-    public void testOnExceptionWrappedMatch() throws Exception {
-        context.addRoutes(new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                context.setTracing(true);
-
-                onException(OrderFailedException.class).maximumRedeliveries(3);
+                onException(IllegalArgumentException.class).maximumRedeliveries(3);
 
                 from("direct:order")
                     .bean(OrderServiceBean.class, "handleOrder")
