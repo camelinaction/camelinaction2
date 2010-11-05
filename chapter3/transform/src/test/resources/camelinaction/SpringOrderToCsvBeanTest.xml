@@ -22,15 +22,16 @@
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
     ">
 
-    <bean id="htmlBean" class="camelinaction.HtmlBean"/>
+    <!-- processor which can format to csv -->
+    <bean id="csvBean" class="camelinaction.OrderToCsvBean"/>
 
     <camelContext trace="true" id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route>
             <from uri="direct:start"/>
-            <transform>
-                <method bean="htmlBean" method="toHtml"/>
-            </transform>
-            <to uri="mock:result"/>
+            <!-- format inhouse to csv using a processor-->
+            <bean ref="csvBean"/>
+            <!-- and save it to a file -->
+            <to uri="file://target/orders/received?fileName=report-${header.Date}.csv"/>
         </route>
     </camelContext>
 
