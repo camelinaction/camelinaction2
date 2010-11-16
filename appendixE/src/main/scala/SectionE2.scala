@@ -5,7 +5,7 @@ import se.scalablesolutions.akka.actor.Actor._
 /**
  * @author Martin Krasser
  */
-object SectionE1 extends Application {
+object SectionE2 extends Application {
   import SampleActors._
 
   val actor = actorOf[SimpleActor].start

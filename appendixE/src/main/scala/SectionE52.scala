@@ -8,7 +8,7 @@ import se.scalablesolutions.akka.camel._
 /**
  * @author Martin Krasser
  */
-object SectionE42 extends Application {
+object SectionE52 extends Application {
   import SampleActors._
 
   val appctx = new ClassPathXmlApplicationContext("/sample.xml")

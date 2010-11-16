@@ -6,7 +6,7 @@ import se.scalablesolutions.akka.camel._
 /**
  * @author Martin Krasser
  */
-object SectionE3 extends Application {
+object SectionE4 extends Application {
   import CamelServiceManager._
   import SampleActors._
 

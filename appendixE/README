@@ -46,13 +46,13 @@ sbt run
 from the command line. This will display a list of main classes. The classes
 are named based on the section numbers in appendix E. Here's an example:
 
- [1] camelinaction.SectionE1
- [2] camelinaction.SectionE21
- [3] camelinaction.SectionE22
- [4] camelinaction.SectionE3
- [5] camelinaction.SectionE42
- [6] camelinaction.SectionE5
- [7] camelinaction.SectionE6
+ [1] camelinaction.SectionE2
+ [2] camelinaction.SectionE31
+ [3] camelinaction.SectionE32
+ [4] camelinaction.SectionE4
+ [5] camelinaction.SectionE52
+ [6] camelinaction.SectionE6
+ [7] camelinaction.SectionE7
 
 To run the examples from section 2.1, enter 2 when prompted.
 

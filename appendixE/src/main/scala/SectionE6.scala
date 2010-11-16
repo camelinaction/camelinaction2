@@ -1,49 +1,41 @@
-package camelinaction
+package camelinaction 
 
-import org.apache.camel.Exchange
+import java.net.ConnectException
+
+import org.apache.camel.builder.RouteBuilder
 
 import se.scalablesolutions.akka.actor.Actor._
-import se.scalablesolutions.akka.actor.{Actor, ActorRef}
 import se.scalablesolutions.akka.camel._
 
 /**
  * @author Martin Krasser
  */
 object SectionE6 extends Application {
-  CamelServiceManager.startCamelService
+  import CamelServiceManager._
+  import SampleActors._
 
-  val httpTransformer = actorOf(new HttpTransformer).start
-  val httpProducer = actorOf(new HttpProducer(httpTransformer)).start
-  val httpConsumer = actorOf(new HttpConsumer(httpProducer)).start  
-}
+  val producer = actorOf[HttpProducer1].start
 
-class HttpConsumer(producer: ActorRef) extends Actor with Consumer {
-  def endpointUri = "jetty:http://0.0.0.0:8875/"
+  startCamelService
 
-  protected def receive = {
-    case msg => producer forward msg
-  }
-}
-
-class HttpProducer(transformer: ActorRef) extends Actor with Producer {
-  def endpointUri = "jetty:http://akkasource.org/?bridgeEndpoint=true"
-
-  override protected def receiveBeforeProduce = {
-    // only keep Exchange.HTTP_PATH message header
-    case msg: Message => msg.setHeaders(msg.headers(Set(Exchange.HTTP_PATH)))
+  CamelContextManager.context.addRoutes(new CustomRoute(producer.uuid))
+  CamelContextManager.template.requestBody("direct:test", "feel good", classOf[String]) match {
+    case "<received>feel good</received>" => println("communication ok")
+    case "feel bad"                       => println("communication failed")
+    case _                                => println("unexpected response")
   }
 
-  override protected def receiveAfterProduce = {
-    // do not reply but forward result to transformer
-    case msg => transformer forward msg
-  }
+  stopCamelService
+  producer.stop
 }
 
-class HttpTransformer extends Actor {
-  protected def receive = {
-    case msg: Failure => self.reply(msg)
-    case msg: Message => self.reply(msg.transformBody[String] {
-      _ replaceAll ("Akka ", "AKKA ")
-    })
+class CustomRoute(uuid: String) extends RouteBuilder {
+  def configure = {
+    from("direct:test")
+    .onException(classOf[ConnectException])
+      .handled(true)
+      .transform.constant("feel bad")
+      .end
+    .to("actor:uuid:%s" format uuid)
   }
 }
