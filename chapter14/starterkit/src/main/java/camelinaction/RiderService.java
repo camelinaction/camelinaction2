@@ -30,6 +30,6 @@ public interface RiderService {
 
     void updateInventory(Inventory inventory);
 
-    List<ShippingDetail> shipInventory(String supplerId, String partId);
+    List<ShippingDetail> shipInventory(String supplierId, String partId);
 
 }

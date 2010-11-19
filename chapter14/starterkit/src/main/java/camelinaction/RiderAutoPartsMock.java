@@ -35,7 +35,7 @@ public class RiderAutoPartsMock implements RiderService {
         LOG.info("Updating inventory " + inventory);
     }
 
-    public List<ShippingDetail> shipInventory(String supplerId, String partId) {
+    public List<ShippingDetail> shipInventory(String supplierId, String partId) {
         LOG.info("Shipping to Rider Road 66 and Ocean View 123");
 
         ShippingDetail detail = new ShippingDetail();
