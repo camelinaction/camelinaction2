@@ -43,7 +43,7 @@
 
     <!-- Camel -->
     <camel:camelContext id="myCamelContext">
-        <camel:routeBuilder ref="myRouteBuilder"/>
+        <camel:routeBuilder ref="inventoryRoute"/>
     </camel:camelContext>
 
 </beans>
