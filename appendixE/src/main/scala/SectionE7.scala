@@ -2,9 +2,9 @@ package camelinaction
 
 import org.apache.camel.Exchange
 
-import se.scalablesolutions.akka.actor.Actor._
-import se.scalablesolutions.akka.actor.{Actor, ActorRef}
-import se.scalablesolutions.akka.camel._
+import akka.actor.Actor._
+import akka.actor.{Actor, ActorRef}
+import akka.camel._
 
 /**
  * @author Martin Krasser
@@ -42,8 +42,8 @@ class HttpProducer(transformer: ActorRef) extends Actor with Producer {
 class HttpTransformer extends Actor {
   protected def receive = {
     case msg: Failure => self.reply(msg)
-    case msg: Message => self.reply(msg.transformBody[String] {
-      _ replaceAll ("Akka ", "AKKA ")
+    case msg: Message => self.reply(msg.transformBody { body: String =>
+      body replaceAll ("Akka ", "AKKA ")
     })
   }
 }

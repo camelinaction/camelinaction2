@@ -2,21 +2,15 @@ Introduction
 ------------
 
 This sub-project implements the code examples of Camel in Action - Appendix E.
-The examples are based on Akka 0.10 and Camel 2.5.0. Akka 0.10 actually
-depends on Camel 2.4.0 but Camel 2.5.0 is used as a drop-in replacement.
+The examples are based on Akka 1.0-RC1 and Camel 2.5.0.
 
 Maintainance
 ------------
 
-At the time of writing, Akka 1.0 is under active development. An updated
-version of the examples, that work with later Akka releases and the latest
-Akka development snapshot, are maintained at
+An updated version of the examples, that work with later Akka releases and the
+latest Akka development snapshot, are maintained at
 
 http://github.com/krasserm/camelinaction-appendix-e
-
-For a summary of changes since Akka 0.10 refer to the migration guide at
-
-http://doc.akkasource.org/migration-guide-0.10.x-1.0.x
 
 Prerequisites
 -------------

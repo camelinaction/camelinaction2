@@ -4,32 +4,34 @@ import java.net.ConnectException
 
 import org.apache.camel.builder.RouteBuilder
 
-import se.scalablesolutions.akka.actor.Actor._
-import se.scalablesolutions.akka.camel._
+import akka.actor.Actor._
+import akka.actor.Uuid
+import akka.camel._
 
 /**
  * @author Martin Krasser
  */
 object SectionE6 extends Application {
-  import CamelServiceManager._
   import SampleActors._
 
+  val service = CamelServiceManager.startCamelService
   val producer = actorOf[HttpProducer1].start
 
-  startCamelService
-
-  CamelContextManager.context.addRoutes(new CustomRoute(producer.uuid))
-  CamelContextManager.template.requestBody("direct:test", "feel good", classOf[String]) match {
-    case "<received>feel good</received>" => println("communication ok")
-    case "feel bad"                       => println("communication failed")
-    case _                                => println("unexpected response")
+  for (context  <- CamelContextManager.context;
+       template <- CamelContextManager.template) {
+    context.addRoutes(new CustomRoute(producer.uuid))
+    template.requestBody("direct:test", "feel good", classOf[String]) match {
+      case "<received>feel good</received>" => println("communication ok")
+      case "feel bad"                       => println("communication failed")
+      case _                                => println("unexpected response")
+    }
   }
 
-  stopCamelService
+  service.stop
   producer.stop
 }
 
-class CustomRoute(uuid: String) extends RouteBuilder {
+class CustomRoute(uuid: Uuid) extends RouteBuilder {
   def configure = {
     from("direct:test")
     .onException(classOf[ConnectException])

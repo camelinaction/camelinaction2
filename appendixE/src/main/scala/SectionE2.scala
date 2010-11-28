@@ -1,6 +1,6 @@
 package camelinaction
 
-import se.scalablesolutions.akka.actor.Actor._
+import akka.actor.Actor._
 
 /**
  * @author Martin Krasser

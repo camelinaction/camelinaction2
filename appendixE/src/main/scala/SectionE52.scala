@@ -2,8 +2,8 @@ package camelinaction
 
 import org.springframework.context.support.ClassPathXmlApplicationContext
 
-import se.scalablesolutions.akka.actor.Actor._
-import se.scalablesolutions.akka.camel._
+import akka.actor.Actor._
+import akka.camel._
 
 /**
  * @author Martin Krasser
@@ -12,15 +12,16 @@ object SectionE52 extends Application {
   import SampleActors._
 
   val appctx = new ClassPathXmlApplicationContext("/sample.xml")
-  val activation = CamelServiceManager.service.expectEndpointActivationCount(1)
-  val consumer = actorOf[HttpConsumer1].start
+  val consumer = actorOf[HttpConsumer1]
 
-  activation.await
+  for (service <- CamelServiceManager.service) service.awaitEndpointActivation(1) {
+    consumer.start
+  }
 
-  val uri = "http://localhost:8811/consumer1"
-  val result = CamelContextManager.template.requestBody(uri, "akka-spring rocks", classOf[String])
-
-  assert(result == "received akka-spring rocks")
+  for (template <- CamelContextManager.template) {
+    val result = template.requestBody("http://localhost:8811/consumer1", "akka-spring rocks", classOf[String])
+    assert(result == "received akka-spring rocks")
+  }
 
   appctx.destroy
   consumer.stop
