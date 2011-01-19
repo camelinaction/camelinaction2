@@ -17,8 +17,6 @@
 package camelinaction;
 
 import camelinaction.inventory.UpdateInventoryInput;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
@@ -50,23 +48,6 @@ public class ManualRouteWithOnCompletion extends RouteBuilder {
                 .to("direct:update")
             .end();
             // use end() to denote the end of the splitter sub-route
-    }
-
-    public class StopRouteProcessor implements Processor {
-        private final String name;
-
-        public StopRouteProcessor(String name) {
-            this.name = name;
-        }
-
-        public void process(Exchange exchange) throws Exception {
-            // force stopping this route while we are routing an Exchange
-            // requires two steps:
-            // 1) unregister from the inflight registry
-            // 2) stop the route
-            exchange.getContext().getInflightRepository().remove(exchange);
-            exchange.getContext().stopRoute(name);
-        }
     }
 
 }
