@@ -60,9 +60,9 @@ public class OrderRouterWithSeda {
                 from("seda:incomingOrders")
                 .choice()
                     .when(header("CamelFileName").endsWith(".xml"))
-                        .to("seda:xmlOrders?multipleConsumers=true")  
+                        .to("seda:xmlOrders")  
                     .when(header("CamelFileName").endsWith(".csv"))
-                        .to("seda:csvOrders?multipleConsumers=true");
+                        .to("seda:csvOrders");
 
                 from("seda:xmlOrders?multipleConsumers=true").to("jms:accounting");  
                 from("seda:xmlOrders?multipleConsumers=true").to("jms:production");  
