@@ -73,7 +73,7 @@ public class NotifyTest extends CamelTestSupport {
     public void testNotifyOr() throws Exception {
         // shows how to stack multiple expressions using binary operations (or)
         NotifyBuilder notify = new NotifyBuilder(context)
-                .from("seda:quote").whenReceived(1).or().whenFailed(1);
+                .from("seda:quote").whenReceived(1).or().whenFailed(1).create();
 
         template.sendBody("seda:quote", "Camel rocks");
         template.sendBody("seda:order", "123,2010-04-20'T'15:48:00,2222,3333");
