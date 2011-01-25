@@ -45,7 +45,7 @@
 
   <!-- Port (interface) definitions -->
   <wsdl:portType name="OrderEndpoint">
-    <wsdl:operation name="Order">
+    <wsdl:operation name="order">
       <wsdl:input message="tns:purchaseOrder" />
       <wsdl:output message="tns:orderResult" />
     </wsdl:operation>
@@ -54,7 +54,7 @@
   <!-- Port bindings to transports and encoding - HTTP, document literal encoding is used -->
   <wsdl:binding name="OrderBinding" type="tns:OrderEndpoint">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="Order">
+    <wsdl:operation name="order">
       <soap:operation soapAction="http://order.camelinaction/Order" style="document" />
       <wsdl:input>
         <soap:body parts="in" use="literal" />
