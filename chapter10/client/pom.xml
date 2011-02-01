@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.camelinaction</groupId>
         <artifactId>chapter10</artifactId>
-        <version>1.0</version>
+        <version>1.x-SNAPSHOT</version>
     </parent>
 
     <artifactId>chapter10-client</artifactId>

@@ -24,12 +24,12 @@
   <groupId>camelinaction</groupId>
   <artifactId>chapter11-interceptor</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>1.x-SNAPSHOT</version>
   
   <parent>
     <artifactId>chapter11</artifactId>
     <groupId>com.camelinaction</groupId>
-    <version>1.0</version>
+    <version>1.x-SNAPSHOT</version>
   </parent>
 
   <name>Camel in Action :: Chapter 11 :: A Custom Camel Interceptor</name>

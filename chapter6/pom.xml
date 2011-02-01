@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.camelinaction</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0</version>
+        <version>1.x-SNAPSHOT</version>
     </parent>
 
     <artifactId>chapter6</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
+    <version>1.x-SNAPSHOT</version>
     <name>Camel in Action :: Chapter 6</name>
 
     <modules>

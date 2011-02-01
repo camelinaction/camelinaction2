@@ -24,7 +24,7 @@
   <groupId>camelinaction</groupId>
   <artifactId>get-catalog</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>1.x-SNAPSHOT</version>
 
   <name>A Camel Route</name>
   <url>http://www.myorganization.org</url>

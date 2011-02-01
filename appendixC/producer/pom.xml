@@ -6,11 +6,11 @@
     <parent>
         <artifactId>appendixc</artifactId>
         <groupId>com.camelinaction</groupId>
-        <version>1.0</version>
+        <version>1.x-SNAPSHOT</version>
     </parent>
     <groupId>camelinaction</groupId>
     <artifactId>appendixc-producer</artifactId>
-    <version>1.0</version>
+    <version>1.x-SNAPSHOT</version>
     <name>Camel in Action :: Appendix C :: Producer Template</name>
     <build>
         <plugins>

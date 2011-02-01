@@ -5,11 +5,11 @@
   <parent>
     <artifactId>chapter11</artifactId>
     <groupId>com.camelinaction</groupId>
-    <version>1.0</version>
+    <version>1.x-SNAPSHOT</version>
   </parent>
   <groupId>camelinaction</groupId>
   <artifactId>chapter11-order-router</artifactId>
-  <version>1.0</version>
+  <version>1.x-SNAPSHOT</version>
   <name>Camel in Action :: Chapter 11 :: Order Router</name>
   <dependencies>
     <dependency>
