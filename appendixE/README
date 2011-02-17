@@ -1,8 +1,9 @@
 Introduction
 ------------
 
-This sub-project implements the code examples of Camel in Action - Appendix E.
-The examples are based on Akka 1.0-RC1 and Camel 2.5.0.
+This sub-project implements the code examples of Camel in Action - Appendix E
+(http://www.manning.com/ibsen/appEsample.pdf). The examples are based on Akka
+1.0 and Camel 2.5.0.
 
 Maintainance
 ------------

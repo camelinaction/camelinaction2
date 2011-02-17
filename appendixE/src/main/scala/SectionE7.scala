@@ -26,7 +26,7 @@ class HttpConsumer(producer: ActorRef) extends Actor with Consumer {
 }
 
 class HttpProducer(transformer: ActorRef) extends Actor with Producer {
-  def endpointUri = "jetty:http://akkasource.org/?bridgeEndpoint=true"
+  def endpointUri = "jetty:http://akka.io/?bridgeEndpoint=true"
 
   override protected def receiveBeforeProduce = {
     // only keep Exchange.HTTP_PATH message header

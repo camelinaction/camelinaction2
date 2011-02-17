@@ -1,7 +1,7 @@
 import sbt._
 
 class Project(info: ProjectInfo) extends DefaultProject(info) with AkkaProject {
-  val AkkaRepo = "Akka Repository" at "http://scalablesolutions.se/akka/repository"
+  val AkkaRepo = "Akka Repository" at "http://akka.io/repository/"
 
   val akkaCamel = akkaModule("camel")
   val akkaKernel = akkaModule("spring")
