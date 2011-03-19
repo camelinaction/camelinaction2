@@ -16,13 +16,9 @@
  */
 package camelinaction.component;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
 import org.apache.camel.Producer;
-import org.apache.camel.impl.DefaultConsumer;
 import org.apache.camel.impl.DefaultEndpoint;
 
 /**
