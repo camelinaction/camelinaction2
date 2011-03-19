@@ -27,7 +27,7 @@
         <constructor-arg index="0" value="Damn"/>
     </bean>
 
-    <camelContext errorHandlerRef="eh" xmlns="http://camel.apache.org/schema/spring">
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
 
         <!-- define Camel error handler -->
         <errorHandler id="eh">
@@ -36,7 +36,7 @@
                               retriesExhaustedLogLevel="WARN" retryAttemptedLogLevel="WARN" logStackTrace="false"/>
         </errorHandler>
 
-        <route id="start">
+        <route id="start" errorHandlerRef="eh">
             <from uri="direct:start"/>
             <!-- let the load balancer inherit and use the Camel error handler -->
             <loadBalance inheritErrorHandler="true">
