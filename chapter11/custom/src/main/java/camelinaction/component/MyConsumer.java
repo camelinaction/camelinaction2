@@ -50,7 +50,10 @@ public class MyConsumer extends ScheduledPollConsumer {
             if (exchange.getException() != null) {
                 getExceptionHandler().handleException("Error processing exchange", exchange, exchange.getException());
             }
-        }        
+        }
+
+        // we consumed 1 message
+        return 1;
         return 1;
     }
 
