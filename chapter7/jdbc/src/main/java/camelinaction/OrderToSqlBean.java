@@ -29,7 +29,7 @@ public class OrderToSqlBean {
         sb.append("'").append(name).append("', ");
         sb.append("'").append(amount).append("', ");
         sb.append("'").append(customer).append("') ");
-System.out.println(sb.toString());
+        System.out.println(sb.toString());
         return sb.toString();
     }
 }
