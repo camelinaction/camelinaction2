@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.camelinaction</groupId>
     <artifactId>chapter1</artifactId>
-    <version>1.x-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>chapter1-file-copy</artifactId>

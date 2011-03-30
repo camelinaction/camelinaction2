@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.camelinaction</groupId>
     <artifactId>cxf</artifactId>
-    <version>1.x-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>chapter7-cxf-code-first</artifactId>
