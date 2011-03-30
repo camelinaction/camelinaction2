@@ -54,7 +54,6 @@ public class MyConsumer extends ScheduledPollConsumer {
 
         // we consumed 1 message
         return 1;
-        return 1;
     }
 
 }
