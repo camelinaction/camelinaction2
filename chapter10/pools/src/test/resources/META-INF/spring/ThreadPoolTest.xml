@@ -26,7 +26,7 @@
     <camelContext xmlns="http://camel.apache.org/schema/spring">
 
         <!-- create a custom thread pool with 5/15 and up till 250 waiting tasks -->
-        <threadPool id="myPool" threadName="Cool" poolSize="5" maxPoolSize="15" maxQueueSize="250"/>
+        <threadPool id="myPool" threadName="Cool" poolSize="5" maxPoolSize="15" maxQueueSize="250" keepAliveTime="60"/>
 
         <route>
             <from uri="direct:start"/>
