@@ -19,6 +19,7 @@ package camelinaction;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
+import org.apache.camel.component.file.GenericFile;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
@@ -31,8 +32,9 @@ public class SpringBigFileParallelTest extends CamelSpringTestSupport {
 
     @Test
     public void testBigFile() throws Exception {
-        // when the file route is done
-        NotifyBuilder notify = new NotifyBuilder(context).from("file*").whenDone(1).create();
+        // when the file route is done (the body is the file)
+        NotifyBuilder notify = new NotifyBuilder(context).from("file*")
+                .whenAnyDoneMatches(body().isInstanceOf(GenericFile.class)).create();
 
         long start = System.currentTimeMillis();
 

@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.file.GenericFile;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -54,7 +55,9 @@ public class BigFileCachedThreadPoolTest extends CamelTestSupport {
 
     @Test
     public void testBigFile() throws Exception {
-        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
+        // when the file route is done (the body is the file)
+        NotifyBuilder notify = new NotifyBuilder(context).from("file*")
+                .whenAnyDoneMatches(body().isInstanceOf(GenericFile.class)).create();
 
         long start = System.currentTimeMillis();
 
@@ -70,7 +73,6 @@ public class BigFileCachedThreadPoolTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-            	
                 from("file:target/inventory?noop=true")
                     .log("Starting to process big file: ${header.CamelFileName}")
                     // by enabling the parallel processing the output from the split EIP will
