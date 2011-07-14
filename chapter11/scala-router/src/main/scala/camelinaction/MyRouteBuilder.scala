@@ -16,7 +16,6 @@
  */
 package camelinaction
 
-import org.apache.camel.Exchange
 import org.apache.camel.scala.dsl.builder.RouteBuilder
 
 /**
@@ -24,19 +23,10 @@ import org.apache.camel.scala.dsl.builder.RouteBuilder
  */
 class MyRouteBuilder extends RouteBuilder {
 
-   //an example for the simple DSL syntax...
-   "timer://foo?fixedRate=true&delay=0&period=10000" ==> { 
-     setbody("simple test") 
+   // a simple route
+   "timer://foo?period=2s" ==> {
+     setBody("simple test")
      to("log:simple")
    }
 
-   val myProcessorMethod = (exchange: Exchange) => {
-     exchange.getIn.setBody("block test")
-   }
-   
-   // ...and another one using Scala blocks
-   "timer://foo?fixedRate=true&delay=5000&period=10000" ==> {
-      process(myProcessorMethod)
-      to("log:block")
-   }
 }

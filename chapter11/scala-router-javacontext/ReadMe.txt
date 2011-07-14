@@ -4,7 +4,7 @@ Camel Router with Scala DSL Project
 To run this router either embed the jar inside Spring
 or to run the route from within maven try
 
-    mvn camel:run
+    mvn compile exec:java
     
 This project builds an OSGi bundle that can be used to
 embed the Camel routes in ServiceMix Kernel or another

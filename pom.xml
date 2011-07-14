@@ -69,14 +69,14 @@
   </scm>
 
   <properties>
-    <activemq-version>5.4.2</activemq-version>
-    <camel-version>2.7.0</camel-version>
-    <cxf-version>2.3.3</cxf-version>
+    <activemq-version>5.5.0</activemq-version>
+    <camel-version>2.8.0</camel-version>
+    <cxf-version>2.4.1</cxf-version>
     <hsqldb-version>1.8.0.7</hsqldb-version>
     <junit-version>4.8.1</junit-version>
     <log4j-version>1.2.16</log4j-version>
     <spring-version>3.0.5.RELEASE</spring-version>
-    <slf4j-version>1.5.11</slf4j-version>
+    <slf4j-version>1.6.1</slf4j-version>
     <xbean-version>3.4</xbean-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

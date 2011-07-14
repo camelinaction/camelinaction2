@@ -2,18 +2,62 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <artifactId>chapter11</artifactId>
     <groupId>com.camelinaction</groupId>
     <version>1.0.0</version>
   </parent>
+
   <groupId>camelinaction</groupId>
   <artifactId>chapter11-scala-router-javacontext</artifactId>
   <version>1.0.0</version>
   <packaging>bundle</packaging>
   <name>Camel in Action :: Chapter 11 :: Scala DSL mixed with Java</name>
+
+  <properties>
+    <scala-version>2.9.0</scala-version>
+    <scala-plugin-version>2.15.1</scala-plugin-version>
+  </properties>
+
+  <dependencies>
+
+    <!-- camel -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-scala</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring</artifactId>
+    </dependency>
+
+    <!-- scala -->
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala-version}</version>
+    </dependency>
+
+    <!-- logging -->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+
+  </dependencies>
+
   <build>
     <plugins>
+      <!-- scala compiler -->
       <plugin>
         <groupId>org.scala-tools</groupId>
         <artifactId>maven-scala-plugin</artifactId>
@@ -35,19 +79,9 @@
             </goals>
           </execution>
         </executions>
-      </plugin> 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
+
+      <!-- to create osgi bundle -->
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
@@ -63,6 +97,8 @@
           </instructions>
         </configuration>
       </plugin>
+
+      <!-- to setup project in eclipse using mvn eclipse:eclipse -->
       <plugin>
         <artifactId>maven-eclipse-plugin</artifactId>
         <configuration>
@@ -79,10 +115,8 @@
           </classpathContainers>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-maven-plugin</artifactId>
-      </plugin>
+
+      <!-- to run mvn exec:java -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -91,33 +125,8 @@
           <mainClass>camelinaction.Main</mainClass>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-scala</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-spring</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.scala-lang</groupId>
-      <artifactId>scala-library</artifactId>
-      <version>${scala-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-    </dependency>
-  </dependencies>
-  <properties>
-    <scala-version>2.8.0</scala-version>
-    <scala-plugin-version>2.9.1</scala-plugin-version>
-  </properties>
+
 </project>

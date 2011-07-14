@@ -1,3 +1,5 @@
+package camelinaction
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -14,19 +16,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package camelinaction
-
+import org.apache.camel.Exchange
 import org.apache.camel.scala.dsl.builder.RouteBuilder
 
 /**
  * A Camel Router using the Scala DSL
  */
-class MyRouteBuilder extends RouteBuilder {
+class MyOtherRouteBuilder extends RouteBuilder {
 
-   // a simple route
-   "timer://foo?period=2s" ==> {
-     setBody("simple test")
-     to("log:simple")
+   // using a processor as a function
+   val myProcessorMethod = (exchange: Exchange) => {
+     exchange.getIn.setBody("block test")
    }
-
+   
+   // and the route using the function
+   "timer://bar?period=3s" ==> {
+      process(myProcessorMethod)
+      to("log:block")
+   }
 }
