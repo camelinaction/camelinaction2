@@ -30,7 +30,7 @@
     <bean id="riderMocked" class="camelinaction.RiderAutoPartsMock"/>
 
     <!-- the camel server -->
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <camelContext id="camelServer" xmlns="http://camel.apache.org/schema/spring">
         <route>
             <from uri="activemq:queue:rider"/>
             <to uri="log:server"/>

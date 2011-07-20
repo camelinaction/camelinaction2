@@ -55,9 +55,8 @@ public class BigFileCachedThreadPoolTest extends CamelTestSupport {
 
     @Test
     public void testBigFile() throws Exception {
-        // when the file route is done (the body is the file)
-        NotifyBuilder notify = new NotifyBuilder(context).from("file*")
-                .whenAnyDoneMatches(body().isInstanceOf(GenericFile.class)).create();
+        // when the first exchange is done
+        NotifyBuilder notify = new NotifyBuilder(context).whenDoneByIndex(0).create();
 
         long start = System.currentTimeMillis();
 

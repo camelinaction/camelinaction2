@@ -24,7 +24,7 @@
          http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
     <!-- setup a real ActiveMQ broker which listen on port 61616 -->
-    <broker:broker useJmx="false" persistent="false" brokerName="localhost">
+    <broker:broker useJmx="false" persistent="false" brokerName="myBroker">
         <broker:transportConnectors>
             <broker:transportConnector name="tcp" uri="tcp://localhost:61616"/>
         </broker:transportConnectors>

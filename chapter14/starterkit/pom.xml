@@ -92,6 +92,17 @@
                 </configuration>
             </plugin>
 
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <excludes>
+                <!-- these must be run manually by starting the Server first -->
+                <exclude>**/StarterKitClientTest.*</exclude>
+                <exclude>**/StarterKitJavaProxyBuilderTest.*</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+
         </plugins>
     </build>
 
