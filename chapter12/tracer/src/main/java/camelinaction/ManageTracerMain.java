@@ -19,59 +19,52 @@ package camelinaction;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
+import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.management.DefaultManagementAgent;
-import org.apache.camel.test.junit4.CamelTestSupport;
-import org.junit.Test;
+import org.apache.camel.impl.DefaultCamelContext;
 
 /**
  * Main app to demonstrate how to manage Tracer at runtime using JMX
  *
  * @version $Revision$
  */
-public class ManageTracerMain extends CamelTestSupport {
+public class ManageTracerMain {
+
+    private CamelContext context;
+    private ProducerTemplate template;
 
     public static void main(String[] args) throws Exception {
         ManageTracerMain main = new ManageTracerMain();
-        main.setUp();
-        try {
-            main.testManageTracer();
-        } finally {
-            main.tearDown();
-        }
+        main.run();
     }
 
-    @Override
-    public void setUp() throws Exception {
-        deleteDirectory("target/rider/orders");
-        super.setUp();
+    public void run() throws Exception {
+        context = createCamelContext();
+        context.addRoutes(createRouteBuilder());
+        template = context.createProducerTemplate();
+        context.start();
+        testManageTracer();
+        template.stop();
+        context.stop();
     }
 
-    @Override
-    protected boolean useJmx() {
-        return true;
-    }
-
-    @Override
     protected CamelContext createCamelContext() throws Exception {
-        CamelContext context = super.createCamelContext();
+        CamelContext answer = new DefaultCamelContext();
         // simulate JMS with the Mock component
-        context.addComponent("jms", context.getComponent("mock"));
+        answer.addComponent("jms", answer.getComponent("mock"));
 
         // enable connector for remote management
-        DefaultManagementAgent agent = new DefaultManagementAgent(context);
-        agent.setCreateConnector(true);
-        context.getManagementStrategy().setManagementAgent(agent);
+        answer.getManagementStrategy().getManagementAgent().setCreateConnector(true);
 
-        return context;
+        return answer;
     }
 
-    @Test
     public void testManageTracer() throws Exception {
         System.out.println("Connect to JConsole and try managing Tracer by enabling and disabling it on individual routes");
 
-        MockEndpoint mock = getMockEndpoint("jms:queue:orders");
+        MockEndpoint mock = context.getEndpoint("jms:queue:orders", MockEndpoint.class);
         mock.expectedMessageCount(100);
 
         for (int i = 0; i < 100; i++) {
@@ -83,8 +76,7 @@ public class ManageTracerMain extends CamelTestSupport {
         System.out.println("Complete sending 100 files will stop now");
     }
 
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
+    protected RoutesBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
