@@ -31,7 +31,7 @@ public class FileSaverWithFileName {
         context.addRoutes(new RouteBuilder() {
             public void configure() {
                 from("stream:in?promptMessage=Enter something:")
-                    .to("file:target/data/outbox?fileName=${date:now:yyyyMMdd-hh:mm:ss}.txt");
+                    .to("file:target/data/outbox?fileName=${date:now:yyyyMMdd-hhmmss}.txt");
             }
         });
 
