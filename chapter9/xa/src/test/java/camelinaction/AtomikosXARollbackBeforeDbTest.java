@@ -87,10 +87,10 @@ public class AtomikosXARollbackBeforeDbTest extends CamelSpringTestSupport {
             public void configure() throws Exception {
                 from("activemq:queue:partners")
                     .transacted()
-                    .log("+++ before database +++")
+                    .log("*** before database ***")
                     .bean(PartnerServiceBean.class, "toSql")
                     .to("jdbc:myDataSource")
-                    .log("+++ after database +++")
+                    .log("*** after database ***")
                     .throwException(new IllegalArgumentException("Forced failure after DB"));
             }
         };
