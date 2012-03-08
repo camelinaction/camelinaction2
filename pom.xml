@@ -70,12 +70,12 @@
 
   <properties>
     <activemq-version>5.5.1</activemq-version>
-    <camel-version>2.9.0</camel-version>
-    <cxf-version>2.5.1</cxf-version>
+    <camel-version>2.9.1</camel-version>
+    <cxf-version>2.5.2</cxf-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.10</junit-version>
     <log4j-version>1.2.16</log4j-version>
-    <spring-version>3.0.6.RELEASE</spring-version>
+    <spring-version>3.0.7.RELEASE</spring-version>
     <slf4j-version>1.6.4</slf4j-version>
     <xbean-version>3.9</xbean-version>
     <!-- use utf-8 encoding -->
