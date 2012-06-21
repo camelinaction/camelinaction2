@@ -16,14 +16,11 @@
  */
 package camelinaction;
 
-import java.util.List;
-
 import javax.sql.DataSource;
 
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
@@ -42,10 +39,6 @@ public class InventoryServiceTest extends CamelSpringTestSupport {
         jdbc = new JdbcTemplate(ds);
     }
     
-    protected int getExpectedRouteCount() {
-        return 0;
-    }
-
     protected AbstractXmlApplicationContext createApplicationContext() {
         return new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml");
     }

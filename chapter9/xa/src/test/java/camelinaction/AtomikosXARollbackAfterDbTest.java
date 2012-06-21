@@ -23,7 +23,7 @@ import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.AbstractXmlApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -49,17 +49,11 @@ public class AtomikosXARollbackAfterDbTest extends CamelSpringTestSupport {
     }
 
     @Override
-    protected AbstractXmlApplicationContext createApplicationContext() {
+    protected AbstractApplicationContext createApplicationContext() {
         return new ClassPathXmlApplicationContext("spring-context.xml");
     }
 
-    @Override
-    protected int getExpectedRouteCount() {
-        // use 0 as we use a Java based route builder directly in this unit test
-        return 0;
-    }
-
-    @Test
+     @Test
     public void testXaRollbackAfterDb() throws Exception {
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));

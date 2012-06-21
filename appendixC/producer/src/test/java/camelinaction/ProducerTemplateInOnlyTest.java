@@ -18,19 +18,11 @@ package camelinaction;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ProducerTemplateInOnlyTest extends CamelSpringTestSupport {
-
-    private static final Log LOG = LogFactory.getLog(ProducerTemplateInOnlyTest.class);
-    
-    protected int getExpectedRouteCount() {
-        return 0;
-    }
 
     protected AbstractXmlApplicationContext createApplicationContext() {
         return new ClassPathXmlApplicationContext("META-INF/spring/producerTemplateInOnly.xml");

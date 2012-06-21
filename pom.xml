@@ -69,9 +69,9 @@
   </scm>
 
   <properties>
-    <activemq-version>5.5.1</activemq-version>
-    <camel-version>2.9.2</camel-version>
-    <cxf-version>2.5.2</cxf-version>
+    <activemq-version>5.6.0</activemq-version>
+    <camel-version>2.10.0</camel-version>
+    <cxf-version>2.6.1</cxf-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.10</junit-version>
     <log4j-version>1.2.16</log4j-version>
@@ -91,7 +91,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.3.2</version>
+          <version>2.5</version>
           <configuration>
             <source>1.6</source>
             <target>1.6</target>
@@ -322,6 +322,12 @@
      </dependency>
 
       <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-test-spring</artifactId>
+        <version>${camel-version}</version>
+     </dependency>
+
+      <dependency>
         <groupId>org.apache.activemq</groupId>
         <artifactId>activemq-core</artifactId>
         <version>${activemq-version}</version>
@@ -334,6 +340,12 @@
       </dependency>
 
       <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-pool</artifactId>
+        <version>${activemq-version}</version>
+      </dependency>
+ 
+     <dependency>
         <groupId>org.apache.xbean</groupId>
         <artifactId>xbean-spring</artifactId>
         <version>${xbean-version}</version>

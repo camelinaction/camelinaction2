@@ -20,7 +20,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.apache.camel.test.junit4.CamelSpringTestSupport;
 import org.junit.Test;
-import org.springframework.context.support.AbstractXmlApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -29,14 +29,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TXToNonTXTest extends CamelSpringTestSupport {
 
     @Override
-    protected AbstractXmlApplicationContext createApplicationContext() {
+    protected AbstractApplicationContext createApplicationContext() {
         return new ClassPathXmlApplicationContext("spring-context.xml");
-    }
-
-    @Override
-    protected int getExpectedRouteCount() {
-        // use 0 as we use a Java based route builder directly in this unit test
-        return 0;
     }
 
     @Test

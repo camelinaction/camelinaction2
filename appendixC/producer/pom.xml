@@ -46,6 +46,10 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-camel</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
         <!-- xbean is needed for ActiveMQ broker XML configuration in Spring XML files -->
         <dependency>
             <groupId>org.apache.xbean</groupId>
@@ -54,7 +58,7 @@
 
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test</artifactId>
+            <artifactId>camel-test-spring</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

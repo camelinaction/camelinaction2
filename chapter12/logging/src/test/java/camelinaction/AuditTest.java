@@ -57,7 +57,7 @@ public class AuditTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("file://target/rider/orders")
-                        .wireTap("seda:audit")
+                        .wireTap("seda:audit").end() // need to end wireTap
                         .bean(OrderCsvToXmlBean.class)
                         .to("jms:queue:orders");
 

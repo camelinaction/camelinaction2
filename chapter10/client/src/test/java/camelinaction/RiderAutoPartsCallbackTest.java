@@ -54,7 +54,11 @@ public class RiderAutoPartsCallbackTest extends CamelTestSupport {
             @Override
             public void onComplete(Exchange exchange) {
                 // get the reply and add it to related
-                relates.add(exchange.getOut().getBody(String.class));
+                String body = exchange.getOut().getBody(String.class);
+                relates.add(body);
+
+                log.info("Get async reply {}", body);
+
                 // count down the latch
                 latch.countDown();
             }
@@ -73,8 +77,8 @@ public class RiderAutoPartsCallbackTest extends CamelTestSupport {
         }
         LOG.info("Send " + numPartners + " messages to partners.");
 
-        // wait at most 1.5 seconds or until we got all replies
-        boolean all = latch.await(1500, TimeUnit.MILLISECONDS);
+        // wait at most 2 seconds or until we got all replies
+        boolean all = latch.await(2000, TimeUnit.MILLISECONDS);
 
         // log what we got as reply
         LOG.info("Got " + relates.size() + " replies, is all? " + all);
@@ -105,7 +109,7 @@ public class RiderAutoPartsCallbackTest extends CamelTestSupport {
 
                 from("seda:partner:3").delay(250).transform().simple("bumper extension");
 
-                from("seda:partner:4").delay(2000).transform().simple("tow hooks");
+                from("seda:partner:4").delay(4000).transform().simple("tow hooks");
             }
         };
     }

@@ -56,13 +56,9 @@ public class TracerTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                // must disable debugger to have tracer working when using CamelTestSupport
-                // this will be fixed in Camel 2.8.1
-                context.setDebugger(null);
-
                 from("file://target/rider/orders")
                         .tracing()
-                        .wireTap("seda:audit")
+                        .wireTap("seda:audit").end() // need to end wireTap
                         .bean(OrderCsvToXmlBean.class)
                         .to("jms:queue:orders");
 
