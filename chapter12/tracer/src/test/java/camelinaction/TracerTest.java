@@ -58,7 +58,7 @@ public class TracerTest extends CamelTestSupport {
             public void configure() throws Exception {
                 from("file://target/rider/orders")
                         .tracing()
-                        .wireTap("seda:audit").end() // need to end wireTap
+                        .wireTap("seda:audit")
                         .bean(OrderCsvToXmlBean.class)
                         .to("jms:queue:orders");
 
