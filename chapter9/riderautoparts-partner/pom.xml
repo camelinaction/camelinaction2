@@ -45,6 +45,12 @@
       <artifactId>activemq-camel</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-pool</artifactId>
+      <scope>test</scope>
+    </dependency>
       
     <dependency>
       <groupId>org.apache.xbean</groupId>
