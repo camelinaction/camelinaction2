@@ -49,7 +49,7 @@ public class FlipRoutePolicyJavaDSLTest extends CamelTestSupport {
                 RoutePolicy policy = new FlipRoutePolicy("foo", "bar");
 
                 // use the flip route policy in the foo route
-                from("timer://foo")
+                from("timer://foo?delay=1000")
                     .routeId("foo").routePolicy(policy)
                     .setBody().constant("Foo message")
                     .to("log:foo")
@@ -57,7 +57,7 @@ public class FlipRoutePolicyJavaDSLTest extends CamelTestSupport {
 
                 // use the flip route policy in the bar route and do NOT start
                 // this route on startup
-                from("timer://bar")
+                from("timer://bar?delay=1000")
                     .routeId("bar").routePolicy(policy).noAutoStartup()
                     .setBody().constant("Bar message")
                     .to("log:bar")

@@ -33,7 +33,7 @@
 
         <!-- the foo route uses the flipPolicy -->
         <route id="foo" routePolicyRef="flipPolicy">
-            <from uri="timer://foo"/>
+            <from uri="timer://foo?delay=1000"/>
             <setBody><constant>Foo message</constant></setBody>
             <to uri="log:foo"/>
             <to uri="mock:foo"/>
@@ -41,7 +41,7 @@
 
         <!-- the bar route uses the flipPolicy and is NOT started on startup -->
         <route id="bar" routePolicyRef="flipPolicy" autoStartup="false">
-            <from uri="timer://bar"/>
+            <from uri="timer://bar?delay=1000"/>
             <setBody><constant>Bar message</constant></setBody>
             <to uri="log:bar"/>
             <to uri="mock:bar"/>
