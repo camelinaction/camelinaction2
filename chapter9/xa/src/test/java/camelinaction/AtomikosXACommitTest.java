@@ -76,8 +76,8 @@ public class AtomikosXACommitTest extends CamelSpringTestSupport {
                 from("activemq:queue:partners")
                     .transacted()
                     .bean(PartnerServiceBean.class, "toSql")
-                    .to("jdbc:myDataSource")
-                    .to("mock:result");
+                    .to("jdbc:myDataSource?resetAutoCommit=false") // the usage of the resetAutoCommit option (available since 2.9.0) has the side effect of JDBC commit
+                    .to("mock:result");                            // not being called through JdbcProducer (We need this as we make use of global transaction boundries)
             }
         };
     }

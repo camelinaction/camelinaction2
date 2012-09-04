@@ -12,12 +12,9 @@
     <artifactId>chapter9-xa</artifactId>
     <name>Camel in Action :: Chapter 9 :: XA Transactions</name>
 
-    <repositories>
-        <repository>
-            <id>atomikos</id>
-            <url>http://repo.atomikos.com</url>
-        </repository>
-    </repositories>
+    <properties>
+        <atomikos-version>3.8.0</atomikos-version>
+    </properties>
 
     <dependencies>
 
@@ -45,17 +42,17 @@
         <dependency>
             <groupId>com.atomikos</groupId>
             <artifactId>transactions</artifactId>
-            <version>3.6.6</version>
+            <version>${atomikos-version}</version>
         </dependency>
         <dependency>
             <groupId>com.atomikos</groupId>
             <artifactId>transactions-jta</artifactId>
-            <version>3.6.6</version>
+            <version>${atomikos-version}</version>
         </dependency>
         <dependency>
             <groupId>com.atomikos</groupId>
             <artifactId>transactions-jms</artifactId>
-            <version>3.6.6</version>
+            <version>${atomikos-version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.jms</groupId>
@@ -66,7 +63,7 @@
         <dependency>
             <groupId>com.atomikos</groupId>
             <artifactId>transactions-jdbc</artifactId>
-            <version>3.6.6</version>
+            <version>${atomikos-version}</version>
         </dependency>
 
         <dependency>
