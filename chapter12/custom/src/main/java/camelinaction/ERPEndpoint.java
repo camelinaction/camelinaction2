@@ -20,10 +20,9 @@ import org.apache.camel.Component;
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
 import org.apache.camel.Producer;
+import org.apache.camel.api.management.ManagedAttribute;
+import org.apache.camel.api.management.ManagedResource;
 import org.apache.camel.impl.DefaultEndpoint;
-import org.apache.camel.spi.ManagementAware;
-import org.springframework.jmx.export.annotation.ManagedAttribute;
-import org.springframework.jmx.export.annotation.ManagedResource;
 
 /**
  * A custom endpoint which is using Spring JMX to easily let it be managed from JMX.
@@ -35,7 +34,7 @@ import org.springframework.jmx.export.annotation.ManagedResource;
  * @version $Revision$
  */
 @ManagedResource(description = "Managed ERPEndpoint")
-public class ERPEndpoint extends DefaultEndpoint implements ManagementAware<ERPEndpoint> {
+public class ERPEndpoint extends DefaultEndpoint {
 
     private boolean verbose;
 
@@ -65,8 +64,4 @@ public class ERPEndpoint extends DefaultEndpoint implements ManagementAware<ERPE
         this.verbose = verbose;
     }
 
-    public Object getManagedObject(ERPEndpoint object) {
-        // just return this as Spring JMX have turned this into a MBean
-        return this;
-    }
 }
