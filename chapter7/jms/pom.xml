@@ -31,7 +31,7 @@
 
     <dependency>
       <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-core</artifactId>
+      <artifactId>activemq-all</artifactId>
     </dependency>
 
     <!-- xbean is needed for ActiveMQ broker XML configuration in Spring XML files -->

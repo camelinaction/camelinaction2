@@ -26,7 +26,7 @@
   <inceptionYear>2009</inceptionYear>
 
   <prerequisites>
-    <maven>3.0.2</maven>
+    <maven>3.0.4</maven>
   </prerequisites>
 
   <developers>
@@ -69,15 +69,15 @@
   </scm>
 
   <properties>
-    <activemq-version>5.7.0</activemq-version>
-    <camel-version>2.10.4</camel-version>
-    <cxf-version>2.6.6</cxf-version>
+    <activemq-version>5.8.0</activemq-version>
+    <camel-version>2.11.0</camel-version>
+    <cxf-version>2.7.4</cxf-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.11</junit-version>
     <log4j-version>1.2.17</log4j-version>
-    <spring-version>3.0.7.RELEASE</spring-version>
-    <slf4j-version>1.6.6</slf4j-version>
-    <xbean-version>3.12</xbean-version>
+    <spring-version>3.1.4.RELEASE</spring-version>
+    <slf4j-version>1.7.5</slf4j-version>
+    <xbean-version>3.13</xbean-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -329,7 +329,7 @@
 
       <dependency>
         <groupId>org.apache.activemq</groupId>
-        <artifactId>activemq-core</artifactId>
+        <artifactId>activemq-all</artifactId>
         <version>${activemq-version}</version>
       </dependency>
  
