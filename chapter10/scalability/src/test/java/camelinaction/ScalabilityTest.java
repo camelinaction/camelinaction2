@@ -75,7 +75,7 @@ public class ScalabilityTest extends CamelTestSupport {
                     // log input
                     .to("log:input")
                     .choice()
-                        .when(header(Exchange.HTTP_PATH).isEqualTo("/webshop/action/pricing"))
+                        .when(header(Exchange.HTTP_PATH).isEqualTo("/action/pricing"))
                             // communicate with ERP to calculate pricing
                             .to("erp:pricing")
                         .otherwise()
