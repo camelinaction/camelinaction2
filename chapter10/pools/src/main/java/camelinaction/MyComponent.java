@@ -22,17 +22,17 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.Endpoint;
 import org.apache.camel.impl.DefaultComponent;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * A custom component using ExecutorServiceStrategy to create a thread pool.
+ * A custom component using {@link org.apache.camel.spi.ExecutorServiceManager} to create a thread pool.
  *
  * @version $Revision$
  */
 public class MyComponent extends DefaultComponent implements Runnable {
 
-    private static final Log LOG = LogFactory.getLog(MyComponent.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MyComponent.class);
     private ScheduledExecutorService executor;
 
     protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {

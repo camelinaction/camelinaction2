@@ -21,8 +21,8 @@ import java.io.File;
 import org.apache.camel.Exchange;
 import org.apache.camel.spi.Synchronization;
 import org.apache.camel.util.FileUtil;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A Synchronization which is to be executed when the Exchange is done.
@@ -33,7 +33,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class FileRollback implements Synchronization {
 
-    private static Log LOG = LogFactory.getLog(FileRollback.class);
+    private static Logger LOG = LoggerFactory.getLogger(FileRollback.class);
 
     public void onComplete(Exchange exchange) {
         // this method is invoked when the Exchange completed with no failure

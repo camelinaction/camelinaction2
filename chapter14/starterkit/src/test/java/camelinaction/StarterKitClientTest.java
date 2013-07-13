@@ -19,9 +19,9 @@ package camelinaction;
 import java.util.List;
 
 import org.apache.camel.test.spring.CamelSpringTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -35,7 +35,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class StarterKitClientTest extends CamelSpringTestSupport {
 
-    private static final Log LOG = LogFactory.getLog(StarterKitClientTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StarterKitClientTest.class);
 
     protected int getExpectedRouteCount() {
         // we do not have any routes (no routes in camel-client.xml)
@@ -78,7 +78,7 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
 
         // log the returned data to console
         for (ShippingDetail detail : details) {
-            LOG.info(detail);
+            LOG.info("{}", detail);
         }
     }
 

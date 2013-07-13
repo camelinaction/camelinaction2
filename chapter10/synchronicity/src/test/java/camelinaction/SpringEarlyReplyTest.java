@@ -18,8 +18,6 @@ package camelinaction;
 
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -31,8 +29,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @version $Revision$
  */
 public class SpringEarlyReplyTest extends CamelSpringTestSupport {
-
-    private static final Log LOG = LogFactory.getLog(SpringEarlyReplyTest.class);
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
@@ -47,12 +43,12 @@ public class SpringEarlyReplyTest extends CamelSpringTestSupport {
         mock.expectedBodiesReceived(body);
 
         // send an InOut (= requestBody) to Camel
-        LOG.info("Caller calling Camel with message: " + body);
+        log.info("Caller calling Camel with message: " + body);
         String reply = template.requestBody("http://localhost:8080/early", body, String.class);
 
         // we should get the reply early which means you should see this log line
         // before Camel has finished processed the message
-        LOG.info("Caller finished calling Camel and received reply: " + reply);
+        log.info("Caller finished calling Camel and received reply: " + reply);
         assertEquals("OK", reply);
 
         assertMockEndpointsSatisfied();

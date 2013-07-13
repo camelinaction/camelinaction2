@@ -19,8 +19,6 @@ package camelinaction;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
@@ -31,8 +29,6 @@ import org.junit.Test;
  */
 public class EarlyReplyTest extends CamelTestSupport {
 
-    private static final Log LOG = LogFactory.getLog(EarlyReplyTest.class);
-
     @Test
     public void testEarlyReply() throws Exception {
         final String body = "Hello Camel";
@@ -41,12 +37,12 @@ public class EarlyReplyTest extends CamelTestSupport {
         mock.expectedBodiesReceived(body);
 
         // send an InOut (= requestBody) to Camel
-        LOG.info("Caller calling Camel with message: " + body);
+        log.info("Caller calling Camel with message: " + body);
         String reply = template.requestBody("http://localhost:8080/early", body, String.class);
 
         // we should get the reply early which means you should see this log line
         // before Camel has finished processed the message
-        LOG.info("Caller finished calling Camel and received reply: " + reply);
+        log.info("Caller finished calling Camel and received reply: " + reply);
         assertEquals("OK", reply);
 
         assertMockEndpointsSatisfied();

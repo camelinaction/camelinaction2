@@ -22,9 +22,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import junit.framework.TestCase;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Demonstrates how the client concurrency API in Java works
@@ -34,7 +34,7 @@ import org.junit.Test;
  */
 public class JavaFutureTest extends TestCase {
 
-    private static Log LOG = LogFactory.getLog(JavaFutureTest.class);
+    private static Logger LOG = LoggerFactory.getLogger(JavaFutureTest.class);
 
     @Test
     public void testFutureWithDone() throws Exception {

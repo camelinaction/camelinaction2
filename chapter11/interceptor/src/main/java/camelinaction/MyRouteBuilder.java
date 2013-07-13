@@ -19,8 +19,6 @@ package camelinaction;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.spring.Main;
 
-import static org.apache.camel.builder.xml.XPathBuilder.xpath;
-
 /**
  * A Camel Router
  *

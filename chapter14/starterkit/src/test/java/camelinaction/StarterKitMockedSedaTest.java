@@ -19,8 +19,6 @@ package camelinaction;
 import java.util.List;
 
 import org.apache.camel.test.spring.CamelSpringTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -31,8 +29,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @version $Revision$
  */
 public class StarterKitMockedSedaTest extends CamelSpringTestSupport {
-
-    private static final Log LOG = LogFactory.getLog(StarterKitMockedSedaTest.class);
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
@@ -50,7 +46,7 @@ public class StarterKitMockedSedaTest extends CamelSpringTestSupport {
         inventory.setName("Bumper");
         inventory.setAmount("57");
 
-        LOG.info("Sending inventory");
+        log.info("Sending inventory");
         rider.updateInventory(inventory);
     }
 
@@ -62,7 +58,7 @@ public class StarterKitMockedSedaTest extends CamelSpringTestSupport {
 
     private void shipInventory(RiderService rider) {
         List<ShippingDetail> details = rider.shipInventory("1234", "4444");
-        LOG.info("Received shipping details");
+        log.info("Received shipping details");
 
         assertEquals(2, details.size());
         assertEquals("Rider Road 66", details.get(0).getAddress());

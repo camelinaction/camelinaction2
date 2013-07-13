@@ -16,15 +16,15 @@
  */
 package camelinaction;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @version $Revision$
  */
 public class InventoryService {
 
-    private static final Log LOG = LogFactory.getLog(InventoryService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(InventoryService.class);
 
     /**
      * Convert the CSV to a model object

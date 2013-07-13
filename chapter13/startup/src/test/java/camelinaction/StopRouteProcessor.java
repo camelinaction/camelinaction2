@@ -18,8 +18,8 @@ package camelinaction;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Processor to stop a route by its name
@@ -28,7 +28,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class StopRouteProcessor implements Processor {
 
-    private final static Log LOG = LogFactory.getLog(StopRouteProcessor.class);
+    private final static Logger LOG = LoggerFactory.getLogger(StopRouteProcessor.class);
 
     private final String name;
 

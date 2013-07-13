@@ -18,8 +18,6 @@ package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
@@ -31,18 +29,16 @@ import org.junit.Test;
  */
 public class SyncMultipleThreadsTest extends CamelTestSupport {
 
-    private static final Log LOG = LogFactory.getLog("Caller");
-
     @Test
     public void testAsyncInOut() throws Exception {
         String body = "Hello Camel";
 
         // send an InOut (= requestBody) to Camel
-        LOG.info("Caller calling Camel with message: " + body);
+        log.info("Caller calling Camel with message: " + body);
         String reply = template.requestBody("seda:start", body, String.class);
 
         assertEquals("Bye Camel", reply);
-        LOG.info("Caller finished calling Camel and received reply: " + reply);
+        log.info("Caller finished calling Camel and received reply: " + reply);
 
         // give time for route to complete
         Thread.sleep(1000);

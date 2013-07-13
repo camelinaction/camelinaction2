@@ -18,8 +18,6 @@ package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
@@ -31,16 +29,14 @@ import org.junit.Test;
  */
 public class AsyncMultipleThreadsTest extends CamelTestSupport {
 
-    private static final Log LOG = LogFactory.getLog("Caller");
-
     @Test
     public void testAsyncInOnly() throws Exception {
         String body = "Hello Camel";
 
         // send an InOnly (= sendBody) to Camel
-        LOG.info("Caller calling Camel with message: " + body);
+        log.info("Caller calling Camel with message: " + body);
         template.sendBody("seda:start", body);
-        LOG.info("Caller finished calling Camel");
+        log.info("Caller finished calling Camel");
 
         // give time for route to complete
         Thread.sleep(1000);

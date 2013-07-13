@@ -20,8 +20,6 @@ import java.util.concurrent.Future;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
@@ -32,19 +30,17 @@ import org.junit.Test;
  */
 public class CamelFutureGetTest extends CamelTestSupport {
 
-    private static Log LOG = LogFactory.getLog(CamelFutureGetTest.class);
-
     @Test
     public void testFutureGet() throws Exception {
         // now send the message to the endpoint in async manner
         // and get the Future handle back so we can later get the result
-        LOG.info("Submitting task to Camel");
+        log.info("Submitting task to Camel");
         Future<String> future = template.asyncRequestBody("seda:quote", "Hello Camel", String.class);
-        LOG.info("Task submitted and we got a Future handle");
+        log.info("Task submitted and we got a Future handle");
 
         // and get the answer (it will automatic wait for the task to be complete)
         String answer = future.get();
-        LOG.info("The answer is: " + answer);
+        log.info("The answer is: " + answer);
     }
 
     @Override

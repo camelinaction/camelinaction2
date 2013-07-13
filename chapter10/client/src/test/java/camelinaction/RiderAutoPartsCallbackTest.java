@@ -26,8 +26,6 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.spi.Synchronization;
 import org.apache.camel.support.SynchronizationAdapter;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 /**
@@ -38,7 +36,6 @@ import org.junit.Test;
  */
 public class RiderAutoPartsCallbackTest extends CamelTestSupport {
 
-    private static Log LOG = LogFactory.getLog(RiderAutoPartsCallbackTest.class);
     private int numPartners = 5;
 
     @Test
@@ -75,15 +72,15 @@ public class RiderAutoPartsCallbackTest extends CamelTestSupport {
         for (int i = 0; i < numPartners; i++) {
             template.asyncCallbackRequestBody("seda:partner:" + i, body, callback);
         }
-        LOG.info("Send " + numPartners + " messages to partners.");
+        log.info("Send " + numPartners + " messages to partners.");
 
         // wait at most 2 seconds or until we got all replies
         boolean all = latch.await(2000, TimeUnit.MILLISECONDS);
 
         // log what we got as reply
-        LOG.info("Got " + relates.size() + " replies, is all? " + all);
+        log.info("Got " + relates.size() + " replies, is all? " + all);
         for (String related : relates) {
-            LOG.info("Related item category is: " + related);
+            log.info("Related item category is: " + related);
         }
 
         // assert the unit test

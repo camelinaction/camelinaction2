@@ -19,8 +19,8 @@ package camelinaction;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A mocked implementation of {@link RiderService} to be used for testing purpose.
@@ -29,7 +29,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class RiderAutoPartsMock implements RiderService {
 
-    private static final Log LOG = LogFactory.getLog(RiderAutoPartsMock.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RiderAutoPartsMock.class);
 
     public void updateInventory(Inventory inventory) {
         LOG.info("Updating inventory " + inventory);

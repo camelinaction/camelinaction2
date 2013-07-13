@@ -16,8 +16,8 @@
  */
 package camelinaction;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A simple audit service which will AUDIT log incoming orders
@@ -26,7 +26,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class AuditService {
 
-    private Log LOG = LogFactory.getLog(AuditService.class);
+    private Logger LOG = LoggerFactory.getLogger(AuditService.class);
 
     public void auditFile(String body) {
         // transform the message into pieces we can grab interesting data from
