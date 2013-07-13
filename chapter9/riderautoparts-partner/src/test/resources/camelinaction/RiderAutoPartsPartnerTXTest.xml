@@ -57,7 +57,7 @@
     </bean>
 
     <!-- setup a local JMS Broker for testing purpose -->
-    <broker:broker useJmx="false" persistent="false" brokerName="localhost">
+    <broker:broker useJmx="false" persistent="false" brokerName="myBroker">
         <broker:transportConnectors>
             <broker:transportConnector uri="tcp://localhost:61616"/>
         </broker:transportConnectors>

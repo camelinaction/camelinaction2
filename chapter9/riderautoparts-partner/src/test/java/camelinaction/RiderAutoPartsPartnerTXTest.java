@@ -87,14 +87,15 @@ public class RiderAutoPartsPartnerTXTest extends CamelSpringTestSupport {
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete
-        Thread.sleep(10000);
+        // AMQ will out of the box try to redeliver the message up till 6 times, and then move the message to its DLQ
+        Thread.sleep(15000);
 
         // data not inserted so there should be 0 rows
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
 
-        // now check that the message is on the queue by consuming it again
-        String dlq = consumer.receiveBodyNoWait("activemq:queue:ActiveMQ.DLQ", String.class);
-        assertNotNull("Should not lose message", dlq);
+        // now check that the message was moved to the DLQ
+        String dlq = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 1000L, String.class);
+        assertNotNull("Message should have been moved to the ActiveMQ DLQ", dlq);
     }
 
     @Test
@@ -128,8 +129,8 @@ public class RiderAutoPartsPartnerTXTest extends CamelSpringTestSupport {
         assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
 
         // now check that the message is not on the DLQ
-        String dlq = consumer.receiveBodyNoWait("activemq:queue:ActiveMQ.DLQ", String.class);
-        assertNull("Should not be in the DLQ", dlq);
+        String dlq = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 1000L, String.class);
+        assertNull("Should not be in the ActiveMQ DLQ", dlq);
     }
 
     @Override

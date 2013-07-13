@@ -19,6 +19,8 @@ package camelinaction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
@@ -39,6 +41,7 @@ public class CamelCallbackTest extends CamelTestSupport {
     public void testCamelCallback() throws Exception {
         // echos is the list of replies
         final List<String> echos = new ArrayList<String>();
+        final CountDownLatch latch = new CountDownLatch(3);
 
         // use this callback to gather the replies and add it to the echos list
         Synchronization callback = new SynchronizationAdapter() {
@@ -46,6 +49,8 @@ public class CamelCallbackTest extends CamelTestSupport {
             public void onDone(Exchange exchange) {
                 // get the reply and add it to echoes
                 echos.add(exchange.getOut().getBody(String.class));
+                // count down latch when we receive a response
+                latch.countDown();
             }
         };
 
@@ -55,8 +60,8 @@ public class CamelCallbackTest extends CamelTestSupport {
         template.asyncCallbackRequestBody("seda:echo", "Tiger", callback);
         template.asyncCallbackRequestBody("seda:echo", "Camel", callback);
 
-        // wait until the messages is done
-        Thread.sleep(5000);
+        // wait until the messages is done, or timeout after 6 seconds
+        latch.await(6, TimeUnit.SECONDS);
 
         // assert we got 3 replies
         assertEquals(3, echos.size());

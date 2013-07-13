@@ -41,7 +41,7 @@ public class NotifyTest extends CamelTestSupport {
         template.sendBody("seda:quote", "Camel rocks");
         template.sendBody("seda:order", "123,2010-04-20'T'15:47:59,4444,5555");
 
-        boolean matches = notify.matches(1, TimeUnit.SECONDS);
+        boolean matches = notify.matches(5, TimeUnit.SECONDS);
         assertTrue(matches);
 
         SedaEndpoint confirm = context.getEndpoint("seda:confirm", SedaEndpoint.class);
