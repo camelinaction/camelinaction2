@@ -23,8 +23,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.impl.SynchronizationAdapter;
 import org.apache.camel.spi.Synchronization;
+import org.apache.camel.support.SynchronizationAdapter;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -19,8 +19,8 @@ package camelinaction;
 import java.util.Date;
 import java.util.EventObject;
 
-import org.apache.camel.management.EventNotifierSupport;
 import org.apache.camel.management.event.ExchangeFailedEvent;
+import org.apache.camel.support.EventNotifierSupport;
 
 /**
  * A custom {@link org.apache.camel.spi.EventNotifier} which is used by

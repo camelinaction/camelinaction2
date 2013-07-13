@@ -18,7 +18,7 @@ package camelinaction;
 
 import java.util.concurrent.ExecutorService;
 
-import org.apache.camel.test.junit4.CamelSpringTestSupport;
+import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -35,7 +35,7 @@ public class SpringThreadPoolTest extends CamelSpringTestSupport {
 
     @Test
     public void testThreadPool() throws Exception {
-        ExecutorService myPool = context.getRegistry().lookup("myPool", ExecutorService.class);
+        ExecutorService myPool = context.getRegistry().lookupByNameAndType("myPool", ExecutorService.class);
         assertNotNull(myPool);
 
         getMockEndpoint("mock:result").expectedMessageCount(1);

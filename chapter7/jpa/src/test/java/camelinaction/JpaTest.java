@@ -17,6 +17,7 @@
 package camelinaction;
 
 import java.util.List;
+import javax.persistence.EntityManager;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
@@ -28,12 +29,10 @@ import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.orm.jpa.JpaTemplate;
 
 public class JpaTest extends CamelTestSupport {
 
     protected ApplicationContext applicationContext;
-    protected JpaTemplate jpaTemplate;
 
     @Test
     public void testRouteJpa() throws Exception {
@@ -71,11 +70,13 @@ public class JpaTest extends CamelTestSupport {
     @SuppressWarnings("unchecked")
 	private void assertEntityInDB() throws Exception {
         JpaEndpoint endpoint = (JpaEndpoint) context.getEndpoint("jpa:camelinaction.PurchaseOrder");        
-        jpaTemplate = endpoint.getTemplate();
+        EntityManager em = endpoint.getEntityManagerFactory().createEntityManager();
 
-        List list = jpaTemplate.find("select x from camelinaction.PurchaseOrder x");
+        List list = em.createQuery("select x from camelinaction.PurchaseOrder x").getResultList();
         assertEquals(1, list.size());
         
         assertIsInstanceOf(PurchaseOrder.class, list.get(0));
+
+        em.close();
     }
 }

@@ -48,7 +48,7 @@ public class MyComponent extends DefaultComponent implements Runnable {
     protected void doStart() throws Exception {
         super.doStart();
         // create a scheduled thread pool with 1 thread as we only need one task as background task
-        executor = getCamelContext().getExecutorServiceStrategy().newScheduledThreadPool(this, "MyBackgroundTask", 1);
+        executor = getCamelContext().getExecutorServiceManager().newScheduledThreadPool(this, "MyBackgroundTask", 1);
         // schedule the task to run once every second
         executor.scheduleWithFixedDelay(this, 1, 1, TimeUnit.SECONDS);
     }
@@ -56,7 +56,7 @@ public class MyComponent extends DefaultComponent implements Runnable {
     @Override
     protected void doStop() throws Exception {
         // shutdown the thread pool
-        getCamelContext().getExecutorServiceStrategy().shutdown(executor);
+        getCamelContext().getExecutorServiceManager().shutdown(executor);
         super.doStop();
     }
 
