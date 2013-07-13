@@ -46,7 +46,7 @@ public class SpringRiderTest extends CamelSpringTestSupport {
     public void setUp() throws Exception {
         super.setUp();
 
-        Properties prop = context.getRegistry().lookup("properties", Properties.class);
+        Properties prop = context.getRegistry().lookupByNameAndType("properties", Properties.class);
         inboxDir = prop.getProperty("file.inbox");
         outboxDir = prop.getProperty("file.outbox");
 

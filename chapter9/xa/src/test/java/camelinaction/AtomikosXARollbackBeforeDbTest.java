@@ -36,7 +36,7 @@ public class AtomikosXARollbackBeforeDbTest extends CamelSpringTestSupport {
 
     @Before
     public void setupDatabase() throws Exception {
-        DataSource ds = context.getRegistry().lookup("myDataSource", DataSource.class);
+        DataSource ds = context.getRegistry().lookupByNameAndType("myDataSource", DataSource.class);
         jdbc = new JdbcTemplate(ds);
 
         jdbc.execute("create table partner_metric "
@@ -84,7 +84,7 @@ public class AtomikosXARollbackBeforeDbTest extends CamelSpringTestSupport {
                     .log("*** before database ***")
                     .bean(PartnerServiceBean.class, "toSql")
                     .to("jdbc:myDataSource?resetAutoCommit=false") // the usage of the resetAutoCommit option (available since 2.9.0) has the side effect of JDBC commit
-                    .log("*** after database ***")                 // not being called through JdbcProducer (We need this as we make use of global transaction boundries)
+                    .log("*** after database ***")                 // not being called through JdbcProducer (We need this as we make use of global transaction boundaries)
                     .throwException(new IllegalArgumentException("Forced failure after DB"));
             }
         };

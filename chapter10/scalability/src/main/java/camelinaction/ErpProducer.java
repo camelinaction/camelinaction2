@@ -36,7 +36,7 @@ public class ErpProducer extends DefaultAsyncProducer {
     public ErpProducer(Endpoint endpoint) {
         super(endpoint);
         // use Camel to create the thread pool for us
-        this.executor = endpoint.getCamelContext().getExecutorServiceStrategy().newFixedThreadPool(this, "ERP", 10);
+        this.executor = endpoint.getCamelContext().getExecutorServiceManager().newFixedThreadPool(this, "ERP", 10);
     }
 
     public boolean process(final Exchange exchange, final AsyncCallback callback) {

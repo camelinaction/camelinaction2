@@ -25,15 +25,12 @@ import org.apache.camel.impl.DefaultEndpoint;
  * Represents a my endpoint.
  */
 public class MyEndpoint extends DefaultEndpoint {
+
     public MyEndpoint() {
     }
 
     public MyEndpoint(String uri, MyComponent component) {
         super(uri, component);
-    }
-
-    public MyEndpoint(String endpointUri) {
-        super(endpointUri);
     }
 
     public Producer createProducer() throws Exception {

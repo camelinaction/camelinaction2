@@ -52,7 +52,7 @@ public class WireTapTest extends CamelTestSupport {
                 // which we want the WireTap to use
                 from("direct:start")
                     .log("Incoming message ${body}")
-                    .wireTap("direct:tap", lowPool)
+                    .wireTap("direct:tap").executorService(lowPool)
                     .to("mock:result");
 
                 from("direct:tap")

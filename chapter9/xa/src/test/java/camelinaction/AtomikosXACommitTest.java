@@ -36,7 +36,7 @@ public class AtomikosXACommitTest extends CamelSpringTestSupport {
 
     @Before
     public void setupDatabase() throws Exception {
-        DataSource ds = context.getRegistry().lookup("myDataSource", DataSource.class);
+        DataSource ds = context.getRegistry().lookupByNameAndType("myDataSource", DataSource.class);
         jdbc = new JdbcTemplate(ds);
 
         jdbc.execute("create table partner_metric "
@@ -77,7 +77,7 @@ public class AtomikosXACommitTest extends CamelSpringTestSupport {
                     .transacted()
                     .bean(PartnerServiceBean.class, "toSql")
                     .to("jdbc:myDataSource?resetAutoCommit=false") // the usage of the resetAutoCommit option (available since 2.9.0) has the side effect of JDBC commit
-                    .to("mock:result");                            // not being called through JdbcProducer (We need this as we make use of global transaction boundries)
+                    .to("mock:result");                            // not being called through JdbcProducer (We need this as we make use of global transaction boundaries)
             }
         };
     }

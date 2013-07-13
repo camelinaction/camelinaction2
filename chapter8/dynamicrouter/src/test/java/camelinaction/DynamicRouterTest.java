@@ -46,7 +46,7 @@ public class DynamicRouterTest extends CamelTestSupport {
                     // use Dynamic Router EIP to route message dynamically
                     // use the DynamicRouterBean bean which provides the logic
                     // to compute where the message should go
-                    .dynamicRouter(bean(DynamicRouterBean.class, "route"))
+                    .dynamicRouter(method(DynamicRouterBean.class, "route"))
                     // when we are done with the Dynamic Router EIP go to
                     // the mock result endpoint
                     .to("mock:result");

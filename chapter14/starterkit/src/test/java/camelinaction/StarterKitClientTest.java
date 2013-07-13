@@ -49,7 +49,7 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
     @Test
     public void testStarterKitUpdateInventory() throws Exception {
         // get the proxied interface for the client to use
-        RiderService rider = context.getRegistry().lookup("rider", RiderService.class);
+        RiderService rider = context.getRegistry().lookupByNameAndType("rider", RiderService.class);
 
         // prepare an inventory update to be send
         Inventory inventory = new Inventory("1234", "4444");
@@ -65,7 +65,7 @@ public class StarterKitClientTest extends CamelSpringTestSupport {
     @Test
     public void testStarterShipping() throws Exception {
         // get the proxied interface for the client to use
-        RiderService rider = context.getRegistry().lookup("rider", RiderService.class);
+        RiderService rider = context.getRegistry().lookupByNameAndType("rider", RiderService.class);
 
         // invoke client to have shipping details returned
         List<ShippingDetail> details = rider.shipInventory("1234", "4444");

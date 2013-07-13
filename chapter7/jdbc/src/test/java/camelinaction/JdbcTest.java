@@ -39,7 +39,7 @@ public class JdbcTest extends CamelTestSupport {
 
     @Before
     public void setupDatabase() throws Exception {
-        DataSource ds = context.getRegistry().lookup("dataSource", DataSource.class);
+        DataSource ds = context.getRegistry().lookupByNameAndType("dataSource", DataSource.class);
         jdbc = new JdbcTemplate(ds);
 
         jdbc.execute("create table incoming_orders "

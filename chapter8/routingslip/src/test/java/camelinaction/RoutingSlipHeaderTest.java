@@ -64,7 +64,7 @@ public class RoutingSlipHeaderTest extends CamelTestSupport {
                     // compute the routing slip at runtime using a bean
                     .setHeader("mySlip").method(ComputeSlip.class)
                     // use the routing slip EIP
-                    .routingSlip("mySlip");
+                    .routingSlip(header("mySlip"));
             }
         };
     }

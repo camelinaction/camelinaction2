@@ -41,7 +41,7 @@ public class StarterKitMockedSedaTest extends CamelSpringTestSupport {
 
     @Test
     public void testStarterKitUpdateInventory() throws Exception {
-        RiderService rider = context.getRegistry().lookup("rider", RiderService.class);
+        RiderService rider = context.getRegistry().lookupByNameAndType("rider", RiderService.class);
         updateInventory(rider);
     }
 
@@ -56,7 +56,7 @@ public class StarterKitMockedSedaTest extends CamelSpringTestSupport {
 
     @Test
     public void testStarterShipping() throws Exception {
-        RiderService rider = context.getRegistry().lookup("rider", RiderService.class);
+        RiderService rider = context.getRegistry().lookupByNameAndType("rider", RiderService.class);
         shipInventory(rider);
     }
 

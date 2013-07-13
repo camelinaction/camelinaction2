@@ -78,6 +78,8 @@
     <spring-version>3.1.4.RELEASE</spring-version>
     <slf4j-version>1.7.5</slf4j-version>
     <xbean-version>3.13</xbean-version>
+    <bundle-plugin-version>2.3.7</bundle-plugin-version>
+    <jetty-plugin-version>7.6.8.v20121106</jetty-plugin-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

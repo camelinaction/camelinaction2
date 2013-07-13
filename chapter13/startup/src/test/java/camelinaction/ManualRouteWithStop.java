@@ -18,12 +18,10 @@ package camelinaction;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import camelinaction.inventory.UpdateInventoryInput;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.ShutdownRunningTask;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
@@ -66,7 +64,7 @@ public class ManualRouteWithStop extends RouteBuilder {
                     getContext().getInflightRepository().remove(exchange);
 
                     // spawn a thread to stop the route
-                    ExecutorService executor = getContext().getExecutorServiceStrategy().newSingleThreadExecutor(this, "StopRouteManually");
+                    ExecutorService executor = getContext().getExecutorServiceManager().newSingleThreadExecutor(this, "StopRouteManually");
                     executor.submit(new Callable<Object>() {
                         @Override
                         public Object call() throws Exception {

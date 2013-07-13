@@ -19,8 +19,6 @@ package camelinaction;
 import javax.sql.DataSource;
 
 import org.apache.camel.test.spring.CamelSpringTestSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
@@ -29,13 +27,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class InventoryServiceTest extends CamelSpringTestSupport {
 
-    private static final Log LOG = LogFactory.getLog(InventoryServiceTest.class);
-
     private JdbcTemplate jdbc;
 
     @Before
     public void setup() throws Exception {
-        DataSource ds = context.getRegistry().lookup("inventoryDB", DataSource.class);
+        DataSource ds = context.getRegistry().lookupByNameAndType("inventoryDB", DataSource.class);
         jdbc = new JdbcTemplate(ds);
     }
     

@@ -27,7 +27,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class OrderCreateTable {
 
     public OrderCreateTable(CamelContext camelContext) {
-        DataSource ds = camelContext.getRegistry().lookup("myDataSource", DataSource.class);
+        DataSource ds = camelContext.getRegistry().lookupByNameAndType("myDataSource", DataSource.class);
         JdbcTemplate jdbc = new JdbcTemplate(ds);
 
         try {

@@ -25,7 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * An example how to use Routing Slip EIP.
  * <p/>
  * This example uses a bean to compute the initial routing slip
- * which is used directly on the RoutingSlip EIP
+ * which is used directly as a header on the RoutingSlip EIP
  *
  * @version $Revision$
  */
@@ -33,7 +33,7 @@ public class SpringRoutingSlipHeaderTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/routingslip.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/routingslip-header.xml");
     }
 
     @Test

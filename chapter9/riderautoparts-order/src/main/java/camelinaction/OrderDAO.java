@@ -28,7 +28,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class OrderDAO {
 
     public void insertOrder(InputOrder order, Registry registry) {
-        DataSource ds = registry.lookup("myDataSource", DataSource.class);
+        DataSource ds = registry.lookupByNameAndType("myDataSource", DataSource.class);
         JdbcTemplate jdbc = new JdbcTemplate(ds);
 
         Object[] args = new Object[] { order.getCustomerId(), order.getRefNo(), order.getPartId(), order.getAmount()};

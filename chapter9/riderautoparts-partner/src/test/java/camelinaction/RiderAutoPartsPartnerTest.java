@@ -37,7 +37,7 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
 
     @Before
     public void setupDatabase() throws Exception {
-        DataSource ds = context.getRegistry().lookup("myDataSource", DataSource.class);
+        DataSource ds = context.getRegistry().lookupByNameAndType("myDataSource", DataSource.class);
         jdbc = new JdbcTemplate(ds);
 
         jdbc.execute("create table partner_metric "

@@ -38,7 +38,7 @@ public class OrderTest extends CamelSpringTestSupport {
         super.setUp();
 
         // setup JDBC template
-        DataSource ds = context.getRegistry().lookup("myDataSource", DataSource.class);
+        DataSource ds = context.getRegistry().lookupByNameAndType("myDataSource", DataSource.class);
         jdbc = new JdbcTemplate(ds);
 
         // notice that the table is automatic created using the OrderCreateTable class.

@@ -51,7 +51,7 @@ public class RoutingSlipSimpleTest extends CamelTestSupport {
                 from("direct:start")
                     // use routing slip with the attached slip
                     // as the header with key: mySlip
-                    .routingSlip("mySlip");
+                    .routingSlip(header("mySlip"));
             }
         };
     }
