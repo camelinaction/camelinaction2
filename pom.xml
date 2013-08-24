@@ -70,12 +70,12 @@
 
   <properties>
     <activemq-version>5.8.0</activemq-version>
-    <camel-version>2.11.1</camel-version>
-    <cxf-version>2.7.5</cxf-version>
+    <camel-version>2.12-SNAPSHOT</camel-version>
+    <cxf-version>2.7.6</cxf-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.11</junit-version>
     <log4j-version>1.2.17</log4j-version>
-    <spring-version>3.1.4.RELEASE</spring-version>
+    <spring-version>3.2.4.RELEASE</spring-version>
     <slf4j-version>1.7.5</slf4j-version>
     <xbean-version>3.13</xbean-version>
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
