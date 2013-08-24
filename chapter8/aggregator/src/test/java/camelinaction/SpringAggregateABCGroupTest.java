@@ -17,7 +17,6 @@
 package camelinaction;
 
 import java.util.List;
-
 import org.apache.camel.Exchange;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
@@ -45,8 +44,9 @@ public class SpringAggregateABCGroupTest extends CamelSpringTestSupport {
         MockEndpoint mock = getMockEndpoint("mock:result");
         // one message expected
         mock.expectedMessageCount(1);
+        // As the fix of CAMEL-6557, the message body is not empty anymore
         // should not have a body
-        mock.message(0).body().isNull();
+        // mock.message(0).body().isNull();
         // but have it stored in a property as a List
         mock.message(0).property(Exchange.GROUPED_EXCHANGE).isInstanceOf(List.class);
 
