@@ -19,10 +19,8 @@ package camelinaction;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.file.GenericFile;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -60,7 +58,7 @@ public class BigFileFixedThreadPoolTest extends CamelTestSupport {
 
         long start = System.currentTimeMillis();
 
-        System.out.println("Waiting to be done with 5 min timeout (use ctrl + c to stop)");
+        System.out.println("Waiting to be done with 2 min timeout (use ctrl + c to stop)");
         notify.matches(2 * 60, TimeUnit.SECONDS);
 
         long delta = System.currentTimeMillis() - start;
