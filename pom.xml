@@ -70,16 +70,16 @@
 
   <properties>
     <activemq-version>5.8.0</activemq-version>
-    <camel-version>2.12-SNAPSHOT</camel-version>
+    <camel-version>2.12.0</camel-version>
     <cxf-version>2.7.6</cxf-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.11</junit-version>
     <log4j-version>1.2.17</log4j-version>
     <spring-version>3.2.4.RELEASE</spring-version>
     <slf4j-version>1.7.5</slf4j-version>
-    <xbean-version>3.13</xbean-version>
+    <xbean-version>3.14</xbean-version>
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
-    <jetty-plugin-version>7.6.8.v20121106</jetty-plugin-version>
+    <jetty-plugin-version>7.6.9.v20130131</jetty-plugin-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
