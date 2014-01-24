@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- import the other spring xml files -->
+    <import resource="classpath:META-INF/spring/camel-cxf.xml"/>
+
+    <!-- the order bean contain all the business logic -->
+    <bean id="inventoryService" class="camelinaction.InventoryService"/>
+
+    <!-- the camel context -->
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- this is the webservice route which is started 3rd -->
+        <route id="webservice" startupOrder="3">
+            <from uri="cxf:bean:inventoryEndpoint"/>
+            <to uri="direct:update"/>
+            <transform>
+                <method bean="inventoryService" method="replyOk"/>
+            </transform>
+        </route>
+
+        <!-- this is the file route which is started 2nd -->
+        <route id="file" startupOrder="2">
+            <from uri="file://target/inventory/updates"/>
+            <split>
+                <tokenize token="\n"/>
+                <convertBodyTo type="camelinaction.inventory.UpdateInventoryInput"/>
+                <to uri="direct:update"/>
+            </split>
+        </route>
+
+        <!-- this is the update route which is shared and therefore started 1st -->
+        <!-- we must defer shutting down this route as its a shared route by the two others -->
+        <route id="update" startupOrder="1" shutdownRoute="Defer">
+            <from uri="direct:update"/>
+            <to uri="bean:inventoryService?method=updateInventory"/>
+        </route>
+
+    </camelContext>
+
+</beans>

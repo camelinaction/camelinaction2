@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- a bean with order services -->
+    <bean id="orderService" class="camelinaction.OrderService"/>
+
+    <!-- bean with our rollback logic -->
+    <bean id="fileRollback" class="camelinaction.FileRollback"/>
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- OnCompletion to be executed when the Exchange fails -->
+        <!-- this OnCompletion is context scoped (global). You can also
+             have per route scoped onCompletion -->
+        <onCompletion onFailureOnly="true">
+            <!-- this is a regular Camel route so you can do any kind
+                 of Camel routing as you like -->
+            <bean ref="fileRollback" method="onFailure"/>
+        </onCompletion>
+
+        <!-- this is the regular route -->
+        <route>
+            <from uri="direct:confirm"/>
+            <bean ref="orderService" method="createMail"/>
+            <log message="Saving mail backup file"/>
+            <to uri="file:target/mail/backup"/>
+            <log message="Trying to send mail to ${header.to}"/>
+            <bean ref="orderService" method="sendMail"/>
+            <log message="Mail send to ${header.to}"/>
+        </route>
+
+    </camelContext>
+
+</beans>

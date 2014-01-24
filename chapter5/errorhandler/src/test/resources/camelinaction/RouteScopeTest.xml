@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+    <!-- this is the order service bean we use in the routes -->
+    <bean id="orderService" class="camelinaction.OrderService"/>
+
+    <!-- this is the camel context, notice how we refer to the default error handler
+         as the context scoped error handler -->
+    <camelContext id="camel" errorHandlerRef="defaultEH" xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- this is the default error handler -->
+        <errorHandler id="defaultEH">
+            <redeliveryPolicy maximumRedeliveries="2" retryAttemptedLogLevel="WARN" redeliveryDelay="1000"/>
+        </errorHandler>
+
+        <!-- this is the Dead Letter Channel error handler, where we send failed message to a log endpoint -->
+        <errorHandler id="dlc" type="DeadLetterChannel" deadLetterUri="log:DLC">
+            <redeliveryPolicy maximumRedeliveries="5" retryAttemptedLogLevel="INFO" redeliveryDelay="250"
+                              backOffMultiplier="2" useExponentialBackOff="true"/>
+        </errorHandler>
+
+        <!-- this is the first route which will fallback and use the context scoped error handler -->
+        <route>
+            <from uri="file://target/orders?delay=10000"/>
+            <bean ref="orderService" method="toCsv"/>
+            <to uri="mock:file"/>
+            <to uri="seda:queue.inbox"/>
+        </route>
+
+        <!-- this is the 2nd route which uses the route scoped Dead Letter Channel error handler -->
+        <route errorHandlerRef="dlc">
+            <from uri="seda:queue.inbox"/>
+            <bean ref="orderService" method="validate"/>
+            <bean ref="orderService" method="enrich"/>
+            <to uri="mock:queue.order"/>
+        </route>
+
+    </camelContext>
+
+</beans>

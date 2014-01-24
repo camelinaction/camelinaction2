@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="damn" class="java.lang.IllegalArgumentException">
+        <constructor-arg index="0" value="Damn"/>
+    </bean>
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <route>
+            <from uri="direct:start"/>
+            <!-- use the load balancer EIP with failover -->
+            <loadBalance>
+                <!-- use round robin mode and try at most 1 failover attempt -->
+                <failover roundRobin="true" maximumFailoverAttempts="1"/>
+                <to uri="direct:a"/>
+                <to uri="direct:b"/>
+            </loadBalance>
+        </route>
+
+        <!-- service A -->
+        <route>
+            <from uri="direct:a"/>
+            <log message="A received: ${body}"/>
+            <choice>
+                <!-- in case of Kaboom the throw an exception to simulate failure -->
+                <when>
+                    <simple>${body} contains 'Kaboom'</simple>
+                    <throwException ref="damn"/>
+                </when>
+            </choice>
+            <to uri="mock:a"/>
+        </route>
+
+        <!-- service B -->
+        <route>
+            <from uri="direct:b"/>
+            <log message="B received: ${body}"/>
+            <choice>
+                <!-- in case of Boom the throw an exception to simulate failure -->
+                <when>
+                    <simple>${body} contains 'Boom'</simple>
+                    <throwException ref="damn"/>
+                </when>
+            </choice>
+            <to uri="mock:b"/>
+        </route>
+
+    </camelContext>
+
+</beans>
