@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.camelinaction</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>chapter7</artifactId>
+    <packaging>pom</packaging>
+    <name>Camel in Action :: Chapter 7</name>
+
+    <modules>
+        <module>cxf</module>
+        <module>file</module>
+        <module>ftp</module>
+        <module>jms</module>
+        <module>mina</module>
+        <module>jdbc</module>
+        <module>jpa</module>
+        <module>seda</module>
+        <module>timer</module>
+        <module>quartz</module>
+    </modules>
+</project>
+

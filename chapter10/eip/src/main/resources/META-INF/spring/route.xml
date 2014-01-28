@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- add logging event notifier so we got timing information in the log -->
+    <bean id="eventLog" class="org.apache.camel.management.LoggingEventNotifier">
+        <property name="logName" value="TIMER"/>
+        <property name="ignoreCamelContextEvents" value="true"/>
+        <property name="ignoreRouteEvents" value="true"/>
+        <property name="ignoreServiceEvents" value="true"/>
+        <property name="ignoreExchangeCreatedEvent" value="true"/>
+        <property name="ignoreExchangeCompletedEvent" value="true"/>
+        <property name="ignoreExchangeFailedEvents" value="true"/>
+    </bean>
+
+    <!-- aggregate data from the three systems -->
+    <bean id="aggregatedData" class="camelinaction.CombineDataAggregationStrategy"/>
+
+    <!-- bean to construct the reply with the combined data -->
+    <bean id="combineData" class="camelinaction.CombineDataBean"/>
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- portal route which can combine a customer order overview -->
+        <route>
+            <from uri="direct:portal"/>
+            <multicast strategyRef="aggregatedData">
+                <to uri="direct:crm"/>
+                <to uri="direct:erp"/>
+                <to uri="direct:shipping"/>
+            </multicast>
+            <bean ref="combineData"/>
+        </route>
+
+        <!-- retrieve data from CRM and simulate some processing time -->
+        <route>
+            <from uri="direct:crm"/>
+            <delay><constant>1400</constant></delay>
+            <transform><constant>CRM DATA HERE</constant></transform>
+        </route>
+
+        <!-- retrieve data from ERP and simulate some processing time -->
+        <route>
+            <from uri="direct:erp"/>
+            <delay><constant>1100</constant></delay>
+            <transform><constant>ERP DATA HERE</constant></transform>
+        </route>
+
+        <!-- retrieve data from Shipping and simulate some processing time -->
+        <route>
+            <from uri="direct:shipping"/>
+            <delay><constant>1500</constant></delay>
+            <transform><constant>SHIPPING DATA HERE</constant></transform>
+        </route>
+
+    </camelContext>
+
+</beans>

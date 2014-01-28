@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.camelinaction</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>chapter6</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <name>Camel in Action :: Chapter 6</name>
+
+    <modules>
+        <module>firsttest</module>
+        <module>miranda</module>
+        <module>error</module>
+        <module>notify</module>
+    </modules>
+</project>
+

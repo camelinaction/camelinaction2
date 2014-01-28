@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://order.camelinaction"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="http://order.camelinaction">
+
+    <!-- Type definitions for input- and output parameters for webservice -->
+    <wsdl:types>
+        <xs:schema targetNamespace="http://order.camelinaction">
+            <xs:element name="inputOrder">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="customerId"/>
+                        <xs:element type="xs:string" name="refNo"/>
+                        <xs:element type="xs:string" name="partId"/>
+                        <xs:element type="xs:string" name="amount"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="outputOrder">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element type="xs:string" name="code"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- Message definitions for input and output -->
+    <wsdl:message name="inputOrder">
+        <wsdl:part name="in" element="tns:inputOrder"/>
+    </wsdl:message>
+    <wsdl:message name="outputOrder">
+        <wsdl:part name="out" element="tns:outputOrder"/>
+    </wsdl:message>
+
+    <!-- Port (interface) definitions -->
+    <wsdl:portType name="OrderEndpoint">
+        <wsdl:operation name="Order">
+            <wsdl:input message="tns:inputOrder"/>
+            <wsdl:output message="tns:outputOrder"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- Port bindings to transports and encoding - HTTP, document literal encoding is used -->
+    <wsdl:binding name="OrderBinding" type="tns:OrderEndpoint">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Order">
+            <soap:operation
+                    soapAction="http://order.camelinaction/Order"
+                    style="document"/>
+            <wsdl:input>
+                <soap:body parts="in" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body parts="out" use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- Service definition -->
+    <wsdl:service name="OrderEndpointService">
+        <wsdl:port name="OrderService" binding="tns:OrderBinding">
+            <soap:address location="changeme"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,5 @@
+Dear customer
+
+Thank you for ordering ${body.amount} piece(s) of ${body.name} at a cost of ${body.price}.
+
+This is an automated email, please do not reply.

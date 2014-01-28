@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- import the other 3 spring xml files -->
+    <import resource="classpath:META-INF/spring/camel-tx.xml"/>
+    <import resource="classpath:META-INF/spring/camel-cxf.xml"/>
+
+    <!-- the order bean contain all the business logic -->
+    <bean id="order" class="camelinaction.OrderService"/>
+
+    <!-- and the DAO for accessing the database -->
+    <bean id="orderDao" class="camelinaction.OrderDAO"/>
+
+    <!-- bean which ensures the database table is created -->
+    <bean id="orderCreateTable" class="camelinaction.OrderCreateTable">
+        <constructor-arg index="0" ref="camel"/>
+    </bean>
+
+    <!-- the camel route -->
+    <camelContext id="camel" trace="false" xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- define the transactional error handler with redelivery policy -->
+        <errorHandler id="myErrorHandler" type="TransactionErrorHandler">
+            <!-- use 1 sec interval between redeliveries -->
+            <!-- try at most 5 times -->
+            <!-- log at WARN level when a redelivery is attempted -->
+            <redeliveryPolicy redeliveryDelay="1000" maximumRedeliveries="5" retryAttemptedLogLevel="WARN"/>
+        </errorHandler>
+
+        <onException>
+            <!-- policy for when any exception occurred -->
+            <exception>java.lang.Exception</exception>
+            <!-- retry it at most 3 times -->
+            <redeliveryPolicy maximumRedeliveries="3"/>
+            <!-- in case of still failure then lets handle it our self -->
+            <handled><constant>true</constant></handled>
+            <!-- where we transform a custom reply message with the error -->
+            <transform><method bean="order" method="replyError"/></transform>
+            <!-- log a message in the log -->
+            <log message="Order failed"/>
+            <!-- and important to mark the transaction to still rollback even if we handled the exception -->
+            <!-- this must be done as the last step in onException -->
+            <rollback markRollbackOnly="true"/>
+        </onException>
+
+        <route errorHandlerRef="myErrorHandler">
+            <!-- route starts from the cxf webservice, see camel-cxf.xml for details -->
+            <from uri="cxf:bean:orderEndpoint"/>
+            <!-- use transaction -->
+            <transacted/>
+            <!-- insert a copy of the order in the database -->
+            <bean ref="orderDao" method="insertOrder"/>
+            <!-- process the order -->
+            <bean ref="order" method="processOrder"/>
+            <!-- log a message in the log -->
+            <log message="Order successfully processed"/>
+            <!-- and then create the OK reply for the webservice which is still waiting for a reply -->
+            <transform><method bean="order" method="replyOk"/></transform>
+        </route>
+
+    </camelContext>
+
+</beans>

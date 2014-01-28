@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-catalog xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-catalog/1.0.0 http://maven.apache.org/xsd/archetype-catalog-1.0.0.xsd"
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-catalog/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <archetypes>
+    <archetype>
+      <groupId>org.apache.camel.archetypes</groupId>
+      <artifactId>camel-archetype-java</artifactId>
+      <version>2.5.0</version>
+      <description>camel-router</description>
+    </archetype>
+    <archetype>
+      <groupId>org.apache.camel.archetypes</groupId>
+      <artifactId>camel-archetype-spring</artifactId>
+      <version>2.5.0</version>
+      <description>camel-router-spring</description>
+    </archetype>
+    <archetype>
+      <groupId>org.apache.camel.archetypes</groupId>
+      <artifactId>camel-archetype-scala</artifactId>
+      <version>2.5.0</version>
+      <description>camel-scala</description>
+    </archetype>
+    <archetype>
+      <groupId>org.apache.camel.archetypes</groupId>
+      <artifactId>camel-archetype-activemq</artifactId>
+      <version>2.5.0</version>
+      <description>camel-router-with-activemq</description>
+    </archetype>
+    <archetype>
+      <groupId>org.apache.camel.archetypes</groupId>
+      <artifactId>camel-archetype-war</artifactId>
+      <version>2.5.0</version>
+      <description>camel-archetype-war</description>
+    </archetype>
+    <archetype>
+      <groupId>org.apache.camel.archetypes</groupId>
+      <artifactId>camel-archetype-component</artifactId>
+      <version>2.5.0</version>
+      <description>camel-component</description>
+    </archetype>
+  </archetypes>
+</archetype-catalog>

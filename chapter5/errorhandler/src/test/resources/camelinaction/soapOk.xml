@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Envelope xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns3="http://camelinaction.com/">
+    <ns2:Body>
+        <ns3:Order>
+            <ns3:Amount>1</ns3:Amount>
+            <ns3:Name>Camel in Action</ns3:Name>
+            <ns3:OrderId>123</ns3:OrderId>
+            <ns3:Status>OK</ns3:Status>
+        </ns3:Order>
+    </ns2:Body>
+</ns2:Envelope>

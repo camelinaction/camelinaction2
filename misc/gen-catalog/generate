@@ -1,0 +1,4 @@
+#!/bin/sh 
+mvn clean install -Dmaven.repo.local=local-repo
+mvn archetype:crawl -Drepository=local-repo 
+cp local-repo/archetype-catalog.xml ../archetype-catalog.xml
