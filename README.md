@@ -1,9 +1,21 @@
 Camel in Action
-===============
+============
 
 This project hosts the source code for the examples of the [Camel in Action](http://manning.com/ibsen/) book written by [Claus Ibsen](https://twitter.com/davsclaus) and [Jonathan Anstey](https://twitter.com/jon_anstey). 
 
 ![Camel in Action cover](/docs/images/cia_cover150.jpg?raw=true)
+
+
+Downloading the source code
+----------------------------------------
+
+You can either download a .zip with all the source code from the [releases page](https://github.com/camelinaction/camelinaction/releases), or use the github way of cloning the repository on your computer.
+
+
+Up to date source code
+-------------------------------
+
+We the authors, intended to keep this source code up to date with future releases of Apache Camel. Giving our readers the best experience with the book and using the latest Camel releases. We have been doing this since the book was published; at this time of writing that means for over 3 years.
 
 
 Getting in touch
@@ -16,12 +28,6 @@ To get in touch with the us the authors you can:
 * or use the [github issue tracker](https://github.com/camelinaction/camelinaction/issues)
 
 
-Up to date source code
--------------------------------
-
-We the authors, intended to keep this source code up to date with future releases of Apache Camel. Giving our readers the best experience with the book and using the latest Camel releases. We have been doing this since the book was published; at this time of writing that means for over 3 years.
-
-
-Happy reading and riding the Camel
+Happy reading and riding the Camel.
 
 Claus Ibsen, and Jonathan Anstey
