@@ -72,6 +72,7 @@
     <activemq-version>5.9.0</activemq-version>
     <camel-version>2.12.2</camel-version>
     <cxf-version>2.7.7</cxf-version>
+    <hawtio-version>1.2.2</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.11</junit-version>
     <log4j-version>1.2.17</log4j-version>
@@ -181,6 +182,11 @@
           <groupId>org.apache.camel</groupId>
           <artifactId>camel-maven-plugin</artifactId>
           <version>${camel-version}</version>
+        </plugin>
+        <plugin>
+          <groupId>io.hawt</groupId>
+          <artifactId>hawtio-maven-plugin</artifactId>
+          <version>${hawtio-version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
