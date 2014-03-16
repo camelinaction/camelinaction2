@@ -70,17 +70,17 @@
 
   <properties>
     <activemq-version>5.9.0</activemq-version>
-    <camel-version>2.12.2</camel-version>
+    <camel-version>2.12.3</camel-version>
     <cxf-version>2.7.7</cxf-version>
-    <hawtio-version>1.2.2</hawtio-version>
+    <hawtio-version>1.2.3</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.11</junit-version>
     <log4j-version>1.2.17</log4j-version>
-    <spring-version>3.2.4.RELEASE</spring-version>
+    <spring-version>3.2.8.RELEASE</spring-version>
     <slf4j-version>1.7.5</slf4j-version>
-    <xbean-version>3.14</xbean-version>
+    <xbean-version>3.15</xbean-version>
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
-    <jetty-plugin-version>7.6.9.v20130131</jetty-plugin-version>
+    <jetty-plugin-version>8.1.14.v20131031</jetty-plugin-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
