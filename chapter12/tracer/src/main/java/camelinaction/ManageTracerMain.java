@@ -80,6 +80,10 @@ public class ManageTracerMain {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
+
+                // enable tracing
+                context.setTracing(true);
+
                 // slow things down a bit
                 context.setDelayer(2000L);
 
