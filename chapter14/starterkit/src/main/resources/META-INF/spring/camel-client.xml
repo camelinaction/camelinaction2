@@ -33,7 +33,7 @@
         <!-- proxy the RiderService interface and send method invocations to the given endpoint url -->
         <proxy id="rider"
                serviceInterface="camelinaction.RiderService"
-               serviceUrl="activemq:queue:rider"/>
+               serviceUrl="activemq:queue:rider?replyTo=queue:rider.reply"/>
     </camelContext>
 
 </beans>

@@ -24,33 +24,33 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-    <!-- import the ActiveMQ broker to act as server -->
-    <import resource="activemq-broker.xml"/>
-    
-        <!-- define the datasource to the database - in this example we use an in memory database using HSQLDB -->
-    <bean id="inventoryDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:mem:inventory"/>
-        <property name="username" value="sa"/>
-        <property name="password" value=""/>
-    </bean>
+  <!-- import the ActiveMQ broker to act as server -->
+  <import resource="activemq-broker.xml"/>
 
-	<!-- bean which ensures the database table is created -->
-	<bean id="inventoryCreateTable" class="camelinaction.InventoryCreateTable">
-		<constructor-arg index="0" ref="inventoryDB" />
-	</bean>
+  <!-- define the datasource to the database - in this example we use an in memory database using HSQLDB -->
+  <bean id="inventoryDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+    <property name="url" value="jdbc:hsqldb:mem:inventory"/>
+    <property name="username" value="sa"/>
+    <property name="password" value=""/>
+  </bean>
 
-	<bean class="camelinaction.InventoryUpdater">
-		<constructor-arg index="0" ref="inventoryDB" />
-	</bean>
+  <!-- bean which ensures the database table is created -->
+  <bean id="inventoryCreateTable" class="camelinaction.InventoryCreateTable">
+    <constructor-arg index="0" ref="inventoryDB"/>
+  </bean>
 
-	<!-- camel activemq component to connect to the broker -->
-	<bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
-		<property name="brokerURL" value="tcp://localhost:61616" />
-	</bean>
+  <bean class="camelinaction.InventoryUpdater">
+    <constructor-arg index="0" ref="inventoryDB"/>
+  </bean>
 
-	<camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-		<package>camelinaction</package>
-	</camelContext>
+  <!-- camel activemq component to connect to the broker -->
+  <bean id="jms" class="org.apache.activemq.camel.component.ActiveMQComponent">
+    <property name="brokerURL" value="tcp://localhost:61616"/>
+  </bean>
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+    <package>camelinaction</package>
+  </camelContext>
 
 </beans>
