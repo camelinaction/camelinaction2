@@ -15,11 +15,6 @@
   <packaging>bundle</packaging>
   <name>Camel in Action :: Chapter 11 :: Scala DSL mixed with Java</name>
 
-  <properties>
-    <scala-version>2.9.0</scala-version>
-    <scala-plugin-version>2.15.1</scala-plugin-version>
-  </properties>
-
   <dependencies>
 
     <!-- camel -->
@@ -80,8 +75,8 @@
       </plugin>
       <!-- scala compiler -->
       <plugin>
-        <groupId>org.scala-tools</groupId>
-        <artifactId>maven-scala-plugin</artifactId>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
         <version>${scala-plugin-version}</version>
         <executions>
           <execution>
