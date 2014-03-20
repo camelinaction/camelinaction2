@@ -19,6 +19,7 @@ package camelinaction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -39,8 +40,8 @@ public class CamelCallbackTest extends CamelTestSupport {
 
     @Test
     public void testCamelCallback() throws Exception {
-        // echos is the list of replies
-        final List<String> echos = new ArrayList<String>();
+        // echos is the list of replies which could be modified by multiple thread
+        final List<String> echos = new CopyOnWriteArrayList<String>();
         final CountDownLatch latch = new CountDownLatch(3);
 
         // use this callback to gather the replies and add it to the echos list
@@ -65,11 +66,12 @@ public class CamelCallbackTest extends CamelTestSupport {
 
         // assert we got 3 replies
         assertEquals(3, echos.size());
+        List result = new ArrayList(echos);
         // sort list so we can assert by index
-        Collections.sort(echos);
-        assertEquals("CamelCamel", echos.get(0));
-        assertEquals("DonkeyDonkey", echos.get(1));
-        assertEquals("TigerTiger", echos.get(2));
+        Collections.sort(result);
+        assertEquals("CamelCamel", result.get(0));
+        assertEquals("DonkeyDonkey", result.get(1));
+        assertEquals("TigerTiger", result.get(2));
     }
 
     @Override
