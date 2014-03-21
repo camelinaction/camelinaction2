@@ -70,7 +70,7 @@
 
   <properties>
     <activemq-version>5.9.0</activemq-version>
-    <camel-version>2.13-SNAPSHOT</camel-version>
+    <camel-version>2.13.0</camel-version>
     <cxf-version>2.7.10</cxf-version>
     <hawtio-version>1.2.3</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
