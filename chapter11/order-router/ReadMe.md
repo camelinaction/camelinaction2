@@ -1,4 +1,4 @@
-Camel Router Project
+Chapter 11 - Camel Router Project
 ====================
 
 To run this router either embed the jar inside Spring
