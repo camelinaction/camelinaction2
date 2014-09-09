@@ -28,7 +28,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>${spring-version}</version>
         </dependency>
         <dependency>
             <groupId>hsqldb</groupId>
@@ -50,13 +49,13 @@
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
 
-        <!-- using Jetty with CXF when running it with camel:run -->        
+        <!-- using Jetty with CXF when running it with camel:run -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http-jetty</artifactId>
             <version>${cxf-version}</version>
         </dependency>
-        
+
         <!--  using the local transport for test -->
         <dependency>
             <groupId>org.apache.cxf</groupId>

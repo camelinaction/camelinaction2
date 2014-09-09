@@ -51,7 +51,7 @@
       <artifactId>activemq-pool</artifactId>
       <scope>test</scope>
     </dependency>
-      
+
     <dependency>
       <groupId>org.apache.xbean</groupId>
       <artifactId>xbean-spring</artifactId>
@@ -68,7 +68,6 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>${spring-version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -76,7 +75,7 @@
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
     </dependency>
-    
+
      <dependency>
        <groupId>org.slf4j</groupId>
        <artifactId>slf4j-log4j12</artifactId>
@@ -88,7 +87,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
- 
+
 
 </project>
 
