@@ -25,10 +25,6 @@
 
     <!-- This file will be picked up when running the test, and it will using local transport instead of http transport -->
 
-    <import resource="classpath:META-INF/cxf/cxf.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-local.xml"/>
-
     <cxf:cxfEndpoint id="orderEndpoint"
                      address="local://order/"
                      serviceClass="camelinaction.order.OrderEndpoint"/>
