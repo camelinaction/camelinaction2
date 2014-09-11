@@ -70,7 +70,7 @@
 
   <properties>
     <activemq-version>5.10.0</activemq-version>
-    <camel-version>2.14-SNAPSHOT</camel-version>
+    <camel-version>2.14.0</camel-version>
     <cxf-version>3.0.1</cxf-version>
     <hawtio-version>1.4.0</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
@@ -391,7 +391,7 @@
         <artifactId>log4j</artifactId>
         <version>${log4j-version}</version>
       </dependency>
-      
+
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
