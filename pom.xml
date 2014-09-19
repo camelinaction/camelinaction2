@@ -26,7 +26,7 @@
   <inceptionYear>2009</inceptionYear>
 
   <prerequisites>
-    <maven>3.0.4</maven>
+    <maven>3.1.1</maven>
   </prerequisites>
 
   <developers>
@@ -72,13 +72,13 @@
     <activemq-version>5.10.0</activemq-version>
     <camel-version>2.14.0</camel-version>
     <cxf-version>3.0.1</cxf-version>
-    <hawtio-version>1.4.0</hawtio-version>
+    <hawtio-version>1.4.19</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.11</junit-version>
     <log4j-version>1.2.17</log4j-version>
     <spring-version>4.0.7.RELEASE</spring-version>
     <slf4j-version>1.7.5</slf4j-version>
-    <xbean-version>3.15</xbean-version>
+    <xbean-version>3.16</xbean-version>
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
     <jetty-plugin-version>8.1.14.v20131031</jetty-plugin-version>
     <scala-version>2.11.2</scala-version>
@@ -98,8 +98,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>2.5</version>
           <configuration>
-            <source>1.6</source>
-            <target>1.6</target>
+            <source>1.7</source>
+            <target>1.7</target>
             <maxmem>256M</maxmem>
             <showDeprecation>true</showDeprecation>
           </configuration>
