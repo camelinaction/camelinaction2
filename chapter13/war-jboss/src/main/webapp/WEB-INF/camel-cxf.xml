@@ -23,12 +23,6 @@
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
          http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
 
-
-    <import resource="classpath:META-INF/cxf/cxf.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
-    <!-- and use servlet transport -->
-    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
-
     <!-- notice address is just relative to the servlet mapping -->
     <cxf:cxfEndpoint id="inventoryEndpoint"
                      address="/inventory"

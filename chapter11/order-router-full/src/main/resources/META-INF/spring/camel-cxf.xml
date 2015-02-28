@@ -20,15 +20,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:cxf="http://camel.apache.org/schema/cxf"
        xsi:schemaLocation="
-         http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-         http://camel.apache.org/schema/cxf 
+         http://camel.apache.org/schema/cxf
          http://camel.apache.org/schema/cxf/camel-cxf.xsd">
 
-  <import resource="classpath:META-INF/cxf/cxf.xml"/>
-  <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
-  <import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml"/>
-  
   <cxf:cxfEndpoint id="orderEndpoint"
                    address="http://localhost:9000/order/"
                    serviceClass="camelinaction.order.OrderEndpoint"
