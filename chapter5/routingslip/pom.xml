@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>chapter5-routingslip</artifactId>
-    <name>Camel in Action :: Chapter 5 :: Routing Slip EIP</name>
+    <name>Camel in Action 2 :: Chapter 5 :: Routing Slip EIP</name>
 
     <dependencies>
 

@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>chapter5-dynamicrouter</artifactId>
-    <name>Camel in Action :: Chapter 5 :: Dynamic Router EIP</name>
+    <name>Camel in Action 2 :: Chapter 5 :: Dynamic Router EIP</name>
 
     <dependencies>
 

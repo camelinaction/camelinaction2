@@ -10,7 +10,7 @@
 
     <artifactId>chapter6</artifactId>
     <packaging>pom</packaging>
-    <name>Camel in Action :: Chapter 6</name>
+    <name>Camel in Action 2 :: Chapter 6</name>
 
     <modules>
         <module>file</module>

@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>chapter6-seda</artifactId>
-    <name>Camel in Action :: Chapter 6 :: SEDA Component Examples</name>
+    <name>Camel in Action 2 :: Chapter 6 :: SEDA Component Examples</name>
 
   <dependencies>
     <dependency>

@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>chapter6-jms</artifactId>
-    <name>Camel in Action :: Chapter 6 :: JMS Component Examples</name>
+    <name>Camel in Action 2 :: Chapter 6 :: JMS Component Examples</name>
 
   <dependencies>
 

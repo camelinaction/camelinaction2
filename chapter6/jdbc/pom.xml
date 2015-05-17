@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>chapter6-jdbc</artifactId>
-    <name>Camel in Action :: Chapter 6 :: JDBC Component Examples</name>
+    <name>Camel in Action 2 :: Chapter 6 :: JDBC Component Examples</name>
 
   <dependencies>
 

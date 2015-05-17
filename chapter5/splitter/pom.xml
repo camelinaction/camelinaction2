@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>chapter5-splitter</artifactId>
-    <name>Camel in Action :: Chapter 5 :: Splitter EIP</name>
+    <name>Camel in Action 2 :: Chapter 5 :: Splitter EIP</name>
 
     <dependencies>
 
