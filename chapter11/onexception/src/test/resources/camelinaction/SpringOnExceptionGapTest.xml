@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- this is the order service bean we use in the routes -->
+  <bean id="orderService" class="camelinaction.OrderServiceBean"/>
+
+  <camelContext id="camel" trace="true" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- the onException is configured to use different redelivery settings for different exception types -->
+
+    <onException>
+      <exception>java.net.ConnectException</exception>
+      <redeliveryPolicy maximumRedeliveries="5"/>
+    </onException>
+
+    <onException>
+      <exception>java.io.IOException</exception>
+      <redeliveryPolicy maximumRedeliveries="3" redeliveryDelay="1000"/>
+    </onException>
+
+    <onException>
+      <exception>java.lang.Exception</exception>
+      <redeliveryPolicy maximumRedeliveries="1" redeliveryDelay="5000"/>
+    </onException>
+
+    <route>
+      <from uri="direct:order"/>
+      <bean ref="orderService" method="handleOrder"/>
+      <bean ref="orderService" method="enrichFromFile"/>
+    </route>
+
+  </camelContext>
+
+</beans>

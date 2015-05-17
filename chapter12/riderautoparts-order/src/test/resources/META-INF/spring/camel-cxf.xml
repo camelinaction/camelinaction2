@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+
+    <!-- This file will be picked up when running the test, and it will using local transport instead of http transport -->
+
+    <cxf:cxfEndpoint id="orderEndpoint"
+                     address="local://order/"
+                     serviceClass="camelinaction.order.OrderEndpoint"/>
+
+</beans>

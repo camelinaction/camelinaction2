@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- exception to throw from route -->
+  <bean id="iae" class="java.lang.IllegalArgumentException">
+    <constructor-arg index="0" value="Forced"/>
+  </bean>
+
+  <!-- this is the failure processor -->
+  <bean id="failureProcessor" class="camelinaction.FailureProcessor"/>
+
+  <camelContext id="camel" errorHandlerRef="dlc" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- this is the Dead Letter Channel error handler, where we use a processor to prepare the failed message -->
+    <errorHandler id="dlc" type="DeadLetterChannel" deadLetterUri="mock:dead"
+                  useOriginalMessage="true" onPrepareFailureRef="failureProcessor"/>
+
+    <!-- this is the first route which will fallback and use the context scoped error handler -->
+    <route>
+      <from uri="direct:start"/>
+      <transform>
+        <constant>This is a changed body</constant>
+      </transform>
+      <throwException ref="iae"/>
+    </route>
+
+  </camelContext>
+
+</beans>

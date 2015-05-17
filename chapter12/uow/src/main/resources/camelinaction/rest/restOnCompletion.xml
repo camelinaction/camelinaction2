@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <!-- a bean with book service -->
+  <bean id="orderService" class="camelinaction.rest.rest.OrderService"/>
+
+  <!-- a bean with tracker service -->
+  <bean id="tokenService" class="camelinaction.rest.rest.TokenService"/>
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- the on completion that insert the token header before the consumer sends the response back to the caller -->
+    <onCompletion mode="BeforeConsumer">
+      <setHeader headerName="Token">
+        <method ref="tokenService"/>
+      </setHeader>
+    </onCompletion>
+
+    <!-- setup rest to use netty4-http as the HTTP server using localhost on port 8080 and context path service -->
+    <!-- enable json binding mode so we can leverage camel-jackson to bind json to/from pojos -->
+    <restConfiguration component="netty4-http" bindingMode="json" host="localhost" port="8080" contextPath="service"/>
+
+    <!-- use rest-dsl to define the rest service to get the order -->
+    <rest path="book" produces="application/json">
+      <get uri="/order/{id}">
+        <to uri="bean:orderService?method=getOrder"/>
+      </get>
+    </rest>
+
+  </camelContext>
+
+</beans>

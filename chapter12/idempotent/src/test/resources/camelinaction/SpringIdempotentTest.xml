@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <!-- setup the memory idempotent repository -->
+  <bean id="repo" class="org.apache.camel.processor.idempotent.MemoryIdempotentRepository"/>
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <route>
+      <from uri="seda:inbox"/>
+      <!-- log incoming orders -->
+      <log message="Incoming order ${header.orderId}"/>
+      <to uri="mock:inbox"/>
+      <!-- idempotent consumer EIP using the memory repo -->
+      <idempotentConsumer messageIdRepositoryRef="repo">
+        <!-- use orderId header as the unique key -->
+        <header>orderId</header>
+        <!-- processing the order is done once and only once -->
+        <log message="Processing order ${header.orderId}"/>
+        <to uri="mock:order"/>
+      </idempotentConsumer>
+    </route>
+
+  </camelContext>
+
+</beans>

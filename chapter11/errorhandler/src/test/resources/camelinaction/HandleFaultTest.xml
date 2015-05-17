@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+    <!-- this is the order service bean we use in the routes -->
+    <bean id="orderService" class="camelinaction.OrderService"/>
+
+    <!-- this is the camel context, notice how we refer to the default error handler
+         as the context scoped error handler -->
+    <camelContext id="camel" errorHandlerRef="dlc" xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- this is the Dead Letter Channel error handler, where we send failed message to a mock endpoint -->
+        <errorHandler id="dlc" type="DeadLetterChannel" deadLetterUri="mock:dead"/>
+
+        <!-- this is the route where we have enabled fault handling by the handleFault attribute -->
+        <route handleFault="true">
+            <from uri="seda:queue.inbox"/>
+            <bean ref="orderService" method="toSoap"/>
+            <to uri="mock:queue.order"/>
+        </route>
+
+    </camelContext>
+
+</beans>

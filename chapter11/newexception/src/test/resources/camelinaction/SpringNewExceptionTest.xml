@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- the forbidden exception to throw from the route -->
+  <bean id="forbidden" class="camelinaction.AuthorizationException">
+    <constructor-arg index="0" value="Forbidden"/>
+  </bean>
+
+  <!-- the processors that handles the exceptions -->
+  <bean id="notAllowedProcessor" class="camelinaction.NotAllowedProcessor"/>
+  <bean id="generalErrorProcessor" class="camelinaction.GeneralErrorProcessor"/>
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- the following 2 onException will cause a circular error handling because they throw exception
+         that the other handles -->
+    <onException>
+      <exception>camelinaction.AuthorizationException</exception>
+      <handled><constant>true</constant></handled>
+      <process ref="notAllowedProcessor"/>
+    </onException>
+
+    <onException>
+      <exception>java.lang.Exception</exception>
+      <handled><constant>true</constant></handled>
+      <process ref="generalErrorProcessor"/>
+    </onException>
+
+    <!-- the route that causes an exception to be thrown -->
+    <route>
+      <from uri="direct:start"/>
+      <log message="User ${header.name} is calling us"/>
+      <filter>
+        <simple>${header.name} == 'Kaboom'</simple>
+        <throwException ref="forbidden"/>
+      </filter>
+      <to uri="mock:done"/>
+    </route>
+
+  </camelContext>
+
+</beans>

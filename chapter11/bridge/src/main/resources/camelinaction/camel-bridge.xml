@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- a bean that we use to order some books after Camel has been started up -->
+  <bean id="bookOrderExample" class="camelinaction.BookOrderExample"/>
+
+  <!-- to setup JPA stuff such as the EntityManagerFactory -->
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+    <property name="persistenceUnitName" value="book"/>
+  </bean>
+
+  <!-- and to configure the Camel JPA component to use the entity manager factory -->
+  <bean id="jpa" class="org.apache.camel.component.jpa.JpaComponent">
+    <property name="entityManagerFactory" ref="entityManagerFactory"/>
+  </bean>
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- setup the consumer endpoint for picking up new orders for the database using JPA
+         notice how we can configure the properties one by one using the property elements -->
+    <endpoint id="newBookOrders" uri="jpa:camelinaction.BookOrder">
+      <property key="delay" value="1000"/>
+      <!-- bridge the consumer with Camel's error handler so if the consumer detects an error its being routed
+           as an empty Exchange with the caused exception -->
+      <property key="consumer.bridgeErrorHandler" value="true"/>
+      <!-- and in case of an error in the consumer, we do not want to poll so fast anymore, so backoff the
+           delay x 10 times = 1s x 10 = 10s -->
+      <property key="backoffMultiplier" value="10"/>
+      <!-- ... and do that after the 1st error has happened -->
+      <property key="backoffErrorThreshold" value="1"/>
+    </endpoint>
+
+    <!-- Camel routing error handler to catch any exception -->
+    <onException>
+      <exception>java.lang.Exception</exception>
+      <!-- in this example we do not want the error handler to be so noisy, so turn of some logging -->
+      <redeliveryPolicy logExhaustedMessageHistory="false" logExhausted="false"/>
+      <handled>
+        <constant>true</constant>
+      </handled>
+      <!-- .. as we log a custom error message with just a little detail -->
+      <log message="Some exception happened but we do not care ${exception.message}" loggingLevel="WARN"/>
+    </onException>
+
+    <!-- this is the route that pickup new book orders -->
+    <route id="books">
+      <from uri="ref:newBookOrders"/>
+      <log message="Incoming book order ${body.orderId} - ${body.amount} of ${body.title}"/>
+    </route>
+
+  </camelContext>
+
+</beans>
+
