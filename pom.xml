@@ -42,21 +42,25 @@
   </scm>
 
   <properties>
+
     <activemq-version>5.11.1</activemq-version>
     <camel-version>2.15.2</camel-version>
     <cxf-version>3.0.4</cxf-version>
+
+    <bundle-plugin-version>2.3.7</bundle-plugin-version>
     <hawtio-version>1.4.50</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
+    <javax-mail-version>1.4.7</javax-mail-version>
+    <jetty-plugin-version>8.1.16.v20140903</jetty-plugin-version>
     <junit-version>4.11</junit-version>
     <log4j-version>1.2.17</log4j-version>
-    <spring-version>4.1.6.RELEASE</spring-version>
-    <slf4j-version>1.7.5</slf4j-version>
-    <xbean-version>3.18</xbean-version>
-    <bundle-plugin-version>2.3.7</bundle-plugin-version>
-    <jetty-plugin-version>8.1.16.v20140903</jetty-plugin-version>
-    <scala-version>2.11.5</scala-version>
+    <mock-javamail-version>1.9</mock-javamail-version>
     <scala-plugin-version>3.1.6</scala-plugin-version>
-    <!-- use utf-8 encoding -->
+    <scala-version>2.11.5</scala-version>
+    <slf4j-version>1.7.5</slf4j-version>
+    <spring-version>4.1.6.RELEASE</spring-version>
+    <xbean-version>3.18</xbean-version>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
@@ -259,7 +263,18 @@
 
       <dependency>
         <groupId>org.apache.camel</groupId>
+        <artifactId>camel-leveldb</artifactId>
+        <version>${camel-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
         <artifactId>camel-quartz</artifactId>
+        <version>${camel-version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-quartz2</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
