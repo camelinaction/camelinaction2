@@ -13,15 +13,15 @@
     <name>Camel in Action :: Chapter 7</name>
 
     <modules>
-        <module>cxf</module>
         <module>file</module>
         <module>ftp</module>
         <module>jms</module>
-        <module>mina</module>
+        <module>netty</module>
+        <module>mail</module>
         <module>jdbc</module>
         <module>jpa</module>
         <module>seda</module>
-        <module>timer</module>
+        <module>scheduler</module>
         <module>quartz</module>
     </modules>
 </project>
