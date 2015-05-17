@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>com.camelinaction</groupId>
-        <artifactId>chapter8</artifactId>
+        <artifactId>chapter5</artifactId>
         <version>2.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>chapter8-aggregator</artifactId>
-    <name>Camel in Action :: Chapter 8 :: Aggregator EIP</name>
+    <artifactId>chapter5-aggregator</artifactId>
+    <name>Camel in Action :: Chapter 5 :: Aggregator EIP</name>
 
     <dependencies>
 
