@@ -24,14 +24,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * The ABC example for using persistent Aggregator EIP using Spring XML.
  * <p/>
- * See {@link AggregateABCHawtDBTest} for details.
+ * See {@link AggregateABCLevelDBTest} for details.
  *
  * @version $Revision$
  */
-public class SpringAggregateABCHawtDBTest extends CamelSpringTestSupport {
+public class SpringAggregateABCLevelDBTest extends CamelSpringTestSupport {
 
     @Test
-    public void testABCHawtDB() throws Exception {
+    public void testABCLevelDB() throws Exception {
         System.out.println("Copy 3 files to target/inbox to trigger the completion");
         System.out.println("Files to copy:");
         System.out.println("  copy src/test/resources/a.txt target/inbox");
@@ -46,6 +46,6 @@ public class SpringAggregateABCHawtDBTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/aggregate-abc-hawtdb.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/aggregate-abc-leveldb.xml");
     }
 }

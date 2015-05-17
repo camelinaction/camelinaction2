@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.hawtdb.HawtDBAggregationRepository;
+import org.apache.camel.component.leveldb.LevelDBAggregationRepository;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
@@ -80,15 +80,15 @@ public class AggregateABCRecoverTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                HawtDBAggregationRepository hawtDB = new HawtDBAggregationRepository("myrepo", "data/myrepo.dat");
+                LevelDBAggregationRepository levelDB = new LevelDBAggregationRepository("myrepo", "data/myrepo.dat");
                 // will recover by default
-                hawtDB.setUseRecovery(true);
+                levelDB.setUseRecovery(true);
                 // try at most 4 times
-                hawtDB.setMaximumRedeliveries(4);
+                levelDB.setMaximumRedeliveries(4);
                 // send to mock:dead if exhausted
-                hawtDB.setDeadLetterUri("mock:dead");
+                levelDB.setDeadLetterUri("mock:dead");
                 // have it retry every 3th second
-                hawtDB.setRecoveryInterval(3000);
+                levelDB.setRecoveryInterval(3000);
 
                 from("direct:start")
                     // do a little logging
@@ -97,8 +97,8 @@ public class AggregateABCRecoverTest extends CamelTestSupport {
                     // use class MyAggregationStrategy for aggregation
                     // and complete when we have aggregated 3 messages
                     .aggregate(header("myId"), new MyAggregationStrategy())
-                        // use HawtDB as the persistent repository
-                        .aggregationRepository(hawtDB)
+                        // use LevelDB as the persistent repository
+                        .aggregationRepository(levelDB)
                         // and complete when we got 3 messages
                         .completionSize(3)
                         // do a little logging for the published message

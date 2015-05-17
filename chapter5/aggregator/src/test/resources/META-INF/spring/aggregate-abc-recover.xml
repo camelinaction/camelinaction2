@@ -32,7 +32,7 @@
     <bean id="myAggregationStrategy" class="camelinaction.MyAggregationStrategy"/>
 
     <!-- define a persistent repository to be used by the aggregator -->
-    <bean id="myRepo" class="org.apache.camel.component.hawtdb.HawtDBAggregationRepository">
+    <bean id="myRepo" class="org.apache.camel.component.leveldb.LevelDBAggregationRepository">
         <!-- the repository must have an unique name -->
         <property name="repositoryName" value="myrepo"/>
         <!-- and we must tell which file to use as store -->

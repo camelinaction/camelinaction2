@@ -17,7 +17,7 @@
 package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.hawtdb.HawtDBAggregationRepository;
+import org.apache.camel.component.leveldb.LevelDBAggregationRepository;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -33,10 +33,10 @@ import org.junit.Test;
  *
  * @version $Revision$
  */
-public class AggregateABCHawtDBTest extends CamelTestSupport {
+public class AggregateABCLevelDBTest extends CamelTestSupport {
 
     @Test
-    public void testABCHawtDB() throws Exception {
+    public void testABCLevelDB() throws Exception {
         System.out.println("Copy 3 files to target/inbox to trigger the completion");
         System.out.println("Files to copy:");
         System.out.println("  copy src/test/resources/a.txt target/inbox");
@@ -54,15 +54,15 @@ public class AggregateABCHawtDBTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                HawtDBAggregationRepository hawtDB = new HawtDBAggregationRepository("myrepo", "data/myrepo.dat");
+                LevelDBAggregationRepository levelDB = new LevelDBAggregationRepository("myrepo", "data/myrepo.dat");
 
                 from("file:target/inbox")
                     // do a little logging when we load the file
                     .log("Consuming file ${file:name}")
                     // just aggregate all messages
                     .aggregate(constant(true), new MyAggregationStrategy())
-                        // use HawtDB as the persistent repository
-                        .aggregationRepository(hawtDB)
+                        // use LevelDB as the persistent repository
+                        .aggregationRepository(levelDB)
                         // and complete when we got 3 messages
                         .completionSize(3)
                         // do a little logging for the published message
