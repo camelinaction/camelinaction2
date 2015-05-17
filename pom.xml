@@ -1,29 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one or more
-    contributor license agreements.  See the NOTICE file distributed with
-    this work for additional information regarding copyright ownership.
-    The ASF licenses this file to You under the Apache License, Version 2.0
-    (the "License"); you may not use this file except in compliance with
-    the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
--->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.camelinaction</groupId>
   <artifactId>parent</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <version>2.0.0</version>
   <packaging>pom</packaging>
-  <name>Camel in Action</name>
-  <inceptionYear>2009</inceptionYear>
+  <name>Camel in Action 2</name>
+  <inceptionYear>2015</inceptionYear>
 
   <prerequisites>
     <maven>3.1.1</maven>
@@ -45,32 +30,31 @@
   </developers>
 
   <modules>
-    <module>chapter5</module>
-    <module>chapter6</module>
+     <module>chapter4</module>
+     <module>chapter5</module>
+     <module>chapter6</module>
+     <module>chapter11</module>
+     <module>chapter12</module>
   </modules>
 
   <scm>
-    <connection>scm:svn:http://camelinaction.googlecode.com/svn/trunk</connection>
-    <developerConnection>scm:svn:https://camelinaction.googlecode.com/svn/trunk</developerConnection>
-    <url>http://code.google.com/p/camelinaction/source/browse/</url>
+    <url>https://github.com/camelinaction/camelinaction2</url>
   </scm>
 
   <properties>
     <activemq-version>5.11.1</activemq-version>
-    <camel-version>2.15.0</camel-version>
+    <camel-version>2.15.2</camel-version>
     <cxf-version>3.0.4</cxf-version>
-    <hawtio-version>1.4.19</hawtio-version>
+    <hawtio-version>1.4.50</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <junit-version>4.11</junit-version>
     <log4j-version>1.2.17</log4j-version>
-    <spring-version>4.1.5.RELEASE</spring-version>
+    <spring-version>4.1.6.RELEASE</spring-version>
     <slf4j-version>1.7.5</slf4j-version>
     <xbean-version>3.18</xbean-version>
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
     <jetty-plugin-version>8.1.16.v20140903</jetty-plugin-version>
     <scala-version>2.11.5</scala-version>
-    <mock-javamail-version>1.9</mock-javamail-version>
-    <javax-mail-version>1.4.7</javax-mail-version>
     <scala-plugin-version>3.1.6</scala-plugin-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -233,19 +217,31 @@
 
       <dependency>
         <groupId>org.apache.camel</groupId>
+        <artifactId>camel-hazelcast</artifactId>
+        <version>${camel-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
         <artifactId>camel-http</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-leveldb</artifactId>
+        <artifactId>camel-hawtdb</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-mail</artifactId>
+        <artifactId>camel-mina</artifactId>
+        <version>${camel-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-netty4-http</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
@@ -263,7 +259,7 @@
 
       <dependency>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-quartz2</artifactId>
+        <artifactId>camel-quartz</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
@@ -312,6 +308,12 @@
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-stream</artifactId>
+        <version>${camel-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-sql</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
