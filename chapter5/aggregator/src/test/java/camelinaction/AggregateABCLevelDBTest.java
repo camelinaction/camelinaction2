@@ -59,6 +59,7 @@ public class AggregateABCLevelDBTest extends CamelTestSupport {
                 from("file:target/inbox")
                     // do a little logging when we load the file
                     .log("Consuming file ${file:name}")
+                    .convertBodyTo(String.class)
                     // just aggregate all messages
                     .aggregate(constant(true), new MyAggregationStrategy())
                         // use LevelDB as the persistent repository
