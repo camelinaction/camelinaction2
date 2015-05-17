@@ -82,6 +82,8 @@
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
     <jetty-plugin-version>8.1.16.v20140903</jetty-plugin-version>
     <scala-version>2.11.5</scala-version>
+    <mock-javamail-version>1.9</mock-javamail-version>
+    <javax-mail-version>1.4.7</javax-mail-version>
     <scala-plugin-version>3.1.6</scala-plugin-version>
     <!-- use utf-8 encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -250,13 +252,13 @@
 
       <dependency>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-hawtdb</artifactId>
+        <artifactId>camel-leveldb</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
       <dependency>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-mina</artifactId>
+        <artifactId>camel-mail</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
@@ -274,7 +276,7 @@
 
       <dependency>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-quartz</artifactId>
+        <artifactId>camel-quartz2</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
