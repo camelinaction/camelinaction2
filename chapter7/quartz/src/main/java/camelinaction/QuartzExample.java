@@ -29,7 +29,7 @@ public class QuartzExample {
         // add our route to the CamelContext
         context.addRoutes(new RouteBuilder() {
             public void configure() {
-                from("quartz://myTimer?trigger.repeatInterval=2000&trigger.repeatCount=-1")
+                from("quartz2://myTimer?trigger.repeatInterval=2000&trigger.repeatCount=-1")
                 .setBody().simple("I was fired at ${header.fireTime}")
                 .to("stream:out");
             }

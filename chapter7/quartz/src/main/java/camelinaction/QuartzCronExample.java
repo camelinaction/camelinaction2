@@ -29,7 +29,7 @@ public class QuartzCronExample {
         // add our route to the CamelContext
         context.addRoutes(new RouteBuilder() {
             public void configure() {
-                from("quartz://report?cron=0/2+*+*+*+*+?")
+                from("quartz2://report?cron=0/2+*+*+*+*+?")
                 .setBody().simple("I was fired at ${header.fireTime}")
                 .to("stream:out");
             }

@@ -22,7 +22,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-quartz</artifactId>
+      <artifactId>camel-quartz2</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
