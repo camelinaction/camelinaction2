@@ -13,10 +13,9 @@
     <version>2.0.0</version>
     <name>Camel in Action 2 :: Chapter 4</name>
 
-    <!--
     <modules>
-        <module>somename</module>
+        <module>bean</module>
     </modules>
-    -->
+
 </project>
 
