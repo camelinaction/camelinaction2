@@ -29,7 +29,7 @@ public class JsonOrderTest extends CamelSpringTestSupport {
         mock.expectedMessageCount(1);
 
         // prepare a JSon document from a String
-        String json = "{ 'order': { 'customerId': 4444, 'item': 'Camel in Action' } }";
+        String json = "{ \"order\": { \"customerId\": 4444, \"item\": \"Camel in Action\" } }";
 
         // store the order as a file which is picked up by the route
         template.sendBodyAndHeader("file://target/order", json, Exchange.FILE_NAME, "order.json");
