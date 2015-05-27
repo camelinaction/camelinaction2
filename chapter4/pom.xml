@@ -15,6 +15,7 @@
 
     <modules>
         <module>bean</module>
+        <module>predicate</module>
         <module>json</module>
     </modules>
 

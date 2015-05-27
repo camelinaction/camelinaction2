@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- the customer service -->
+  <bean id="customerService" class="camelinaction.CustomerService"/>
+
+  <!-- route a message from the file and use the customer service bean to determine
+       if the order is a gold, silver or regular order -->
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+    <route>
+      <from uri="file://target/order"/>
+      <choice>
+        <when>
+          <method ref="customerService" method="isGoldCustomer"/>
+          <to uri="mock:queue:gold"/>
+        </when>
+        <when>
+          <method ref="customerService" method="isSilverCustomer"/>
+          <to uri="mock:queue:silver"/>
+        </when>
+        <otherwise>
+          <to uri="mock:queue:regular"/>
+        </otherwise>
+      </choice>
+    </route>
+  </camelContext>
+
+</beans>
