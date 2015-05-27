@@ -63,7 +63,7 @@ public class RoutingSlipTest extends CamelTestSupport {
                 from("direct:start")
                     // compute the routing slip at runtime using a bean
                     // use the routing slip EIP
-                    .routingSlip().method(ComputeSlip.class);
+                    .routingSlip(method(ComputeSlip.class));
             }
         };
     }
