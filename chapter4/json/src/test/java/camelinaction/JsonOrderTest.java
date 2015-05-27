@@ -6,18 +6,15 @@ import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.w3c.dom.Document;
 
 /**
  * Test to demonstrate using @JsonPath and @Bean annotations in the {@link JSonOrderService} bean.
- *
- * @version $Revision$
  */
 public class JsonOrderTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("camelinaction/xmlOrder.xml");
+        return new ClassPathXmlApplicationContext("camelinaction/jsonOrder.xml");
     }
 
     @Override
@@ -31,12 +28,11 @@ public class JsonOrderTest extends CamelSpringTestSupport {
         MockEndpoint mock = getMockEndpoint("mock:queue:order");
         mock.expectedMessageCount(1);
 
-        // prepare a XML document from a String which is converted to a DOM
-        String body = "<order customerId=\"4444\"><item>Camel in action</item></order>";
-        Document xml = context.getTypeConverter().convertTo(Document.class, body);
+        // prepare a JSon document from a String
+        String json = "{ 'order': { 'customerId': 4444, 'item': 'Camel in Action' } }";
 
         // store the order as a file which is picked up by the route
-        template.sendBodyAndHeader("file://target/order", xml, Exchange.FILE_NAME, "order.xml");
+        template.sendBodyAndHeader("file://target/order", json, Exchange.FILE_NAME, "order.json");
 
         mock.assertIsSatisfied();
     }
