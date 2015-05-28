@@ -9,7 +9,7 @@
         <version>2.0.0</version>
     </parent>
 
-    <artifactId>chapter4-json</artifactId>
+    <artifactId>chapter4-predicate</artifactId>
     <name>Camel in Action 2 :: Chapter 4 :: Using beans as predicates</name>
 
     <dependencies>
