@@ -1,20 +1,28 @@
 package camelinaction;
 
 import org.apache.camel.Exchange;
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
+import org.springframework.context.support.AbstractXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Test to demonstrate using @JsonPath as bean predicates during routing
  */
-public class JsonPredicateTest extends CamelTestSupport {
+public class SpringJsonExpressionTest extends CamelSpringTestSupport {
+
+    @Override
+    protected AbstractXmlApplicationContext createApplicationContext() {
+        return new ClassPathXmlApplicationContext("camelinaction/beanExpression.xml");
+    }
 
     @Override
     public void setUp() throws Exception {
         deleteDirectory("target/order");
         super.setUp();
     }
+
+    // TODO: Is not complete
 
     @Test
     public void sendGoldOrder() throws Exception {
@@ -46,17 +54,4 @@ public class JsonPredicateTest extends CamelTestSupport {
         assertMockEndpointsSatisfied();
     }
 
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                from("file://target/order")
-                    .choice()
-                        .when(method(CustomerService.class, "isGold")).to("mock:queue:gold")
-                        .when(method(CustomerService.class, "isSilver")).to("mock:queue:silver")
-                        .otherwise().to("mock:queue:regular");
-            }
-        };
-    }
 }

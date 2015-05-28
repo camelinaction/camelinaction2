@@ -9,24 +9,19 @@
   <!-- the customer service -->
   <bean id="customerService" class="camelinaction.CustomerService"/>
 
-  <!-- route a message from the file and use the customer service bean to determine
-       if the order is a gold, silver or regular order -->
+  <!-- route a message from the file and use the customer service bean to determine where to route the message -->
   <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
     <route>
       <from uri="file://target/order"/>
-      <choice>
-        <when>
-          <method ref="customerService" method="isGold"/>
-          <to uri="mock:queue:gold"/>
-        </when>
-        <when>
-          <method ref="customerService" method="isSilver"/>
-          <to uri="mock:queue:silver"/>
-        </when>
-        <otherwise>
-          <to uri="mock:queue:regular"/>
-        </otherwise>
-      </choice>
+      <!-- set a header with the region from where the customer is from -->
+      <setHeader headerName="region">
+        <!-- use a method call to call a bean as the expression -->
+        <method ref="customerService" method="region"/>
+      </setHeader>
+      <!-- route the message according to the region, using the recipient list (dynamic to) -->
+      <recipientList>
+        <simple>mock:queue:${header.region}</simple>
+      </recipientList>
     </route>
   </camelContext>
 

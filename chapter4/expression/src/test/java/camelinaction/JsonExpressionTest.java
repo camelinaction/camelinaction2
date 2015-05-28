@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Test to demonstrate using @JsonPath as bean predicates during routing
  */
-public class JsonPredicateTest extends CamelTestSupport {
+public class JsonExpressionTest extends CamelTestSupport {
 
     @Override
     public void setUp() throws Exception {
@@ -17,7 +17,7 @@ public class JsonPredicateTest extends CamelTestSupport {
     }
 
     @Test
-    public void sendGoldOrder() throws Exception {
+    public void sendUSOrder() throws Exception {
         getMockEndpoint("mock:queue:gold").expectedMessageCount(1);
         getMockEndpoint("mock:queue:silver").expectedMessageCount(0);
         getMockEndpoint("mock:queue:regular").expectedMessageCount(0);
@@ -32,7 +32,7 @@ public class JsonPredicateTest extends CamelTestSupport {
     }
 
     @Test
-    public void sendSilverOrder() throws Exception {
+    public void sendEMEAOrder() throws Exception {
         getMockEndpoint("mock:queue:gold").expectedMessageCount(0);
         getMockEndpoint("mock:queue:silver").expectedMessageCount(1);
         getMockEndpoint("mock:queue:regular").expectedMessageCount(0);
@@ -52,10 +52,8 @@ public class JsonPredicateTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("file://target/order")
-                    .choice()
-                        .when(method(CustomerService.class, "isGold")).to("mock:queue:gold")
-                        .when(method(CustomerService.class, "isSilver")).to("mock:queue:silver")
-                        .otherwise().to("mock:queue:regular");
+                    .setHeader("region", method(CustomerService.class, "region"))
+                    .recipientList(simple("mock:queue:${header.region}"));
             }
         };
     }
