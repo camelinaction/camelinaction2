@@ -49,6 +49,7 @@ public class SpringFailoverInheritErrorHandlerLoadBalancerTest extends CamelSpri
                     .end();
             }
         });
+        context.start();
 
         // A should get the 1st
         MockEndpoint a = getMockEndpoint("mock:a");
@@ -65,4 +66,8 @@ public class SpringFailoverInheritErrorHandlerLoadBalancerTest extends CamelSpri
         assertMockEndpointsSatisfied();
     }
 
+    @Override
+    public boolean isUseAdviceWith() {
+        return true;
+    }
 }

@@ -51,6 +51,7 @@ public class FailoverInheritErrorHandlerLoadBalancerTest extends CamelTestSuppor
                     .end();
             }
         });
+        context.start();
 
         // A should get the 1st
         MockEndpoint a = getMockEndpoint("mock:a");
@@ -65,6 +66,11 @@ public class FailoverInheritErrorHandlerLoadBalancerTest extends CamelTestSuppor
         template.sendBody("direct:start", "Kaboom");
 
         assertMockEndpointsSatisfied();
+    }
+
+    @Override
+    public boolean isUseAdviceWith() {
+        return true;
     }
 
     @Override
