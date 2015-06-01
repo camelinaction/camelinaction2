@@ -14,13 +14,12 @@ public class CustomerService {
      */
     public String region(@JsonPath("$.order.customerId") int customerId) {
         if (customerId < 1000) {
-            return "US"
+            return "US";
         } else if (customerId < 2000) {
-            return "EMEA"
+            return "EMEA";
         } else {
-            return "OTHER"
+            return "OTHER";
         }
     }
-
 
 }
