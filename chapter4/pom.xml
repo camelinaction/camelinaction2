@@ -15,6 +15,7 @@
 
     <modules>
         <module>bean</module>
+        <module>cdi-bean</module>
         <module>expression</module>
         <module>predicate</module>
         <module>json</module>

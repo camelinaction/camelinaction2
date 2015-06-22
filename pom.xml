@@ -48,6 +48,7 @@
     <cxf-version>3.0.4</cxf-version>
 
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
+    <deltaspike-version>1.4.1</deltaspike-version>
     <hawtio-version>1.4.50</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <javax-mail-version>1.4.7</javax-mail-version>
@@ -60,6 +61,7 @@
     <slf4j-version>1.7.5</slf4j-version>
     <spring-version>4.1.6.RELEASE</spring-version>
     <xbean-version>3.18</xbean-version>
+    <weld-version>2.2.13.Final</weld-version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -204,6 +206,12 @@
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-scala</artifactId>
+        <version>${camel-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-cdi</artifactId>
         <version>${camel-version}</version>
       </dependency>
 
