@@ -14,9 +14,7 @@
     <name>Camel in Action 2 :: Chapter 13</name>
 
     <modules>
-        <!--
-        <module>bean</module>
-    -->
+        <module>bigfile</module>
     </modules>
 
 </project>
