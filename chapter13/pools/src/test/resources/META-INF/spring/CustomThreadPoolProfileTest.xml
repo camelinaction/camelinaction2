@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <!-- define a custom thread pool profile for big pools -->
+        <!-- this profile will inherit values from the default profile -->
+        <threadPoolProfile id="bigPool" maxPoolSize="100"/>
+
+        <route>
+            <from uri="direct:start"/>
+            <!--use the bigPool profile for creating the thread pool to be used-->
+            <threads executorServiceRef="bigPool">
+                <!-- this is executed in bigPool -->
+                <to uri="log:cool"/>
+                <to uri="mock:result"/>
+            </threads>
+        </route>
+
+    </camelContext>
+
+</beans>

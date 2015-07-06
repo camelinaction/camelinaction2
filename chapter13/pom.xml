@@ -15,6 +15,7 @@
 
     <modules>
         <module>bigfile</module>
+        <module>pools</module>
     </modules>
 
 </project>
