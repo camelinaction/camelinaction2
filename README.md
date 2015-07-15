@@ -3,7 +3,7 @@ Camel in Action 2nd Edition
 
 This project hosts the source code for the examples of the [Camel in Action](http://manning.com/ibsen2/) 2nd edition book written by [Claus Ibsen](https://twitter.com/davsclaus) and [Jonathan Anstey](https://twitter.com/jon_anstey). 
 
-![Camel in Action cover](/docs/images/cia_cover150.jpg?raw=true)
+![Camel in Action 2nd ed cover](/docs/images/cia2_cover150.jpg?raw=true)
 
 
 Downloading the source code
@@ -23,7 +23,7 @@ Getting in touch
 
 To get in touch with the us the authors you can:
 
-* write on the [Manning Author Online forum](http://www.manning-sandbox.com/forum.jspa?forumID=601)
+* write on the [Manning Author Online forum](https://forums.manning.com/forums/camel-in-action-second-edition)
 * reach out to us on twitter: [@davsclaus](https://twitter.com/davsclaus), [@jon_anstey](https://twitter.com/jon_anstey)
 * or use the [github issue tracker](https://github.com/camelinaction/camelinaction2/issues)
 
