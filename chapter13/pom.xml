@@ -17,6 +17,7 @@
         <module>bigfile</module>
         <module>eip</module>
         <module>pools</module>
+        <module>scalability</module>
     </modules>
 
 </project>
