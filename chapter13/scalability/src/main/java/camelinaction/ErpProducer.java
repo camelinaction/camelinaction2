@@ -17,8 +17,20 @@ public class ErpProducer extends DefaultAsyncProducer {
 
     public ErpProducer(Endpoint endpoint) {
         super(endpoint);
+    }
+
+    @Override
+    protected void doStart() throws Exception {
+        super.doStart();
         // use Camel to create the thread pool for us
-        this.executor = endpoint.getCamelContext().getExecutorServiceManager().newFixedThreadPool(this, "ERP", 10);
+        this.executor = getEndpoint().getCamelContext().getExecutorServiceManager().newFixedThreadPool(this, "ERP", 10);
+    }
+
+    @Override
+    protected void doStop() throws Exception {
+        super.doStop();
+        // shutdown thread pool when we stop
+        getEndpoint().getCamelContext().getExecutorServiceManager().shutdown(executor);
     }
 
     public boolean process(final Exchange exchange, final AsyncCallback callback) {
