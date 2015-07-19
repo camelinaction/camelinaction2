@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <bean id="delayProcessor" class="camelinaction.DelayProcessor"/>
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <route id="myRoute" autoStartup="false">
+      <from uri="file:target/inbox?delete=true"/>
+      <log message="About to process ${file:name} picked up using thread #${threadName}"/>
+      <!--  use 10 active threads and no task-queue so we only pickup new files when there
+            is a available thread in the thread pool to process the file -->
+      <threads poolSize="10" maxQueueSize="0">
+        <log message="Processing ${file:name} using thread #${threadName}"/>
+        <process ref="delayProcessor"/>
+        <log message="Processing ${file:name} using thread #${threadName} is done"/>
+      </threads>
+      <to uri="log:done?groupSize=10"/>
+    </route>
+
+  </camelContext>
+
+</beans>
