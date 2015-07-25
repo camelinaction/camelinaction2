@@ -16,39 +16,36 @@
  */
 package camelinaction;
 
-import java.io.InputStream;
 import java.security.Key;
 import java.security.KeyStore;
-
-import javax.crypto.SecretKey;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.crypto.CryptoDataFormat;
 import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.util.jsse.KeyStoreParameters;
 import org.junit.Test;
 
 public class MessageEncryptionTest extends CamelTestSupport {
 
-    private KeyStore keystore;
     private Key secretKey;
 
     @Override
     protected JndiRegistry createRegistry() throws Exception {
         JndiRegistry registry = super.createRegistry();
-        keystore = loadKeystore("/cia_secrets.jceks", "supersecret");
-        secretKey = keystore.getKey("ciasecrets", "secret".toCharArray());
-        registry.bind("keystore", keystore);
+        
+        KeyStoreParameters keystore = new KeyStoreParameters();
+        keystore.setPassword("supersecret");
+        keystore.setResource("./cia_secrets.jceks");
+        keystore.setType("JCEKS");
+        
+        KeyStore store = keystore.createKeyStore();
+        secretKey = store.getKey("ciasecrets", "secret".toCharArray());
+        registry.bind("ciasecrets", secretKey);
         return registry;
     }
 
-    public static KeyStore loadKeystore(String file, String password) throws Exception {
-        KeyStore keystore = KeyStore.getInstance("JCEKS");
-        InputStream in = MessageEncryptionTest.class.getResourceAsStream(file);
-        keystore.load(in, password.toCharArray());
-        return keystore;
-    }
         
     @Test
     public void testEncryptAndDecryptMessage() throws Exception {
