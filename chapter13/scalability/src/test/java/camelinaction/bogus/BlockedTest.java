@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package camelinaction;
+package camelinaction.bogus;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
-public class ScalabilityBlockedTest extends CamelTestSupport {
+public class BlockedTest extends CamelTestSupport {
 
     @Override
     protected boolean useJmx() {
@@ -59,7 +59,7 @@ public class ScalabilityBlockedTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("direct:start")
-                    .log("Calling bogs with ${threadName}")
+                    .log("Calling bogus with ${threadName}")
                     .to("bogus:foo").id("to-bogus")
                     .log("Response from bogus ${body} from ${threadName}");
             }

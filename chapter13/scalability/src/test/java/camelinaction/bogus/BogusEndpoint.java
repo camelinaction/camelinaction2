@@ -1,4 +1,4 @@
-package camelinaction;
+package camelinaction.bogus;
 
 import org.apache.camel.Component;
 import org.apache.camel.Consumer;

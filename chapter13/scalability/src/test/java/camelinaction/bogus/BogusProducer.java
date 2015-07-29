@@ -1,4 +1,4 @@
-package camelinaction;
+package camelinaction.bogus;
 
 import java.util.concurrent.ExecutorService;
 

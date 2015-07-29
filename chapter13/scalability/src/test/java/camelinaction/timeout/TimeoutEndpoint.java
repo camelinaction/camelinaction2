@@ -1,6 +1,5 @@
 package camelinaction.timeout;
 
-import camelinaction.BogusProducer;
 import org.apache.camel.Component;
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
