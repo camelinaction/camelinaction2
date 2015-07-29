@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <route id="input">
+            <from uri="jetty:http://localhost:8080/early"/>
+            <!-- let the wiretap continue processing the incoming message
+                 in a separate thread (will use InOnly MEP) -->
+            <wireTap uri="direct:incoming"/>
+            <!-- while the consumer can prepare and return an early reply
+                 back to the waiting caller -->
+            <transform>
+                <constant>OK</constant>
+            </transform>
+        </route>
+        
+        <route id="process">
+            <!-- we continue routing the message here -->
+            <from uri="direct:incoming"/>
+            <!-- convert the jetty stream to String so we can safely read it multiple times -->
+            <convertBodyTo type="String"/>
+            <log message="Incoming ${body}"/>
+            <!-- simulate processing time -->
+            <delay>
+                <constant>3000</constant>
+            </delay>
+            <log message="Processing done for ${body}"/>
+            <to uri="mock:result"/>
+        </route>
+
+    </camelContext>
+
+</beans>
