@@ -17,5 +17,6 @@
     <modules>
         <module>configuration</module>
     <module>payload</module>
+    <module>route</module>
   </modules>
 </project>
