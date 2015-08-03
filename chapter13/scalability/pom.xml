@@ -9,7 +9,7 @@
         <version>2.0.0</version>
     </parent>
 
-    <artifactId>chapter13-pools</artifactId>
+    <artifactId>chapter13-scalability</artifactId>
     <name>Camel in Action 2 :: Chapter 13 :: Scalability</name>
 
     <dependencies>
