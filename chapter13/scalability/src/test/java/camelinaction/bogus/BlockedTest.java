@@ -43,8 +43,8 @@ public class BlockedTest extends CamelTestSupport {
 
     @Test
     public void testBlocked() throws Exception {
-        log.info("This operation will cause Camel to block processing the message.");
-        log.info("You need to use jconsole to manually unblock this");
+        log.info("This operation will cause Camel to block processing the message (5 minute).");
+        log.info("You need to use a JMX console such as jconsole or hawtio to manually unblock this");
         try {
             template.requestBody("direct:start", "ActiveMQ in Action", String.class);
             fail("Should fail");
