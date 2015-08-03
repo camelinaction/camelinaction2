@@ -86,6 +86,14 @@
           -->
         </executions>
       </plugin>
+
+      <!-- mvn test using hawtio web console with: mvn hawtio:test -->
+      <plugin>
+        <groupId>io.hawt</groupId>
+        <artifactId>hawtio-maven-plugin</artifactId>
+        <version>${hawtio-version}</version>
+      </plugin>
+
     </plugins>
   </build>
 
