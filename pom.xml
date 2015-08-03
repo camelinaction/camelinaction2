@@ -50,7 +50,7 @@
 
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
     <deltaspike-version>1.4.1</deltaspike-version>
-    <hawtio-version>1.4.50</hawtio-version>
+    <hawtio-version>1.4.52</hawtio-version>
     <hsqldb-version>1.8.0.10</hsqldb-version>
     <javax-mail-version>1.4.7</javax-mail-version>
     <jetty-plugin-version>8.1.16.v20140903</jetty-plugin-version>
