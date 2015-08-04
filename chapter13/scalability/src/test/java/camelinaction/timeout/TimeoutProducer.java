@@ -25,6 +25,21 @@ public class TimeoutProducer extends DefaultAsyncProducer {
 
     @Override
     public boolean process(final Exchange exchange, final AsyncCallback callback) {
+        // validate that the message has some data
+        try {
+            String body = exchange.getIn().getBody(String.class);
+            if (body == null || body.contains("Donkey")) {
+                throw new IllegalArgumentException("Real developers ride Camels");
+            }
+        } catch (Exception e) {
+            // idiom to catch exception and set on Exchange
+            exchange.setException(e);
+            // and need to call callback before returning when using true
+            callback.done(true);
+            // return true
+            return true;
+        }
+
         CallRemoteSystemTask task = new CallRemoteSystemTask(exchange, callback, timeout);
         executor.submit(task);
         return false;
