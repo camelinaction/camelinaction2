@@ -36,6 +36,7 @@
      <module>chapter11</module>
      <module>chapter12</module>
      <module>chapter13</module>
+     <module>chapter16</module>
   </modules>
 
   <scm>
