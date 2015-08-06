@@ -1,4 +1,4 @@
-Chapter 12 -  Health check
+Chapter 16 -  Health check
 ========================================
 
 This example shows how you can write a Camel route that exposes a HTTP service as a simple health check service.

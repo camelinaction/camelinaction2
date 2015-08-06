@@ -1,7 +1,6 @@
 package camelinaction;
 
-import org.apache.camel.CamelContext;
-import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.main.Main;
 
 /**
  * Main class to run the ping service
@@ -9,18 +8,19 @@ import org.apache.camel.impl.DefaultCamelContext;
 public class PingServiceMain {
 
     public static void main(String[] args) throws Exception {
-        CamelContext context = new DefaultCamelContext();
+        // use Camel main to run Camel easily from Java main
+        Main main = new Main();
+        // enable support for graceful shutdown if the JVM terminates
+        main.enableHangupSupport();
 
-        context.addRoutes(new PingService());
-
-        context.start();
+        // add the route
+        main.addRouteBuilder(new PingService());
 
         System.out.println("Ping service running. Try sending a HTTP GET to http://localhost:8080/ping");
         System.out.println("Camel started use ctrl + c to stop.");
 
-        Runtime.getRuntime().addShutdownHook(new ShutdownThread(context));
-
-        Thread.sleep(99999999);
+        // run until the JVM terminates
+        main.run();
     }
 
 }
