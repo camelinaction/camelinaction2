@@ -29,7 +29,6 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jetty</artifactId>
     </dependency>
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
