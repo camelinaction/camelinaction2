@@ -19,24 +19,22 @@ public class RiderEventNotifier extends EventNotifierSupport {
         this.appId = appId;
     }
 
-    public void notify(EventObject eventObject) throws Exception {
-        // we only want to notify in case of failures
-        if (eventObject instanceof ExchangeFailedEvent) {
-            notifyFailure((ExchangeFailedEvent) eventObject);
-        }
-    }
-
-    protected void notifyFailure(ExchangeFailedEvent event) {
-        String id = event.getExchange().getExchangeId();
-        Exception cause = event.getExchange().getException();
-        Date now = new Date();
-
-        publisher.publish(appId, id, now, cause.getMessage());
-    }
-
     public boolean isEnabled(EventObject eventObject) {
         // can be used for fine grained to determine whether to notify this event or not
-        return true;
+
+        // we only want to notify in case of failures
+        return eventObject instanceof ExchangeFailedEvent;
+    }
+
+    public void notify(EventObject eventObject) throws Exception {
+        if (eventObject instanceof ExchangeFailedEvent) {
+            ExchangeFailedEvent event = (ExchangeFailedEvent) eventObject;
+            String id = event.getExchange().getExchangeId();
+            Exception cause = event.getExchange().getException();
+            Date now = new Date();
+
+            publisher.publish(appId, id, now, cause.getMessage());
+        }
     }
 
     public void setPublisher(RiderFailurePublisher publisher) {
