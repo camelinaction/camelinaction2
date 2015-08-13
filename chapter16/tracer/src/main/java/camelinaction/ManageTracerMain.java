@@ -8,6 +8,9 @@ import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.processor.interceptor.DefaultTraceFormatter;
+import org.apache.camel.processor.interceptor.TraceFormatter;
+import org.apache.camel.processor.interceptor.Tracer;
 
 /**
  * Main app to demonstrate how to manage Tracer at runtime using JMX
@@ -65,6 +68,11 @@ public class ManageTracerMain {
 
                 // enable tracing
                 context.setTracing(true);
+
+                // configure tracer to be less verbose
+                Tracer tracer = (Tracer) context.getDefaultTracer();
+                tracer.getDefaultTraceFormatter().setShowProperties(false);
+                tracer.getDefaultTraceFormatter().setShowHeaders(false);
 
                 // slow things down a bit
                 context.setDelayer(2000L);
