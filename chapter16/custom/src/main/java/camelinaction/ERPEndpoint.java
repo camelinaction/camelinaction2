@@ -7,17 +7,20 @@ import org.apache.camel.Producer;
 import org.apache.camel.api.management.ManagedAttribute;
 import org.apache.camel.api.management.ManagedResource;
 import org.apache.camel.impl.DefaultEndpoint;
+import org.apache.camel.spi.UriEndpoint;
+import org.apache.camel.spi.UriParam;
+import org.apache.camel.spi.UriPath;
 
 /**
- * A custom endpoint which is using Spring JMX to easily let it be managed from JMX.
- * <p/>
- * By using @ManagedResource it will be turned into a MBean which can be managed from JMX.
- * By using @ManagedAttribute we can expose the attributes we want to be managed.
- * There is also a @ManagedOperation you can use for operations.
+ *  Endpoint to simulate communication with ERP system which we want to manage from JMX.
  */
+@UriEndpoint(scheme = "erp", title = "ERP", syntax = "erp:name", producerOnly = true, label = "legacy")
 @ManagedResource(description = "Managed ERPEndpoint")
 public class ERPEndpoint extends DefaultEndpoint {
 
+    @UriPath
+    private String name;
+    @UriParam
     private boolean verbose;
 
     public ERPEndpoint(String endpointUri, Component component) {
@@ -36,14 +39,29 @@ public class ERPEndpoint extends DefaultEndpoint {
         return true;
     }
 
-    @ManagedAttribute
+    @ManagedAttribute(description = "Whether to use verbose activity logging")
     public boolean isVerbose() {
         return verbose;
     }
 
-    @ManagedAttribute
+    /**
+     * Whether to use verbose activity logging
+     */
+    @ManagedAttribute(description = "Whether to use verbose activity logging")
     public void setVerbose(boolean verbose) {
         this.verbose = verbose;
+    }
+
+    @ManagedAttribute(description = "Logical name of endpoint")
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Logical name of endpoint.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
