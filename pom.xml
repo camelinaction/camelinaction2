@@ -47,8 +47,8 @@
   <properties>
 
     <activemq-version>5.11.2</activemq-version>
-    <camel-version>2.15.2</camel-version>
-    <cxf-version>3.0.4</cxf-version>
+    <camel-version>2.15.3</camel-version>
+    <cxf-version>3.0.6</cxf-version>
 
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
     <deltaspike-version>1.4.1</deltaspike-version>
