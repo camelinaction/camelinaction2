@@ -59,8 +59,7 @@
       <!-- Allows the example to be run via 'mvn compile exec:exec' -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.4.0</version>
+        <artifactId>exec-maven-plugin</artifactId>   
         <configuration>
           <executable>java</executable>
           <arguments>
