@@ -16,6 +16,7 @@
     <modules>
         <module>custom</module>
         <module>health</module>
+        <module>jolokia</module>
         <module>logging</module>
         <module>notifier</module>
         <module>tracer</module>
