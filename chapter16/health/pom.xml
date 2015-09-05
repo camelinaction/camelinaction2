@@ -53,15 +53,6 @@
 
   </dependencies>
 
-  <profiles>
-    <profile>
-      <id>PingService</id>
-      <properties>
-        <target.main.class>camelinaction.PingServiceMain</target.main.class>
-      </properties>
-    </profile>
-  </profiles>
-
   <build>
     <plugins>
 
@@ -70,9 +61,8 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
-          <mainClass>${target.main.class}</mainClass>
+          <mainClass>camelinaction.PingServiceMain</mainClass>
           <includePluginDependencies>false</includePluginDependencies>
-          <commandlineArgs>${target.cmd.args}</commandlineArgs>
         </configuration>
       </plugin>
     </plugins>
