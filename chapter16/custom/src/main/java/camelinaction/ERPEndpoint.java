@@ -5,6 +5,7 @@ import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
 import org.apache.camel.Producer;
 import org.apache.camel.api.management.ManagedAttribute;
+import org.apache.camel.api.management.ManagedOperation;
 import org.apache.camel.api.management.ManagedResource;
 import org.apache.camel.impl.DefaultEndpoint;
 import org.apache.camel.spi.UriEndpoint;
@@ -62,6 +63,14 @@ public class ERPEndpoint extends DefaultEndpoint {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Operation to perform a PING test of the ERP system.
+     */
+    @ManagedOperation(description = "Ping test of the ERP system")
+    public String ping() {
+        return "PONG";
     }
 
 }
