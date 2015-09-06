@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+  <!-- location of spring xml files -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:camel-config.xml</param-value>
+  </context-param>
+
+  <!-- the listener that kick-starts Spring -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- Camel servlet -->
+  <servlet>
+    <servlet-name>CamelServlet</servlet-name>
+    <servlet-class>org.apache.camel.component.servlet.CamelHttpTransportServlet</servlet-class>
+  </servlet>
+
+  <!-- Camel servlet mapping -->
+  <servlet-mapping>
+    <servlet-name>CamelServlet</servlet-name>
+    <url-pattern>/camel/*</url-pattern>
+  </servlet-mapping>
+
+  <!-- embed Jolokia into our WAR -->
+  <servlet>
+    <servlet-name>jolokia-agent</servlet-name>
+    <servlet-class>org.jolokia.http.AgentServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>jolokia-agent</servlet-name>
+    <url-pattern>/jolokia/*</url-pattern>
+  </servlet-mapping>
+
+</web-app>
