@@ -56,7 +56,7 @@ public class PurchaseOrderBindyTest extends TestCase {
         return new RouteBuilder() {
             public void configure() throws Exception {
                 from("direct:toCsv")
-                        .marshal().bindy(BindyType.Csv, "camelinaction.bindy")
+                        .marshal().bindy(BindyType.Csv, camelinaction.bindy.PurchaseOrder.class)
                         .to("mock:result");
             }
         };
