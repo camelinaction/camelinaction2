@@ -59,7 +59,7 @@ public class PurchaseOrderJSONTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("jetty://http://0.0.0.0:8080/order/service")
-                    .beanRef("orderService", "lookup")
+                    .bean("orderService", "lookup")
                     .marshal().json(JsonLibrary.Jackson);
             }
         };
