@@ -24,10 +24,10 @@ public class LogEIPSpringTest extends CamelSpringTestSupport {
 
     @Test
     public void testLogEIP() throws Exception {
-        template.sendBodyAndHeader("file://target/rider/orders", "123,4444,20100110,222,1", Exchange.FILE_NAME, "someorder.csv");
+        template.sendBodyAndHeader("file://target/rider/orders", "123,4444,20150810,222,1", Exchange.FILE_NAME, "someorder.csv");
 
         String xml = consumer.receiveBody("seda:queue:orders", 5000, String.class);
-        assertEquals("<order><id>123/id><customerId>4444/customerId><date>20100110</date>"
+        assertEquals("<order><id>123/id><customerId>4444/customerId><date>20150810</date>"
                 + "<item><id>222</id><amount>1</amount></itemn></order>", xml);
     }
 

@@ -53,7 +53,7 @@ public class ManageTracerMain {
         mock.expectedMessageCount(100);
 
         for (int i = 0; i < 100; i++) {
-            template.sendBody("file://target/rider/orders", "" + i + ",4444,20100110,222,1");
+            template.sendBody("file://target/rider/orders", "" + i + ",4444,20150810,222,1");
         }
 
         mock.await(100 * 10, TimeUnit.SECONDS);
