@@ -17,6 +17,7 @@
         <module>custom</module>
         <module>health</module>
         <module>jolokia</module>
+        <module>jolokia-karaf</module>
         <module>jolokia-embedded-war</module>
         <module>logging</module>
         <module>notifier</module>
