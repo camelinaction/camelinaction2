@@ -25,7 +25,7 @@ public class PingService extends RouteBuilder {
             // controlbus to start/stop the route
             .get("route/{action}")
                 // use dynamic-to so the action is provided from the url
-                .toD("controlbus:route?routeId=ping&action=${header.action}");
+                .toD("controlbus:route?routeId=ping&action=${header.action}?async=false");
 
     }
 

@@ -16,6 +16,7 @@
     <modules>
         <module>controlbus</module>
         <module>custom</module>
+        <module>custom-bean</module>
         <module>health</module>
         <module>jolokia</module>
         <module>jolokia-karaf</module>
