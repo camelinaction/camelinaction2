@@ -28,13 +28,17 @@
 
         <route>
             <from uri="direct:marshal"/>
-            <marshal ref="reverse"/>
+            <marshal>
+                <custom ref="reverse"/>
+            </marshal>
             <to uri="log:marshal"/>
         </route>
 
         <route>
             <from uri="direct:unmarshal"/>
-            <unmarshal ref="reverse"/>
+            <unmarshal>
+                <custom ref="reverse"/>
+            </unmarshal>
             <to uri="log:unmarshal"/>
         </route>
 
