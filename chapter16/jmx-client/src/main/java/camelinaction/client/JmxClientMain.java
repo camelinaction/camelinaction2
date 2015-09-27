@@ -21,8 +21,6 @@ public class JmxClientMain {
 
         client.disconnect();
         System.out.println("Client 1 : Disconnected");
-
-
     }
 
 }
