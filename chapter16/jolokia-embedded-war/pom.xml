@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>chapter16-jolokia-embedded-war</artifactId>
-  <name>Camel in Action 2 :: Chapter 16 :: Jolokia Embedded WAR</name>
+  <name>Camel in Action 2 :: Chapter 16 :: Jolokia embedded WAR</name>
   <packaging>war</packaging>
 
   <dependencies>
