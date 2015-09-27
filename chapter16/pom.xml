@@ -18,6 +18,7 @@
         <module>custom</module>
         <module>custom-bean</module>
         <module>health</module>
+        <module>jmx-client</module>
         <module>jolokia</module>
         <module>jolokia-karaf</module>
         <module>jolokia-embedded-war</module>
