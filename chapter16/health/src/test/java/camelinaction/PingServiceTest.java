@@ -14,7 +14,7 @@ public class PingServiceTest extends CamelTestSupport {
     @Test
     public void testPing() throws Exception {
         String reply = template.requestBody("http://127.0.0.1:8080/ping", null, String.class);
-        assertEquals("PONG\n", reply);
+        assertEquals("PONG", reply);
     }
 
 }

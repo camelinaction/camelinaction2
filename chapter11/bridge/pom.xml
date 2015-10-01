@@ -13,7 +13,6 @@
   <name>Camel in Action 2 :: Chapter 11 :: Bridge Error Handler</name>
 
   <properties>
-    <camel-version>2.16-SNAPSHOT</camel-version>
     <openjpa-version>2.3.0</openjpa-version>
   </properties>
 

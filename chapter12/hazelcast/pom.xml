@@ -12,11 +12,6 @@
   <artifactId>chapter12-hazelcast</artifactId>
   <name>Camel in Action 2 :: Chapter 12 :: Hazelcast Idempotent Repository</name>
 
-  <!-- TODO this requires next Camel release -->
-  <properties>
-    <camel-version>2.16-SNAPSHOT</camel-version>
-  </properties>
-
   <dependencies>
 
     <dependency>

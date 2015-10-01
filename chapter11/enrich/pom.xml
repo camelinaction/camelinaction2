@@ -12,11 +12,6 @@
   <artifactId>chapter11-enrich</artifactId>
   <name>Camel in Action 2 :: Chapter 11 :: Enrich Error Message Example</name>
 
-  <!-- requires latest code -->
-  <properties>
-    <camel-version>2.16-SNAPSHOT</camel-version>
-  </properties>
-
   <dependencies>
 
     <dependency>

@@ -12,10 +12,6 @@
   <artifactId>chapter16-jmx-client</artifactId>
   <name>Camel in Action 2 :: Chapter 16 :: JMX Client</name>
 
-  <properties>
-    <camel-version>2.16-SNAPSHOT</camel-version>
-  </properties>
-
   <dependencies>
 
     <dependency>
