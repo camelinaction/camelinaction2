@@ -75,7 +75,6 @@
             </goals>
             <phase>generate-resources</phase>
           </execution>
-          <!-- TODO: require Camel 2.16
           <execution>
             <id>validate</id>
             <goals>
@@ -83,7 +82,6 @@
             </goals>
             <phase>prepare-package</phase>
           </execution>
-          -->
         </executions>
       </plugin>
 

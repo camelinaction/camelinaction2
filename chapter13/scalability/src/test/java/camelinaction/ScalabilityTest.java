@@ -18,7 +18,7 @@ public class ScalabilityTest extends CamelTestSupport {
 
     @Test
     public void testSync() throws Exception {
-        String reply = template.requestBody("http://localhost:8090/webshop/action/search", "bumper", String.class);
+        String reply = template.requestBody("jetty:http://localhost:8090/webshop/action/search", "bumper", String.class);
         assertEquals("Some other action here", reply);
 
         // when running this test, notice the threads being used to log the input/output
@@ -28,7 +28,7 @@ public class ScalabilityTest extends CamelTestSupport {
     @Test
     public void testAsync() throws Exception {
         // a customer requests the pricing for the buying 4 bumpers (id = 1719)
-        String reply = template.requestBody("http://localhost:8090/webshop/action/pricing", "1234;4;1719;bumper", String.class);
+        String reply = template.requestBody("jetty:http://localhost:8090/webshop/action/pricing", "1234;4;1719;bumper", String.class);
         // the reply comes back with the price last = 516
         assertEquals("1234;4;1719;bumper;516", reply);
 
