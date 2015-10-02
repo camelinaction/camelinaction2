@@ -30,8 +30,17 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         jdbc.execute("drop table partner_metric");
     }
 
+    @Override
+    public boolean isUseAdviceWith() {
+        // we use advice-with in one of the tests
+        return true;
+    }
+
     @Test
     public void testSendPartnerReportIntoDatabase() throws Exception {
+        // start Camel manually as we use advice-with in this unit tests class
+        context.start();
+
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
 
@@ -50,7 +59,7 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         RouteBuilder rb = new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                interceptSendToEndpoint("ref:sql-insert")
+                interceptSendToEndpoint("sql:*")
                     .skipSendToOriginalEndpoint()
                     .throwException(new ConnectException("Cannot connect to the database"));
             }
@@ -59,6 +68,9 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         // adviseWith enhances our route by adding the interceptor from the route builder
         // this allows us here directly in the unit test to add interceptors so we can simulate the connection failure
         context.getRouteDefinition("partnerToDB").adviceWith(context, rb);
+
+        // start Camel after advice
+        context.start();
 
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
