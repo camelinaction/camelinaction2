@@ -19,20 +19,15 @@ package camelinaction;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jpa.JpaEndpoint;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.spring.SpringCamelContext;
-import org.apache.camel.spring.SpringRouteBuilder;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class JpaTest extends CamelTestSupport {
-
-    protected ApplicationContext applicationContext;
+public class JpaTest extends CamelSpringTestSupport {
 
     @Test
     public void testRouteJpa() throws Exception {
@@ -44,32 +39,31 @@ public class JpaTest extends CamelTestSupport {
         purchaseOrder.setAmount(1);
         purchaseOrder.setCustomer("honda");
         
-        template.sendBody("jms:accounting", purchaseOrder);
+        template.sendBody("seda:accounting", purchaseOrder);
 
         assertMockEndpointsSatisfied();
         assertEntityInDB();
     }
 
     @Override
-    protected CamelContext createCamelContext() throws Exception {
-        applicationContext = new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml");
-        return SpringCamelContext.springCamelContext(applicationContext);
+    protected AbstractApplicationContext createApplicationContext() {
+        return new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml");
     }
 
     @Override
     protected RouteBuilder createRouteBuilder() {
-        return new SpringRouteBuilder() {
+        return new RouteBuilder() {
             public void configure() {
-                from("jms:accounting")
-                .to("jpa:camelinaction.PurchaseOrder")
-                .to("mock:result");
+                // use seda instead of JMS for testing
+                from("seda:accounting")
+                    .to("jpa:camelinaction.PurchaseOrder")
+                    .to("mock:result");
             }
         };
     }
 
-    @SuppressWarnings("unchecked")
 	private void assertEntityInDB() throws Exception {
-        JpaEndpoint endpoint = (JpaEndpoint) context.getEndpoint("jpa:camelinaction.PurchaseOrder");        
+        JpaEndpoint endpoint = context.getEndpoint("jpa:camelinaction.PurchaseOrder", JpaEndpoint.class);
         EntityManager em = endpoint.getEntityManagerFactory().createEntityManager();
 
         List list = em.createQuery("select x from camelinaction.PurchaseOrder x").getResultList();
