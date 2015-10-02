@@ -1,28 +1,30 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.camelinaction</groupId>
-        <artifactId>parent</artifactId>
-        <version>2.0.0</version>
-    </parent>
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.0.0</version>
+  </parent>
 
-    <artifactId>chapter6</artifactId>
-    <packaging>pom</packaging>
-    <name>Camel in Action 2 :: Chapter 6</name>
+  <artifactId>chapter6</artifactId>
+  <packaging>pom</packaging>
+  <name>Camel in Action 2 :: Chapter 6</name>
 
-    <modules>
-        <module>file</module>
-        <module>ftp</module>
-        <module>jms</module>
-        <module>netty</module>
-        <module>mail</module>
-        <module>jdbc</module>
-        <module>jpa</module>
-        <module>seda</module>
-        <module>scheduler</module>
-        <module>quartz</module>
-    </modules>
+  <modules>
+    <module>file</module>
+    <module>ftp</module>
+    <module>jms</module>
+    <module>netty</module>
+    <module>mail</module>
+    <module>jdbc</module>
+    <module>jpa</module>
+    <module>seda</module>
+    <module>scheduler</module>
+    <module>quartz</module>
+  </modules>
+
 </project>
 
