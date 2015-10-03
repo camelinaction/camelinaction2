@@ -64,19 +64,18 @@
 
   <build>
 
-    <!-- TODO: replace with camel:run when new release where its fixed -->
     <plugins>
-      <!-- allows the route to be ran via 'mvn exec:java' -->
+
+      <!-- to run the example using mvn camel:run -->
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.2.1</version>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-maven-plugin</artifactId>
         <configuration>
-          <mainClass>org.apache.camel.cdi.Main</mainClass>
-          <includePluginDependencies>false</includePluginDependencies>
+          <useCDI>true</useCDI>
         </configuration>
       </plugin>
     </plugins>
+
   </build>
 
 </project>
