@@ -15,9 +15,11 @@
 
     <modules>
         <module>bridge</module>
+        <module>enrich</module>
         <module>errorhandler</module>
         <module>newexception</module>
         <module>onexception</module>
+        <module>reuse</module>
         <module>usecase</module>
     </modules>
 </project>
