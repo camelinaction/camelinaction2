@@ -1,7 +1,7 @@
 Chapter 4 - bean
 ----------------
 
-This directory holds several examples how to call Java Beans from Camel
+This directory holds examples how to call Java Beans from Camel
 
 ### 4.1.2 - A Camel route using a Processor to invoke HelloBean
 
