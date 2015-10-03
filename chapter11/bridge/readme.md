@@ -1,5 +1,5 @@
-Chapter 11 - Bridge Error Handler Example
------------------------------------------
+Chapter 11 - bridge
+-------------------
 
 This example demonstrates how to bridge the error handler between the consumer and Camel's routing engine.
 
