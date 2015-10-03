@@ -23,7 +23,7 @@ public class HelloRoute extends RouteBuilder {
     public void configure() throws Exception {
         from(input)
             // lookup bean with name helloBean
-            .beanRef("helloBean")
+            .bean("helloBean")
             .to(output);
     }
 
