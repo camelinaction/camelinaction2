@@ -13,7 +13,7 @@ public class JolokiaMain {
         // add the route
         main.addRouteBuilder(new JolokiaRoute());
 
-        System.out.println("Ping service running. Try sending a HTTP GET to http://localhost:8778/jolokia/");
+        System.out.println("Jolokia running. Try sending a HTTP GET to http://localhost:8778/jolokia/");
         System.out.println("Camel started use ctrl + c to stop.");
 
         // run until the JVM terminates
