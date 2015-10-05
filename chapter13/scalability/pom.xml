@@ -23,6 +23,8 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>apt</artifactId>
+      <!-- TODO: remove version when new 2.16.0 release is out -->
+      <version>${camel-version}</version>
       <scope>provided</scope>
     </dependency>
 
