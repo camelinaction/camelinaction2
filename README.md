@@ -6,6 +6,55 @@ This project hosts the source code for the examples of the [Camel in Action](htt
 ![Camel in Action 2nd ed cover](/docs/images/cia2_cover150.jpg?raw=true)
 
 
+Table of Contents
+-----------------
+
+Part 1 - First Steps
+
+- 1 [Why Camel](chapter1)
+- 2 [Camel 101](chapter2)
+
+Part 2 - Routing and Transformation
+
+- 3 [Message Transformation](chapter3)
+- 4 [Using Beans with Camel](chapter4)
+- 5 [Enterprise Integration Patterns](chapter5)
+- 6 [Understanding Components](chapter6)
+
+Part 3 - Developing and Testing
+
+- 7 [Microservices](chapter7)
+- 8 [Developing Camel projects](chapter8)
+- 9 [Testing](chapter9)
+
+Part 4 - Going further with Camel
+
+- 10 [Rest and Web Services](chapter10)
+- 11 [Error Handling](chapter11)
+- 12 [Transactions](chapter12)
+- 13 [Parallel Processing](chapter13)
+- 14 [Securing Camel](chapter14)
+
+Part 5 - Running and Managing Camel
+
+- 15 [Running and Deploying Camel](chapter15)
+- 16 [Management and Monitoring](chapter16)
+- 17 [Clustering Camel](chapter17)
+
+Part 6 - Out in the Wild
+
+- 18 [Camel in the Cloud](chapter18)
+- 19 [Camel Tooling](chapter19)
+
+Appendixes
+
+- Setting up your IDE
+- The Simple Language
+- Using Alternative DSLs
+- Contributing to Apache Camel
+
+
+
 Downloading the source code
 ---------------------------
 
