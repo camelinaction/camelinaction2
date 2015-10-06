@@ -54,9 +54,9 @@ public class BogusProducer extends DefaultAsyncProducer {
             boolean block = "ActiveMQ in Action".equals(exchange.getIn().getBody());
 
             log.info("Calling ERP");
-            // simulate communication with ERP takes 5 seconds
+            // simulate communication with ERP takes 5 seconds by default and 2 minutes if being blocked
             try {
-                int delay = block ? 10 * 60 * 1000 : 5000;
+                int delay = block ? 2 * 60 * 1000 : 5000;
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
                 // ignore
