@@ -11,4 +11,5 @@ This chapter covers:
 - Overview of the Camel management API
 - Accessing the Camel management API from with Camel or as Java JMX client
 - Gathering details from the runtime performance statistics
+- Using Dropwizard metrics with Camel
 - Developing custom components for management
