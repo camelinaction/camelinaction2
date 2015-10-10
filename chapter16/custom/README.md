@@ -3,7 +3,7 @@ Chapter 16 - custom
 
 This example shows how to add custom JMX management attributes and operations to your custom developed Camel components.
 
-### 16.4.9 - Management enable custom Camel components
+### 16.5.4 - Management enable custom Camel components
 
 This example can be run with:
 

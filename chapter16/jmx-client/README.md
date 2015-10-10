@@ -3,7 +3,7 @@ Chapter 16 - jmxclient
 
 This example shows how to JMX clients can manage a remote Camel application running in another JVM.
 
-### 16.4.6 - Accessing the Camel management API using Java
+### 16.5.1 - Accessing the Camel management API using Java
 
 To run the example you need to start the Camel application first using:
 
