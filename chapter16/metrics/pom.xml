@@ -27,11 +27,13 @@
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -41,6 +43,20 @@
     </dependency>
 
   </dependencies>
+
+  <build>
+    <plugins>
+      <!-- to run the application with hawtio web console with: mvn hawtio:run -->
+      <plugin>
+        <groupId>io.hawt</groupId>
+        <artifactId>hawtio-maven-plugin</artifactId>
+        <version>${hawtio-version}</version>
+        <configuration>
+          <mainClass>camelinaction.MetricsMain</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
 
