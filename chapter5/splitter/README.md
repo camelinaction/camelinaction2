@@ -1,4 +1,4 @@
-Chapter 4 - splitter
+Chapter 5 - splitter
 ----------------
 
 This directory holds examples of the splitter EIP

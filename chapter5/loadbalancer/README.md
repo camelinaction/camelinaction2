@@ -1,4 +1,4 @@
-Chapter 4 - loadbalancer
+Chapter 5 - loadbalancer
 ----------------
 
 This directory holds examples of the loadbalancer EIP.

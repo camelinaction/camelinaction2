@@ -1,4 +1,4 @@
-Chapter 4 - routingslip
+Chapter 5 - routingslip
 ----------------
 
 This directory holds examples of the routing slip EIP

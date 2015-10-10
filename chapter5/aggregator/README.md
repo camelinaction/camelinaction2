@@ -1,4 +1,4 @@
-Chapter 4 - aggregator
+Chapter 5 - aggregator
 ----------------
 
 This directory holds examples of the aggregator EIP

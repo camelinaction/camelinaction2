@@ -1,4 +1,4 @@
-Chapter 4 - dynamicrouter
+Chapter 5 - dynamicrouter
 ----------------
 
 This directory holds examples of the dynamic router EIP
