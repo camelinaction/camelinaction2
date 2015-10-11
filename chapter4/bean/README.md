@@ -10,6 +10,12 @@ This example can be run using:
     mvn test -Dtest=InvokeWithProcessorTest
     mvn test -Dtest=InvokeWithProcessorSpringTest
 
+### 4.3.1 - Using JndiRegistry to unit test a Camel route
+
+This example can be run using:
+
+    mvn test -Dtest=JndiRegistryTest
+
 ### 4.3.2 - Using SimpleRegistry to unit test a Camel route
 
 This example can be run using:
