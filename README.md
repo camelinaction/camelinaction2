@@ -19,7 +19,7 @@ Part 2 - Routing and Transformation
 - 3 [Message Transformation](chapter3)
 - 4 [Using Beans with Camel](chapter4)
 - 5 [Enterprise Integration Patterns](chapter5)
-- 6 [Understanding Components](chapter6)
+- 6 [Using Components](chapter6)
 
 Part 3 - Developing and Testing
 
