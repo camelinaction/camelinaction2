@@ -1,4 +1,4 @@
-Chapter 11 - uow
+Chapter 12 - uow
 ----------------
 
 This directory holds examples how to use Camels `UnitOfWork` concept.

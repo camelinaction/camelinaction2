@@ -1,4 +1,4 @@
-Chapter 11 - riderautoparts-partner
+Chapter 12 - riderautoparts-partner
 -----------------------------------
 
 This directory holds an use case with Rider Auto Partners where they have developed an audit log to keep track of every

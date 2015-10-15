@@ -1,4 +1,4 @@
-Chapter 11 - idempotent
+Chapter 12 - idempotent
 -----------------------
 
 This directory holds an example how to use idempotent consumer EIP.

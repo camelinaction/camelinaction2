@@ -1,4 +1,4 @@
-Chapter 11 - xa
+Chapter 12 - xa
 ---------------
 
 This directory holds examples how to use global transactions (XA aka 2-phase-commit)

@@ -1,4 +1,4 @@
-Chapter 11 - hazelcast
+Chapter 12 - hazelcast
 ----------------------
 
 This directory holds an example how to use Hazelcast as clustered idempotent repository.
