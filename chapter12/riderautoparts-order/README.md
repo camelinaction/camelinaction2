@@ -8,6 +8,6 @@ endpoint and a database to store incoming orders.
 
 The example can be run with:
 
-    mvn came:run
+    mvn camel:run
 
 
