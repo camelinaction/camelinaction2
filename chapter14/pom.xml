@@ -20,6 +20,7 @@
     <module>configuration</module>
     <module>payload</module>
     <module>route</module>
+    <module>webservice</module>
   </modules>
 
 </project>
