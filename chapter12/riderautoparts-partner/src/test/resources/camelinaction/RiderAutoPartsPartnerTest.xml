@@ -26,6 +26,9 @@
   <!-- define the activemq Camel component so we can integrate with the AMQ broker below -->
   <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
     <property name="brokerURL" value="tcp://localhost:61616"/>
+    <!-- important: enable caching as we are using ActiveMQ which safely can do this -->
+    <!-- see more at: http://camel.apache.org/jms -->
+    <property name="cacheLevelName" value="CACHE_CONSUMER"/>
   </bean>
 
   <!-- setup a local JMS Broker for testing purpose -->

@@ -1,8 +1,10 @@
 package camelinaction;
 
 import java.net.ConnectException;
+import java.util.concurrent.TimeUnit;
 import javax.sql.DataSource;
 
+import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.After;
@@ -38,6 +40,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
 
     @Test
     public void testSendPartnerReportIntoDatabase() throws Exception {
+        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
+
         // start Camel manually as we use advice-with in this unit tests class
         context.start();
 
@@ -47,8 +51,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
-        // wait for the route to complete (note we can use use mock to be notified when the route is complete)
-        Thread.sleep(5000);
+        // wait for the route to complete one message
+        assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
         // there should be 1 row in the database
         assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
@@ -56,6 +60,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
 
     @Test
     public void testNoConnectionToDatabase() throws Exception {
+        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
+
         RouteBuilder rb = new RouteBuilder() {
             @Override
             public void configure() throws Exception {
@@ -78,8 +84,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
-        // wait for the route to complete (note we can use use mock to be notified when the route is complete)
-        Thread.sleep(5000);
+        // wait for the route to complete one message
+        assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
         // data not inserted so there should be 0 rows
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));

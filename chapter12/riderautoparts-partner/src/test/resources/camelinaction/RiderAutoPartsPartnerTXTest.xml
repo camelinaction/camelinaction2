@@ -31,6 +31,9 @@
     <property name="transacted" value="true"/>
     <!-- refer to the transaction manager -->
     <property name="transactionManager" ref="txManager"/>
+    <!-- important: enable caching as we are using ActiveMQ which safely can do this -->
+    <!-- see more at: http://camel.apache.org/jms -->
+    <property name="cacheLevelName" value="CACHE_CONSUMER"/>
   </bean>
 
   <!-- the transaction manager which is a Spring JMS TransactionManager -->
