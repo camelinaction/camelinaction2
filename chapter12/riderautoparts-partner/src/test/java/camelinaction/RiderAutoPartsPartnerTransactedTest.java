@@ -84,7 +84,7 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
 
         // now check that the message was moved to the DLQ
         Object body = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 5000);
-        assertNotNull("The message should have been moved to the ActiveMQ DLQ", body);
+        assertNotNull("Should be in ActiveMQ DLQ", body);
     }
 
     @Test
