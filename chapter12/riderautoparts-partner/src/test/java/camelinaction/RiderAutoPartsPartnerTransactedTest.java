@@ -15,7 +15,7 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class RiderAutoPartsPartnerTXTest extends CamelSpringTestSupport {
+public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport {
 
     private JdbcTemplate jdbc;
 

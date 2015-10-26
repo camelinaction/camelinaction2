@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:broker="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+  <!-- a bean for transforming incoming partner reports to SQL statements -->
+  <bean id="partner" class="camelinaction.PartnerServiceBean"/>
+
+  <!-- a bean that prepares for client acknowledge and performs that when the routing complete -->
+  <bean id="prepareAcknowledge" class="camelinaction.ClientAckBean"/>
+
+  <!-- Camel and the route used -->
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- externalize the sql statement in properties files -->
+    <propertyPlaceholder id="properties" location="camelinaction/sql.properties"/>
+
+    <route id="partnerToDB">
+      <from uri="activemq:queue:partners"/>
+      <bean ref="prepareAcknowledge"/>
+      <bean ref="partner" method="toMap"/>
+      <to uri="sql:{{sql-insert}}?dataSource=#myDataSource"/>
+      <!-- call the java bean that will acknowledge the message -->
+    </route>
+  </camelContext>
+
+  <!-- define the activemq Camel component so we can integrate with the AMQ broker below -->
+  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+    <property name="brokerURL" value="tcp://localhost:61616"/>
+    <!-- use client acknowledge mode -->
+    <property name="acknowledgementModeName" value="CLIENT_ACKNOWLEDGE"/>
+    <!-- important: enable caching as we are using ActiveMQ which safely can do this -->
+    <!-- see more at: http://camel.apache.org/jms -->
+    <property name="cacheLevelName" value="CACHE_CONSUMER"/>
+  </bean>
+
+  <!-- setup a local JMS Broker for testing purpose -->
+  <broker:broker useJmx="false" persistent="false" brokerName="localhost">
+    <broker:transportConnectors>
+      <broker:transportConnector uri="tcp://localhost:61616"/>
+    </broker:transportConnectors>
+  </broker:broker>
+
+  <!-- define the datasource to the database - in this example we use an in memory database using HSQLDB -->
+  <bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+    <property name="url" value="jdbc:hsqldb:mem:partner"/>
+    <property name="username" value="sa"/>
+    <property name="password" value=""/>
+  </bean>
+
+</beans>

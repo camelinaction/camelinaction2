@@ -10,10 +10,16 @@ The example can be run with:
 
     mvn test -Dtest=RiderAutoPartsPartnerTest
 
+### 12.1.3 - The story of the lost message
+
+The client acknowledge mode example can be run with:
+
+    mvn test -Dtest=RiderAutoPartsPartnerClientAcknowledgeModeTest
+
 ### 12.2.3 - Testing transactions
 
 The example can be run with:
 
-    mvn test -Dtest=RiderAutoPartsPartnerTXTest
+    mvn test -Dtest=RiderAutoPartsPartnerTransactedTest
 
 
