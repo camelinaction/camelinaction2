@@ -49,8 +49,6 @@ public class OrderTest extends CamelSpringTestSupport {
         // Define WSS4j properties for flow outgoing
         Map<String, Object> outProps = new HashMap<String, Object>();
         outProps.put("action", "UsernameToken Timestamp");
-
-        outProps.put("passwordType", "PasswordDigest");
         outProps.put("user", user);
         outProps.put("passwordCallbackClass", passwordCallbackClass);
 
