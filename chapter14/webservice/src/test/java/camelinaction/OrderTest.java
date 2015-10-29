@@ -40,7 +40,7 @@ public class OrderTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/camel-route.xml");
+        return new ClassPathXmlApplicationContext("wss-auth-route.xml");
     }
 
     protected static OrderEndpoint createCXFClient(String url, String user, String passwordCallbackClass) {

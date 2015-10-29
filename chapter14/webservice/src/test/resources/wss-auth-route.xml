@@ -25,7 +25,7 @@
          http://camel.apache.org/schema/spring 
          http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-  <import resource="classpath:META-INF/spring/camel-cxf.xml" />
+  <import resource="classpath:wss-auth-camel-cxf.xml" />
 
   <camelContext xmlns="http://camel.apache.org/schema/spring">
     <route>
