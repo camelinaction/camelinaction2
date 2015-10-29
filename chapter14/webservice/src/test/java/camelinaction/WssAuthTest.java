@@ -36,7 +36,7 @@ import camelinaction.order.Order;
 import camelinaction.order.OrderEndpoint;
 import camelinaction.order.OrderResult;
 
-public class OrderTest extends CamelSpringTestSupport {
+public class WssAuthTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
