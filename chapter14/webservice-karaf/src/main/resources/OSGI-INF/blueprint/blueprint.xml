@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+           xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint/cxf http://camel.apache.org/schema/blueprint/cxf/camel-cxf.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+  <bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+    
+  <bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+
+  <bean id="karafJaasValidator" class="org.apache.wss4j.dom.validate.JAASUsernameTokenValidator">
+    <property name="contextName" value="karaf"/>
+  </bean>
+
+ <bean id="wss4jInInterceptor" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+  <argument>
+   <map>
+    <entry key="action" value="UsernameToken" />
+   </map>
+  </argument>
+ </bean>
+
+  <cxf:cxfEndpoint id="orderEndpoint"
+                   address="http://localhost:9000/order"
+                   serviceClass="camelinaction.order.OrderEndpoint">
+
+    <cxf:inInterceptors>
+      <ref component-id="loggingInInterceptor"/> 
+      <ref component-id="wss4jInInterceptor"/>
+    </cxf:inInterceptors>
+    <cxf:outInterceptors>
+      <ref component-id="loggingOutInterceptor"/>
+    </cxf:outInterceptors>
+
+    <cxf:properties>
+     <entry key="ws-security.ut.validator">
+      <ref component-id="karafJaasValidator" />
+     </entry>   
+    </cxf:properties> 
+    
+  </cxf:cxfEndpoint>
+
+  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+    <route>
+      <!-- route starts from the cxf webservice, see camel-cxf.xml for details -->
+      <from uri="cxf:bean:orderEndpoint" />
+      <to uri="seda:incomingOrders" />
+      <!-- and then create the OK reply for the webservice which is still waiting for a reply -->
+      <transform>
+        <method beanType="camelinaction.order.OrderResultBean" method="orderOK"/>
+      </transform>
+    </route>    
+    
+    <route>
+      <from uri="seda:incomingOrders" />
+      <log message="Recieved order: ${body}"/>
+    </route> 
+  </camelContext>
+
+</blueprint>
