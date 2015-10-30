@@ -21,6 +21,7 @@
     <module>payload</module>
     <module>route</module>
     <module>webservice</module>
+    <module>webservice-karaf</module>
   </modules>
 
 </project>
