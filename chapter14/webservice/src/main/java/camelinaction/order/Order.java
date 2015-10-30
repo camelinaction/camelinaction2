@@ -55,5 +55,10 @@ public class Order {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
+    
+    @Override
+    public String toString() {        
+        return "Order[partName=" + partName + ", amount=" + amount + ", customerName=" + customerName + "]";
+    }
 
 }
