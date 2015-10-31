@@ -7,5 +7,5 @@ This directory holds an example how to call Java Beans from Camel using CDI
 
 This example can be run using:
 
-    mvn clean install exec:java
+    mvn clean install camel:run
 
