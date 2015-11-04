@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.cxf.interceptor.Interceptor;
-import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
@@ -44,9 +43,7 @@ public class Client {
         outProps.put("passwordCallbackClass", "camelinaction.StdInPasswordCallback");
 
         WSS4JOutInterceptor wss4j = new WSS4JOutInterceptor(outProps);
-        LoggingOutInterceptor loggingOutInterceptor = new LoggingOutInterceptor();
         outInterceptors.add(wss4j);
-        outInterceptors.add(loggingOutInterceptor);
 
         // we use CXF to create a client for us as its easier than JAXWS and works
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();

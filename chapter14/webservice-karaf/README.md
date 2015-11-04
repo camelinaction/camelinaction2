@@ -28,12 +28,8 @@ And then from the Karaf command line type:
 
 which will install and start the example (the `-s` flag refers to start).
 
-The Camel commands is now able to manage the running Camel application, for example to list the routes
-
-    camel:route-list
-
 Next we can place an order to the Rider Auto Parts webservice running in Karaf using a JAX-WS client. On the command line execute:
 
-    mvn compile exec:java -Pclient
+    mvn exec:java -Pclient
 
 Make sure to use "karaf" as the password or authentication will fail!
