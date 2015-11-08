@@ -12,7 +12,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class AtomikosXARollbackAfterDbTest extends CamelSpringTestSupport {
+public class XARollbackAfterDbTest extends CamelSpringTestSupport {
 
     private JdbcTemplate jdbc;
 
