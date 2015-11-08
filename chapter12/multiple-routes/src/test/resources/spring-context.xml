@@ -2,35 +2,36 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:broker="http://activemq.apache.org/schema/core"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
-    <!-- define the activemq Camel component so we can integrate with the AMQ broker below -->
-    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
-        <!-- must indicate that we use transacted acknowledge mode -->
-        <property name="transacted" value="true"/>
-        <!-- refer to the transaction manager -->
-        <property name="transactionManager" ref="txManager"/>
-    </bean>
+  <!-- define the activemq Camel component so we can integrate with the AMQ broker below -->
+  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+    <!-- must indicate that we use transacted acknowledge mode -->
+    <property name="transacted" value="true"/>
+    <!-- refer to the transaction manager -->
+    <property name="transactionManager" ref="txManager"/>
+    <!-- important: enable caching as we are using ActiveMQ which safely can do this -->
+    <!-- see more at: http://camel.apache.org/jms -->
+    <property name="cacheLevelName" value="CACHE_CONSUMER"/>
+  </bean>
 
-    <!-- the transaction manager which is a Spring JMS TransactionManager -->
-    <bean id="txManager" class="org.springframework.jms.connection.JmsTransactionManager">
-        <!-- must know how to connect to the JMS Broker so refer to a connection factory -->
-        <property name="connectionFactory" ref="jmsConnectionFactory"/>
-    </bean>
+  <!-- the transaction manager which is a Spring JMS TransactionManager -->
+  <bean id="txManager" class="org.springframework.jms.connection.JmsTransactionManager">
+    <!-- must know how to connect to the JMS Broker so refer to a connection factory -->
+    <property name="connectionFactory" ref="jmsConnectionFactory"/>
+  </bean>
 
-    <!-- Is the ConnectionFactory to connect to the JMS broker -->
-    <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="tcp://localhost:61616"/>
-    </bean>
+  <!-- the ConnectionFactory to connect to the JMS broker -->
+  <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+    <property name="brokerURL" value="tcp://localhost:61616"/>
+  </bean>
 
-    <!-- setup a local JMS Broker for testing purpose -->
-    <broker:broker useJmx="false" persistent="false" brokerName="localhost">
-        <broker:transportConnectors>
-            <broker:transportConnector uri="tcp://localhost:61616"/>
-        </broker:transportConnectors>
-    </broker:broker>
+  <!-- setup a local JMS Broker for testing purpose -->
+  <broker:broker useJmx="false" persistent="false" brokerName="myBroker">
+    <broker:transportConnectors>
+      <broker:transportConnector uri="tcp://localhost:61616"/>
+    </broker:transportConnectors>
+  </broker:broker>
 
 </beans>

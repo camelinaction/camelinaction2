@@ -42,7 +42,7 @@
     <property name="connectionFactory" ref="jmsConnectionFactory"/>
   </bean>
 
-  <!-- Is the ConnectionFactory to connect to the JMS broker -->
+  <!-- the ConnectionFactory to connect to the JMS broker -->
   <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
     <property name="brokerURL" value="tcp://localhost:61616"/>
   </bean>
