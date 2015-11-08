@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <import resource="spring-context.xml"/>
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <propertyPlaceholder id="properties" location="camelinaction/sql.properties"/>
+
+    <route>
+      <from uri="activemq:queue:partners"/>
+      <transacted/>
+      <log message="*** transacted ***"/>
+      <bean beanType="camelinaction.PartnerServiceBean" method="toMap"/>
+      <log message="*** before SQL ***"/>
+      <throwException message="Forced failure before DB" exceptionType="java.lang.IllegalArgumentException"/>
+      <to uri="sql:{{sql-insert}}?dataSource=#myDataSource"/>
+      <log message="*** after SQL ***"/>
+    </route>
+
+  </camelContext>
+
+</beans>

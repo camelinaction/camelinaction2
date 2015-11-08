@@ -2,8 +2,6 @@ package camelinaction;
 
 import javax.sql.DataSource;
 
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +10,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class XARollbackAfterDbTest extends CamelSpringTestSupport {
+public class SpringXARollbackAfterDbTest extends CamelSpringTestSupport {
 
     private JdbcTemplate jdbc;
 
@@ -32,7 +30,7 @@ public class XARollbackAfterDbTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("spring-context.xml");
+        return new ClassPathXmlApplicationContext("SpringXARollbackAfterDbTest.xml");
     }
 
      @Test
@@ -53,26 +51,6 @@ public class XARollbackAfterDbTest extends CamelSpringTestSupport {
         // now check that the message is on the queue by consuming it again
         String dlq = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 2000, String.class);
         assertNotNull("Should not lose message", dlq);
-    }
-
-    @Override
-    protected RouteBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                PropertiesComponent pc = context.getComponent("properties", PropertiesComponent.class);
-                pc.setLocation("camelinaction/sql.properties");
-
-                from("activemq:queue:partners")
-                    .transacted()
-                    .log("*** transacted ***")
-                    .bean(PartnerServiceBean.class, "toMap")
-                    .log("*** before SQL ***")
-                    .to("sql:{{sql-insert}}?dataSource=#myDataSource")
-                    .log("*** after SQL ***")
-                    .throwException(new IllegalArgumentException("Forced failure after DB"));
-            }
-        };
     }
 
 }
