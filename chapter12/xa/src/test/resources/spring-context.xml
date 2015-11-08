@@ -2,73 +2,80 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:broker="http://activemq.apache.org/schema/core"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
        http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
-    <!-- Important:
-         note we must have Spring startup the embedded broker first, which we must do using
-         depends-on attribute in the spring bean tags
-    -->
+  <!-- Important:
+       note we must have Spring startup the embedded broker first, which we must do using
+       depends-on attribute in the spring bean tags
+  -->
 
-    <!-- setup Atomikos for XA transaction -->
-    <bean id="atomikosTransactionManager"
-          class="com.atomikos.icatch.jta.UserTransactionManager"
-          init-method="init" destroy-method="close" depends-on="my-broker">
-        <!-- when close is called, should we force transactions to terminate or not? -->
-        <property name="forceShutdown" value="false"/>
-    </bean>
+  <!-- setup Atomikos for XA transaction -->
+  <bean id="atomikosTransactionManager"
+        class="com.atomikos.icatch.jta.UserTransactionManager"
+        init-method="init" destroy-method="close" depends-on="my-broker">
+    <!-- when close is called, should we force transactions to terminate or not? -->
+    <property name="forceShutdown" value="false"/>
+  </bean>
 
-    <!-- this is some atomikos setup you must do -->
-    <bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp" depends-on="my-broker">
-        <property name="transactionTimeout" value="300"/>
-    </bean>
+  <!-- this is some atomikos setup you must do -->
+  <bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp" depends-on="my-broker">
+    <property name="transactionTimeout" value="300"/>
+  </bean>
 
-    <!-- this is some atomikos setup you must do -->
-    <bean id="connectionFactory"
-          class="com.atomikos.jms.AtomikosConnectionFactoryBean" depends-on="my-broker">
-        <property name="uniqueResourceName" value="amq1"/>
-        <property name="xaConnectionFactory" ref="jmsXaConnectionFactory"/>
-    </bean>
+  <!-- this is some atomikos setup you must do -->
+  <bean id="connectionFactory"
+        class="com.atomikos.jms.AtomikosConnectionFactoryBean" depends-on="my-broker">
+    <property name="uniqueResourceName" value="amq1"/>
+    <property name="xaConnectionFactory" ref="jmsXaConnectionFactory"/>
+  </bean>
 
-    <!-- this is the Spring JtaTransactionManager which under the hood uses Atomikos -->
-    <bean id="jtaTransactionManager"
-          class="org.springframework.transaction.jta.JtaTransactionManager" depends-on="my-broker">
-        <property name="transactionManager" ref="atomikosTransactionManager"/>
-        <property name="userTransaction" ref="atomikosUserTransaction"/>
-    </bean>
+  <!-- this is the Spring JtaTransactionManager which under the hood uses Atomikos -->
+  <bean id="jtaTransactionManager"
+        class="org.springframework.transaction.jta.JtaTransactionManager" depends-on="my-broker">
+    <property name="transactionManager" ref="atomikosTransactionManager"/>
+    <property name="userTransaction" ref="atomikosUserTransaction"/>
+  </bean>
 
-    <!-- Is the ConnectionFactory to connect to the JMS broker -->
-    <!-- notice how we must use the XA connection factory -->
-    <bean id="jmsXaConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory" depends-on="my-broker">
-        <property name="brokerURL" value="tcp://localhost:61616"/>
-    </bean>
+  <!-- Is the ConnectionFactory to connect to the JMS broker -->
+  <!-- notice how we must use the XA connection factory -->
+  <bean id="jmsXaConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory" depends-on="my-broker">
+    <property name="brokerURL" value="tcp://localhost:61616"/>
+  </bean>
 
-    <!-- define the activemq Camel component so we can integrate with the AMQ broker below -->
-    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent" depends-on="my-broker">
-        <!-- must indicate that we use transacted acknowledge mode -->
-        <property name="transacted" value="true"/>
-        <!-- refer to the transaction manager -->
-        <property name="transactionManager" ref="jtaTransactionManager"/>
-    </bean>
+  <!-- define the activemq Camel component so we can integrate with the AMQ broker below -->
+  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent" depends-on="my-broker">
+    <!-- must indicate that we use transacted acknowledge mode -->
+    <property name="transacted" value="true"/>
+    <!-- refer to the transaction manager -->
+    <property name="transactionManager" ref="jtaTransactionManager"/>
+  </bean>
 
-    <!-- setup a local JMS Broker for testing purpose -->
-    <broker:broker id="my-broker" useJmx="false" persistent="false" brokerName="myBroker">
-        <broker:transportConnectors>
-            <broker:transportConnector uri="tcp://localhost:61616"/>
-        </broker:transportConnectors>
-    </broker:broker>
+  <!-- setup a local JMS Broker for testing purpose -->
+  <broker:broker id="my-broker" useJmx="false" persistent="false" brokerName="myBroker">
+    <broker:transportConnectors>
+      <broker:transportConnector uri="tcp://localhost:61616"/>
+    </broker:transportConnectors>
+  </broker:broker>
 
-    <!-- define the datasource to the database - in this example we use an in memory database using HSQLDB -->
-    <!-- HSQLDB is not XA compatible so we wrap that using a special Atomikos NonXA to XA DataSource -->
-    <bean id="myDataSource" class="com.atomikos.jdbc.nonxa.AtomikosNonXADataSourceBean">
-        <property name="uniqueResourceName" value="hsqldb"/>
-        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:mem:partner"/>
-        <property name="user" value="sa"/>
-        <property name="password" value=""/>
-        <property name="poolSize" value="3"/>
-    </bean>
+  <!-- this is the JDBC data source which uses an in-memory only Apache Derby database -->
+  <!-- as we use the embedded database we use Atomikos to wrap it for XA support
+       if you use an external database, then you can configure the XADataSource of that database without wrapping using Atomikos -->
+  <bean id="myDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+    <property name="uniqueResourceName" value="myDerbyDB"/>
+    <property name="xaDataSourceClassName" value="org.apache.derby.jdbc.EmbeddedXADataSource"/>
+    <property name="minPoolSize">
+      <value>1</value>
+    </property>
+    <property name="maxPoolSize">
+      <value>5</value>
+    </property>
+    <property name="xaProperties">
+      <props>
+        <prop key="databaseName">memory:partner;create=true</prop>
+      </props>
+    </property>
+  </bean>
 
 </beans>
