@@ -63,14 +63,10 @@
   <!-- as we use the embedded database we use Atomikos to wrap it for XA support
        if you use an external database, then you can configure the XADataSource of that database without wrapping using Atomikos -->
   <bean id="myDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
-    <property name="uniqueResourceName" value="myDerbyDB"/>
+    <property name="uniqueResourceName" value="partner"/>
     <property name="xaDataSourceClassName" value="org.apache.derby.jdbc.EmbeddedXADataSource"/>
-    <property name="minPoolSize">
-      <value>1</value>
-    </property>
-    <property name="maxPoolSize">
-      <value>5</value>
-    </property>
+    <property name="minPoolSize" value="1"/>
+    <property name="maxPoolSize" value="5"/>
     <property name="xaProperties">
       <props>
         <prop key="databaseName">memory:partner;create=true</prop>
