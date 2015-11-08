@@ -49,7 +49,7 @@ public class Client {
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setOutInterceptors(outInterceptors);
         factory.setServiceClass(OrderEndpoint.class);
-        factory.setAddress("http://localhost:9000/order");
+        factory.setAddress("http://localhost:8181/cxf/order");
 
         OrderEndpoint client = (OrderEndpoint) factory.create();  
         

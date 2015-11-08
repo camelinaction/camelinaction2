@@ -24,7 +24,7 @@
  </bean>
 
   <cxf:cxfEndpoint id="orderEndpoint"
-                   address="http://localhost:9000/order"
+                   address="/order"
                    serviceClass="camelinaction.order.OrderEndpoint">
 
     <cxf:inInterceptors>
