@@ -3,7 +3,6 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:broker="http://activemq.apache.org/schema/core"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-
        http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
   <!-- Important:
@@ -66,15 +65,33 @@
   <!-- as we use the embedded database we use Atomikos to wrap it for XA support
        if you use an external database, then you can configure the XADataSource of that database without wrapping using Atomikos -->
   <bean id="myDataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
-    <property name="uniqueResourceName" value="partner"/>
+    <property name="uniqueResourceName" value="bookorders"/>
     <property name="xaDataSourceClassName" value="org.apache.derby.jdbc.EmbeddedXADataSource"/>
     <property name="minPoolSize" value="1"/>
     <property name="maxPoolSize" value="5"/>
     <property name="xaProperties">
       <props>
-        <prop key="databaseName">memory:partner;create=true</prop>
+        <prop key="databaseName">memory:bookorders;create=true</prop>
       </props>
     </property>
+  </bean>
+
+  <!-- required transaction propagation -->
+  <bean id="required" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+    <property name="transactionManager" ref="jtaTransactionManager"/>
+    <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
+  </bean>
+
+  <!-- requires new transaction propagation -->
+  <bean id="requiresNew" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+    <property name="transactionManager" ref="jtaTransactionManager"/>
+    <property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW"/>
+  </bean>
+
+  <!-- mandatory new transaction propagation -->
+  <bean id="mandatory" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+    <property name="transactionManager" ref="jtaTransactionManager"/>
+    <property name="propagationBehaviorName" value="PROPAGATION_MANDATORY"/>
   </bean>
 
 </beans>

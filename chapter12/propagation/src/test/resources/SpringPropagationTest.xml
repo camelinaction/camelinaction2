@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <import resource="spring-context.xml"/>
+
+  <bean id="wireTapService" class="camelinaction.WireTapService">
+    <property name="dataSource" ref="myDataSource"/>
+  </bean>
+
+  <bean id="orderService" class="camelinaction.OrderService">
+    <property name="dataSource" ref="myDataSource"/>
+  </bean>
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <route>
+      <from uri="activemq:queue:inbox"/>
+      <transacted ref="required"/>
+      <to uri="direct:tap"/>
+      <to uri="direct:order"/>
+      <to uri="activemq:queue:order"/>
+    </route>
+
+    <route>
+      <from uri="direct:tap"/>
+      <transacted ref="requiresNew"/>
+      <bean ref="wireTapService" method="insertWireTap"/>
+    </route>
+
+    <route>
+      <from uri="direct:order"/>
+      <transacted ref="mandatory"/>
+      <bean ref="orderService" method="insertOrder"/>
+    </route>
+
+  </camelContext>
+
+</beans>

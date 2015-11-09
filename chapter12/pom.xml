@@ -17,6 +17,7 @@
         <module>hazelcast</module>
         <module>idempotent</module>
         <module>multiple-routes</module>
+        <module>propagation</module>
         <module>riderautoparts-order</module>
         <module>riderautoparts-partner</module>
         <module>uow</module>
