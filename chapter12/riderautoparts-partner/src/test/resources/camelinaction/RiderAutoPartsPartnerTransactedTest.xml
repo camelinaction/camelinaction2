@@ -54,12 +54,10 @@
     </broker:transportConnectors>
   </broker:broker>
 
-  <!-- define the datasource to the database - in this example we use an in memory database using HSQLDB -->
+  <!-- define the datasource to the database - in this example we use an in memory database using Derby -->
   <bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-    <property name="url" value="jdbc:hsqldb:mem:partner"/>
-    <property name="username" value="sa"/>
-    <property name="password" value=""/>
+    <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedXADataSource"/>
+    <property name="url" value="jdbc:derby:memory:order;create=true"/>
   </bean>
 
 </beans>
