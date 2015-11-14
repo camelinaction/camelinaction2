@@ -127,7 +127,7 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("camelinaction/RiderAutoPartsPartnerTXTest.xml");
+        return new ClassPathXmlApplicationContext("camelinaction/RiderAutoPartsPartnerTransactedTest.xml");
     }
 
 }
