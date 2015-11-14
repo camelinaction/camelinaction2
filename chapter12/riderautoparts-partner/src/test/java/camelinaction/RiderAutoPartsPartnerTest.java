@@ -48,7 +48,7 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
 
-        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
+        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201511150815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete one message
@@ -81,7 +81,7 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         // there should be 0 row in the database when we start
         assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
 
-        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
+        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201511150815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete one message
