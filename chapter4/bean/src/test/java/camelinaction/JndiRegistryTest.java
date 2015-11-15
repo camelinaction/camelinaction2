@@ -19,6 +19,9 @@ public class JndiRegistryTest extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
+        // TODO: workaround until Camel 2.16.2
+        System.setProperty("java.naming.factory.initial", "org.apache.camel.util.jndi.CamelInitialContextFactory");
+
         // create the registry to be the JndiRegistry
         JndiRegistry registry = new JndiRegistry();
         // register our HelloBean under the name helloBean
