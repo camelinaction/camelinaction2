@@ -50,8 +50,8 @@ public class JdbcTest extends CamelTestSupport {
         jndi.bind("orderToSql", new OrderToSqlBean()); 
         
         DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName("org.hsqldb.jdbcDriver");
-        ds.setUrl("jdbc:hsqldb:mem:order");
+        ds.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
+        ds.setUrl("jdbc:derby:memory:order;create=true");
         ds.setUsername("sa");
         ds.setPassword("");
 

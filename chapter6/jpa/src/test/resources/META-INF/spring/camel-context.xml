@@ -16,9 +16,8 @@
 
   <bean id="jpaAdapter"
         class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
-    <property name="databasePlatform"
-              value="org.apache.openjpa.jdbc.sql.HSQLDictionary"/>
-    <property name="database" value="HSQL"/>
+    <property name="databasePlatform" value="org.apache.openjpa.jdbc.sql.DerbyDictionary" />
+    <property name="database" value="DERBY" />
   </bean>
 
   <bean id="transactionTemplate"

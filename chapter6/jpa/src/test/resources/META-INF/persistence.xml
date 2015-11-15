@@ -21,8 +21,8 @@
     <class>camelinaction.PurchaseOrder</class>
 
     <properties>
-      <property name="openjpa.ConnectionDriverName" value="org.hsqldb.jdbcDriver" />
-      <property name="openjpa.ConnectionURL" value="jdbc:hsqldb:mem:order" />
+      <property name="openjpa.ConnectionDriverName" value="org.apache.derby.jdbc.EmbeddedDriver" />
+      <property name="openjpa.ConnectionURL" value="jdbc:derby:memory:order;create=true" />
       <property name="openjpa.ConnectionUserName" value="sa" />
       <property name="openjpa.ConnectionPassword" value="" />
       <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema" />
