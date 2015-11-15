@@ -79,7 +79,7 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
         log.info("The following orders was recorded in the audit-log ...");
         rows = jdbc.queryForList("select * from bookaudit");
         for (Map<String, Object> row : rows) {
-            log.info("Book wire tap[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
+            log.info("Book audit-log[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
         }
     }
 
@@ -119,7 +119,7 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
         log.info("The following orders was recorded in the audit-log ...");
         rows = jdbc.queryForList("select * from bookaudit");
         for (Map<String, Object> row : rows) {
-            log.info("Book wire tap[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
+            log.info("Book audit-log[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
         }
     }
 
@@ -166,7 +166,7 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
         log.info("The following orders was recorded in the audit-log ...");
         rows = jdbc.queryForList("select * from bookaudit");
         for (Map<String, Object> row : rows) {
-            log.info("Book wire tap[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
+            log.info("Book audit-log[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
         }
     }
 
