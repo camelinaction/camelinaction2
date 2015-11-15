@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <import resource="spring-context.xml"/>
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <route id="inbox">
+      <!-- receive the order from the order queue -->
+      <from uri="activemq:queue:inbox"/>
+      <!-- and route using a transaction that must be required -->
+      <transacted ref="required"/>
+      <!-- call the audit-log route -->
+      <to uri="direct:audit"/>
+      <!-- call the order route -->
+      <to uri="direct:order"/>
+      <!-- send the order in the same transaction to the order queue -->
+      <to uri="activemq:queue:order"/>
+    </route>
+
+    <route id="audit">
+      <from uri="direct:audit"/>
+      <onException>
+        <exception>java.lang.Exception</exception>
+        <!-- mark only this last transaction as rollback, which prevent parent transaction from being
+             forced to rollback as well -->
+        <rollback markRollbackOnlyLast="true"/>
+      </onException>
+      <!-- use a new transaction for audit-log so this route runs in a separate transaction than the parent route -->
+      <transacted ref="requiresNew"/>
+      <to uri="bean:auditLogService"/>
+    </route>
+
+    <route id="order">
+      <!-- use the mandatory transaction from the parent route -->
+      <from uri="direct:order"/>
+      <transacted ref="mandatory"/>
+      <to uri="bean:orderService"/>
+    </route>
+
+  </camelContext>
+
+</beans>

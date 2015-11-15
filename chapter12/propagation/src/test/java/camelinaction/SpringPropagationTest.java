@@ -66,6 +66,9 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
         // wait for the route to complete
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
+        // the database need a little sleep time before commits are visible
+        Thread.sleep(1000);
+
         // there should be 1 row in the database with the order
         assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookorders", Long.class));
         assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
@@ -103,6 +106,9 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
 
         // wait for the route to complete
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
+
+        // the database need a little sleep time before commits are visible
+        Thread.sleep(1000);
 
         // there should be 0 row in the database with the order
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));

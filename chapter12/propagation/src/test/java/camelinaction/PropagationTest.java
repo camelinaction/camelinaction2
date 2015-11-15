@@ -63,15 +63,19 @@ public class PropagationTest extends CamelSpringTestSupport {
 
         template.sendBody("activemq:queue:inbox", "Camel in Action");
 
-        String reply = consumer.receiveBody("activemq:queue:order", 10000, String.class);
-        assertEquals("Camel in Action", reply);
-
         // wait for the route to complete
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
-        // there should be 1 row in the database with the order
+        // and the message was sent to the order queue
+        String reply = consumer.receiveBody("activemq:queue:order", 10000, String.class);
+        assertEquals("Camel in Action", reply);
+
+        // the database need a little sleep time before commits are visible
+        Thread.sleep(1000);
+
+        // there should be 1 row in the database with the order, and 0 in the audit-log as it was marked to only rollback
         assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookorders", Long.class));
-        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
+        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
 
         // print the SQL
         log.info("The following orders was recorded in the orders ...");
@@ -101,11 +105,12 @@ public class PropagationTest extends CamelSpringTestSupport {
         String reply = consumer.receiveBody("activemq:queue:order", 10000, String.class);
         assertNull("There should be no reply", reply);
 
-        reply = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 10000, String.class);
-        assertNotNull("It should have been moved to DLQ", reply);
-
         // wait for the route to complete
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
+
+        // and then message failed and was moved into the DLQ by the ActiveMQ broker
+        reply = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 10000, String.class);
+        assertNotNull("It should have been moved to DLQ", reply);
 
         // there should be 0 row in the database with the order
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
@@ -152,11 +157,14 @@ public class PropagationTest extends CamelSpringTestSupport {
         // wait for the route to complete
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
+        // the database need a little sleep time before commits are visible
+        Thread.sleep(1000);
+
         // there should be 0 row in the database with the order
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
 
-        // and the message is in the DLQ
+        // and then message failed and was moved into the DLQ by the ActiveMQ broker
         String reply = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 10000, String.class);
         assertNotNull("It should have been moved to DLQ", reply);
 
