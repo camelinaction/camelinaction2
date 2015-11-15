@@ -47,7 +47,6 @@ public class JdbcTest extends CamelTestSupport {
     
     protected JndiRegistry createRegistry() throws Exception {
         JndiRegistry jndi = super.createRegistry();
-        jndi.bind("orderToSql", new OrderToSqlBean()); 
         
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
@@ -66,8 +65,11 @@ public class JdbcTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("jms:accounting")
-                    .to("bean:orderToSql")
-                    .to("jdbc:dataSource")
+                    .setHeader("partName", xpath("order/@name").stringResult())
+                    .setHeader("quantity", xpath("order/@amount").numberResult())
+                    .setHeader("customer", xpath("order/@customer").stringResult())
+                    .setBody(constant("insert into incoming_orders (part_name, quantity, customer) values (:?partName, :?quantity, :?customer)"))
+                    .to("jdbc:dataSource?useHeadersAsParameters=true")
                     .to("mock:result");
             }
         };
