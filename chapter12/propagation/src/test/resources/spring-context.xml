@@ -94,4 +94,14 @@
     <property name="propagationBehaviorName" value="PROPAGATION_MANDATORY"/>
   </bean>
 
+  <!-- the bean for the audit-log service -->
+  <bean id="auditLogService" class="camelinaction.AuditLogService">
+    <property name="dataSource" ref="myDataSource"/>
+  </bean>
+
+  <!-- the bean for the order service -->
+  <bean id="orderService" class="camelinaction.OrderService">
+    <property name="dataSource" ref="myDataSource"/>
+  </bean>
+
 </beans>

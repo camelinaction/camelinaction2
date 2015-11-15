@@ -1,9 +1,13 @@
 package camelinaction;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import javax.sql.DataSource;
 
+import org.apache.camel.builder.AdviceWithRouteBuilder;
+import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.After;
@@ -41,8 +45,18 @@ public class PropagationTest extends CamelSpringTestSupport {
         return new ClassPathXmlApplicationContext("spring-context.xml");
     }
 
+    @Override
+    public boolean isUseAdviceWith() {
+        return true;
+    }
+
     @Test
     public void testWithCamel() throws Exception {
+        // we should have 1 original message
+        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
+
+        context.start();
+
         // there should be 0 row in the database when we start
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
@@ -52,8 +66,8 @@ public class PropagationTest extends CamelSpringTestSupport {
         String reply = consumer.receiveBody("activemq:queue:order", 10000, String.class);
         assertEquals("Camel in Action", reply);
 
-        // wait for the route to complete with success
-        Thread.sleep(1000);
+        // wait for the route to complete
+        assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
         // there should be 1 row in the database with the order
         assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookorders", Long.class));
@@ -74,6 +88,11 @@ public class PropagationTest extends CamelSpringTestSupport {
 
     @Test
     public void testWithDonkey() throws Exception {
+        // we should have 1 original message + 6 redelivery attempts
+        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
+
+        context.start();
+
         // there should be 0 row in the database when we start
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
 
@@ -85,8 +104,8 @@ public class PropagationTest extends CamelSpringTestSupport {
         reply = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 10000, String.class);
         assertNotNull("It should have been moved to DLQ", reply);
 
-        // wait for the route to complete with success
-        Thread.sleep(1000);
+        // wait for the route to complete
+        assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
         // there should be 0 row in the database with the order
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
@@ -107,33 +126,71 @@ public class PropagationTest extends CamelSpringTestSupport {
         }
     }
 
+    @Test
+    public void testAuditLogFail() throws Exception {
+        // we should have 1 original message + 6 redelivery attempts
+        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1 + 6).create();
+
+        // simulate the audit-log will fail
+        context.getRouteDefinition("audit").adviceWith(context, new AdviceWithRouteBuilder() {
+            @Override
+            public void configure() throws Exception {
+                // simulate error connecting to database
+                interceptSendToEndpoint("bean:auditLogService").skipSendToOriginalEndpoint()
+                        .throwException(new IOException("Cannot connect to database"));
+            }
+        });
+
+        context.start();
+
+        // there should be 0 row in the database when we start
+        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
+        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
+
+        template.sendBody("activemq:queue:inbox", "Camel in Action");
+
+        // wait for the route to complete
+        assertTrue(notify.matches(10, TimeUnit.SECONDS));
+
+        // there should be 0 row in the database with the order
+        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
+        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
+
+        // and the message is in the DLQ
+        String reply = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 10000, String.class);
+        assertNotNull("It should have been moved to DLQ", reply);
+
+        // print the SQL
+        log.info("The following orders was recorded in the orders ...");
+        List<Map<String, Object>> rows = jdbc.queryForList("select * from bookorders");
+        for (Map<String, Object> row : rows) {
+            log.info("Book order[id={}, book={}]", row.get("order_id"), row.get("order_book"));
+        }
+        log.info("The following orders was recorded in the audit-log ...");
+        rows = jdbc.queryForList("select * from bookaudit");
+        for (Map<String, Object> row : rows) {
+            log.info("Book wire tap[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
+        }
+    }
+
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                // configure our beans
-                DataSource ds = context.getRegistry().lookupByNameAndType("myDataSource", DataSource.class);
-
-                OrderService orderService = new OrderService();
-                orderService.setDataSource(ds);
-
-                AuditLogService auditLogService = new AuditLogService();
-                auditLogService.setDataSource(ds);
-
-                from("activemq:queue:inbox")
+                from("activemq:queue:inbox").routeId("inbox")
                     .transacted("required")
                     .to("direct:audit")
                     .to("direct:order")
                     .to("activemq:queue:order");
 
-                from("direct:audit")
+                from("direct:audit").routeId("audit")
                     .transacted("requiresNew")
-                    .bean(auditLogService, "insertAuditLog");
+                    .to("bean:auditLogService");
 
-                from("direct:order")
+                from("direct:order").routeId("order")
                     .transacted("mandatory")
-                    .bean(orderService, "insertOrder");
+                    .to("bean:orderService");
             }
         };
     }
