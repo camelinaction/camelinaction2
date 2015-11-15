@@ -8,7 +8,7 @@
   <import resource="spring-context.xml"/>
 
   <!-- the bean for the wire tap service -->
-  <bean id="wireTapService" class="camelinaction.WireTapService">
+  <bean id="wireTapService" class="camelinaction.AuditLogService">
     <property name="dataSource" ref="myDataSource"/>
   </bean>
 
@@ -24,8 +24,8 @@
       <from uri="activemq:queue:inbox"/>
       <!-- and route using a transaction that must be required -->
       <transacted ref="required"/>
-      <!-- call the wire tap route -->
-      <to uri="direct:tap"/>
+      <!-- call the audit-log route -->
+      <to uri="direct:audit"/>
       <!-- call the order route -->
       <to uri="direct:order"/>
       <!-- send the order in the same transaction to the order queue -->
@@ -33,10 +33,10 @@
     </route>
 
     <route>
-      <from uri="direct:tap"/>
-      <!-- use a new transaction for wire-tap so this route runs in a separate transaction than the parent route -->
+      <from uri="direct:audit"/>
+      <!-- use a new transaction for audit-log so this route runs in a separate transaction than the parent route -->
       <transacted ref="requiresNew"/>
-      <bean ref="wireTapService" method="insertWireTap"/>
+      <bean ref="wireTapService" method="insertAuditLog"/>
     </route>
 
     <route>

@@ -23,14 +23,14 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
 
         jdbc.execute("create table bookorders "
                 + "( order_id varchar(10), order_book varchar(50) )");
-        jdbc.execute("create table booktap "
+        jdbc.execute("create table bookaudit "
                 + "( order_id varchar(10), order_book varchar(50), order_redelivery varchar(5) )");
     }
 
     @After
     public void dropDatabase() throws Exception {
         jdbc.execute("drop table bookorders");
-        jdbc.execute("drop table booktap");
+        jdbc.execute("drop table bookaudit");
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
     public void testWithCamel() throws Exception {
         // there should be 0 row in the database when we start
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from booktap", Long.class));
+        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
 
         template.sendBody("activemq:queue:inbox", "Camel in Action");
 
@@ -54,7 +54,7 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
 
         // there should be 1 row in the database with the order
         assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookorders", Long.class));
-        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from booktap", Long.class));
+        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
 
         // print the SQL
         log.info("The following orders was recorded in the orders ...");
@@ -62,8 +62,8 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
         for (Map<String, Object> row : rows) {
             log.info("Book order[id={}, book={}]", row.get("order_id"), row.get("order_book"));
         }
-        log.info("The following orders was recorded in the wiretap ...");
-        rows = jdbc.queryForList("select * from booktap");
+        log.info("The following orders was recorded in the audit-log ...");
+        rows = jdbc.queryForList("select * from bookaudit");
         for (Map<String, Object> row : rows) {
             log.info("Book wire tap[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
         }
@@ -87,9 +87,9 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
 
         // there should be 0 row in the database with the order
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
-        // there should be 1 + 6 redelivery attempt row in the database with the wire tap
-        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from booktap where order_redelivery = 'false'", Long.class));
-        assertEquals(Long.valueOf(6), jdbc.queryForObject("select count(*) from booktap where order_redelivery = 'true'", Long.class));
+        // there should be 1 + 6 redelivery attempt row in the database with the audit-log
+        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookaudit where order_redelivery = 'false'", Long.class));
+        assertEquals(Long.valueOf(6), jdbc.queryForObject("select count(*) from bookaudit where order_redelivery = 'true'", Long.class));
 
         // print the SQL
         log.info("The following orders was recorded in the orders ...");
@@ -97,8 +97,8 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
         for (Map<String, Object> row : rows) {
             log.info("Book order[id={}, book={}]", row.get("order_id"), row.get("order_book"));
         }
-        log.info("The following orders was recorded in the wiretap ...");
-        rows = jdbc.queryForList("select * from booktap");
+        log.info("The following orders was recorded in the audit-log ...");
+        rows = jdbc.queryForList("select * from bookaudit");
         for (Map<String, Object> row : rows) {
             log.info("Book wire tap[id={}, book={}, redelivery={}]", row.get("order_id"), row.get("order_book"), row.get("order_redelivery"));
         }
