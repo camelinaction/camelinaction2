@@ -4,6 +4,11 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+/**
+ * Order service bean.
+ * <p/>
+ * This bean inserts the order into a JDBC database using Spring {@link JdbcTemplate}.
+ */
 public class OrderService {
 
     private int counter;
@@ -26,7 +31,9 @@ public class OrderService {
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
         String orderId = "" + ++counter;
         String orderValue = order;
-        jdbc.execute(String.format("insert into bookorders (order_id, order_book) values ('%s', '%s')", orderId, orderValue));
+
+        jdbc.execute(String.format("insert into bookorders (order_id, order_book) values ('%s', '%s')",
+                orderId, orderValue));
     }
 
 }

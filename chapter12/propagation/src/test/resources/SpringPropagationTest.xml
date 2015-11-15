@@ -7,10 +7,12 @@
 
   <import resource="spring-context.xml"/>
 
+  <!-- the bean for the wire tap service -->
   <bean id="wireTapService" class="camelinaction.WireTapService">
     <property name="dataSource" ref="myDataSource"/>
   </bean>
 
+  <!-- the bean for the order service -->
   <bean id="orderService" class="camelinaction.OrderService">
     <property name="dataSource" ref="myDataSource"/>
   </bean>
@@ -18,20 +20,27 @@
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
     <route>
+      <!-- receive the order from the order queue -->
       <from uri="activemq:queue:inbox"/>
+      <!-- and route using a transaction that must be required -->
       <transacted ref="required"/>
+      <!-- call the wire tap route -->
       <to uri="direct:tap"/>
+      <!-- call the order route -->
       <to uri="direct:order"/>
+      <!-- send the order in the same transaction to the order queue -->
       <to uri="activemq:queue:order"/>
     </route>
 
     <route>
       <from uri="direct:tap"/>
+      <!-- use a new transaction for wire-tap so this route runs in a separate transaction than the parent route -->
       <transacted ref="requiresNew"/>
       <bean ref="wireTapService" method="insertWireTap"/>
     </route>
 
     <route>
+      <!-- use the mandatory transaction from the parent route -->
       <from uri="direct:order"/>
       <transacted ref="mandatory"/>
       <bean ref="orderService" method="insertOrder"/>

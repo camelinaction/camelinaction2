@@ -50,7 +50,7 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
         assertEquals("Camel in Action", reply);
 
         // wait for the route to complete with success
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
         // there should be 1 row in the database with the order
         assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookorders", Long.class));
@@ -83,7 +83,7 @@ public class SpringPropagationTest extends CamelSpringTestSupport {
         assertNotNull("It should have been moved to DLQ", reply);
 
         // wait for the route to complete with success
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
         // there should be 0 row in the database with the order
         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookorders", Long.class));
