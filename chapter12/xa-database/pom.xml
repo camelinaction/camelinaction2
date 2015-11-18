@@ -9,8 +9,8 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter12-xa</artifactId>
-  <name>Camel in Action 2 :: Chapter 12 :: XA Transactions</name>
+  <artifactId>chapter12-xa-database</artifactId>
+  <name>Camel in Action 2 :: Chapter 12 :: Database XA Transaction</name>
 
   <properties>
     <!-- atomikos is the XA transaction manager -->
@@ -28,11 +28,6 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test-spring</artifactId>
       <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jms</artifactId>
     </dependency>
 
     <dependency>
@@ -92,6 +87,12 @@
     </dependency>
 
     <dependency>
+      <groupId>org.apache.geronimo.specs</groupId>
+      <artifactId>geronimo-jta_1.1_spec</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>
       <scope>test</scope>
@@ -100,12 +101,6 @@
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jta_1.1_spec</artifactId>
       <scope>test</scope>
     </dependency>
 

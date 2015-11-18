@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
-  <!-- Important:
+<!-- Important:
        note we must have Spring startup the embedded broker first, which we must do using
        depends-on attribute in the spring bean tags
   -->
@@ -75,5 +75,4 @@
       </props>
     </property>
   </bean>
-
 </beans>
