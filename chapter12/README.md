@@ -7,6 +7,7 @@ This chapter covers:
 - How to use and configure transactions
 - The differences between local and global transactions
 - Using transactions with messaging and database
+- Difference between local and global (XA) transactions
 - How to rollback transactions
 - How to compensate when transactions aren’t supported
 - Preventing duplicate messages using idempotency

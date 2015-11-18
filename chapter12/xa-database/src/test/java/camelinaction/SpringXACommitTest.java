@@ -12,7 +12,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class SpringRollbackBeforeActiveMQTest extends CamelSpringTestSupport {
+public class SpringXACommitTest extends CamelSpringTestSupport {
 
     private JdbcTemplate jdbc;
 
@@ -32,22 +32,25 @@ public class SpringRollbackBeforeActiveMQTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("SpringRollbackBeforeActiveMQTest.xml");
+        return new ClassPathXmlApplicationContext("SpringXACommitTest.xml");
     }
 
     @Test
-    public void testRollbackBeforeActiveMQ() throws Exception {
-        NotifyBuilder notify = new NotifyBuilder(context).whenReceived(10).create();
+    public void testCommit() throws Exception {
+        NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
 
         jdbc.execute("insert into partner_metric (partner_id, time_occurred, status_code, perf_time) values ('123', '20151115183457', '200', '1503')");
 
-        assertTrue(notify.matches(15, TimeUnit.SECONDS));
+        assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
-        // and there should be 1 row in the database as it keep rolling back
-        assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
+        // give time for database
+        Thread.sleep(1000);
+
+        // and there should be 0 rows in the database
+        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
 
         String order = consumer.receiveBody("activemq:queue:order", 2000, String.class);
-        assertNull("Should NOT be in order queue", order);
+        assertNotNull("Should be in order queue", order);
 
         context.stop();
     }

@@ -12,7 +12,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class SpringRollbackAfterActiveMQTest extends CamelSpringTestSupport {
+public class SpringXARollbackBeforeActiveMQTest extends CamelSpringTestSupport {
 
     private JdbcTemplate jdbc;
 
@@ -32,11 +32,11 @@ public class SpringRollbackAfterActiveMQTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("SpringRollbackBeforeActiveMQTest.xml");
+        return new ClassPathXmlApplicationContext("SpringXARollbackBeforeActiveMQTest.xml");
     }
 
     @Test
-    public void testRollbackAfterActiveMQ() throws Exception {
+    public void testRollbackBeforeActiveMQ() throws Exception {
         NotifyBuilder notify = new NotifyBuilder(context).whenReceived(10).create();
 
         jdbc.execute("insert into partner_metric (partner_id, time_occurred, status_code, perf_time) values ('123', '20151115183457', '200', '1503')");
