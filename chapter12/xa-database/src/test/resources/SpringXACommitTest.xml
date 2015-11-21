@@ -14,7 +14,7 @@
     <!-- the route starts from SQL where we select the new rows from the table
          and each row is then deleted afterwards, so its not consumed again on next poll -->
     <route>
-      <from uri="sql:{{sql-from}}?consumer.onConsume={{sql-delete}}&amp;dataSource=#myDataSource"/>
+      <from uri="sql:{{sql-from}}?consumer.onConsume={{sql-delete}}&amp;dataSource=#myDataSource&amp;transacted=true"/>
       <!-- enable transaction -->
       <transacted/>
       <log message="*** transacted ***"/>
