@@ -12,7 +12,12 @@
   <artifactId>chapter12-tx-database</artifactId>
   <name>Camel in Action 2 :: Chapter 12 :: Database transaction</name>
 
-    <dependencies>
+  <properties>
+    <!-- requires Camel 2.16.2 or better -->
+    <camel-version>2.17-SNAPSHOT</camel-version>
+  </properties>
+
+  <dependencies>
 
     <dependency>
       <groupId>org.apache.camel</groupId>

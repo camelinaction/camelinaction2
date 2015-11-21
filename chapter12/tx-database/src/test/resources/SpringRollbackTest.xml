@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <import resource="spring-context.xml"/>
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <propertyPlaceholder id="properties" location="camelinaction/sql.properties"/>
+
+    <!-- the route starts from SQL where we select the new rows from the table
+         and each row is then deleted afterwards, so its not consumed again on next poll -->
+    <route>
+      <!-- must set transacted=true to indicate the SQL consumer should rollback transaction eager when the first exchange
+           failed being processed from the returned rows from the database -->
+      <from uri="sql:{{sql-from}}?consumer.onConsume={{sql-delete}}&amp;dataSource=#myDataSource&amp;transacted=true
+                 &amp;backoffMultiplier=5&amp;backoffErrorThreshold=1"/>
+      <!-- enable transaction -->
+      <transacted/>
+      <log message="*** transacted ***"/>
+      <!-- log each row -->
+      <to uri="log:row"/>
+      <!-- force a failure -->
+      <throwException exceptionType="java.lang.IllegalArgumentException" message="Forced failure"/>
+    </route>
+
+  </camelContext>
+
+</beans>
