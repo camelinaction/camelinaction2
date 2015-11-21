@@ -20,6 +20,7 @@
         <module>propagation</module>
         <module>riderautoparts-order</module>
         <module>riderautoparts-partner</module>
+        <module>riderautoparts-partner-karaf</module>
         <module>tx-database</module>
         <module>xa-database</module>
         <module>uow</module>
