@@ -1,19 +1,19 @@
 <features>
-  <repository>mvn:org.apache.activemq/activemq-karaf/5.12.1/xml/features</repository>
-  <repository>mvn:org.apache.camel.karaf/apache-camel/2.17-SNAPSHOT/xml/features</repository>
-  <repository> mvn:io.hawt/hawtio-karaf/1.5-SNAPSHOT/xml/features</repository>
+  <repository>mvn:org.apache.activemq/activemq-karaf/${activemq-version}/xml/features</repository>
+  <repository>mvn:org.apache.camel.karaf/apache-camel/${camel-version}/xml/features</repository>
+  <repository> mvn:io.hawt/hawtio-karaf/${hawtio-version}/xml/features</repository>
 
   <feature name='chapter12-riderautoparts-partner-karaf' version='2.0.0'>
-    <feature version="1.5-SNAPSHOT">hawtio-offline</feature>
-    <feature version="5.12.1">activemq-broker-noweb</feature>
-    <feature version="5.12.1">activemq-camel</feature>
-    <feature version="2.17-SNAPSHOT">camel</feature>
-    <feature version="2.17-SNAPSHOT">camel-jms</feature>
-    <feature version="2.17-SNAPSHOT">camel-sql</feature>
+    <feature version="${hawtio-version}">hawtio-offline</feature>
+    <feature version="${activemq-version}">activemq-broker-noweb</feature>
+    <feature version="${activemq-version}">activemq-camel</feature>
+    <feature version="${camel-version}">camel</feature>
+    <feature version="${camel-version}">camel-jms</feature>
+    <feature version="${camel-version}">camel-sql</feature>
     <bundle>mvn:commons-pool/commons-pool/1.6</bundle>
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3</bundle>
     <bundle>mvn:org.apache.derby/derby/10.10.1.1</bundle>
-    <bundle>mvn:com.camelinaction/chapter12-riderautoparts-partner-karaf/2.0.0</bundle>
+    <bundle>mvn:com.camelinaction/chapter12-riderautoparts-partner-karaf/${project.version}</bundle>
   </feature>
 
 </features>
