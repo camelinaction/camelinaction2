@@ -33,8 +33,7 @@
 
   <!-- define the activemq Camel component so we can integrate with the AMQ broker -->
   <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
-    <!-- due to a bug in activemq-camel we must configure using a nested configuration bean
-         when we want to configured userName/password -->
+    <!-- due to a bug in activemq-camel we must configure using a nested configuration bean -->
     <property name="configuration">
       <bean class="org.apache.camel.component.jms.JmsConfiguration">
         <property name="connectionFactory" ref="jmsXaPoolConnectionFactory"/>
@@ -43,16 +42,16 @@
         <!-- IMPORTANT: We set local transactions to false, because the JtaTransactionManager
              will take care of enrolling the XA JMS Connection when needed. -->
         <property name="transacted" value="false"/>
-        <!-- IMPORTANT: and disable cache level as the JtaTransactionManager needs to control the consumers,
+        <!-- IMPORTANT: and disable cache level as the JtaTransactionManager needs to control the consumers
              from its JcaPooledConnectionFactory -->
-        <property name="cacheLevelName" value="CACHE_NONE" />
+        <property name="cacheLevelName" value="CACHE_NONE"/>
       </bean>
     </property>
   </bean>
 
   <!-- plain javax.transaction.TransactionManager is not enough to do recovery for ActiveMQ -->
   <reference id="jtaTxManager" interface="org.apache.geronimo.transaction.manager.RecoverableTransactionManager"/>
-  <!-- aries-transaction-manager registers this interface if it finds the org.springframework.transaction.PlatformTransactionManager class  -->
+  <!-- aries-transaction-manager registers this interface if it finds the org.springframework.transaction.PlatformTransactionManager class -->
   <reference id="springJtaTxManager" interface="org.springframework.transaction.PlatformTransactionManager"/>
 
   <!-- the ConnectionFactory to connect to the JMS broker -->
