@@ -1,0 +1,22 @@
+<features>
+  <repository>mvn:org.apache.activemq/activemq-karaf/${activemq-version}/xml/features</repository>
+  <repository>mvn:org.apache.camel.karaf/apache-camel/${camel-version}/xml/features</repository>
+  <repository> mvn:io.hawt/hawtio-karaf/${hawtio-version}/xml/features</repository>
+
+  <feature name='chapter12-xa-karaf' version='${project.version}'>
+    <!-- OSGi transaction manager from karaf -->
+    <feature>transaction</feature>
+    <feature version="${hawtio-version}">hawtio-offline</feature>
+    <feature version="${activemq-version}">activemq-broker-noweb</feature>
+    <feature version="${activemq-version}">activemq-camel</feature>
+    <feature version="${camel-version}">camel</feature>
+    <feature version="${camel-version}">camel-jms</feature>
+    <feature version="${camel-version}">camel-sql</feature>
+    <bundle>mvn:commons-pool/commons-pool/1.6</bundle>
+    <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3</bundle>
+    <bundle>mvn:org.apache.derby/derby/10.10.1.1</bundle>
+    <!-- we should start last after all those JDBC and pools -->
+    <bundle start-level="90">mvn:com.camelinaction/chapter12-xa-karaf/${project.version}</bundle>
+  </feature>
+
+</features>

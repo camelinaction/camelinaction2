@@ -25,6 +25,7 @@
         <module>xa-database</module>
         <module>uow</module>
         <module>xa</module>
+        <module>xa-karaf</module>
     </modules>
 
 </project>
