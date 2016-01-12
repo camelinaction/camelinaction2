@@ -19,7 +19,7 @@ public class OrderToCsvBeanTest extends CamelTestSupport {
 
         // compare the expected file content
         String body = context.getTypeConverter().convertTo(String.class, file);
-        assertEquals("000000555,20091209,000001144,2319,1108", body);
+        assertEquals("0000005555,20091209,0000011441,2319,1108", body);
     }
 
     @Override

@@ -19,7 +19,7 @@ public class OrderToCsvProcessorTest extends CamelTestSupport {
 
         // compare the expected file content
         String body = context.getTypeConverter().convertTo(String.class, file);
-        assertEquals("000000444,20091208,000001212,1217,1478,2132", body);
+        assertEquals("0000004444,20091208,0000012123,1217,1478,2132", body);
     }
 
     @Override
