@@ -8,11 +8,11 @@
   <parent>
     <groupId>com.camelinaction</groupId>
     <artifactId>chapter1</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
   </parent>
 
   <artifactId>chapter1-file-copy</artifactId>
-  <name>Camel in Action :: Chapter 1 :: File Copy Example</name>
+  <name>Camel in Action 2 :: Chapter 1 :: File Copy Example</name>
 
   <dependencies>
     <dependency>
