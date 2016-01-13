@@ -21,8 +21,8 @@ public final class PurchaseOrderConverter {
         s = s.replaceAll("##START##", "");
         s = s.replaceAll("##END##", "");
 
-        String name = s.substring(0, 9).trim();
-        String s2 = s.substring(10, 19).trim();
+        String name = s.substring(0, 10).trim();
+        String s2 = s.substring(10, 20).trim();
         String s3 = s.substring(20).trim();
 
         BigDecimal price = new BigDecimal(s2);
