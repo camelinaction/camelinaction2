@@ -17,6 +17,7 @@
   <modules>
     <module>code-first</module>
     <module>contract-first</module>
+    <module>restlet</module>
   </modules>
 </project>
 
