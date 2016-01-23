@@ -73,9 +73,9 @@ public class PropagationTest extends CamelSpringTestSupport {
         // the database need a little sleep time before commits are visible
         Thread.sleep(1000);
 
-        // there should be 1 row in the database with the order, and 0 in the audit-log as it was marked to only rollback
+        // there should be 1 row in the database with the order
         assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookorders", Long.class));
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
+        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from bookaudit", Long.class));
 
         // print the SQL
         log.info("The following orders was recorded in the orders ...");
