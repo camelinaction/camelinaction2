@@ -15,13 +15,13 @@
     <property name="contextName" value="karaf"/>
   </bean>
 
- <bean id="wss4jInInterceptor" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
-  <argument>
-   <map>
-    <entry key="action" value="UsernameToken" />
-   </map>
-  </argument>
- </bean>
+  <bean id="wss4jInInterceptor" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+    <argument>
+      <map>
+        <entry key="action" value="UsernameToken" />
+      </map>
+    </argument>
+  </bean>
 
   <cxf:cxfEndpoint id="orderEndpoint"
                    address="/order"
@@ -36,9 +36,9 @@
     </cxf:outInterceptors>
 
     <cxf:properties>
-     <entry key="ws-security.ut.validator">
-      <ref component-id="karafJaasValidator" />
-     </entry>   
+      <entry key="ws-security.ut.validator">
+        <ref component-id="karafJaasValidator" />
+      </entry>   
     </cxf:properties> 
     
   </cxf:cxfEndpoint>
