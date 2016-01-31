@@ -13,8 +13,6 @@
   <name>Camel in Action 2 :: Chapter 12 :: Database XA Transaction</name>
 
   <properties>
-    <!-- requires Camel 2.16.2 or better -->
-    <camel-version>2.17-SNAPSHOT</camel-version>
     <!-- atomikos is the XA transaction manager -->
     <atomikos-version>3.9.3</atomikos-version>
   </properties>
