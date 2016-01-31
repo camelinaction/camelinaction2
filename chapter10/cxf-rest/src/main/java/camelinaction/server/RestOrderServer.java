@@ -7,6 +7,14 @@ import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 
+/**
+ * A main class to start Apache CXF with our REST service {@link RestOrderService}.
+ * <p/>
+ * This main class uses Apache CXF in pure Java code without any XML configuration.
+ * Notice this configuration requires a bit of Java code, and more advanced configuration
+ * and usage of Apache CXF often involves configurating in XML files
+ * (due CXF was very Spring XML in the start of its lifetime).
+ */
 public class RestOrderServer {
 
     public static void main(String[] args) throws Exception {
@@ -33,6 +41,7 @@ public class RestOrderServer {
         System.out.println("Server started on http://localhost:9000/");
         System.out.println("");
 
+        // If you run the main class from IDEA/Eclipse then you may not have a console, which is null)
         if (console != null) {
             System.out.println("  Press ENTER to stop server");
             console.readLine();

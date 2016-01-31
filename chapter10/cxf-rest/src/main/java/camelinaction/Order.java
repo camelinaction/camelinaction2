@@ -5,6 +5,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * A POJO class as model to represent the order.
+ * <p/>
+ * This class has been annotated with JAXB to make mapping to/from XML/JSon easier
+ * using JAXB and Jackson.
+ */
 @XmlRootElement(name = "order")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Order {

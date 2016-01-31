@@ -7,6 +7,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import camelinaction.Order;
 import camelinaction.OrderService;
 
+/**
+ * A dummy implementation of {@link OrderService} to use for testing and running this example.
+ */
 public class DummyOrderService implements OrderService {
 
     // in memory dummy order system

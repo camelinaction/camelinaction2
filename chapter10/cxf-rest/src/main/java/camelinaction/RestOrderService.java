@@ -9,20 +9,28 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+/**
+ * A JAX-RS Resource class where we define the RESTful web service, using the JAX-RS annotations.
+ * <p/>
+ * This implementation is pure JAX-RS and are not using Apache Camel.
+ * Notice how each operation uses the {@link Response} type to build the response message.
+ */
 @Path("/orders/")
 @Produces("text/xml")
 public class RestOrderService {
 
     private OrderService orderService;
 
-    public OrderService getOrderService() {
-        return orderService;
-    }
-
+    /**
+     * To inject a implementation of the {@link OrderService}
+     */
     public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
     }
 
+    /**
+     * The GET order by id operation
+     */
     @GET
     @Path("/{id}")
     public Response getOrder(@PathParam("id") int orderId) {
@@ -34,18 +42,27 @@ public class RestOrderService {
         }
     }
 
+    /**
+     * The PUT update order operation
+     */
     @PUT
     public Response updateOrder(Order order) {
         orderService.updateOrder(order);
         return Response.ok().build();
     }
 
+    /**
+     * The POST create order operation
+     */
     @POST
     public Response createOrder(Order order) {
         String id = orderService.createOrder(order);
         return Response.ok(id).build();
     }
 
+    /**
+     * The DELETE cancel order operation
+     */
     @DELETE
     @Path("/{id}")
     public Response cancelOrder(@PathParam("id") int orderId) {
