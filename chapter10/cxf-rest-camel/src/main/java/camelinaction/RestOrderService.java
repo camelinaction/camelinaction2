@@ -36,7 +36,7 @@ public class RestOrderService {
     @GET
     @Path("/{id}")
     public Response getOrder(@PathParam("id") int orderId) {
-        Order order = producer.requestBodyAndHeader("direct:getOrder", null, "id", orderId, Order.class);
+        Order order = producer.requestBody("direct:getOrder", orderId, Order.class);
         if (order != null) {
             return Response.ok(order).build();
         } else {

@@ -26,6 +26,7 @@ public class RestOrderServer {
         DummyOrderService dummy = new DummyOrderService();
         dummy.setupDummyOrders();
 
+        // create a Camel route that routes the REST services
         OrderRoute route = new OrderRoute();
         route.setOrderService(dummy);
 
@@ -33,9 +34,11 @@ public class RestOrderServer {
         CamelContext camel = new DefaultCamelContext();
         camel.addRoutes(route);
 
+        // create a ProducerTemplate that the CXF REST service will use to integrate with Camel
         ProducerTemplate producer = camel.createProducerTemplate();
 
-        // create CXF REST service and inject the dummy backend
+        // create CXF REST service and inject the Camel ProducerTemplate
+        // which we use to call the Camel route
         RestOrderService rest = new RestOrderService();
         rest.setProducerTemplate(producer);
 

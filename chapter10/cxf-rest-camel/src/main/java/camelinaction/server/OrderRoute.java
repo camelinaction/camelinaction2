@@ -3,6 +3,12 @@ package camelinaction.server;
 import camelinaction.OrderService;
 import org.apache.camel.builder.RouteBuilder;
 
+/**
+ * A Camel route that calls the {@link OrderService} backend.
+ * <p/>
+ * To keep this example simple the route is a straight from -> bean, but you can of course
+ * make the routes do much more.
+ */
 public class OrderRoute extends RouteBuilder {
 
     private OrderService orderService;
