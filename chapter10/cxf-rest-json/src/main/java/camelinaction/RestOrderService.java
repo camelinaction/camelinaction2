@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
  * Notice how each operation uses the {@link Response} type to build the response message.
  */
 @Path("/orders/")
-@Produces("application/xml")
+@Produces("application/json")
 public class RestOrderService {
 
     private OrderService orderService;

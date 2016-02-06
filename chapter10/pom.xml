@@ -18,6 +18,7 @@
     <module>code-first</module>
     <module>contract-first</module>
     <module>cxf-rest</module>
+    <module>cxf-rest-json</module>
     <module>restlet</module>
   </modules>
 </project>
