@@ -42,9 +42,6 @@ public class RestOrderServer {
         RestOrderService rest = new RestOrderService();
         rest.setProducerTemplate(producer);
 
-        // start Camel
-        camel.start();
-
         // setup Apache CXF REST server on port 9000
         JAXRSServerFactoryBean sf = new JAXRSServerFactoryBean();
         sf.setResourceClasses(RestOrderService.class);
@@ -53,8 +50,11 @@ public class RestOrderServer {
         sf.setProvider(JacksonJsonProvider.class);
         sf.setAddress("http://localhost:9000/");
 
-        // create and start the CXF server (non blocking)
+        // create the CXF server
         Server server = sf.create();
+
+        // start Camel and CXF (non blocking)
+        camel.start();
         server.start();
 
         // keep the JVM running
@@ -71,10 +71,8 @@ public class RestOrderServer {
             Thread.sleep(5 * 60 * 1000);
         }
 
-        // stop Camel
+        // stop Camel and CXF server
         camel.stop();
-
-        // stop CXF server
         server.stop();
         System.exit(0);
     }
