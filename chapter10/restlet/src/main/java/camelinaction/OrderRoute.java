@@ -12,8 +12,8 @@ public class OrderRoute extends RouteBuilder {
         from("restlet:http://0.0.0.0:8080/orders/{id}?restletMethods=GET")
             .bean("orderService", "getOrder(${header.id})");
 
-        from("restlet:http://0.0.0.0:8080/orders/{id}?restletMethods=PUT")
-            .bean("orderService", "updateOrder(${header.id})");
+        from("restlet:http://0.0.0.0:8080/orders?restletMethods=PUT")
+            .bean("orderService", "updateOrder");
 
         from("restlet:http://0.0.0.0:8080/orders/{id}?restletMethods=DELETE")
             .bean("orderService", "cancelOrder(${header.id})");
