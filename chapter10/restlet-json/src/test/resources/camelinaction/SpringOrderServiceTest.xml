@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- the order service -->
+  <bean id="orderService" class="camelinaction.DummyOrderService"/>
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <properties>
+      <!-- enable Jackson json type converter -->
+      <property key="CamelJacksonEnableTypeConverter" value="true"/>
+      <!-- allow Jackson json to convert to pojo types also -->
+      <property key="CamelJacksonTypeConverterToPojo" value="true"/>
+    </properties>
+
+    <!-- the order service REST web services using restlet component -->
+    <route>
+      <from uri="restlet:http://0.0.0.0:8080/orders?restletMethods=POST"/>
+      <bean ref="orderService" method="createOrder"/>
+    </route>
+    <route>
+      <from uri="restlet:http://0.0.0.0:8080/orders/{id}?restletMethods=GET"/>
+      <bean ref="orderService" method="getOrder(${header.id})"/>
+    </route>
+    <route>
+      <from uri="restlet:http://0.0.0.0:8080/orders?restletMethods=PUT"/>
+      <bean ref="orderService" method="updateOrder"/>
+    </route>
+    <route>
+      <from uri="restlet:http://0.0.0.0:8080/orders/{id}?restletMethods=DELETE"/>
+      <bean ref="orderService" method="cancelOrder(${header.id})"/>
+    </route>
+
+  </camelContext>
+
+</beans>
