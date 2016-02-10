@@ -21,6 +21,7 @@
     <module>cxf-rest-camel</module>
     <module>cxf-rest-json</module>
     <module>restlet</module>
+    <module>restlet-json</module>
   </modules>
 </project>
 
