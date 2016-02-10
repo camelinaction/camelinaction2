@@ -21,7 +21,9 @@
     <module>cxf-rest-camel</module>
     <module>cxf-rest-json</module>
     <module>restlet</module>
+    <!-- TODO: wait for Camel 2.17 
     <module>restlet-json</module>
+    -->
   </modules>
 </project>
 
