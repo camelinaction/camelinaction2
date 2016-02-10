@@ -1,24 +1,14 @@
 package camelinaction;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
- * Order class annotated with JAXB which allows Jackson to convert json to/from this POJO class.
+ * Jackson is able to map to this POJO without any annotations. But you can customize anyhow you want (also use JAXB).
+ * See more details at: https://github.com/FasterXML/jackson-annotations/wiki/Jackson-Annotations
  */
-@XmlRootElement(name = "order")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Order {
 
-    @XmlAttribute
     private int id;
-    @XmlAttribute
     private String partName;
-    @XmlAttribute
     private int amount;
-    @XmlAttribute
     private String customerName;
 
     public int getId() {
