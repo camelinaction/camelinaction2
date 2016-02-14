@@ -47,6 +47,17 @@
       <artifactId>cxf-rt-transports-http-jetty</artifactId>
       <version>${cxf-version}</version>
     </dependency>
+    <!-- to enable json support -->
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-rs-extension-providers</artifactId>
+      <version>${cxf-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+      <version>2.7.1</version>
+    </dependency>
 
     <!-- testing -->
     <dependency>

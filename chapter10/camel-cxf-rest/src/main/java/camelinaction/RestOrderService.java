@@ -15,10 +15,12 @@ import javax.ws.rs.Produces;
  * When using cxfrs with Camel then this resource class can be an interface, as its just a contract/facade
  * to describe the REST web service. When a client calls the REST services then its a Camel route that routes
  * the incoming request, see {@link OrderRoute}
+ * <br/>
+ * This REST service supports both xml and json as data format.
  */
 @Path("/orders/")
-@Consumes("application/xml")
-@Produces("application/xml")
+@Consumes(value = "application/xml,application/json")
+@Produces(value = "application/xml,application/json")
 public interface RestOrderService {
 
     /**

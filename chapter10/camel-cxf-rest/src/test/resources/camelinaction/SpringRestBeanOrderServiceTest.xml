@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <!-- the order service -->
+  <bean id="orderService" class="camelinaction.DummyOrderService"/>
+
+  <!-- CXF-RS server as a bean where we setup the REST web service using the resource class
+       and can do additional configurations -->
+  <cxf:rsServer id="restOrderServer" address="http://localhost:8080"
+                serviceClass="camelinaction.RestOrderService">
+  </cxf:rsServer>
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <route>
+      <!-- use cxfrs:bean and enable the simple binding style -->
+      <from uri="cxfrs:bean:restOrderServer?bindingStyle=SimpleConsumer"/>
+      <!-- call the route based on the operation invoked on the REST web service -->
+      <toD uri="direct:${header.operationName}"/>
+    </route>
+
+    <!-- routes that implement the REST services -->
+    <route>
+      <from uri="direct:createOrder"/>
+      <bean ref="orderService" method="createOrder"/>
+    </route>
+    <route>
+      <from uri="direct:getOrder"/>
+      <bean ref="orderService" method="getOrder(${header.id})"/>
+    </route>
+    <route>
+      <from uri="direct:updateOrder"/>
+      <bean ref="orderService" method="updateOrder"/>
+    </route>
+    <route>
+      <from uri="direct:cancelOrder"/>
+      <bean ref="orderService" method="cancelOrder(${header.id})"/>
+    </route>
+
+  </camelContext>
+
+</beans>
