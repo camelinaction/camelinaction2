@@ -52,7 +52,7 @@
 
     <activemq-version>5.12.1</activemq-version>
     <camel-version>2.16.2</camel-version>
-    <cxf-version>3.1.4</cxf-version>
+    <cxf-version>3.1.5</cxf-version>
     <hawtio-version>1.4.60</hawtio-version>
 
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
