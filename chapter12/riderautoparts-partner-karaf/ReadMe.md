@@ -24,7 +24,7 @@ Then wait a while, and if all is okay you should see a Camel application if you 
 
     camel:context-list
 
-Then from the hawtio web console you can browse the applicatiom, and send a XML message to the ActiveMQ queue
+Then from the hawtio web console you can browse the application, and send a XML message to the ActiveMQ queue
 
     http://localhost:8181/hawtio/
 

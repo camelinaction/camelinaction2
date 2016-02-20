@@ -1,0 +1,21 @@
+<features>
+  <repository>mvn:org.apache.camel.karaf/apache-camel/${camel-version}/xml/features</repository>
+  <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf-version}/xml/features</repository>
+  <repository>mvn:io.hawt/hawtio-karaf/${hawtio-version}/xml/features</repository>
+
+  <feature name='chapter10-camel-cxf-rest-karaf' version='${project.version}'>
+    <feature>war</feature>
+    <feature version="${hawtio-version}">hawtio-offline</feature>
+    <feature version="${camel-version}">camel</feature>
+    <feature version="${camel-version}">camel-cxf</feature>
+    <feature version="${camel-version}">camel-jaxb</feature>
+    <feature version="${camel-version}">camel-jackson</feature>
+    <feature version="${cxf-version}">cxf-jaxrs</feature>
+    <feature version="${cxf-version}">cxf-http-jetty</feature>
+    <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson-version}</bundle>
+    <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson-version}</bundle>
+    <!-- we should start last -->
+    <bundle start-level="90">mvn:com.camelinaction/chapter10-camel-cxf-rest-karaf/${project.version}</bundle>
+  </feature>
+
+</features>

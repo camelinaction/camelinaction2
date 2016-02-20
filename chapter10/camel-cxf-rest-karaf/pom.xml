@@ -1,0 +1,185 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>chapter10</artifactId>
+    <version>2.0.0</version>
+  </parent>
+
+  <artifactId>chapter10-camel-cxf-rest-karaf</artifactId>
+  <name>Camel in Action 2 :: Chapter 10 :: Camel CXF-RS - OSGi with Karaf</name>
+  <packaging>bundle</packaging>
+
+  <properties>
+    <!-- TODO: requires 2.16.3 or better -->
+    <camel-version>2.17-SNAPSHOT</camel-version>
+  </properties>
+
+  <dependencies>
+
+    <!-- needed for OSGi testing with CXF -->
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm-all</artifactId>
+      <version>4.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- camel -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-blueprint</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-cxf</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jaxb</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+
+    <!-- cxf http/jetty server -->
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+      <version>${cxf-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http-jetty</artifactId>
+      <version>${cxf-version}</version>
+    </dependency>
+    <!-- to enable json support -->
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-rs-extension-providers</artifactId>
+      <version>${cxf-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+      <version>${jackson-version}</version>
+    </dependency>
+
+    <!-- testing -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test-blueprint</artifactId>
+      <version>${camel-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-restlet</artifactId>
+      <version>${camel-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+
+    <plugins>
+      <!-- to generate the OSGi bundle -->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>${maven-bundle-plugin-version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <!--<instructions>-->
+            <!-- to make loading the JDBC driver and connection pool possible -->
+            <!--<Import-Package>-->
+              <!--org.apache.derby.*,-->
+              <!--org.apache.commons.dbcp.*,-->
+              <!--*-->
+            <!--</Import-Package>-->
+            <!--<DynamicImport-Package>*</DynamicImport-Package>-->
+          <!--</instructions>-->
+        </configuration>
+      </plugin>
+
+      <!-- to filter the features.xml -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.7</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <!-- here the phase you need -->
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/classes</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/resources</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- to attach the features.xml file so its easy to install in karaf -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>target/classes/features.xml</file>
+                  <type>xml</type>
+                  <classifier>features</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>
+
