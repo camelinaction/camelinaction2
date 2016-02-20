@@ -23,6 +23,7 @@
     <module>restlet</module>
     <!-- TODO: wait for Camel 2.17 
     <module>camel-cxf-rest</module>
+    <module>camel-cxf-rest-cdi</module>
     <module>camel-cxf-rest-karaf</module>
     <module>camel-cxf-rest-spring-boot</module>
     <module>restlet-json</module>
