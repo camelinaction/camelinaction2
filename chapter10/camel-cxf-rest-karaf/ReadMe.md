@@ -24,5 +24,22 @@ Then wait a while, and if all is okay you should see a Camel application if you 
 
     camel:context-list
 
+And you can list the Camel routes with:
+
+    camel:route-list
+
+From a command line you can use curl to retrieve order 1 in xml using:
+
+    curl -i http://localhost:8080/orders/1
+
+And to get the order as json format you need to specify the accept header as shown:
+
+    curl -i --header "Accept: application/json" http://localhost:8080/orders/1
+
+You can see more details of the Camel application and Karaf using the hawtio web console
+
+    http://localhost:8181/hawtio
+
+And use `karaf/karaf` as username and password to login.
 
 
