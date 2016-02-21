@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- the order service -->
+  <bean id="orderService" class="camelinaction.DummyOrderService"/>
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- configure rest-dsl to use spark-rest component and run on port 8080 -->
+    <restConfiguration component="spark-rest" port="8080"/>
+
+    <!-- rest services under the orders context-path -->
+    <rest path="/orders">
+      <get uri="{id}">
+        <to uri="bean:orderService?method=getOrder(${header.id})"/>
+      </get>
+      <post>
+        <to uri="bean:orderService?method=createOrder"/>
+      </post>
+      <put>
+        <to uri="bean:orderService?method=updateOrder"/>
+      </put>
+      <delete uri="{id}">
+        <to uri="bean:orderService?method=cancelOrder(${header.id})"/>
+      </delete>
+    </rest>
+
+  </camelContext>
+
+</beans>

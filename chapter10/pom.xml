@@ -26,6 +26,7 @@
     <module>camel-cxf-rest-cdi</module>
     <module>camel-cxf-rest-karaf</module>
     <module>camel-cxf-rest-spring-boot</module>
+    <module>spark-rest</module>
     <module>restlet-json</module>
     -->
   </modules>
