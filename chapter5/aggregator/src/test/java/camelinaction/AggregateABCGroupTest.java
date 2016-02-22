@@ -21,6 +21,7 @@ import java.util.List;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.processor.aggregate.GroupedExchangeAggregationStrategy;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -48,7 +49,7 @@ public class AggregateABCGroupTest extends CamelTestSupport {
         // should not have a body
         //mock.message(0).body().isNull();
         // but have it stored in a property as a List
-        mock.message(0).property(Exchange.GROUPED_EXCHANGE).isInstanceOf(List.class);
+        mock.message(0).exchangeProperty(Exchange.GROUPED_EXCHANGE).isInstanceOf(List.class);
 
         template.sendBodyAndHeader("direct:start", "A", "myId", 1);
         template.sendBodyAndHeader("direct:start", "B", "myId", 1);
@@ -84,9 +85,7 @@ public class AggregateABCGroupTest extends CamelTestSupport {
                     // do a little logging
                     .log("Sending ${body} with correlation key ${header.myId}")
                     // aggregate based on header correlation key
-                    // notice we do NOT need to use an AggregationStrategy as we
-                    // groupExchanges
-                    .aggregate(header("myId")).completionSize(3).groupExchanges()
+                    .aggregate(header("myId"), new GroupedExchangeAggregationStrategy()).completionSize(3)
                         // do a little logging for the published message
                         .log("Sending out ${body}")
                         // and send it to the mock
