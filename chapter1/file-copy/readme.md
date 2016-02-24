@@ -1,11 +1,12 @@
-Chapter 1 - File Copy Example
-=======================
+Chapter 1 - file-copy
+----------------------------------
 
-This example is copying files from data/inbox to data/outbox directory.
+Contains the only example from chapter 1.
 
 
-Running
------------
+### 1.2.2 - Your first Camel ride
+
+This example is copying files from the data/inbox to data/outbox directory.
 
 To run the example:
 
