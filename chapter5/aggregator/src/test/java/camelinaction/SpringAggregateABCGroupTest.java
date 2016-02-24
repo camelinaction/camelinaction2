@@ -48,7 +48,7 @@ public class SpringAggregateABCGroupTest extends CamelSpringTestSupport {
         // should not have a body
         // mock.message(0).body().isNull();
         // but have it stored in a property as a List
-        mock.message(0).property(Exchange.GROUPED_EXCHANGE).isInstanceOf(List.class);
+        mock.message(0).exchangeProperty(Exchange.GROUPED_EXCHANGE).isInstanceOf(List.class);
 
         template.sendBodyAndHeader("direct:start", "A", "myId", 1);
         template.sendBodyAndHeader("direct:start", "B", "myId", 1);
