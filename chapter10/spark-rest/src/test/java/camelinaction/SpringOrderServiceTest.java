@@ -25,7 +25,7 @@ public class SpringOrderServiceTest extends CamelSpringTestSupport {
         log.info("Sending order using xml payload: {}", xml);
 
         // use http component to send the order
-        String id = template.requestBody("http://0.0.0.0:8080/orders", xml, String.class);
+        String id = template.requestBody("http://localhost:8080/orders", xml, String.class);
         assertNotNull(id);
 
         log.info("Created new order with id " + id);
@@ -47,7 +47,7 @@ public class SpringOrderServiceTest extends CamelSpringTestSupport {
         log.info("Sending order using xml payload: {}", xml);
 
         // use http component to send the order
-        String id = template.requestBody("http://0.0.0.0:8080/orders", xml, String.class);
+        String id = template.requestBody("http://localhost:8080/orders", xml, String.class);
         assertNotNull(id);
 
         log.info("Created new order with id " + id);
@@ -56,7 +56,7 @@ public class SpringOrderServiceTest extends CamelSpringTestSupport {
         assertEquals("3", id);
 
         // use restlet component to get the order
-        String response = template.requestBody("http://0.0.0.0:8080/orders/" + id, null, String.class);
+        String response = template.requestBody("http://localhost:8080/orders/" + id, null, String.class);
         log.info("Response: {}", response);
     }
 
