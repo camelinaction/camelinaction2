@@ -11,8 +11,8 @@
 
   <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
 
-    <!-- configure rest-dsl to use spark-rest component and run on port 8080 -->
-    <restConfiguration component="spark-rest" port="8080"/>
+    <!-- configure rest-dsl to use jetty component and run on port 8080 -->
+    <restConfiguration component="jetty" port="8080"/>
 
     <!-- rest services under the orders context-path -->
     <rest path="/orders">

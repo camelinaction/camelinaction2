@@ -9,8 +9,8 @@ public class OrderRoute extends RouteBuilder {
 
         // configure rest-dsl
         restConfiguration()
-           // to use spark-rest component and run on port 8080
-            .component("spark-rest").port(8080);
+           // to use jetty component and run on port 8080
+            .component("jetty").port(8080);
 
         // rest services under the orders context-path
         rest("/orders")
