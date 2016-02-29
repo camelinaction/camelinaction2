@@ -9,10 +9,20 @@
   <!-- the order service -->
   <bean id="orderService" class="camelinaction.DummyOrderService"/>
 
+  <!-- the security handler -->
+  <bean id="securityHandler" class="camelinaction.JettySecurity"
+        factory-method="createSecurityHandler"/>
+
   <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
 
     <!-- configure rest-dsl to use jetty component and run on port 8080 -->
-    <restConfiguration component="jetty" port="8080"/>
+    <restConfiguration component="jetty" port="8080">
+      <!-- use a smaller thread pool in jetty as we do not have so high demand yet -->
+      <componentProperty key="minThread" value="1"/>
+      <componentProperty key="maxThread" value="8"/>
+      <!-- to setup jetty to use the security handler -->
+      <endpointProperty key="handlers" value="#securityHandler"/>
+    </restConfiguration>
 
     <!-- rest services under the orders context-path -->
     <rest path="/orders">
