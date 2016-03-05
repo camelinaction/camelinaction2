@@ -26,6 +26,7 @@
     <module>camel-cxf-rest-cdi</module>
     <module>camel-cxf-rest-karaf</module>
     <module>camel-cxf-rest-spring-boot</module>
+    <module>cdi-rest-security</module>
     <module>jetty-rest-security</module>
     <module>karaf-rest-security</module>
     <module>spark-rest</module>
