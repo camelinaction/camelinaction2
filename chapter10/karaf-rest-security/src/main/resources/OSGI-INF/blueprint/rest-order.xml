@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+           xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd
+             ">
+
+  <!-- the order service -->
+  <bean id="orderService" class="camelinaction.dummy.DummyOrderService"/>
+
+  <!-- the security handler -->
+  <bean id="securityHandler" class="camelinaction.JettySecurity"
+        factory-method="createSecurityHandler"/>
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/blueprint">
+
+    <!-- configure rest-dsl to use jetty component and run on port 8080 -->
+    <restConfiguration component="jetty" port="8080">
+      <!-- use a smaller thread pool in jetty as we do not have so high demand yet -->
+      <componentProperty key="minThread" value="1"/>
+      <componentProperty key="maxThread" value="8"/>
+      <!-- to setup jetty to use the security handler -->
+      <endpointProperty key="handlers" value="#securityHandler"/>
+    </restConfiguration>
+
+    <!-- rest services under the orders context-path -->
+    <rest path="/orders">
+      <get uri="{id}">
+        <to uri="bean:orderService?method=getOrder(${header.id})"/>
+      </get>
+      <post>
+        <to uri="bean:orderService?method=createOrder"/>
+      </post>
+      <put>
+        <to uri="bean:orderService?method=updateOrder"/>
+      </put>
+      <delete uri="{id}">
+        <to uri="bean:orderService?method=cancelOrder(${header.id})"/>
+      </delete>
+    </rest>
+
+  </camelContext>
+
+</blueprint>

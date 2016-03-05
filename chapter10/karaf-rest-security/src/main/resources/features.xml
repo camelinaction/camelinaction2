@@ -1,0 +1,15 @@
+<features>
+  <repository>mvn:org.apache.camel.karaf/apache-camel/${camel-version}/xml/features</repository>
+  <repository>mvn:io.hawt/hawtio-karaf/${hawtio-version}/xml/features</repository>
+
+  <feature name='chapter10-karaf-rest-security' version='${project.version}'>
+    <feature>war</feature>
+    <feature version="${hawtio-version}">hawtio-offline</feature>
+    <feature version="${camel-version}">camel</feature>
+    <feature version="${camel-version}">camel-jetty9</feature>
+    <feature version="${camel-version}">camel-jaxb</feature>
+    <!-- we should start last -->
+    <bundle start-level="90">mvn:com.camelinaction/chapter10-karaf-rest-security/${project.version}</bundle>
+  </feature>
+
+</features>
