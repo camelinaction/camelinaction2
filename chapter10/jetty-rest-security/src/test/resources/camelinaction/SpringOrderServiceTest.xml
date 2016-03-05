@@ -7,7 +7,7 @@
     ">
 
   <!-- the order service -->
-  <bean id="orderService" class="camelinaction.DummyOrderService"/>
+  <bean id="orderService" class="camelinaction.dummy.DummyOrderService"/>
 
   <!-- the security handler -->
   <bean id="securityHandler" class="camelinaction.JettySecurity"

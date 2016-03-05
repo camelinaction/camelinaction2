@@ -1,5 +1,6 @@
 package camelinaction;
 
+import camelinaction.dummy.DummyOrderService;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;

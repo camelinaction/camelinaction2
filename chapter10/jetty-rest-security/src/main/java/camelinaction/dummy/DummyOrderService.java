@@ -1,8 +1,11 @@
-package camelinaction;
+package camelinaction.dummy;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import camelinaction.Order;
+import camelinaction.OrderService;
 
 public class DummyOrderService implements OrderService {
 
