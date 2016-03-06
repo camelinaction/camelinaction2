@@ -13,16 +13,22 @@
 
     <!-- configure rest-dsl to use spark-rest component and run on port 8080
          and enable JSon binding mode -->
-    <restConfiguration component="spark-rest" port="8080" bindingMode="json"/>
+    <restConfiguration component="spark-rest" port="8080" bindingMode="json">
+      <!-- lets enable pretty printing json responses -->
+      <dataFormatProperty key="prettyPrint" value="true"/>
+    </restConfiguration>
 
     <!-- rest services under the orders context-path -->
     <rest path="/orders">
+      <!-- need to specify the POJO types the binding is using (otherwise json binding defaults to Map based) -->
       <get uri="{id}" outType="camelinaction.Order">
         <to uri="bean:orderService?method=getOrder(${header.id})"/>
       </get>
+      <!-- need to specify the POJO types the binding is using (otherwise json binding defaults to Map based) -->
       <post type="camelinaction.Order">
         <to uri="bean:orderService?method=createOrder"/>
       </post>
+      <!-- need to specify the POJO types the binding is using (otherwise json binding defaults to Map based) -->
       <put type="camelinaction.Order">
         <to uri="bean:orderService?method=updateOrder"/>
       </put>
