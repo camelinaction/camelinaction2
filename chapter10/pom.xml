@@ -30,6 +30,7 @@
     <module>jetty-rest-security</module>
     <module>karaf-rest-security</module>
     <module>spark-rest</module>
+    <module>spark-rest-json</module>
     <module>restlet-json</module>
     -->
   </modules>
