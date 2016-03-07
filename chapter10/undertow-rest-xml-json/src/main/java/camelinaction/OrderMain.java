@@ -13,8 +13,6 @@ public class OrderMain {
 
         // setup a dummy order service
         main.bind("orderService", new DummyOrderService());
-        // create Jetty Basic Auth security handler
-        main.bind("securityHandler", JettySecurity.createSecurityHandler());
 
         // add the order route with the Rest services
         main.addRouteBuilder(new OrderRoute());
@@ -24,8 +22,6 @@ public class OrderMain {
         System.out.println("  Rider Auto Parts REST order service");
         System.out.println("");
         System.out.println("  You can try calling this service using http://localhost:8080/orders/1");
-        System.out.println("");
-        System.out.println("    and use jack/123 as username/password");
         System.out.println("***************************************************");
 
         // run the application
