@@ -1,5 +1,6 @@
 package camelinaction;
 
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
 
@@ -16,6 +17,26 @@ public class OrderRoute extends RouteBuilder {
             .bindingMode(RestBindingMode.json_xml)
             // lets enable pretty printing json responses
             .dataFormatProperty("prettyPrint", "true");
+
+        // error handling to return custom HTTP status codes for the various exceptions
+
+        onException(OrderNotFoundException.class)
+            .handled(true)
+            // use HTTP status 204 when data was not found
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(204))
+            .setBody(constant(""));
+
+        onException(OrderInvalidException.class)
+            .handled(true)
+            // use HTTP status 400 when input data is invalid
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(400))
+            .setBody(constant(""));
+
+        onException(Exception.class)
+            .handled(true)
+            // use HTTP status 500 when we had a server side error
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(500))
+            .setBody(simple("${exception.message}\n"));
 
         // rest services under the orders context-path
         rest("/orders")
