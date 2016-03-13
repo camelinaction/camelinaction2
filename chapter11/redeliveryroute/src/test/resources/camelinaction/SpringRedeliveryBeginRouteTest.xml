@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- no error handler -->
+    <errorHandler id="noErrorHandler" type="NoErrorHandler"/>
+
+    <!-- redelivery settings -->
+    <onException>
+      <exception>java.lang.IllegalArgumentException</exception>
+      <redeliveryPolicy maximumRedeliveries="3"/>
+    </onException>
+
+    <route>
+      <from uri="direct:start"/>
+      <to uri="mock:a"/>
+      <!-- this route has error handler, so any exception will redeliver (eg calling the foo route again) -->
+      <to uri="direct:foo"/>
+      <to uri="mock:result"/>
+    </route>
+
+    <!-- this route has no error handler, so any exception will not be redelivered -->
+    <route errorHandlerRef="noErrorHandler">
+      <from uri="direct:foo"/>
+      <log message="Calling foo route redelivery count: ${header.CamelRedeliveryCounter}"/>
+      <to uri="mock:b"/>
+      <throwException exceptionType="java.lang.IllegalArgumentException" message="Forced"/>
+    </route>
+
+  </camelContext>
+
+</beans>

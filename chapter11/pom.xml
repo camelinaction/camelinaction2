@@ -19,6 +19,7 @@
         <module>errorhandler</module>
         <module>newexception</module>
         <module>onexception</module>
+        <module>redeliveryroute</module>
         <module>reuse</module>
         <module>usecase</module>
     </modules>
