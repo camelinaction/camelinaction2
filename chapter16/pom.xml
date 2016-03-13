@@ -27,6 +27,9 @@
         <module>metrics</module>
         <module>notifier</module>
         <module>tracer</module>
+        <!-- TODO: requires camel 2.17
+        <module>spring-boot</module>
+        -->
     </modules>
 
 </project>
