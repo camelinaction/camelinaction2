@@ -48,7 +48,7 @@ public class RedeliveryBeginRouteTest extends CamelTestSupport {
                 // this route has no error handler, so any exception will not be redelivered
                 from("direct:foo")
                         .errorHandler(noErrorHandler())
-                        .log("Calling foo route redelivery count: ${header.CamelRedeliveryCounter}")
+                        .log("Calling foo redelivery ${header.CamelRedeliveryCounter}")
                         .to("mock:b")
                         .throwException(new IllegalArgumentException("Forced"));
             }

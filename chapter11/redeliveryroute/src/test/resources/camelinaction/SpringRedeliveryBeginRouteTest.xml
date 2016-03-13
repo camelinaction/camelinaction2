@@ -28,7 +28,7 @@
     <!-- this route has no error handler, so any exception will not be redelivered -->
     <route errorHandlerRef="noErrorHandler">
       <from uri="direct:foo"/>
-      <log message="Calling foo route redelivery count: ${header.CamelRedeliveryCounter}"/>
+      <log message="Calling foo redelivery ${header.CamelRedeliveryCounter}"/>
       <to uri="mock:b"/>
       <throwException exceptionType="java.lang.IllegalArgumentException" message="Forced"/>
     </route>
