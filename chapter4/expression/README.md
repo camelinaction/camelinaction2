@@ -13,3 +13,8 @@ This example can be run using:
 And a variation of the example can be run using:
 
     mvn test -Dtest=JsonExpressionNoSetHeaderTest
+
+Using toD instead of recipientList example can be run using:
+
+    mvn test -Dtest=JsonToDExpressionTest
+    mvn test -Dtest=SpringJsonToDExpressionTest

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- the customer service -->
+  <bean id="customerService" class="camelinaction.CustomerService"/>
+
+  <!-- route a message from the file and use the customer service bean to determine where to route the message -->
+  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+    <route>
+      <from uri="file://target/order"/>
+      <!-- set a header with the region from where the customer is from -->
+      <setHeader headerName="region">
+        <!-- use a method call to call a bean as the expression -->
+        <method ref="customerService" method="region"/>
+      </setHeader>
+      <!-- route the message according to the region, using dynamic to -->
+      <toD uri="mock:queue:${header.region}"/>
+    </route>
+  </camelContext>
+
+</beans>
