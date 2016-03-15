@@ -1,5 +1,5 @@
-Chapter 10 - cdi-rest-security
-------------------------------
+Chapter 10 - jetty-rest-security-cdi
+------------------------------------
 
 This is a CDI based example of the `jetty-rest-security` example.
 

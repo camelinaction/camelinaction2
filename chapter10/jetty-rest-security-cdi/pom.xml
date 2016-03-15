@@ -9,7 +9,7 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter10-cdi-rest-security</artifactId>
+  <artifactId>chapter10-jetty-rest-security-cdi</artifactId>
   <name>Camel in Action 2 :: Chapter 10 :: Secured REST with CDI</name>
 
   <properties>

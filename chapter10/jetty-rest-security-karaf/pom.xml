@@ -9,7 +9,7 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter10-karaf-rest-security</artifactId>
+  <artifactId>chapter10-jetty-rest-security-karaf</artifactId>
   <name>Camel in Action 2 :: Chapter 10 :: Secured REST with Karaf</name>
 
   <packaging>bundle</packaging>
