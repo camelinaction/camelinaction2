@@ -3,7 +3,7 @@ Chapter 10 - undertow-rest-json-xml
 
 This is a Rest DSL example using camel-undertow as chosen component.
 
-This is an Order REST service where
+### 10.2.5 Using XML and JSon data formats with Rest DSL
 
 To try this example you need to first build it
 
