@@ -1,8 +1,9 @@
 Chapter 10 - cdi-rest-security
 ------------------------------
 
-This is a CDI based example of the `jetty-rest-security` example, which is covered in section 10.2.4.
+This is a CDI based example of the `jetty-rest-security` example.
 
+### 10.2.4 Configuring Rest DSL
 
 To try this example you need to first build it
 
