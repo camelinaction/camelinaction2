@@ -1,8 +1,9 @@
 Chapter 10 - camel-cxf-rest-karaf
 ---------------------------------
 
-This is a Karaf based example of the `camel-cxf-rest` example, which is covered in section 10.1.5.
+This is a Karaf based example of the `camel-cxf-rest` example.
 
+### 10.1.5 - Using camel-cxfrs with REST services
 
 To try this example you need to first build it
 
