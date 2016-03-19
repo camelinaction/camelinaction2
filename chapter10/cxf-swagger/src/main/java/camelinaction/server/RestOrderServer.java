@@ -9,12 +9,15 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 /**
- * A main class to start Apache CXF with our REST service {@link RestOrderService}.
+ * A main class to start Apache CXF with our REST service {@link RestOrderService} using Swagger.
  * <p/>
  * This main class uses Apache CXF in pure Java code without any XML configuration.
  * Notice this configuration requires a bit of Java code, and more advanced configuration
- * and usage of Apache CXF often involves configurating in XML files
+ * and usage of Apache CXF often involves configuration in XML files
  * (due CXF was very Spring XML in the start of its lifetime).
+ * <p/>
+ * This server uses an embedded Jetty server to setup a CXF servlet that bootstraps
+ * a JAX-RS application {@link RestOrderApplication}.
  */
 public class RestOrderServer {
 

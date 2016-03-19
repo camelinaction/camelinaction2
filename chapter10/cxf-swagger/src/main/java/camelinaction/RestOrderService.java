@@ -1,5 +1,6 @@
 package camelinaction;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,6 +13,8 @@ import javax.ws.rs.core.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /**
  * A JAX-RS Resource class where we define the RESTful web service, using the JAX-RS annotations.
@@ -20,8 +23,9 @@ import io.swagger.annotations.ApiParam;
  * Notice how each operation uses the {@link Response} type to build the response message.
  */
 @Path("/orders/")
-@Produces("application/xml")
-@Api(value = "/orders", description = "Sample JAX-RS service with Swagger documentation")
+@Consumes("application/json,application/xml")
+@Produces("application/json,application/xml")
+@Api(value = "/orders", description = "Rider Auto Parts Order Service")
 public class RestOrderService {
 
     private OrderService orderService;
@@ -38,9 +42,9 @@ public class RestOrderService {
      */
     @GET
     @Path("/{id}")
-    @ApiOperation(value = "get an order by id", response = Order.class)
-    @ApiParam(name = "id")
-    public Response getOrder(@PathParam("id") int orderId) {
+    @ApiOperation(value = "Gets an order by id", response = Order.class)
+    public Response getOrder(
+            @ApiParam(value = "The id of the order", required = true) @PathParam("id") int orderId) {
         Order order = orderService.getOrder(orderId);
         if (order != null) {
             return Response.ok(order).build();
@@ -53,7 +57,9 @@ public class RestOrderService {
      * The PUT update order operation
      */
     @PUT
-    public Response updateOrder(Order order) {
+    @ApiOperation(value = "Updates an existing order")
+    public Response updateOrder(
+            @ApiParam(value = "The order to update", required = true) Order order) {
         orderService.updateOrder(order);
         return Response.ok().build();
     }
@@ -62,7 +68,12 @@ public class RestOrderService {
      * The POST create order operation
      */
     @POST
-    public Response createOrder(Order order) {
+    @ApiOperation(value = "Creates a new order")
+    @ApiResponses({
+        @ApiResponse(code = 200, response = String.class, message = "The id of the created order")
+    })
+    public Response createOrder(
+            @ApiParam(value = "The order to create", required = true) Order order) {
         String id = orderService.createOrder(order);
         return Response.ok(id).build();
     }
@@ -72,7 +83,8 @@ public class RestOrderService {
      */
     @DELETE
     @Path("/{id}")
-    public Response cancelOrder(@PathParam("id") int orderId) {
+    public Response cancelOrder(
+            @ApiParam(value = "The id of the order to cancel", required = true) @PathParam("id") int orderId) {
         orderService.cancelOrder(orderId);
         return Response.ok().build();
     }
