@@ -1,9 +1,10 @@
-chapter10 - cxf-rest
---------------------
+chapter10 - cxf-swagger
+-----------------------
 
-This is an example how to develop a REST service using Apache CXF with JAX-RS (without Apache Camel)
+This is an example how to use Swagger with an existing JAX-RS application.
+The JAX-RS application is using CXF as the REST implementation and Jetty as the HTTP server.
 
-### 10.1.2 Using JAX-RS with REST services
+### 10.3.1 Using Swagger with JAX-RS Rest services
 
 You can try this example by running
 
@@ -17,3 +18,7 @@ For example to get the first order you can from a web browser open the url:
 The second order is no surprisingly with the order id 2, so you can get it using:
 
     http://localhost:9000/orders/2
+
+The Swagger documentation of the Rest service can be accessed using:
+
+    http://localhost:9000/swagger.json

@@ -41,7 +41,7 @@ public class RestOrderServer {
         context.addServlet(holder, "/*");
 
         // create and start the jetty server (non blocking)
-        Server server = new Server(9090);
+        Server server = new Server(9000);
         server.setHandler(context);
         server.start();
 

@@ -32,7 +32,7 @@ public class RestOrderApplication extends Application {
 
         Swagger2Feature swagger = new Swagger2Feature();
         swagger.setBasePath("/");
-        swagger.setHost("localhost:9090");
+        swagger.setHost("localhost:9000");
         swagger.setTitle("Order Service");
         swagger.setDescription("Rider Auto Parts Order Service");
         swagger.setVersion("2.0.0");
