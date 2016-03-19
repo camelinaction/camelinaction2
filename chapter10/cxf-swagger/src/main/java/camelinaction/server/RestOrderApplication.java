@@ -35,6 +35,7 @@ public class RestOrderApplication extends Application {
         swagger.setDescription("Rider Auto Parts Order Service");
         swagger.setVersion("2.0.0");
         swagger.setContact("rider@autoparts.com");
+        swagger.setPrettyPrint(true);
 
         Set<Object> answer = new HashSet<>();
         answer.add(orderService);
