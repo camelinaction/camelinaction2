@@ -2,6 +2,8 @@ package camelinaction.server;
 
 import java.io.Console;
 
+import javax.servlet.Servlet;
+
 import camelinaction.RestOrderService;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
 import org.eclipse.jetty.server.Server;
@@ -34,7 +36,8 @@ public class RestOrderServer {
         RestOrderApplication app = new RestOrderApplication(orderService);
 
         // setup servlet holder with a CXF jax-rs servlet to handle the app
-        ServletHolder holder = new ServletHolder(new CXFNonSpringJaxrsServlet(app));
+        Servlet servlet = new CXFNonSpringJaxrsServlet(app);
+        ServletHolder holder = new ServletHolder(servlet);
         holder.setName("rider");
         holder.setForcedPath("/");
         ServletContextHandler context = new ServletContextHandler();

@@ -28,8 +28,6 @@ public class RestOrderApplication extends Application {
 
     @Override
     public Set<Object> getSingletons() {
-        Set<Object> answer = new HashSet<>();
-
         Swagger2Feature swagger = new Swagger2Feature();
         swagger.setBasePath("/");
         swagger.setHost("localhost:9000");
@@ -38,12 +36,12 @@ public class RestOrderApplication extends Application {
         swagger.setVersion("2.0.0");
         swagger.setContact("rider@autoparts.com");
 
+        Set<Object> answer = new HashSet<>();
         answer.add(orderService);
         answer.add(new JacksonJsonProvider());
         answer.add(swagger);
         // to turn on verbose logging
-         answer.add(new LoggingFeature());
-
+        answer.add(new LoggingFeature());
         return answer;
     }
 
