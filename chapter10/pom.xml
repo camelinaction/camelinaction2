@@ -34,6 +34,7 @@
     <module>spark-rest-json</module>
     <module>restlet-json</module>
     <module>undertow-rest-json-xml</module>
+    <module>undertow-swagger</module>
     -->
   </modules>
 </project>
