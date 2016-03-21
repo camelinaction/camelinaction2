@@ -20,10 +20,10 @@ public class RiderThrottlerReporter implements CamelContextAware {
         this.camelContext = camelContext;
     }
 
-    public long reportThrottler() {
+    public long reportThrottler() throws Exception {
         // use the JMX management API to get the mbean for the throttler EIP with the id orderThrottler
         ManagedThrottlerMBean throttler = camelContext.getManagedProcessor("orderThrottler", ManagedThrottlerMBean.class);
         // get the number of current throttled messages
-        return throttler.getThrottledCount();
+        return throttler.getExchangesInflight();
     }
 }

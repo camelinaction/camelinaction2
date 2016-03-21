@@ -28,7 +28,12 @@ public class RiderThrottlerTest extends CamelTestSupport {
 
         @Override
         public void run() {
-            long count = reporter.reportThrottler();
+            long count = 0;
+            try {
+                count = reporter.reportThrottler();
+            } catch (Exception e) {
+                // ignore
+            }
             log.info("There are currently {} throttled orders", count);
         }
     }
