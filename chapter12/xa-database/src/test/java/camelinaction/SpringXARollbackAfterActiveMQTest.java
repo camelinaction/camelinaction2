@@ -27,7 +27,9 @@ public class SpringXARollbackAfterActiveMQTest extends CamelSpringTestSupport {
 
     @After
     public void dropDatabase() throws Exception {
-        jdbc.execute("drop table partner_metric");
+        if (jdbc != null) {
+            jdbc.execute("drop table partner_metric");
+        }
     }
 
     @Override
@@ -44,7 +46,8 @@ public class SpringXARollbackAfterActiveMQTest extends CamelSpringTestSupport {
         assertTrue(notify.matches(15, TimeUnit.SECONDS));
 
         // and there should be 1 row in the database as it keep rolling back
-        assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(1, rows);
 
         String order = consumer.receiveBody("activemq:queue:order", 2000, String.class);
         assertNull("Should NOT be in order queue", order);

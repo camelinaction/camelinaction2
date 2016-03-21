@@ -77,13 +77,16 @@ public class JdbcTest extends CamelTestSupport {
     public void testJdbcInsert() throws Exception {
         MockEndpoint mock = getMockEndpoint("mock:result");
         mock.expectedMessageCount(1);
-        assertEquals(0, jdbc.queryForInt("select count(*) from incoming_orders"));
+
+        int rows = jdbc.queryForObject("select count(*) from incoming_orders", Integer.class);
+        assertEquals(0, rows);
 
         template.sendBody("jms:accounting", "<order name=\"motor\" amount=\"1\" customer=\"honda\"/>");
         
         mock.assertIsSatisfied();
-        
-        assertEquals(1, jdbc.queryForInt("select count(*) from incoming_orders"));
+
+        rows = jdbc.queryForObject("select count(*) from incoming_orders", Integer.class);
+        assertEquals(1, rows);
     }
 
 }

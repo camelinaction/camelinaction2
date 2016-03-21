@@ -22,20 +22,18 @@
     <module>cxf-rest-json</module>
     <module>cxf-swagger</module>
     <module>restlet</module>
-    <!-- TODO: wait for Camel 2.17 
     <module>camel-cxf-rest</module>
     <module>camel-cxf-rest-cdi</module>
     <module>camel-cxf-rest-karaf</module>
     <module>camel-cxf-rest-spring-boot</module>
-    <module>cdi-rest-security</module>
     <module>jetty-rest-security</module>
-    <module>karaf-rest-security</module>
+    <module>jetty-rest-security-cdi</module>
+    <module>jetty-rest-security-karaf</module>
     <module>spark-rest</module>
     <module>spark-rest-json</module>
     <module>restlet-json</module>
-    <module>undertow-rest-json-xml</module>
+    <module>undertow-rest-xml-json</module>
     <module>undertow-swagger</module>
-    -->
   </modules>
 </project>
 

@@ -47,7 +47,7 @@ public class OrderRoute extends RouteBuilder {
 
             .get("{id}").outType(Order.class)
                 .description("Service to get details of an existing order")
-                .param().name("id").description("The order id").type() endParam()
+                .param().name("id").description("The order id").endParam()
                 .to("bean:orderService?method=getOrder(${header.id})")
 
             .post().type(Order.class).outType(String.class)

@@ -13,12 +13,7 @@
   <name>Camel in Action 2 :: Chapter 10 :: Secured REST with Karaf</name>
 
   <packaging>bundle</packaging>
-
-  <properties>
-    <!-- TODO: requires 2.16.3 or better -->
-    <camel-version>2.17-SNAPSHOT</camel-version>
-  </properties>
-
+ 
   <dependencies>
 
     <!-- camel -->

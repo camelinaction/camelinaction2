@@ -33,7 +33,8 @@ public class OrderTest extends CamelSpringTestSupport {
     @Test
     public void testOrderOk() throws Exception {
         // there should be 0 row in the database when we start
-        assertEquals(0, jdbc.queryForInt("select count(*) from riders_order"));
+        int rows = jdbc.queryForObject("select count(*) from riders_order", Integer.class);
+        assertEquals(0, rows);
 
         InputOrder input = new InputOrder();
         input.setCustomerId("4444");
@@ -48,13 +49,15 @@ public class OrderTest extends CamelSpringTestSupport {
         assertEquals("OK", reply.getCode());
 
         // there should be 1 row in the database with the inserted order
-        assertEquals(1, jdbc.queryForInt("select count(*) from riders_order"));
+        rows = jdbc.queryForObject("select count(*) from riders_order", Integer.class);
+        assertEquals(1, rows);
     }
 
     @Test
     public void testOrderFailOnce() throws Exception {
         // there should be 0 row in the database when we start
-        assertEquals(0, jdbc.queryForInt("select count(*) from riders_order"));
+        int rows = jdbc.queryForObject("select count(*) from riders_order", Integer.class);
+        assertEquals(0, rows);
 
         InputOrder input = new InputOrder();
         input.setCustomerId("4444");
@@ -70,13 +73,15 @@ public class OrderTest extends CamelSpringTestSupport {
         assertEquals("OK", reply.getCode());
 
         // there should be 1 row in the database with the inserted order
-        assertEquals(1, jdbc.queryForInt("select count(*) from riders_order"));
+        rows = jdbc.queryForObject("select count(*) from riders_order", Integer.class);
+        assertEquals(1, rows);
     }
 
     @Test
     public void testOrderFailAll() throws Exception {
         // there should be 0 row in the database when we start
-        assertEquals(0, jdbc.queryForInt("select count(*) from riders_order"));
+        int rows = jdbc.queryForObject("select count(*) from riders_order", Integer.class);
+        assertEquals(0, rows);
 
         InputOrder input = new InputOrder();
         input.setCustomerId("4444");
@@ -92,7 +97,8 @@ public class OrderTest extends CamelSpringTestSupport {
         assertEquals("ERROR: Simulated fatal error", reply.getCode());
 
         // there should still be 0 row in the database as the entire route was rolled back
-        assertEquals(0, jdbc.queryForInt("select count(*) from riders_order"));
+        rows = jdbc.queryForObject("select count(*) from riders_order", Integer.class);
+        assertEquals(0, rows);
     }
 
 }

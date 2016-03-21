@@ -25,7 +25,9 @@ public class SpringXACommitTest extends CamelSpringTestSupport {
 
     @After
     public void dropDatabase() throws Exception {
-        jdbc.execute("drop table partner_metric");
+        if (jdbc != null) {
+            jdbc.execute("drop table partner_metric");
+        }
     }
 
     @Override
@@ -36,7 +38,8 @@ public class SpringXACommitTest extends CamelSpringTestSupport {
     @Test
     public void testXaCommit() throws Exception {
         // there should be 0 row in the database when we start
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
@@ -45,7 +48,8 @@ public class SpringXACommitTest extends CamelSpringTestSupport {
         Thread.sleep(5000);
 
         // there should be 1 row in the database
-        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(1, rows);
     }
 
 }

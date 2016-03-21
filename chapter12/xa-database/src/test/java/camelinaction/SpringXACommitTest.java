@@ -27,7 +27,9 @@ public class SpringXACommitTest extends CamelSpringTestSupport {
 
     @After
     public void dropDatabase() throws Exception {
-        jdbc.execute("drop table partner_metric");
+        if (jdbc != null) {
+            jdbc.execute("drop table partner_metric");
+        }
     }
 
     @Override
@@ -47,7 +49,8 @@ public class SpringXACommitTest extends CamelSpringTestSupport {
         Thread.sleep(1000);
 
         // and there should be 0 rows in the database
-        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         String order = consumer.receiveBody("activemq:queue:order", 2000, String.class);
         assertNotNull("Should be in order queue", order);

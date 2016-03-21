@@ -28,7 +28,9 @@ public class SpringRollbackTest extends CamelSpringTestSupport {
 
     @After
     public void dropDatabase() throws Exception {
-        jdbc.execute("drop table partner_metric");
+        if (jdbc != null) {
+            jdbc.execute("drop table partner_metric");
+        }
     }
 
     @Override
@@ -45,7 +47,8 @@ public class SpringRollbackTest extends CamelSpringTestSupport {
         assertTrue(notify.matches(20, TimeUnit.SECONDS));
 
         // and there should be 1 rows in the database as we keep rolling back
-        assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(1, rows);
 
         context.stop();
     }

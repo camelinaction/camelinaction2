@@ -29,7 +29,9 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
 
     @After
     public void dropDatabase() throws Exception {
-        jdbc.execute("drop table partner_metric");
+        if (jdbc != null) {
+            jdbc.execute("drop table partner_metric");
+        }
     }
 
     @Override
@@ -46,7 +48,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         context.start();
 
         // there should be 0 row in the database when we start
-        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201511150815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
@@ -55,7 +58,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
         // there should be 1 row in the database
-        assertEquals(1, jdbc.queryForInt("select count(*) from partner_metric"));
+        rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(1, rows);
     }
 
     @Test
@@ -79,7 +83,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         context.start();
 
         // there should be 0 row in the database when we start
-        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201511150815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
@@ -88,7 +93,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
         // data not inserted so there should be 0 rows
-        assertEquals(0, jdbc.queryForInt("select count(*) from partner_metric"));
+        rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
     }
 
     @Override

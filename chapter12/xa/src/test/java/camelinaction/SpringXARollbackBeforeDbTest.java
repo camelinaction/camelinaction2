@@ -25,7 +25,9 @@ public class SpringXARollbackBeforeDbTest extends CamelSpringTestSupport {
 
     @After
     public void dropDatabase() throws Exception {
-        jdbc.execute("drop table partner_metric");
+        if (jdbc != null) {
+            jdbc.execute("drop table partner_metric");
+        }
     }
 
     @Override
@@ -36,7 +38,8 @@ public class SpringXARollbackBeforeDbTest extends CamelSpringTestSupport {
     @Test
     public void testXaRollbackBeforeDb() throws Exception {
         // there should be 0 row in the database when we start
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         // partner id as 0 will cause rollback
         String xml = "<?xml version=\"1.0\"?><partner id=\"0\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
@@ -46,7 +49,8 @@ public class SpringXARollbackBeforeDbTest extends CamelSpringTestSupport {
         Thread.sleep(15000);
 
         // data not inserted so there should be 0 rows
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         // should be in DLQ
         // now check that the message is on the queue by consuming it again

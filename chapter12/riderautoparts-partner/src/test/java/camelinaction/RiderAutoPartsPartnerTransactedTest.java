@@ -30,7 +30,9 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
 
     @After
     public void dropDatabase() throws Exception {
-        jdbc.execute("drop table partner_metric");
+        if (jdbc != null) {
+            jdbc.execute("drop table partner_metric");
+        }
     }
 
     @Test
@@ -38,7 +40,8 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
 
         // there should be 0 row in the database when we start
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201511150815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
@@ -47,7 +50,8 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
         // there should be 1 row in the database
-        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(1, rows);
     }
 
     @Test
@@ -70,7 +74,8 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         context.getRouteDefinition("partnerToDB").adviceWith(context, rb);
 
         // there should be 0 row in the database when we start
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201511150815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
@@ -80,7 +85,8 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         assertTrue(notify.matches(15, TimeUnit.SECONDS));
 
         // data not inserted so there should be 0 rows
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         // now check that the message was moved to the DLQ
         Object body = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 5000);
@@ -109,7 +115,8 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         context.getRouteDefinition("partnerToDB").adviceWith(context, rb);
 
         // there should be 0 row in the database when we start
-        assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201511150815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
@@ -118,7 +125,8 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         assertTrue(notify.matches(10, TimeUnit.SECONDS));
 
         // data is inserted so there should be 1 rows
-        assertEquals(Long.valueOf(1), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(1, rows);
 
         // now check that the message is not on the DLQ
         String dlq = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 1000L, String.class);

@@ -12,12 +12,7 @@
   <artifactId>chapter10-jetty-rest-security-cdi</artifactId>
   <name>Camel in Action 2 :: Chapter 10 :: Secured REST with CDI</name>
 
-  <properties>
-    <!-- TODO: requires Camel 2.17 -->
-    <camel-version>2.17-SNAPSHOT</camel-version>
-  </properties>
-
-  <dependencies>
+   <dependencies>
 
     <!-- CDI API -->
     <dependency>

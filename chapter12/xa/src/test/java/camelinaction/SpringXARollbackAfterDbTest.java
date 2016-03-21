@@ -20,12 +20,14 @@ public class SpringXARollbackAfterDbTest extends CamelSpringTestSupport {
         jdbc = new JdbcTemplate(ds);
 
         jdbc.execute("create table partner_metric "
-            + "( partner_id varchar(10), time_occurred varchar(20), status_code varchar(3), perf_time varchar(10) )");
+                + "( partner_id varchar(10), time_occurred varchar(20), status_code varchar(3), perf_time varchar(10) )");
     }
 
     @After
     public void dropDatabase() throws Exception {
-        jdbc.execute("drop table partner_metric");
+        if (jdbc != null) {
+            jdbc.execute("drop table partner_metric");
+        }
     }
 
     @Override
@@ -33,10 +35,11 @@ public class SpringXARollbackAfterDbTest extends CamelSpringTestSupport {
         return new ClassPathXmlApplicationContext("SpringXARollbackAfterDbTest.xml");
     }
 
-     @Test
+    @Test
     public void testXaRollbackAfterDb() throws Exception {
         // there should be 0 row in the database when we start
-         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
@@ -45,7 +48,8 @@ public class SpringXARollbackAfterDbTest extends CamelSpringTestSupport {
         Thread.sleep(15000);
 
         // data not inserted so there should be 0 rows
-         assertEquals(Long.valueOf(0), jdbc.queryForObject("select count(*) from partner_metric", Long.class));
+        rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
+        assertEquals(0, rows);
 
         // should be in DLQ
         // now check that the message is on the queue by consuming it again
