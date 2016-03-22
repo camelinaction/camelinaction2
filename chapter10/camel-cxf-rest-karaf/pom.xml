@@ -13,10 +13,6 @@
   <name>Camel in Action 2 :: Chapter 10 :: Camel CXF-RS - OSGi with Karaf</name>
   <packaging>bundle</packaging>
 
-  <properties>
-    <camel-version>2.18-SNAPSHOT</camel-version>
-  </properties>
-
   <dependencies>
 
     <!-- needed for OSGi testing with CXF -->
