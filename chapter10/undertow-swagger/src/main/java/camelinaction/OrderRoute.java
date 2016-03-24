@@ -48,20 +48,31 @@ public class OrderRoute extends RouteBuilder {
             .get("{id}").outType(Order.class)
                 .description("Service to get details of an existing order")
                 .param().name("id").description("The order id").endParam()
+                .responseMessage().code(200).message("The order with the given id").endResponseMessage()
+                .responseMessage().code(204).message("Order not found").endResponseMessage()
+                .responseMessage().code(500).message("Server error").endResponseMessage()
                 .to("bean:orderService?method=getOrder(${header.id})")
 
             .post().type(Order.class).outType(String.class)
                 .description("Service to submit a new order")
-                .responseMessage().code(200).message("The created order id").endResponseMessage()
+                .responseMessage()
+                    .code(200).message("The created order id")
+                .endResponseMessage()
+                .responseMessage().code(400).message("Invalid input data").endResponseMessage()
+                .responseMessage().code(500).message("Server error").endResponseMessage()
                 .to("bean:orderService?method=createOrder")
 
             .put().type(Order.class)
                 .description("Service to update an existing order")
+                .responseMessage().code(400).message("Invalid input data").endResponseMessage()
+                .responseMessage().code(500).message("Server error").endResponseMessage()
                 .to("bean:orderService?method=updateOrder")
 
             .delete("{id}")
                 .description("Service to cancel an existing order")
                 .param().name("id").description("The order id").endParam()
+                .responseMessage().code(204).message("Order not found").endResponseMessage()
+                .responseMessage().code(500).message("Server error").endResponseMessage()
                 .to("bean:orderService?method=cancelOrder(${header.id})");
     }
 }

@@ -67,32 +67,36 @@
       <get uri="/{id}" outType="camelinaction.Order">
         <description>Service to get details of an existing order</description>
         <param name="id" type="path" description="The order id"/>
+        <responseMessage code="200" message="The order with the given id"/>
         <responseMessage code="204" message="Order not found"/>
         <responseMessage code="500" message="Server error"/>
-        <route>
-          <to uri="bean:orderService?method=getOrder(${header.id})"/>
-        </route>
+        <to uri="bean:orderService?method=getOrder(${header.id})"/>
       </get>
 
       <post type="camelinaction.Order" outType="String">
         <description>Service to submit a new order</description>
         <responseMessage code="200" message="The created order id"/>
+        <responseMessage code="400" message="Invalid input data"/>
+        <responseMessage code="500" message="Server error"/>
         <to uri="bean:orderService?method=createOrder"/>
       </post>
 
       <put type="camelinaction.Order">
         <description>Service to update an existing order</description>
+        <responseMessage code="400" message="Invalid input data"/>
+        <responseMessage code="500" message="Server error"/>
         <to uri="bean:orderService?method=updateOrder"/>
       </put>
 
       <delete uri="{id}">
         <description>Service to cancel an existing order</description>
         <param name="id" type="path" description="The order id"/>
+        <responseMessage code="204" message="Order not found"/>
+        <responseMessage code="500" message="Server error"/>
         <to uri="bean:orderService?method=cancelOrder(${header.id})"/>
       </delete>
 
     </rest>
-
 
   </camelContext>
 
