@@ -24,7 +24,7 @@ There is a <i>order</i> REST service that supports the following operations
   <li>DELETE /order/{id} - to delete an order</li>
 </ul>
 
-From a web browser you can access the first two services using the following links
+From a web browser you can access the first service using the following links
 
 <ul>
   <li><a href="rest/orders/1">order/1</a> - to view the order with id 1</li>
@@ -35,7 +35,7 @@ From the command shell you can use curl to access the service as shown below:
 <pre>
     curl -X GET -H "Accept: application/json" http://localhost:8080/chapter10-servlet-swagger-xml/rest/orders/1
     curl -X GET -H "Accept: application/json" http://localhost:8080/chapter10-servlet-swagger-xml/rest/orders/2
-    curl -X POST -d "{ \"id\": 3, \"partName\": \"brake\", \"amount\": 4, \"customer\": \"nissan\"}" -H "Accept: application/json" http://localhost:8080/chapter10-servlet-swagger-xml/rest/orders
+    curl -X POST -H "Content-Type: application/json" -d '{ "partName": "brake", "amount": 4, "customerName": "nissan" }' http://localhost:8080/chapter10-servlet-swagger-xml/rest/orders
 </pre>
 
 </body>

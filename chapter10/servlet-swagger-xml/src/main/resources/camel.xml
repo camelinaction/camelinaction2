@@ -11,6 +11,39 @@
 
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
+    <onException>
+      <exception>camelinaction.OrderNotFoundException</exception>
+      <handled><constant>true</constant></handled>
+      <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
+        <constant>204</constant>
+      </setHeader>
+      <setBody>
+        <constant/>
+      </setBody>
+    </onException>
+
+    <onException>
+      <exception>camelinaction.OrderInvalidException</exception>
+      <handled><constant>true</constant></handled>
+      <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
+        <constant>400</constant>
+      </setHeader>
+      <setBody>
+        <constant/>
+      </setBody>
+    </onException>
+
+    <onException>
+      <exception>java.lang.Exception</exception>
+      <handled><constant>true</constant></handled>
+      <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
+        <constant>500</constant>
+      </setHeader>
+      <setBody>
+        <simple>${exception.message}\n</simple>
+      </setBody>
+    </onException>
+
     <restConfiguration component="servlet" bindingMode="json"
                        contextPath="chapter10-servlet-swagger-xml/rest" port="8080"
                        apiContextPath="api-docs" apiContextListing="true"
@@ -59,6 +92,7 @@
       </delete>
 
     </rest>
+
 
   </camelContext>
 
