@@ -29,6 +29,7 @@
     <module>jetty-rest-security</module>
     <module>jetty-rest-security-cdi</module>
     <module>jetty-rest-security-karaf</module>
+    <module>servlet-swagger-xml</module>
     <module>spark-rest</module>
     <module>spark-rest-json</module>
     <module>restlet-json</module>

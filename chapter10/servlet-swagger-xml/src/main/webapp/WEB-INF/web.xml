@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+  <display-name>Swagger XML DSL</display-name>
+
+  <!-- location of Camel Spring xml files -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:camel.xml</param-value>
+  </context-param>
+
+  <!-- the listener that kick-starts Spring -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- to setup Camel Servlet -->
+  <servlet>
+    <display-name>Camel Http Transport Servlet</display-name>
+    <servlet-name>CamelServlet</servlet-name>
+    <servlet-class>org.apache.camel.component.servlet.CamelHttpTransportServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <!-- define that url path for the Camel Servlet to use -->
+  <servlet-mapping>
+    <servlet-name>CamelServlet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>home.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

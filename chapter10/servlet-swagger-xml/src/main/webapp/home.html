@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>Servlet with Swagger using XML DSL </title>
+</head>
+
+<body>
+
+This example shows how to use Servlet REST to define REST endpoints in Camel routes using the Rest DSL in XML,
+and using camel-swagger-java to expose the REST service APIs.
+
+<br/>
+
+This example is implemented in XML DSL.
+
+<br/>
+The XML DSL the routes are define in XML code, in the <tt>src/main/resources/camel.xml</tt> file.
+
+<p/>
+There is a <i>order</i> REST service that supports the following operations
+<ul>
+  <li>GET /order/{id} - to view an order with the given id</li>
+  <li>POST /order - to create an order</li>
+  <li>PUT /order - to update an order</li>
+  <li>DELETE /order/{id} - to delete an order</li>
+</ul>
+
+From a web browser you can access the first two services using the following links
+
+<ul>
+  <li><a href="rest/orders/1">order/1</a> - to view the order with id 1</li>
+  <li><a href="rest/orders/2">order/2</a> - to view the order with id 2</li>
+</ul>
+
+From the command shell you can use curl to access the service as shown below:
+<pre>
+    curl -X GET -H "Accept: application/json" http://localhost:8080/chapter10-servlet-swagger-xml/rest/orders/1
+    curl -X GET -H "Accept: application/json" http://localhost:8080/chapter10-servlet-swagger-xml/rest/orders/2
+    curl -X POST -d "{ \"id\": 3, \"partName\": \"brake\", \"amount\": 4, \"customer\": \"nissan\"}" -H "Accept: application/json" http://localhost:8080/chapter10-servlet-swagger-xml/rest/orders
+</pre>
+
+</body>
+
+</html>
