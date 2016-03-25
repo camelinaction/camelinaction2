@@ -35,6 +35,7 @@
     <module>restlet-json</module>
     <module>undertow-rest-xml-json</module>
     <module>undertow-swagger</module>
+    <module>swagger-ui</module>
   </modules>
 </project>
 

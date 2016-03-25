@@ -19,7 +19,12 @@ public class OrderRoute extends RouteBuilder {
             // lets enable pretty printing json responses
             .dataFormatProperty("prettyPrint", "true")
             // lets enable swagger api
-            .apiContextPath("api-doc");
+            .apiContextPath("api-doc")
+            // and setup api properties
+            .apiProperty("api.version", "2.0.0")
+            .apiProperty("api.title", "Rider Auto Parts Order Services")
+            .apiProperty("api.description", "Order Service that allows customers to submit orders and query status")
+            .apiProperty("api.contact.name", "Rider Auto Parts");
 
 
         // error handling to return custom HTTP status codes for the various exceptions
@@ -44,6 +49,9 @@ public class OrderRoute extends RouteBuilder {
 
         // rest services under the orders context-path
         rest("/orders").description("Order services")
+
+            .get("/ping").apiDocs(false)
+                .to("direct:ping")
 
             .get("{id}").outType(Order.class)
                 .description("Service to get details of an existing order")
