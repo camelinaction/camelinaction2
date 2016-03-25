@@ -136,7 +136,6 @@
         </executions>
       </plugin>
 
-
       <!-- allows running this example with mvn jetty:run-war -->
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
