@@ -53,6 +53,7 @@
       <dataFormatProperty key="prettyPrint" value="true"/>
 
       <!-- setup swagger api descriptions -->
+      <apiProperty key="cors" value="true"/> <!-- TODO: remove in Camel 2.18 -->
       <apiProperty key="base.path" value="rest"/>
       <apiProperty key="api.version" value="2.0.0"/>
       <apiProperty key="api.title" value="Rider Auto Parts Order Services"/>
