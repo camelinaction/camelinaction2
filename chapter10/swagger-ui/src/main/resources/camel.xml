@@ -45,7 +45,7 @@
     </onException>
 
     <restConfiguration component="servlet" bindingMode="json"
-                       contextPath="chapter10-servlet-swagger-xml/rest" port="8080"
+                       contextPath="chapter10-swagger-ui/rest" port="8080"
                        apiContextPath="api-doc" apiContextListing="true"
                        enableCORS="true">
 

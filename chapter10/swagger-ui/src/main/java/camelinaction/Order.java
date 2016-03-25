@@ -6,13 +6,13 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "order", description = "An order")
 public class Order {
 
-    @ApiModelProperty(name = "id", required = true, value = "The order id")
+    @ApiModelProperty(name = "id", value = "The order id")
     private int id;
     @ApiModelProperty(name = "partName", required = true, value = "The name of the item to order")
     private String partName;
     @ApiModelProperty(name = "amount", required = true, value = "Number of items to order")
     private int amount;
-    @ApiModelProperty(name = "amount", required = true, value = "The name of the customer")
+    @ApiModelProperty(name = "customerName", required = true, value = "The name of the customer")
     private String customerName;
 
     public int getId() {

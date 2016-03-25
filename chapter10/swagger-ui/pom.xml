@@ -137,7 +137,7 @@
       </plugin>
 
 
-      <!-- allows running this example with mvn:jetty-run -->
+      <!-- allows running this example with mvn jetty:run-war -->
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
@@ -146,13 +146,12 @@
           <httpConnector>
             <port>8080</port>
           </httpConnector>
-          <classesDirectory>.</classesDirectory>
-          <webAppSourceDirectory>${project.build.directory}/${project.artifactId}</webAppSourceDirectory>
           <webApp>
             <contextPath>/${project.artifactId}</contextPath>
           </webApp>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
 

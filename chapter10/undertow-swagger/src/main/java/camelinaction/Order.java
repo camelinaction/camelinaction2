@@ -12,7 +12,7 @@ public class Order {
     private String partName;
     @ApiModelProperty(name = "amount", required = true, value = "Number of items to order")
     private int amount;
-    @ApiModelProperty(name = "amount", required = true, value = "The name of the customer")
+    @ApiModelProperty(name = "customerName", required = true, value = "The name of the customer")
     private String customerName;
 
     public int getId() {
