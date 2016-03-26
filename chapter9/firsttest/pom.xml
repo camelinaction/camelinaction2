@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>com.camelinaction</groupId>
-        <artifactId>chapter6</artifactId>
-        <version>1.0.0</version>
+        <artifactId>chapter9</artifactId>
+        <version>2.0.0</version>
     </parent>
 
-    <artifactId>chapter6-firsttest</artifactId>
-    <name>Camel in Action :: Chapter 6 :: First test using Camel Test Kit</name>
+    <artifactId>chapter9-firsttest</artifactId>
+    <name>Camel in Action 2 :: Chapter 9 :: First test using Camel Test Kit</name>
 
     <dependencies>
 

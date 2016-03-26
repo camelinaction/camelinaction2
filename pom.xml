@@ -36,6 +36,7 @@
     <module>chapter4</module>
     <module>chapter5</module>
     <module>chapter6</module>
+    <module>chapter9</module>
     <module>chapter10</module>
     <module>chapter11</module>
     <module>chapter12</module>
@@ -84,6 +85,7 @@
 
     <pluginManagement>
       <plugins>
+        <!-- TODO: we should upgrade to 1.8 with Camel 2.18 -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
