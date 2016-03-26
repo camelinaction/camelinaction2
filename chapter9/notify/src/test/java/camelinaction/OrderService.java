@@ -18,8 +18,6 @@ package camelinaction;
 
 /**
  * Just a simple order service
- *
- * @version $Revision$
  */
 public class OrderService {
 
