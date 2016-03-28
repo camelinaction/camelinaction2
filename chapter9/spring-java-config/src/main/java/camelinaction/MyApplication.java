@@ -35,7 +35,7 @@ public class MyApplication extends CamelConfiguration {
      */
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-        // confgure the name of the @Configuration class
+        // configure the name of the @Configuration class
         main.setConfigClass(MyApplication.class);
         main.run();
     }
