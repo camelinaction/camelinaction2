@@ -11,6 +11,8 @@ import org.junit.Test;
  */
 public class FirstMockTest extends CamelTestSupport {
 
+    // TODO: move to mock directory
+
     @Override
     protected CamelContext createCamelContext() throws Exception {
         CamelContext context = super.createCamelContext();

@@ -13,6 +13,8 @@ import org.junit.Test;
  */
 public class GapTest extends CamelTestSupport {
 
+    // TODO: move to expression directory
+
     @Override
     protected CamelContext createCamelContext() throws Exception {
         CamelContext context = super.createCamelContext();
