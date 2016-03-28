@@ -18,6 +18,7 @@
     <module>error</module>
     <module>firsttest</module>
     <module>notify</module>
+    <module>spring-java-config</module>
     <module>spring-xml</module>
   </modules>
 
