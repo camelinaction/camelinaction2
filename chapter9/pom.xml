@@ -15,6 +15,7 @@
   <name>Camel in Action 2 :: Chapter 9</name>
 
   <modules>
+    <module>blueprint-xml</module>
     <module>error</module>
     <module>firsttest</module>
     <module>notify</module>
