@@ -111,6 +111,8 @@
 
   <build>
 
+    <finalName>beginner-widlfly</finalName>
+
     <plugins>
 
       <!-- to build the war -->
