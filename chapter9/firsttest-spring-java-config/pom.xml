@@ -9,34 +9,42 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter9-blueprint-xml</artifactId>
-  <name>Camel in Action 2 :: Chapter 9 :: Testing with Blueprint XML</name>
+  <artifactId>chapter9-firsttest-spring-java-config</artifactId>
+  <name>Camel in Action 2 :: Chapter 9 :: First test using Spring Java Config</name>
+
+  <!-- requires 2.17.1 -->
+  <properties>
+    <camel-version>2.18-SNAPSHOT</camel-version>
+  </properties>
 
   <dependencies>
 
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
+      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-blueprint</artifactId>
+      <artifactId>camel-spring-javaconfig</artifactId>
+      <version>${camel-version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test-blueprint</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <scope>test</scope>
-    </dependency>
+    <!-- logging -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+
+    <!-- testing -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test-spring</artifactId>
+      <version>${camel-version}</version>
       <scope>test</scope>
     </dependency>
 

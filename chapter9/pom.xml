@@ -15,14 +15,14 @@
   <name>Camel in Action 2 :: Chapter 9</name>
 
   <modules>
-    <module>blueprint-xml</module>
     <module>error</module>
     <module>firsttest</module>
+    <module>firsttest-blueprint-xml</module>
     <module>firsttest-cdi</module>
+    <module>firsttest-spring-boot</module>
+    <module>firsttest-spring-java-config</module>
+    <module>firsttest-spring-xml</module>
     <module>notify</module>
-    <module>spring-boot</module>
-    <module>spring-java-config</module>
-    <module>spring-xml</module>
   </modules>
 
 </project>

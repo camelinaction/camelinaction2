@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>chapter9-firsttest</artifactId>
-  <name>Camel in Action 2 :: Chapter 9 :: First test using Camel Test Kit</name>
+  <name>Camel in Action 2 :: Chapter 9 :: First test using Java</name>
 
   <dependencies>
 

@@ -9,8 +9,8 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter9-spring-xml</artifactId>
-  <name>Camel in Action 2 :: Chapter 9 :: Testing with Spring XML</name>
+  <artifactId>chapter9-firsttest-blueprint-xml</artifactId>
+  <name>Camel in Action 2 :: Chapter 9 :: First test using Blueprint XML</name>
 
   <dependencies>
 
@@ -20,12 +20,12 @@
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-spring</artifactId>
+      <artifactId>camel-blueprint</artifactId>
     </dependency>
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test-spring</artifactId>
+      <artifactId>camel-test-blueprint</artifactId>
       <scope>test</scope>
     </dependency>
 

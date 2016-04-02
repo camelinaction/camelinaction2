@@ -26,6 +26,7 @@ public class FirstTest {
     @Inject
     private CamelContext context;
 
+    // TODO: https://issues.apache.org/jira/browse/CAMEL-9798
     @Inject @Uri("file:target/inbox")
     private ProducerTemplate template;
 

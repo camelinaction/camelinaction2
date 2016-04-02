@@ -22,7 +22,7 @@ public class BlueprintFirstTest extends CamelBlueprintTestSupport {
     @Override
     protected String getBlueprintDescriptor() {
         // refer to where in the classpath the blueprint XML file is located
-        return "camelinaction/firststep.xml";
+        return "OSGI-INF/blueprint/firststep.xml";
     }
 
     @Test
