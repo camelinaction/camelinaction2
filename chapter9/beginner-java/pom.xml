@@ -9,7 +9,7 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter9-firsttest</artifactId>
+  <artifactId>chapter9-beginner-java</artifactId>
   <name>Camel in Action 2 :: Chapter 9 :: Beginner test using Java</name>
 
   <dependencies>

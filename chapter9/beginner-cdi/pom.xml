@@ -9,7 +9,7 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter9-firsttest-cdi</artifactId>
+  <artifactId>chapter9-beginner-cdi</artifactId>
   <name>Camel in Action 2 :: Chapter 9 :: Beginner test using CDI</name>
 
   <dependencies>
