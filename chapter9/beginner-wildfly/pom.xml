@@ -24,16 +24,16 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.jboss.arquillian</groupId>
-        <artifactId>arquillian-bom</artifactId>
+        <groupId>org.jboss.shrinkwrap.resolver</groupId>
+        <artifactId>shrinkwrap-resolver-bom</artifactId>
+        <version>2.2.2</version>
         <scope>import</scope>
         <type>pom</type>
-        <version>1.1.11.Final</version>
       </dependency>
       <dependency>
-        <groupId>org.wildfly</groupId>
-        <artifactId>wildfly-parent</artifactId>
-        <version>${wildfly-version}</version>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>1.1.11.Final</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -49,35 +49,15 @@
       <version>1.2</version>
     </dependency>
 
-    <!-- to run with jboss weld -->
-    <dependency>
-      <groupId>org.apache.deltaspike.cdictrl</groupId>
-      <artifactId>deltaspike-cdictrl-api</artifactId>
-      <version>${deltaspike-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.deltaspike.cdictrl</groupId>
-      <artifactId>deltaspike-cdictrl-weld</artifactId>
-      <version>${deltaspike-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.weld.se</groupId>
-      <artifactId>weld-se</artifactId>
-      <version>${weld-version}</version>
-    </dependency>
-
     <!-- servlet -->
-    <dependency>
-      <groupId>org.jboss.spec.javax.ejb</groupId>
-      <artifactId>jboss-ejb-api_3.2_spec</artifactId>
-      <scope>provided</scope>
-    </dependency>
     <dependency>
       <groupId>org.jboss.spec.javax.servlet</groupId>
       <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+      <version>1.0.0.Final</version>
       <scope>provided</scope>
     </dependency>
 
+    <!-- camel -->
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
@@ -87,6 +67,7 @@
       <artifactId>camel-cdi</artifactId>
     </dependency>
 
+    <!-- testing using camel and arquillian -->
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test-cdi</artifactId>
@@ -97,14 +78,17 @@
       <artifactId>arquillian-junit-container</artifactId>
       <scope>test</scope>
     </dependency>
-
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
+      <groupId>org.jboss.shrinkwrap.resolver</groupId>
+      <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+      <version>2.2.2</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
+      <groupId>org.wildfly.arquillian</groupId>
+      <artifactId>wildfly-arquillian-container-managed</artifactId>
+      <version>1.0.2.Final</version>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
