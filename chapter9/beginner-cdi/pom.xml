@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>chapter9-firsttest-cdi</artifactId>
-  <name>Camel in Action 2 :: Chapter 9 :: First test using CDI</name>
+  <name>Camel in Action 2 :: Chapter 9 :: Beginner test using CDI</name>
 
   <dependencies>
 

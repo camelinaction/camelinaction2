@@ -16,12 +16,12 @@
 
   <modules>
     <module>error</module>
-    <module>firsttest</module>
-    <module>firsttest-blueprint-xml</module>
-    <module>firsttest-cdi</module>
-    <module>firsttest-spring-boot</module>
-    <module>firsttest-spring-java-config</module>
-    <module>firsttest-spring-xml</module>
+    <module>beginner-java</module>
+    <module>beginner-blueprint-xml</module>
+    <module>beginner-cdi</module>
+    <module>beginner-spring-boot</module>
+    <module>beginner-spring-java-config</module>
+    <module>beginner-spring-xml</module>
     <module>notify</module>
   </modules>
 

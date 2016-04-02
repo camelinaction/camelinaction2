@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>chapter9-firsttest-spring-boot</artifactId>
-  <name>Camel in Action 2 :: Chapter 9 :: First test using Spring-Boot</name>
+  <name>Camel in Action 2 :: Chapter 9 :: Beginner test using Spring-Boot</name>
 
   <!-- import Spring-Boot and Camel BOM -->
   <dependencyManagement>
