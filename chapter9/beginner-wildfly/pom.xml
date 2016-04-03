@@ -14,15 +14,17 @@
   <packaging>war</packaging>
 
   <properties>
-    <!-- Arquillian application server properties -->
+    <!-- arquillian application server properties -->
+    <!-- see the file src/test/resources/arquillian.xml -->
     <wildfly-version>10.0.0.Final</wildfly-version>
     <jboss.home>${env.JBOSS_HOME}</jboss.home>
     <server.config>standalone.xml</server.config>
   </properties>
 
-  <!-- DependencyManagement -->
+  <!-- import POM for dependency management for arquillian testing -->
   <dependencyManagement>
     <dependencies>
+      <!-- shrinkwrap must be first -->
       <dependency>
         <groupId>org.jboss.shrinkwrap.resolver</groupId>
         <artifactId>shrinkwrap-resolver-bom</artifactId>
