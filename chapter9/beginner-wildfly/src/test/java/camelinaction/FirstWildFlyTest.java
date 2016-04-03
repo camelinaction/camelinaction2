@@ -33,7 +33,7 @@ public class FirstWildFlyTest {
         // build the .war with our source code and libraries
         final WebArchive archive = ShrinkWrap.create(WebArchive.class, "beginner-wildfly.war");
         archive.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-        archive.addPackage(HelloRoute.class.getPackage());
+        archive.addPackages(true, "camelinaction");
         archive.addAsLibraries(files);
         return archive;
     }
