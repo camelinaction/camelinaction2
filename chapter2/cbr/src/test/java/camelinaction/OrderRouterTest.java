@@ -20,8 +20,6 @@ import javax.jms.ConnectionFactory;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -44,7 +42,7 @@ public class OrderRouterTest extends CamelTestSupport {
     }
     
     @Test
-    public void testPrintFile() throws Exception {
+    public void testPlacingOrders() throws Exception {
         getMockEndpoint("mock:xml").expectedMessageCount(1);
         getMockEndpoint("mock:csv").expectedMessageCount(1);
 
@@ -68,20 +66,12 @@ public class OrderRouterTest extends CamelTestSupport {
                         .to("jms:csvOrders");
                 
                 // test that our route is working
-                from("jms:xmlOrders").process(new Processor() {
-                    public void process(Exchange exchange) throws Exception {
-                        System.out.println("Received XML order: " 
-                                + exchange.getIn().getHeader("CamelFileName"));   
-                    }
-                })
+                from("jms:xmlOrders")
+                .log("Received XML order: ${header.CamelFileName}")
                 .to("mock:xml");                
                 
-                from("jms:csvOrders").process(new Processor() {
-                    public void process(Exchange exchange) throws Exception {
-                        System.out.println("Received CSV order: " 
-                                + exchange.getIn().getHeader("CamelFileName"));   
-                    }
-                })
+                from("jms:csvOrders")
+                .log("Received CSV order: ${header.CamelFileName}")
                 .to("mock:csv");
             }
         };
