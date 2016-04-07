@@ -5,6 +5,8 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
+import static org.apache.camel.builder.Builder.simple;
+
 /**
  * Our first unit test using the Mock component
  */
@@ -86,10 +88,27 @@ public class FirstMockTest extends CamelTestSupport {
     public void testContains() throws Exception {
         // get the mock endpoint
         MockEndpoint quote = getMockEndpoint("mock:quote");
-        // set expectations the two messages arrives in specified order
+        // set expectations the two messages arrives
         quote.expectedMessageCount(2);
         // all messages should contain the Camel word
         quote.allMessages().body().contains("Camel");
+
+        // fire in a messages to Camel
+        template.sendBody("stub:jms:topic:quote", "Hello Camel");
+        template.sendBody("stub:jms:topic:quote", "Camel rocks");
+
+        // verify the result
+        quote.assertIsSatisfied();
+    }
+
+    @Test
+    public void testMatches() throws Exception {
+        // get the mock endpoint
+        MockEndpoint quote = getMockEndpoint("mock:quote");
+        // set expectations the two messages arrives
+        quote.expectedMessageCount(2);
+        // all messages should have a body that has more than 6 chars
+        quote.allMessages().body().matches(simple("${body.length} > 6"));
 
         // fire in a messages to Camel
         template.sendBody("stub:jms:topic:quote", "Hello Camel");
