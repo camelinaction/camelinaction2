@@ -29,7 +29,7 @@ public class OrderService {
     public String processOrder(String order) {
         // to simulate exception being thrown
         if (order.endsWith("9999")) {
-            throw new IllegalArgumentException("Forced error");
+            throw new IllegalArgumentException("Invalid order");
         }
 
         // simulate processing order
