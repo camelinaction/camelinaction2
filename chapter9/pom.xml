@@ -15,6 +15,7 @@
   <name>Camel in Action 2 :: Chapter 9</name>
 
   <modules>
+    <module>advicewith</module>
     <module>error</module>
     <module>beginner-java</module>
     <module>beginner-blueprint-xml</module>
