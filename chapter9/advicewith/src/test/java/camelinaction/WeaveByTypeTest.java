@@ -8,10 +8,10 @@ import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.model.SplitDefinition;
-import org.apache.camel.model.TransformDefinition;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.camel.util.toolbox.AggregationStrategies;
 import org.junit.Test;
+
+import static org.apache.camel.util.toolbox.AggregationStrategies.flexible;
 
 public class WeaveByTypeTest extends CamelTestSupport {
 
@@ -64,7 +64,7 @@ public class WeaveByTypeTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("seda:quotes").routeId("quotes")
-                    .split(body(), AggregationStrategies.flexible().accumulateInCollection(ArrayList.class))
+                    .split(body(), flexible().accumulateInCollection(ArrayList.class))
                         .transform(simple("${body.toLowerCase()}"))
                         .to("mock:line")
                     .end()
