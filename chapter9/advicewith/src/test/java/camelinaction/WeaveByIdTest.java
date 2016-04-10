@@ -7,10 +7,7 @@ import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
-/**
- * Unit test demonstrating various functionality of using advice-with
- */
-public class MyAdviceWithTest extends CamelTestSupport {
+public class WeaveByIdTest extends CamelTestSupport {
 
     @Override
     public boolean isUseAdviceWith() {
@@ -19,24 +16,28 @@ public class MyAdviceWithTest extends CamelTestSupport {
     }
 
     @Test
-    public void testMockEndpoints() throws Exception {
+    public void testWeaveById() throws Exception {
         RouteDefinition route = context.getRouteDefinition("quotes");
         route.adviceWith(context, new AdviceWithRouteBuilder() {
             @Override
             public void configure() throws Exception {
-                mockEndpoints();
+                // select the route node with the id=transform
+                // and then replace it with the following route parts
+                weaveById("transform").replace()
+                    .transform().simple("${body.toUpperCase()}");
+
+                // and add at the end of the route to route to this mock endpoint
+                weaveAddLast().to("mock:result");
             }
         });
 
-        // must start Camel after we are done using advice-with
         context.start();
 
+        // we have replaced the bean transformer call with a simple expression that
+        // performs an upper case
+        getMockEndpoint("mock:result").expectedBodiesReceived("HELLO CAMEL");
 
-        getMockEndpoint("mock:seda:camel").expectedBodiesReceived("Camel rocks");
-        getMockEndpoint("mock:seda:other").expectedBodiesReceived("Bad donkey");
-
-        template.sendBody("seda:quotes", "Camel rocks");
-        template.sendBody("seda:quotes", "Bad donkey");
+        template.sendBody("seda:quotes", "Hello Camel");
 
         assertMockEndpointsSatisfied();
     }
@@ -47,11 +48,8 @@ public class MyAdviceWithTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("seda:quotes").routeId("quotes")
-                    .choice()
-                        .when(simple("${body} contains 'Camel'"))
-                            .to("seda:camel")
-                        .otherwise()
-                            .to("seda:other");
+                    .bean("transformer").id("transform")
+                        .to("seda:lower");
             }
         };
     }
