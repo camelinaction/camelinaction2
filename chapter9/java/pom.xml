@@ -9,8 +9,8 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter9-beginner-spring-xml</artifactId>
-  <name>Camel in Action 2 :: Chapter 9 :: Beginner test using Spring XML</name>
+  <artifactId>chapter9-java</artifactId>
+  <name>Camel in Action 2 :: Chapter 9 :: Test using Java</name>
 
   <dependencies>
 

@@ -16,16 +16,16 @@
 
   <modules>
     <module>advicewith</module>
-    <module>beginner-java</module>
-    <module>beginner-blueprint-xml</module>
-    <module>beginner-cdi</module>
-    <module>beginner-spring-boot</module>
-    <module>beginner-spring-java-config</module>
-    <module>beginner-spring-xml</module>
+    <module>blueprint-xml</module>
+    <module>cdi</module>
     <module>error</module>
+    <module>java</module>
     <module>miranda</module>
     <module>mock</module>
     <module>notify</module>
+    <module>spring-boot</module>
+    <module>spring-java-config</module>
+    <module>spring-xml</module>
   </modules>
 
 </project>

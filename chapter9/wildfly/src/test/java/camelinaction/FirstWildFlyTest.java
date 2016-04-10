@@ -31,7 +31,7 @@ public class FirstWildFlyTest {
                 .importRuntimeDependencies().resolve().withTransitivity().asFile();
 
         // build the .war with our source code and libraries
-        final WebArchive archive = ShrinkWrap.create(WebArchive.class, "beginner-wildfly.war");
+        final WebArchive archive = ShrinkWrap.create(WebArchive.class, "wildfly.war");
         archive.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         archive.addPackages(true, "camelinaction");
         archive.addAsLibraries(files);

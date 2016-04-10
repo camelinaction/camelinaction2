@@ -9,8 +9,8 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter9-beginner-widlfly</artifactId>
-  <name>Camel in Action 2 :: Chapter 9 :: Beginner test using WildFly</name>
+  <artifactId>chapter9-widlfly</artifactId>
+  <name>Camel in Action 2 :: Chapter 9 :: Test using WildFly</name>
   <packaging>war</packaging>
 
   <properties>

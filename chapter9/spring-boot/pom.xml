@@ -9,8 +9,8 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter9-beginner-spring-boot</artifactId>
-  <name>Camel in Action 2 :: Chapter 9 :: Beginner test using Spring-Boot</name>
+  <artifactId>chapter9-spring-boot</artifactId>
+  <name>Camel in Action 2 :: Chapter 9 :: Test using Spring-Boot</name>
 
   <!-- import Spring-Boot and Camel BOM -->
   <dependencyManagement>
