@@ -97,7 +97,8 @@
 
   <build>
 
-    <finalName>beginner-widlfly</finalName>
+    <!-- name of the war -->
+    <finalName>mycamel-widlfly</finalName>
 
     <plugins>
 
