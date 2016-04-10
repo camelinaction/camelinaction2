@@ -50,7 +50,7 @@ public class ReplaceFromTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("file:inbox").routeId("quotes")
+                from("aws-sqs:quotes").routeId("quotes")
                     .choice()
                         .when(simple("${body} contains 'Camel'"))
                             .to("seda:camel")
