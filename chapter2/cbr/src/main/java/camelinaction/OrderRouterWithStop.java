@@ -58,7 +58,7 @@ public class OrderRouterWithStop {
             @Override
             public void configure() {
                 // load file orders from src/data into the JMS queue
-                from("file:src/data?noop=true").to("jms:incomingOrders");
+                from("file:src/data_full?noop=true").to("jms:incomingOrders");
         
                 // content-based router
                 from("jms:incomingOrders")
