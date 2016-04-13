@@ -16,6 +16,7 @@
 
   <modules>
     <module>advicewith</module>
+    <module>arquillian-web</module>
     <module>blueprint-xml</module>
     <module>cdi</module>
     <module>error</module>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <!-- a bean that can return quotes -->
+  <bean id="quote" class="camelinaction.Quotes"/>
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- use the servlet component with the rest services -->
+    <restConfiguration component="servlet"/>
+
+    <!-- a rest service using rest-dsl that can return wisdom -->
+    <rest produces="application/json">
+      <!-- a GET service on /say -->
+      <get uri="/say">
+        <!-- that calls this bean -->
+        <to uri="bean:quote"/>
+      </get>
+    </rest>
+
+  </camelContext>
+
+</beans>
