@@ -86,11 +86,6 @@
       <artifactId>arquillian-junit-container</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.jboss.arquillian.testenricher</groupId>
-      <artifactId>arquillian-testenricher-resource</artifactId>
-      <scope>test</scope>
-    </dependency>
 
     <!-- chose the embedded web container -->
     <!-- in this example we have chosen jetty -->
@@ -99,12 +94,6 @@
       <artifactId>arquillian-jetty-embedded-9</artifactId>
       <version>1.0.0.CR3</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.jboss.arquillian.container</groupId>
-          <artifactId>arquillian-container-spi</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <!-- then add the needed jetty dependencies -->
