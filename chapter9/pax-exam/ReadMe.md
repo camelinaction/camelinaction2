@@ -5,11 +5,17 @@ Example of testing a Camel OSGi application with Pax-Exam testing framework.
 
 ### 9.6.2 Using Pax Exam to test Camel applications
 
-You need to build the example first with
+You need to build the example first **without** testing
 
-    mvn install
+    mvn install -Dtest=false
 
-Then you can install this example into Apache Karaf/ServiceMix using
+Then you can run the unit test that runs Pax Exam:
+
+    mvn test
+
+#### Installing in existing Karaf/ServiceMix
+
+You can install this example into Apache Karaf/ServiceMix using:
 
     feature:repo-add camel 2.17.0
     feature:install camel
@@ -20,7 +26,4 @@ Then from a web browser you can call the example using the following url:
 
     http://localhost:8181/camel/say
 
-You can run the unit test tht runs Pax Exam using
-
-    mvn test
 

@@ -20,7 +20,7 @@
   <!--a bean that can return quotes -->
   <bean id="quote" class="camelinaction.Quotes"/>
 
-  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+  <camelContext id="quotesCamel" xmlns="http://camel.apache.org/schema/blueprint">
 
     <!-- use the servlet component with the rest services -->
     <!-- the port and context-path when using servlet should match what has been configured
