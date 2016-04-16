@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<features>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" name="chapter9-pax-exam">
 
-  <feature name="chapter9-pax-exam" version="2.0.0">
+  <feature name="camel-quote" version="2.0.0">
     <feature>war</feature>
     <feature>camel-blueprint</feature>
     <feature>camel-servlet</feature>

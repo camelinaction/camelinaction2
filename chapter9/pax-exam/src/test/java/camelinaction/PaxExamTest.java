@@ -95,7 +95,7 @@ public class PaxExamTest {
                 features(getCamelKarafFeatureUrl(), "camel-http"),
 
                 // install our example feature
-                features(maven().groupId("com.camelinaction").artifactId("chapter9-pax-exam").version("2.0.0").classifier("features").type("xml"), "chapter9-pax-exam")
+                features(maven().groupId("com.camelinaction").artifactId("chapter9-pax-exam").version("2.0.0").classifier("features").type("xml"), "camel-quote")
         };
     }
 
