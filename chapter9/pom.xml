@@ -24,6 +24,7 @@
     <module>miranda</module>
     <module>mock</module>
     <module>notify</module>
+    <module>pax-exam</module>
     <module>spring-boot</module>
     <module>spring-java-config</module>
     <module>spring-xml</module>
