@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:broker="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+  <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+    <property name="connectionFactory">
+      <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="vm://localhost"/>
+      </bean>
+    </property>
+  </bean>
+
+ <camelContext trace="true" id="camel" xmlns="http://camel.apache.org/schema/spring">
+  <route>
+   <from uri="file:src/data?noop=true" />
+   <to uri="jms:incomingOrders" />
+  </route>
+
+  <route>
+   <from uri="jms:incomingOrders" />
+   <choice>
+    <when>
+     <simple>${header.CamelFileName} regex '^.*xml$'</simple>
+     <to uri="jms:xmlOrders" />
+    </when>
+    <when>
+     <simple>${header.CamelFileName} regex '^.*(csv|csl)$'</simple>
+     <to uri="jms:csvOrders" />
+    </when>
+    <otherwise>
+     <to uri="jms:badOrders" />
+    </otherwise>
+   </choice>
+  </route>
+
+  <route>
+   <from uri="jms:xmlOrders" />
+   <filter>
+    <xpath>/order[not(@test)]</xpath>
+    <log message="Received XML order: ${header.CamelFileName}"/>
+    <to uri="mock:xml" />
+   </filter>
+  </route>
+ </camelContext>
+
+</beans>
