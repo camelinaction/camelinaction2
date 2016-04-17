@@ -3,6 +3,7 @@ package camelinaction;
 import java.io.File;
 import java.util.Dictionary;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.test.blueprint.CamelBlueprintTestSupport;
@@ -16,8 +17,6 @@ import org.junit.Test;
  */
 public class BlueprintServiceTest extends CamelBlueprintTestSupport {
 
-    private MockAuditService mock = new MockAuditService("mock:audit");
-
     public void setUp() throws Exception {
         // delete directories so we have a clean start
         deleteDirectory("target/inbox");
@@ -27,6 +26,8 @@ public class BlueprintServiceTest extends CamelBlueprintTestSupport {
 
     @Override
     protected void addServicesOnStartup(Map<String, KeyValueHolder<Object, Dictionary>> services) {
+        // create our fake mock service which will send the message to "mock:audit"
+        MockAuditService mock = new MockAuditService();
         services.put(AuditService.class.getName(), asService(mock, null));
     }
 
@@ -38,6 +39,7 @@ public class BlueprintServiceTest extends CamelBlueprintTestSupport {
 
     @Test
     public void testMoveFile() throws Exception {
+        // the fake mock should send a message to this mock endpoint
         getMockEndpoint("mock:audit").expectedMessageCount(1);
 
         // create a new file in the inbox folder with the name hello.txt and containing Hello World as body

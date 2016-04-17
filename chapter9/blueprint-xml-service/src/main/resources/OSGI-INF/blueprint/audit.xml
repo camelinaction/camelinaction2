@@ -12,14 +12,9 @@
 
   <camelContext id="camel" xmlns="http://camel.apache.org/schema/blueprint">
 
-    <!-- trigger the audit for every incoming message -->
-    <interceptFrom>
-      <bean ref="auditService"/>
-    </interceptFrom>
-
-    <!-- the route -->
     <route>
       <from uri="file://target/inbox"/>
+      <bean ref="auditService"/>
       <to uri="file://target/outbox"/>
     </route>
 

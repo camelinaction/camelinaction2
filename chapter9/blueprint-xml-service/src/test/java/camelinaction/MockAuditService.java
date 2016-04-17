@@ -17,23 +17,12 @@
 package camelinaction;
 
 import org.apache.camel.Exchange;
-import org.apache.camel.ProducerTemplate;
 
 public class MockAuditService implements AuditService {
 
-    private final String url;
-    private ProducerTemplate template;
-
-    public MockAuditService(String url) {
-        this.url = url;
-    }
-
     @Override
     public void audit(Exchange exchange) {
-        if (template == null) {
-            template = exchange.getContext().createProducerTemplate();
-        }
-        template.send(url, exchange);
+        exchange.getContext().createProducerTemplate().send("mock:audit", exchange);
     }
 
 }
