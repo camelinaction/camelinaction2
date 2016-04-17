@@ -4,6 +4,7 @@ import java.io.File;
 import javax.inject.Inject;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
@@ -17,7 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
@@ -47,25 +47,18 @@ public class PaxExamTest {
     public void testPaxExam() throws Exception {
         // we should have completed 0 exchange
         long total = camelContext.getManagedCamelContext().getExchangesTotal();
-        assertEquals("There should have been 0 exchanges completed now", 0, total);
+        assertEquals("Should be 0 exchanges completed", 0, total);
 
         // call the servlet, and log what it returns
-        String json = camelContext.createProducerTemplate().requestBody("http://localhost:8181/camel/say", null, String.class);
+        String url = "http://localhost:8181/camel/say";
+        ProducerTemplate template = camelContext.createProducerTemplate();
+        String json = template.requestBody(url, null, String.class);
         System.out.println("Wiseman says: " + json);
         LOG.info("Wiseman says: {}", json);
 
-        // should be one of the quotes (we could use hamcrest to make this nicer)
-        boolean found = false;
-        for (String quote : Quotes.QUOTES) {
-            if (json.contains(quote)) {
-                found = true;
-            }
-        }
-        assertTrue("Response should be a quote, was: " + json, found);
-
         // and we should have completed 1 exchange
         total = camelContext.getManagedCamelContext().getExchangesTotal();
-        assertEquals("There should have been 1 exchanges completed now", 1, total);
+        assertEquals("Should be 1 exchanges completed", 1, total);
     }
 
     @Configuration

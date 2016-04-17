@@ -7,15 +7,18 @@
   <!-- to setup camel servlet with OSGi HttpService -->
   <reference id="httpService" interface="org.osgi.service.http.HttpService"/>
 
+  <!-- register a servlet when this application starts, and unregister when the application stops -->
   <bean class="org.apache.camel.component.servlet.osgi.OsgiServletRegisterer"
         init-method="register"
         destroy-method="unregister">
+    <!-- use the context-path /camel for this servlet -->
     <property name="alias" value="/camel"/>
     <property name="httpService" ref="httpService"/>
-    <property name="servlet" ref="camelServlet"/>
+    <property name="servlet" ref="quotesServlet"/>
   </bean>
 
-  <bean id="camelServlet" class="org.apache.camel.component.servlet.CamelHttpTransportServlet"/>
+  <!-- the implementation of the servlet should be this Camel based -->
+  <bean id="quotesServlet" class="org.apache.camel.component.servlet.CamelHttpTransportServlet"/>
 
   <!--a bean that can return quotes -->
   <bean id="quote" class="camelinaction.Quotes"/>
