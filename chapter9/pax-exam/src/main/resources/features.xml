@@ -2,9 +2,12 @@
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" name="chapter9-pax-exam">
 
   <feature name="camel-quote" version="2.0.0">
+    <!-- the example uses the karaf war feature -->
     <feature>war</feature>
+    <!-- the example uses the following camel features -->
     <feature>camel-blueprint</feature>
     <feature>camel-servlet</feature>
+    <!-- and this bundle is ourself -->
     <bundle>mvn:com.camelinaction/chapter9-pax-exam/2.0.0</bundle>
   </feature>
 

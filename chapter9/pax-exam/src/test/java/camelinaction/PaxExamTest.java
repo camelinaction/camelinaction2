@@ -38,6 +38,7 @@ public class PaxExamTest {
     @Inject
     protected BundleContext bundleContext;
 
+    // inject the Camel application with this name (eg the id attribute in <camelContext>)
     @Inject
     @Filter("(camel.context.name=quotesCamel)")
     protected CamelContext camelContext;
@@ -48,11 +49,12 @@ public class PaxExamTest {
         long total = camelContext.getManagedCamelContext().getExchangesTotal();
         assertEquals("There should have been 0 exchanges completed now", 0, total);
 
+        // call the servlet, and log what it returns
         String json = camelContext.createProducerTemplate().requestBody("http://localhost:8181/camel/say", null, String.class);
         System.out.println("Wiseman says: " + json);
         LOG.info("Wiseman says: {}", json);
 
-        // should be one of the quotes
+        // should be one of the quotes (we could use hamcrest to make this nicer)
         boolean found = false;
         for (String quote : Quotes.QUOTES) {
             if (json.contains(quote)) {
@@ -69,6 +71,7 @@ public class PaxExamTest {
     @Configuration
     public Option[] config() {
         return new Option[]{
+                // setup which karaf server we are using
                 karafDistributionConfiguration()
                         .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.0.4").type("tar.gz"))
                         .karafVersion("4.0.4")
@@ -76,13 +79,13 @@ public class PaxExamTest {
                         .useDeployFolder(false)
                         .unpackDirectory(new File("target/karaf")),
 
-                // keep the folder so we can look inside when something fails
+                // keep the folder so we can look inside when something fails, eg check the data/logs directory
                 keepRuntimeFolder(),
 
                 // Disable the SSH port
                 configureConsole().ignoreRemoteShell(),
 
-                // Configure Logging
+                // Configure Logging to not be verbose, if you set to DEBUG you see a lot of details
                 logLevel(LogLevelOption.LogLevel.WARN),
 
                 // Install JUnit
@@ -100,6 +103,7 @@ public class PaxExamTest {
     }
 
     public static UrlReference getCamelKarafFeatureUrl() {
+        // the Apache Camel karaf feaature file
         return mavenBundle().
                 groupId("org.apache.camel.karaf").
                 artifactId("apache-camel")
