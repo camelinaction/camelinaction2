@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <camelContext id="myCamel" xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- use the jetty component with the rest services -->
+    <restConfiguration component="jetty" port="8080" contextPath="/order"/>
+
+    <!-- a rest service using rest-dsl that can return wisdom -->
+    <rest produces="text/xml">
+      <!-- a GET service on /status -->
+      <get uri="/status">
+        <!-- that calls a backend service using JMS -->
+        <!--<to uri="jms:queue:order.status"/>-->
+        <to uri="direct:status"/>
+      </get>
+    </rest>
+
+    <route>
+      <from uri="direct:status"/>
+      <transform>
+        <simple><![CDATA[<order><id>${header.id}</id></order>]]></simple>
+      </transform>
+      <to uri="jms:queue:order.status"/>
+    </route>
+
+  </camelContext>
+
+  <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+    <property name="connectionFactory" ref="jmsConnectionFactory"/>
+  </bean>
+
+</beans>

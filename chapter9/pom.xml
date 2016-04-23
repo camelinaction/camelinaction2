@@ -20,6 +20,7 @@
     <module>blueprint-xml</module>
     <module>blueprint-xml-service</module>
     <module>cdi</module>
+    <module>citrus</module>
     <module>error</module>
     <module>java</module>
     <module>miranda</module>
