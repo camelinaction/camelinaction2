@@ -17,8 +17,11 @@
 package camelinaction;
 
 import com.consol.citrus.annotations.CitrusTest;
+import com.consol.citrus.condition.AbstractCondition;
+import com.consol.citrus.context.TestContext;
 import com.consol.citrus.dsl.junit.JUnit4CitrusTestDesigner;
 import com.consol.citrus.jms.message.JmsMessageHeaders;
+import org.apache.camel.CamelContext;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 
@@ -49,6 +52,36 @@ public class CitrusIT extends JUnit4CitrusTestDesigner {
                 .payload("<order><id>123</id><status>In Progress</status></order>")
                 .contentType("text/xml")
                 .version("HTTP/1.1");
+
+        waitForGracefulShutdown();
+    }
+
+    /**
+     * Wait for graceful shutdown of Camel context before closing the test.
+     */
+    private void waitForGracefulShutdown() {
+        waitFor().condition(new AbstractCondition() {
+            @Override
+            public boolean isSatisfied(TestContext context) {
+                try {
+                    context.getApplicationContext().getBean(CamelContext.class).stop();
+                } catch (Exception e) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            @Override
+            public String getSuccessMessage(TestContext context) {
+                return "Successfully stopped Camel context";
+            }
+
+            @Override
+            public String getErrorMessage(TestContext context) {
+                return "Failed to stop Camel context";
+            }
+        });
     }
 
 }
