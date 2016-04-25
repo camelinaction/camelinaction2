@@ -115,23 +115,22 @@
         </configuration>
       </plugin>
 
-      <!-- to run the integration tests -->
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.19.1</version>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.19</version>
         <executions>
           <execution>
-            <id>citrus-tests</id>
-            <phase>integration-test</phase>
+            <id>integration-tests</id>
             <goals>
-              <goal>test</goal>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
             </goals>
-            <configuration>
-              <skip>false</skip>
-            </configuration>
           </execution>
         </executions>
       </plugin>
