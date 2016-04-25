@@ -16,10 +16,12 @@
  */
 package camelinaction;
 
-import com.consol.citrus.actions.AbstractTestAction;
 import com.consol.citrus.annotations.CitrusTest;
+import com.consol.citrus.condition.AbstractCondition;
 import com.consol.citrus.context.TestContext;
 import com.consol.citrus.dsl.junit.JUnit4CitrusTestDesigner;
+import com.consol.citrus.jms.message.JmsMessageHeaders;
+import org.apache.camel.CamelContext;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 
@@ -30,32 +32,56 @@ public class CitrusIT extends JUnit4CitrusTestDesigner {
     public void orderStatus() throws Exception {
         description("Checking order 123 should be in progress");
 
-        action(new AbstractTestAction() {
-            @Override
-            public void doExecute(TestContext testContext) {
-                http().client("statusHttpClient")
-                        .get("/status?id=123")
-                        .contentType("text/xml")
-                        .accept("text/xml");
-            }
-        });
+        http().client("statusHttpClient")
+                .get("/status?id=123")
+                .contentType("text/xml")
+                .accept("text/xml")
+                .fork(true);
 
         // JMS receive and response
-        receive("statusEndpoint").payload("<order><id>123</id></order>");
-        send("statusEndpoint").payload("<order><id>123</id><status>In Progress</status></order>");
+        receive("statusEndpoint")
+                .payload("<order><id>123</id></order>")
+                .extractFromHeader(JmsMessageHeaders.CORRELATION_ID, "correlationId");
 
-        action(new AbstractTestAction() {
-            @Override
-            public void doExecute(TestContext testContext) {
-                http().client("statusHttpClient")
-                        .response(HttpStatus.OK)
-                        .payload("<order><id>123</id><status>In Progress</status></order>")
-                        .contentType("text/xml")
-                        .version("HTTP/1.1");
-            }
-        });
+        send("statusEndpoint")
+                .payload("<order><id>123</id><status>In Progress</status></order>")
+                .header(JmsMessageHeaders.CORRELATION_ID, "${correlationId}");
 
+        http().client("statusHttpClient")
+                .response(HttpStatus.OK)
+                .payload("<order><id>123</id><status>In Progress</status></order>")
+                .contentType("text/xml")
+                .version("HTTP/1.1");
+
+        waitForGracefulShutdown();
     }
 
+    /**
+     * Wait for graceful shutdown of Camel context before closing the test.
+     */
+    private void waitForGracefulShutdown() {
+        waitFor().condition(new AbstractCondition() {
+            @Override
+            public boolean isSatisfied(TestContext context) {
+                try {
+                    context.getApplicationContext().getBean(CamelContext.class).stop();
+                } catch (Exception e) {
+                    return false;
+                }
+
+                return true;
+            }
+
+            @Override
+            public String getSuccessMessage(TestContext context) {
+                return "Successfully stopped Camel context";
+            }
+
+            @Override
+            public String getErrorMessage(TestContext context) {
+                return "Failed to stop Camel context";
+            }
+        });
+    }
 
 }
