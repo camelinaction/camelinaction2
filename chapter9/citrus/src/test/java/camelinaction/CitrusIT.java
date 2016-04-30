@@ -24,15 +24,14 @@ public class CitrusIT extends JUnit4CitrusTestDesigner {
     @Test
     @CitrusTest
     public void orderStatus() throws Exception {
-        description("Checking order should be in progress");
+        description("Checking order should be on hold");
 
         // random 5 digit order number
         variable("orderId", "citrus:randomNumber(5)");
 
         http().client("statusHttpClient")
                 .get("/status?id=${orderId}")
-                .contentType("text/xml")
-                .accept("text/xml")
+                .contentType("text/xml").accept("text/xml")
                 // use fork so we can continue with the test design (otherwise this would be a synchronous call)
                 .fork(true);
 
@@ -40,23 +39,22 @@ public class CitrusIT extends JUnit4CitrusTestDesigner {
 
         // the Camel application will call a JMS backend so lets use Citrus to simulate this
         // on the JMS queue we expect to receive the following message
-        // and capture the JMS Corrleation ID so we can send back the correct reply message
+        // and capture the JMS correlation ID so we can send back the correct reply message
         receive("statusEndpoint")
                 .payload("<order><id>${orderId}</id></order>")
-                .extractFromHeader(JmsMessageHeaders.CORRELATION_ID, "orderCorrelationId");
+                .extractFromHeader(JmsMessageHeaders.CORRELATION_ID, "cid");
 
-        // send back the JMS reply message that the order is in progress
+        // send back the JMS reply message that the order is done
         // and with the correct JMSCorrelationID
         send("statusEndpoint")
-                .payload("<order><id>${orderId}</id><status>In Progress</status></order>")
-                .header(JmsMessageHeaders.CORRELATION_ID, "${orderCorrelationId}");
+                .payload("<order><id>${orderId}</id><status>ON HOLD</status></order>")
+                .header(JmsMessageHeaders.CORRELATION_ID, "${cid}");
 
         // the HTTP client is expected to receive a 200 OK message with the following XML structure
         http().client("statusHttpClient")
                 .response(HttpStatus.OK)
-                .payload("<order><id>${orderId}</id><status>In Progress</status></order>")
-                .contentType("text/xml")
-                .version("HTTP/1.1");
+                .payload("<order><id>${orderId}</id><status>ON HOLD</status></order>")
+                .contentType("text/xml");
 
         // wait for Camel to shutdown nicely (citrus should have this out of the box in citrus-camel)
         waitForGracefulShutdown();
