@@ -17,6 +17,7 @@
   <context:property-placeholder location="classpath:citrus.properties"/>
 
   <!-- setup the JMS connection factory to use -->
+  <!-- for integration test we will embed an ActiveMQ broker -->
   <bean id="jmsConnectionFactory"
         class="org.apache.activemq.ActiveMQConnectionFactory">
     <property name="brokerURL" value="${jms.broker.url}"/>
@@ -29,11 +30,13 @@
     </amq:transportConnectors>
   </amq:broker>
 
-  <!-- citrus endpoints -->
+  <!-- citrus JMS endpoint -->
+  <!-- do a sync request/reply over JMS on the queue named order.status with a timeout of 10 seconds -->
   <citrus-jms:sync-endpoint id="statusEndpoint" connection-factory="jmsConnectionFactory"
                        destination-name="order.status" timeout="10000"/>
 
   <!-- citrus http client -->
+  <!-- do a sync request/reply over HTTP on localhost:8080/order with a GET call and timeout for 60 seconds -->
   <citrus-http:client id="statusHttpClient"
                       request-url="http://localhost:8080/order"
                       request-method="GET"
