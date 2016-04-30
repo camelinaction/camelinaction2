@@ -92,12 +92,12 @@
       <version>4.5</version>
     </dependency>
 
+    <!-- junit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-
 
   </dependencies>
 
@@ -106,6 +106,7 @@
 
     <plugins>
 
+      <!-- citrus maven plugin -->
       <plugin>
         <groupId>com.consol.citrus.mvn</groupId>
         <artifactId>citrus-maven-plugin</artifactId>
@@ -115,11 +116,8 @@
         </configuration>
       </plugin>
 
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19.1</version>
-      </plugin>
-
+      <!-- maven plugin to run integration tests -->
+      <!-- yes its a weirdname but its designed to run integration tests - no this is not a joke -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
