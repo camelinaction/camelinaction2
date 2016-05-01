@@ -63,27 +63,17 @@ public class OrderRouterWithRecipientList {
         
                 // content-based router
                 from("jms:incomingOrders")
-                .choice()
-                    .when(header("CamelFileName").endsWith(".xml"))
-                        .to("jms:xmlOrders")  
-                    .when(header("CamelFileName").regex("^.*(csv|csl)$"))
-                        .to("jms:csvOrders")
-                    .otherwise()
-                        .to("jms:badOrders");        
+	                .choice()
+	                    .when(header("CamelFileName").endsWith(".xml"))
+	                        .to("jms:xmlOrders")  
+	                    .when(header("CamelFileName").regex("^.*(csv|csl)$"))
+	                        .to("jms:csvOrders")
+	                    .otherwise()
+	                        .to("jms:badOrders");        
                 
-                from("jms:xmlOrders")
-                .setHeader("customer", xpath("/order/@customer"))
-                .process(new Processor() {
-                    public void process(Exchange exchange) throws Exception {
-                        String recipients = "jms:accounting";
-                        String customer = exchange.getIn().getHeader("customer", String.class);
-                        if (customer.equals("honda")) {
-                            recipients += ",jms:production";
-                        }
-                        exchange.getIn().setHeader("recipients", recipients);
-                    }
-                })
-                .recipientList(header("recipients"));
+                from("jms:xmlOrders")                
+	                .setHeader("recipients", method(RecipientsBean.class, "calculateRecipients"))
+	                .recipientList(header("recipients"));
                 
                 // test that our route is working
                 from("jms:accounting").process(new Processor() {
