@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+    ">
+
+  <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+    <property name="connectionFactory">
+      <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="vm://localhost"/>
+      </bean>
+    </property>
+  </bean>
+
+ <context:property-placeholder properties-ref="properties"/>
+ <util:properties id="properties"
+                  location="classpath:rider-test.properties"/> 
+
+ <camelContext trace="true" id="camel" xmlns="http://camel.apache.org/schema/spring">
+
+  <endpoint id="myDest" uri="jms:${myDest}"/>     
+  
+  <route>
+   <from uri="file:src/data?noop=true" />
+   <to ref="myDest" />
+  </route>
+
+  <route>
+   <from uri="jms:incomingOrders" />
+   <to uri="mock:incomingOrders" />
+  </route>  
+ </camelContext>
+
+</beans>
