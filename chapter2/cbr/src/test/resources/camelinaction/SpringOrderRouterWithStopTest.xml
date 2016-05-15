@@ -25,7 +25,7 @@
    <from uri="jms:incomingOrders" />
    <choice>
     <when>
-     <simple>${header.CamelFileName} regex '^.*xml$'</simple>
+     <simple>${header.CamelFileName} ends with 'xml'</simple>
      <to uri="jms:xmlOrders" />
     </when>
     <when>
