@@ -61,20 +61,20 @@ public class OrderRouterSimpleTest extends CamelTestSupport {
         
                 // content-based router
                 from("jms:incomingOrders")
-                .choice()
-                    .when(simple("${header.CamelFileName} ends with 'xml'"))
-                        .to("jms:xmlOrders")  
-                    .when(simple("${header.CamelFileName} ends with 'csv'"))
-                        .to("jms:csvOrders");
+                    .choice()
+                        .when(simple("${header.CamelFileName} ends with 'xml'"))
+                            .to("jms:xmlOrders")  
+                        .when(simple("${header.CamelFileName} ends with 'csv'"))
+                            .to("jms:csvOrders");
                 
                 // test that our route is working
                 from("jms:xmlOrders")
-                .log("Received XML order: ${header.CamelFileName}")
-                .to("mock:xml");                
+                    .log("Received XML order: ${header.CamelFileName}")
+                    .to("mock:xml");                
                 
                 from("jms:csvOrders")
-                .log("Received CSV order: ${header.CamelFileName}")
-                .to("mock:csv");
+                    .log("Received CSV order: ${header.CamelFileName}")
+                    .to("mock:csv");
             }
         };
     }

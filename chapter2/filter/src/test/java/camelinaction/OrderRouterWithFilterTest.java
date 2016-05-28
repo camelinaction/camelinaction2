@@ -59,18 +59,19 @@ public class OrderRouterWithFilterTest extends CamelTestSupport {
         
                 // content-based router
                 from("jms:incomingOrders")
-                .choice()
-                    .when(header("CamelFileName").endsWith(".xml"))
-                        .to("jms:xmlOrders")  
-                    .when(header("CamelFileName").regex("^.*(csv|csl)$"))
-                        .to("jms:csvOrders")
-                    .otherwise()
-                        .to("jms:badOrders");
+                    .choice()
+                        .when(header("CamelFileName").endsWith(".xml"))
+                            .to("jms:xmlOrders")  
+                        .when(header("CamelFileName").regex("^.*(csv|csl)$"))
+                            .to("jms:csvOrders")
+                        .otherwise()
+                            .to("jms:badOrders");
                 
                 // lets filter out the test messages
-                from("jms:xmlOrders").filter(xpath("/order[not(@test)]"))           
-                .log("Received XML order: ${header.CamelFileName}")
-                .to("mock:xml");                
+                from("jms:xmlOrders")
+                    .filter(xpath("/order[not(@test)]"))           
+                    .log("Received XML order: ${header.CamelFileName}")
+                    .to("mock:xml");                
             }
         };
     }

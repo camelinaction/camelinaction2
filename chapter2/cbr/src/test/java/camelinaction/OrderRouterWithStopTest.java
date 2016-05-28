@@ -57,36 +57,38 @@ public class OrderRouterWithStopTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 // load file orders from src/data into the JMS queue
-                from("file:src/data_full?noop=true").log("Received file: ${header.CamelFileName}").to("jms:incomingOrders");
+                from("file:src/data_full?noop=true")
+                    .log("Received file: ${header.CamelFileName}")
+                    .to("jms:incomingOrders");
         
                 // content-based router
                 from("jms:incomingOrders")
-                .choice()
-                    .when(header("CamelFileName").endsWith(".xml"))
-                        .to("jms:xmlOrders")  
-                    .when(header("CamelFileName").regex("^.*(csv|csl)$"))
-                        .to("jms:csvOrders")
-                    .otherwise()
-                        .to("jms:badOrders").stop()
-                .end()
-                .to("jms:continuedProcessing");
+                    .choice()
+                        .when(header("CamelFileName").endsWith(".xml"))
+                            .to("jms:xmlOrders")  
+                        .when(header("CamelFileName").regex("^.*(csv|csl)$"))
+                            .to("jms:csvOrders")
+                        .otherwise()
+                            .to("jms:badOrders").stop()
+                    .end()
+                    .to("jms:continuedProcessing");
                 
                 // test that our route is working
                 from("jms:xmlOrders")
-                .log("Received XML order: ${header.CamelFileName}")
-                .to("mock:xml");                
+                    .log("Received XML order: ${header.CamelFileName}")
+                    .to("mock:xml");                
                 
                 from("jms:csvOrders")
-                .log("Received CSV order: ${header.CamelFileName}")
-                .to("mock:csv");
+                    .log("Received CSV order: ${header.CamelFileName}")
+                    .to("mock:csv");
                 
                 from("jms:badOrders")
-                .log("Received bad order: ${header.CamelFileName}")
-                .to("mock:bad");     
+                    .log("Received bad order: ${header.CamelFileName}")
+                    .to("mock:bad");     
                 
                 from("jms:continuedProcessing")
-                .log("Received continued order: ${header.CamelFileName}")
-                .to("mock:continued");    
+                    .log("Received continued order: ${header.CamelFileName}")
+                    .to("mock:continued");    
             }
         };
     }

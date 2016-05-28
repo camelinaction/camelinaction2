@@ -60,23 +60,25 @@ public class OrderRouterWithMulticastTest extends CamelTestSupport {
         
                 // content-based router
                 from("jms:incomingOrders")
-                .choice()
-                    .when(header("CamelFileName").endsWith(".xml"))
-                        .to("jms:xmlOrders")  
-                    .when(header("CamelFileName").regex("^.*(csv|csl)$"))
-                        .to("jms:csvOrders")
-                    .otherwise()
-                        .to("jms:badOrders");        
+                    .choice()
+                        .when(header("CamelFileName").endsWith(".xml"))
+                            .to("jms:xmlOrders")  
+                        .when(header("CamelFileName").regex("^.*(csv|csl)$"))
+                            .to("jms:csvOrders")
+                        .otherwise()
+                            .to("jms:badOrders");        
                 
-                from("jms:xmlOrders").multicast().to("jms:accounting", "jms:production");
+                from("jms:xmlOrders")
+                    .multicast()
+                    .to("jms:accounting", "jms:production");
                
                 from("jms:accounting")        
-                .log("Accounting received order: ${header.CamelFileName}")
-                .to("mock:accounting");                
+                    .log("Accounting received order: ${header.CamelFileName}")
+                    .to("mock:accounting");                
                 
                 from("jms:production")        
-                .log("Production received order: ${header.CamelFileName}")
-                .to("mock:production");                
+                    .log("Production received order: ${header.CamelFileName}")
+                    .to("mock:production");                
             }
         };
     }

@@ -40,7 +40,7 @@
 
   <route>
    <from uri="jms:xmlOrders" />
-   <multicast parallelProcessing="true" executorServiceRef="myExecutor">
+   <multicast parallelProcessing="true">
     <to uri="jms:accounting" />
     <to uri="jms:production" />
    </multicast>
@@ -59,9 +59,5 @@
   </route>
 
  </camelContext>
-
- <bean id="myExecutor" class="java.util.concurrent.Executors" factory-method="newFixedThreadPool">
-  <constructor-arg value="16"></constructor-arg>
- </bean>
 
 </beans>

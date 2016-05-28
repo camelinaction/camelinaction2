@@ -56,7 +56,7 @@ public class FtpToJMSWithDynamicToTest extends CamelTestSupport {
             public void configure() throws Exception {
                 // load file orders from src/data into the JMS queue
                 from("file:src/data?noop=true")
-		    .setHeader("myDest", constant("incomingOrders"))
+                    .setHeader("myDest", constant("incomingOrders"))
                     .toD("jms:${header.myDest}");
                        
                 // test that our route is working
