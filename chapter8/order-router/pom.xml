@@ -3,14 +3,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>chapter11</artifactId>
+    <artifactId>chapter8</artifactId>
     <groupId>com.camelinaction</groupId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
   </parent>
   <groupId>camelinaction</groupId>
-  <artifactId>chapter11-order-router</artifactId>
-  <version>1.0.0</version>
-  <name>Camel in Action :: Chapter 11 :: Order Router</name>
+  <artifactId>chapter8-order-router</artifactId>
+  <version>2.0.0</version>
+  <name>Camel in Action 2 :: Chapter 8 :: Order Router</name>
   <dependencies>
     <dependency>
       <groupId>org.apache.camel</groupId>
