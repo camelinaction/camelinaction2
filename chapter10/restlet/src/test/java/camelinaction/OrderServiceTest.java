@@ -1,5 +1,6 @@
 package camelinaction;
 
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -34,8 +35,8 @@ public class OrderServiceTest extends CamelTestSupport {
 
         log.info("Sending order using xml payload: {}", xml);
 
-        // use restlet component to send the order
-        String id = template.requestBody("restlet:http://0.0.0.0:8080/orders?restletMethod=POST", xml, String.class);
+        // use restlet component to send the order as xml payload
+        String id = template.requestBodyAndHeader("restlet:http://0.0.0.0:8080/orders?restletMethod=POST", xml, Exchange.CONTENT_TYPE, "application/xml", String.class);
         assertNotNull(id);
 
         log.info("Created new order with id " + id);
@@ -57,7 +58,7 @@ public class OrderServiceTest extends CamelTestSupport {
         log.info("Sending order using xml payload: {}", xml);
 
         // use restlet component to send the order
-        String id = template.requestBody("restlet:http://0.0.0.0:8080/orders?restletMethod=POST", xml, String.class);
+        String id = template.requestBodyAndHeader("restlet:http://0.0.0.0:8080/orders?restletMethod=POST", xml, Exchange.CONTENT_TYPE, "application/xmll", String.class);
         assertNotNull(id);
 
         log.info("Created new order with id " + id);
