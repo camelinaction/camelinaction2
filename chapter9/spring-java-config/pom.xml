@@ -12,11 +12,6 @@
   <artifactId>chapter9-spring-java-config</artifactId>
   <name>Camel in Action 2 :: Chapter 9 :: Test using Spring Java Config</name>
 
-  <!-- requires 2.17.1 -->
-  <properties>
-    <camel-version>2.18-SNAPSHOT</camel-version>
-  </properties>
-
   <dependencies>
 
     <dependency>
