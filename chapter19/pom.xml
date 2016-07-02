@@ -13,7 +13,7 @@
     <name>Camel in Action 2 :: Chapter 19</name>
 
     <modules>
-        <module>graphical</module>
+        <module>fuse-ide</module>
     </modules>
 </project>
 

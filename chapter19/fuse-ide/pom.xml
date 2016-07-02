@@ -12,8 +12,8 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter19-graphical</artifactId>
-  <name>Camel in Action 2 :: Chapter 19 :: Graphical Editor</name>
+  <artifactId>chapter19-fuse-ide</artifactId>
+  <name>Camel in Action 2 :: Chapter 19 :: JBoss Tools for Apache Camel Editor</name>
 
   <dependencies>
 
