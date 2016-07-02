@@ -1,6 +1,7 @@
 package camelinaction.order;
 
 public class OrderResultBean {
+
     public OrderResultBean() {
     }
     

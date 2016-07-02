@@ -9,11 +9,9 @@ import org.apache.camel.language.XPath;
  * Otherwise, the order is only sent to the accounting queue.
  * 
  * The recipient list annotation is used to accomplish this.
- *
- * @author janstey
- *
  */
 public class AnnotatedRecipientList {
+
     @RecipientList
     public String[] route(@XPath("/order/@customer") String customer) {
         if (isGoldCustomer(customer)) {

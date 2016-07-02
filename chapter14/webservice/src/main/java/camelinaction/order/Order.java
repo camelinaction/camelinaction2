@@ -1,4 +1,3 @@
-
 package camelinaction.order;
 
 import javax.xml.bind.annotation.XmlAccessType;

@@ -13,7 +13,6 @@ public class SpringHttpsTest extends CamelSpringTestSupport {
         return new ClassPathXmlApplicationContext("META-INF/spring/https.xml");
     }
     
-    
     // this will utilize the truststore we defined in sslContextParameters bean to access the HTTPS endpoint
     @Test
     public void testHttps() throws Exception {

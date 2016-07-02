@@ -8,8 +8,6 @@ import org.apache.camel.Header;
  * Bean which implements the logic where the message should be routed by the Dynamic Router EIP.
  * <p/>
  * Notice the bean has been annotated with @DynamicRouter
- *
- * @version $Revision$
  */
 public class DynamicRouterAnnotationBean {
 

@@ -1,5 +1,5 @@
 Chapter 1 - file-copy
-----------------------------------
+---------------------
 
 Contains the only example from chapter 1.
 
