@@ -53,7 +53,7 @@ public class DeprecatedValidator {
     private boolean isDeprecatedComponent(String name) {
         String json = catalog.componentJSonSchema(name);
 
-        List<Map<String, String>> rows = JsonSchemaHelper.parseJsonSchema("properties", json, false);
+        List<Map<String, String>> rows = JsonSchemaHelper.parseJsonSchema("component", json, false);
         for (Map<String, String> row : rows) {
             if (row.get("deprecated") != null) {
                 return "true".equals(row.get("deprecated"));

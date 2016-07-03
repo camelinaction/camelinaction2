@@ -48,7 +48,7 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+            <Bundle-SymbolicName>chapter19-custom-tooling-karaf</Bundle-SymbolicName>
             <Import-Package>
               !org.apache.felix.utils.properties,
               org.apache.felix.service.command;version="[0.16,1)",
