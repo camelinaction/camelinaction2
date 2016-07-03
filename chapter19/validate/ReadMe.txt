@@ -5,7 +5,7 @@ Example that demonstrates the fabric8 Camel Validation using Maven tooling.
 
 You can run the validation using
 
-    fabric8-camel:validate
+    mvn fabric8-camel:validate
 
 ... and there should be some errors reported.
 
