@@ -1,0 +1,21 @@
+Chapter 19 - Validate
+=====================
+
+Example that demonstrates the fabric8 Camel Validation using Maven tooling.
+
+You can run the validation using
+
+    fabric8-camel:validate
+
+... and there should be some errors reported.
+
+The validate plugin has been configured to run as part of building the project, so if you run
+
+    mvn clean install
+
+The validation runs and in case of errors it causes the build to fail.
+
+You can find more details about the fabric8 Camel Validation plugin at:
+
+    http://fabric8.io/guide/camelMavenPlugin.html
+

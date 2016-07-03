@@ -14,7 +14,9 @@
     <name>Camel in Action 2 :: Chapter 19</name>
 
     <modules>
+        <module>fabric8</module>
         <module>fuse-ide</module>
-    <module>fabric8</module>
-  </modules>
+        <module>validate</module>
+    </modules>
+
 </project>
