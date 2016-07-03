@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" default-activation="lazy">
+
+  <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
+    <command name="custom/deprecated-components">
+      <action class="camelinaction.karaf.DeprecatedComponentsCommand"/>
+    </command>
+  </command-bundle>
+
+</blueprint>

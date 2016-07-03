@@ -15,6 +15,7 @@
 
     <modules>
         <module>custom-tooling</module>
+        <module>custom-tooling-karaf</module>
         <module>fabric8</module>
         <module>fuse-ide</module>
         <module>validate</module>

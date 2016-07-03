@@ -13,14 +13,14 @@ import static camelinaction.CamelContextController.findCamelContexts;
 import static camelinaction.CamelContextController.findComponentNames;
 
 /**
- * A command to check for deprecated usage of Camel components and options
+ * A validator to check for deprecated usage of Camel components and options
  * in any of the running Camel application in the JVM.
  */
-public class DeprecatedCommand {
+public class DeprecatedValidator {
 
     private CamelCatalog catalog;
 
-    public DeprecatedCommand() {
+    public DeprecatedValidator() {
         catalog = new DefaultCamelCatalog(true);
     }
 
