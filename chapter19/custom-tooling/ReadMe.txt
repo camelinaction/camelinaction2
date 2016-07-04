@@ -1,15 +1,8 @@
-Camel Java Router Project
-=========================
+chapter19 - custom-tooling
+--------------------------
 
-To build this project use
+Custom tool that uses the Camel Catalog to find out if any running Camel applications in the JVM
+uses @deprecated components.
 
-    mvn install
-
-To run this project from within Maven use
-
-    mvn exec:java
-
-For more help see the Apache Camel documentation
-
-    http://camel.apache.org/
-
+This code contains the logic and there is modules to run this tooling in Apache Karaf and hawtio in
+other directories.

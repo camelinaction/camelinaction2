@@ -10,8 +10,14 @@ import javax.management.ObjectName;
 
 import org.apache.camel.util.CamelVersionHelper;
 
+/**
+ * A controller that can find all running Camel applications in the JVM
+ */
 public final class CamelContextController {
 
+    /**
+     * Find all JMX {@link ObjectName} for all the running Camels in the JVM
+     */
     public static List<ObjectName> findCamelContexts() throws Exception {
         List<ObjectName> answer = new ArrayList<>();
 
@@ -37,6 +43,9 @@ public final class CamelContextController {
         return answer;
     }
 
+    /**
+     * Find all the components in use by the Camel application with the given {@link ObjectName}
+     */
     @SuppressWarnings("unchecked")
     public static List<String> findComponentNames(ObjectName on) throws Exception {
         MBeanServer server = ManagementFactory.getPlatformMBeanServer();

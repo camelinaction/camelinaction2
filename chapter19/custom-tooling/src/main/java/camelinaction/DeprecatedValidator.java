@@ -21,6 +21,7 @@ public class DeprecatedValidator {
     private CamelCatalog catalog;
 
     public DeprecatedValidator() {
+        // create the catalog, and turn on caching
         catalog = new DefaultCamelCatalog(true);
     }
 
@@ -33,13 +34,14 @@ public class DeprecatedValidator {
      */
     public List<String> findDeprecatedComponents() throws Exception {
         List<String> answer = new ArrayList<>();
-        // find all Camel applications running
 
+        // find all Camel applications running
         List<ObjectName> camels = findCamelContexts();
         for (ObjectName on : camels) {
+            // find all the component names that the camel application uses
             List<String> names = findComponentNames(on);
 
-            // is the component deprecated
+            // is any of these component deprecated
             for (String name : names) {
                 if (isDeprecatedComponent(name)) {
                     answer.add(name);
@@ -50,11 +52,19 @@ public class DeprecatedValidator {
         return answer;
     }
 
+    /**
+     * Is the component deprecated?
+     */
     private boolean isDeprecatedComponent(String name) {
+        // load the JSon schema for the component
         String json = catalog.componentJSonSchema(name);
 
+        // parse the JSon into a row structure
+        // "component" = the group we want to read, which is the component details
+        // false = do not parse as properties
         List<Map<String, String>> rows = JsonSchemaHelper.parseJsonSchema("component", json, false);
         for (Map<String, String> row : rows) {
+            // find the deprecated row and check if its true
             if (row.get("deprecated") != null) {
                 return "true".equals(row.get("deprecated"));
             }
