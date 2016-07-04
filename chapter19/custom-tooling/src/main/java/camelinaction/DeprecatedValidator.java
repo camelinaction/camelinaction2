@@ -3,6 +3,7 @@ package camelinaction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.management.ObjectName;
 
 import org.apache.camel.catalog.CamelCatalog;
@@ -36,7 +37,7 @@ public class DeprecatedValidator {
         List<String> answer = new ArrayList<>();
 
         // find all Camel applications running
-        List<ObjectName> camels = findCamelContexts();
+        Set<ObjectName> camels = findCamelContexts();
         for (ObjectName on : camels) {
             // find all the component names that the camel application uses
             List<String> names = findComponentNames(on);
