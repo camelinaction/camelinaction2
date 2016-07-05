@@ -49,15 +49,6 @@
         <configuration>
           <instructions>
             <Bundle-SymbolicName>chapter19-custom-tooling-karaf</Bundle-SymbolicName>
-            <Import-Package>
-              !org.apache.felix.utils.properties,
-              org.apache.felix.service.command;version="[0.16,1)",
-              org.apache.felix.gogo.commands;version="[0.16,1)",
-              org.apache.karaf.shell.console;version="[3,5)",
-              org.slf4j.*;version="[1.6,2)",
-              jline.*;version="[2.1,3)",
-              *
-            </Import-Package>
           </instructions>
         </configuration>
       </plugin>

@@ -23,8 +23,8 @@ Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.x) run the
 
 And then install the tooling
 
-    install -s mvn:com.camelinaction/custom-tooling/2.0.0
-    install -s mvn:com.camelinaction/custom-tooling-karaf/2.0.0
+    install -s mvn:com.camelinaction/chapter19-custom-tooling/2.0.0
+    install -s mvn:com.camelinaction/chapter19-custom-tooling-karaf/2.0.0
 
 Then you can run the following command from the shell
 
@@ -32,7 +32,7 @@ Then you can run the following command from the shell
 
 However there is no Camel applications running, so lets install an application that uses a deprecated component
 
-    install -s mvn:com.camelinaction/deprecated-component-karaf/2.0.0
+    install -s mvn:com.camelinaction/chapter19-deprecated-component-karaf/2.0.0
 
 And run the command again
 
