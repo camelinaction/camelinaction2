@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" default-activation="lazy">
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
   <!-- list of Karaf commands in this bundle -->
   <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
