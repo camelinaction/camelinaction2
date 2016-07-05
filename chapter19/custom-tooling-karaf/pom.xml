@@ -28,13 +28,6 @@
       <artifactId>org.apache.karaf.shell.console</artifactId>
       <version>${karaf-version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-      <version>5.0.0</version>
-    </dependency>
 
   </dependencies>
 
