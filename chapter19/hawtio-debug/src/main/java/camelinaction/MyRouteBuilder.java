@@ -9,7 +9,7 @@ import org.apache.camel.builder.RouteBuilder;
 public class MyRouteBuilder extends RouteBuilder {
 
     public void configure() {
-        from("timer:foo?period=5000")
+        from("timer:foo?period=5000&synchronous=true")
             .transform(simple("${random(1000)}"))
             .choice()
                 .when(simple("${body} > 500"))

@@ -9,7 +9,7 @@ To run this project from within Maven use
 
     mvn exec:java
 
-For more help see the Apache Camel documentation
+From another shell you can run hawtio as a web console.
 
-    http://camel.apache.org/
+
 

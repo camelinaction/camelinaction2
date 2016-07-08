@@ -52,6 +52,16 @@
         </configuration>
       </plugin>
 
+      <!-- allows to run the example with hawtio embedded using mvn hawtio:run -->
+      <plugin>
+        <groupId>io.hawt</groupId>
+        <artifactId>hawtio-maven-plugin</artifactId>
+        <version>1.4.63</version>
+        <configuration>
+          <mainClass>camelinaction.MainApp</mainClass>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
