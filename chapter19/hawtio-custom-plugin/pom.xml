@@ -19,10 +19,10 @@
   <properties>
     <!-- plugin-context is what context this plugin will handle requests on
       in the application server -->
-    <plugin-context>/camel-deprecated-plugin</plugin-context>
+    <plugin-context>/oldstuff-plugin</plugin-context>
 
     <!-- plugin-name is the name of our plugin, affects the name used for the plugin's mbean -->
-    <plugin-name>camel-deprecated</plugin-name>
+    <plugin-name>oldstuff</plugin-name>
 
     <!-- plugin-domain is currently unused, we just define it to an empty string -->
     <plugin-domain/>
@@ -76,7 +76,7 @@
 
   <build>
 
-    <finalName>camel-deprecated-plugin</finalName>
+    <finalName>oldstuff-plugin</finalName>
 
     <!-- we want to ensure src/main/resources/WEB-INF/web.xml is being filtered
       so that it picks up all of our javascript files -->
@@ -178,7 +178,7 @@
           </execution>
         </executions>
         <configuration>
-          <manifestLocation>target/camel-deprecated-plugin/META-INF</manifestLocation>
+          <manifestLocation>target/oldstuff-plugin/META-INF</manifestLocation>
           <supportedProjectTypes>
             <supportedProjectType>jar</supportedProjectType>
             <supportedProjectType>bundle</supportedProjectType>
@@ -194,7 +194,7 @@
             <Bundle-ClassPath>.,WEB-INF/classes</Bundle-ClassPath>
             <Bundle-Name>${project.name}</Bundle-Name>
             <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-            <Implementation-Title>HawtIO Camel Deprecated Plugin</Implementation-Title>
+            <Implementation-Title>HawtIO Oldstuff Plugin</Implementation-Title>
             <Implementation-Version>${project.version}</Implementation-Version>
           </instructions>
         </configuration>
@@ -213,7 +213,7 @@
           <packagingExcludes>**/classes/OSGI-INF/**</packagingExcludes>
           <failOnMissingWebXml>false</failOnMissingWebXml>
           <archive>
-            <manifestFile>target/camel-deprecated-plugin/META-INF/MANIFEST.MF</manifestFile>
+            <manifestFile>target/oldstuff-plugin/META-INF/MANIFEST.MF</manifestFile>
           </archive>
           <webResources>
             <resource>

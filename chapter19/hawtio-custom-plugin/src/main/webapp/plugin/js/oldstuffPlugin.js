@@ -1,10 +1,10 @@
 /**
- * @module CamelDeprecated
- * @mail CamelDeprecated
+ * @module Oldstuff
+ * @mail Oldstuff
  *
- * The main entry point for the CamelDeprecated module
+ * The main entry point for the Oldstuff module
  */
-var CamelDeprecated = (function(CamelDeprecated) {
+var Oldstuff = (function(Oldstuff) {
 
   /**
    * @property pluginName
@@ -12,7 +12,7 @@ var CamelDeprecated = (function(CamelDeprecated) {
    *
    * The name of this plugin
    */
-  CamelDeprecated.pluginName = 'camel_deprecated_plugin';
+  Oldstuff.pluginName = 'oldstuff_plugin';
 
   /**
    * @property log
@@ -20,16 +20,15 @@ var CamelDeprecated = (function(CamelDeprecated) {
    *
    * This plugin's logger instance
    */
-  CamelDeprecated.log = Logger.get('CamelDeprecated');
+  Oldstuff.log = Logger.get('Oldstuff');
 
   /**
    * @property contextPath
    * @type {string}
    *
    * The top level path of this plugin on the server
-   *
    */
-  CamelDeprecated.contextPath = "/camel-deprecated-plugin/";
+  Oldstuff.contextPath = "/oldstuff-plugin/";
 
   /**
    * @property templatePath
@@ -37,12 +36,12 @@ var CamelDeprecated = (function(CamelDeprecated) {
    *
    * The path to this plugin's partials
    */
-  CamelDeprecated.templatePath = CamelDeprecated.contextPath + "plugin/html/";
+  Oldstuff.templatePath = Oldstuff.contextPath + "plugin/html/";
 
   /**
-   * The mbean for the camel deprecated checker
+   * The mbean for the Camel deprecated checker
    */
-  CamelDeprecated.mbean = "hawtio:type=CamelComponentDeprecated";
+  Oldstuff.mbean = "hawtio:type=CamelComponentDeprecated";
 
   /**
    * @property module
@@ -53,7 +52,7 @@ var CamelDeprecated = (function(CamelDeprecated) {
    * workspace, viewRegistry and layoutFull used by the
    * run function
    */
-  CamelDeprecated.module = angular.module('camel_deprecated_plugin', ['hawtioCore'])
+  Oldstuff.module = angular.module('oldstuff_plugin', ['hawtioCore'])
     .config(function($routeProvider) {
 
       /**
@@ -63,8 +62,8 @@ var CamelDeprecated = (function(CamelDeprecated) {
        * routeProvider has been configured with.
        */
       $routeProvider.
-      when('/camel_deprecated_plugin', {
-        templateUrl: CamelDeprecated.templatePath + 'deprecated.html'
+      when('/oldstuff_plugin', {
+        templateUrl: Oldstuff.templatePath + 'oldstuff.html'
       });
     });
 
@@ -82,18 +81,18 @@ var CamelDeprecated = (function(CamelDeprecated) {
    *     plugin.  This is just a matter of adding to the workspace's
    *     topLevelTabs array.
    */
-  CamelDeprecated.module.run(function(workspace, viewRegistry, helpRegistry, layoutFull) {
+  Oldstuff.module.run(function(workspace, viewRegistry, helpRegistry, layoutFull) {
 
-    CamelDeprecated.log.info(CamelDeprecated.pluginName, " loaded");
+    Oldstuff.log.info(Oldstuff.pluginName, " loaded");
 
-    Core.addCSS(CamelDeprecated.contextPath + "plugin/css/deprecated.css");
+    Core.addCSS(Oldstuff.contextPath + "plugin/css/oldstuff.css");
 
     // tell the app to use the full layout, also could use layoutTree
     // to get the JMX tree or provide a URL to a custom layout
-    viewRegistry["camel_deprecated_plugin"] = layoutFull;
+    viewRegistry["oldstuff_plugin"] = layoutFull;
 
     // add the plugin help to the help registry
-    helpRegistry.addUserDoc('Camel-Deprecated', CamelDeprecated.contextPath + '/plugin/doc/help.md');
+    helpRegistry.addUserDoc('Oldstuff', Oldstuff.contextPath + '/plugin/doc/help.md');
 
     /* Set up top-level link to our plugin.  Requires an object
      with the following attributes:
@@ -118,39 +117,39 @@ var CamelDeprecated = (function(CamelDeprecated) {
      route.
      */
     workspace.topLevelTabs.push({
-      id: "camel-deprecated",
-      content: "Camel Deprecated",
-      title: "Camel plugin to check for deprecated components",
+      id: "oldstuff",
+      content: "Oldstuff",
+      title: "Plugin to check for old stuff ",
       isValid: function(workspace) { return true; },
-      href: function() { return "#/camel_deprecated_plugin"; },
-      isActive: function(workspace) { return workspace.isLinkActive("camel_deprecated_plugin"); }
+      href: function() { return "#/oldstuff_plugin"; },
+      isActive: function(workspace) { return workspace.isLinkActive("oldstuff_plugin"); }
     });
 
   });
 
   /**
-   * @function CamelDeprecatedController
+   * @function OldstuffController
    * @param $scope
    * @param jolokia
    *
    * The controller for shell.html, only requires the jolokia
    * service from hawtioCore
    */
-  CamelDeprecated.CamelDeprecatedController = function($scope, jolokia) {
+  Oldstuff.OldstuffController = function($scope, jolokia) {
 
     $scope.findDeprecatedComponents = function() {
-      CamelDeprecated.log.info(CamelDeprecated.pluginName, " findDeprecatedComponents");
+      Oldstuff.log.info(Oldstuff.pluginName, " findDeprecatedComponents");
       // call mbean
       jolokia.request({
         type: 'exec',
-        mbean: CamelDeprecated.mbean,
+        mbean: Oldstuff.mbean,
         operation: 'findDeprecatedComponents'
       }, onSuccess(render, {error: renderError}));
     };
 
     // update display with Camel result
     function render(response) {
-      CamelDeprecated.log.info(CamelDeprecated.pluginName, " --> " + response.value);
+      Oldstuff.log.info(Oldstuff.pluginName, " --> " + response.value);
       $scope.output = response.value;
       if ($scope.output.length === 0) {
         $scope.output = "No deprecated components found";
@@ -160,17 +159,17 @@ var CamelDeprecated = (function(CamelDeprecated) {
     }
 
     function renderError(response) {
-      CamelDeprecated.log.info(CamelDeprecated.pluginName, " error " + response);
+      Oldstuff.log.info(Oldstuff.pluginName, " error " + response);
       $scope.output = null;
       $scope.error = response;
       Core.$apply($scope);
     }
   };
 
-  return CamelDeprecated;
+  return Oldstuff;
 
-})(CamelDeprecated || {});
+})(Oldstuff || {});
 
 // tell the hawtio plugin loader about our plugin so it can be
 // bootstrapped with the rest of angular
-hawtioPluginLoader.addModule(CamelDeprecated.pluginName);
+hawtioPluginLoader.addModule(Oldstuff.pluginName);

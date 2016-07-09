@@ -73,7 +73,7 @@ public class CamelComponentDeprecated implements CamelComponentDeprecatedMBean {
         try {
             return validator.findDeprecatedComponents();
         } catch (Exception e) {
-            LOG.warn("Error finding deprecated components", e);
+            LOG.warn("Error finding deprecated Camel components", e);
         }
 
         return null;
