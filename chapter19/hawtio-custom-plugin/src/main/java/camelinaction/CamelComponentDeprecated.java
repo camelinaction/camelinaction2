@@ -70,16 +70,12 @@ public class CamelComponentDeprecated implements CamelComponentDeprecatedMBean {
 
     @Override
     public List<String> findDeprecatedComponents() {
-        List<String> answer = new ArrayList<>();
-        answer.add("quartz");
-        answer.add("swagger");
-        return answer;
-//        try {
-//            return validator.findDeprecatedComponents();
-//        } catch (Exception e) {
-//            LOG.warn("Error finding deprecated components", e);
-//        }
-//
-//        return null;
+        try {
+            return validator.findDeprecatedComponents();
+        } catch (Exception e) {
+            LOG.warn("Error finding deprecated components", e);
+        }
+
+        return null;
     }
 }

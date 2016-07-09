@@ -29,10 +29,10 @@
 
     <!-- this lets this plugin deploy nicely into karaf, these get used
       for the ImportPackage directive for maven-bundle-plugin -->
-    <fuse.osgi.import>
+    <hawtio.osgi.import>
       javax.servlet,
       *;resolution:=optional
-    </fuse.osgi.import>
+    </hawtio.osgi.import>
   </properties>
 
   <dependencies>
@@ -190,10 +190,11 @@
             <Embed-Directory>WEB-INF/lib</Embed-Directory>
             <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
             <Embed-Transitive>true</Embed-Transitive>
+            <Import-Package>${hawtio.osgi.import}</Import-Package>
             <Bundle-ClassPath>.,WEB-INF/classes</Bundle-ClassPath>
-            <Bundle-Name>${project.description}</Bundle-Name>
+            <Bundle-Name>${project.name}</Bundle-Name>
             <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-            <Implementation-Title>HawtIO Groovy Shell Plugin</Implementation-Title>
+            <Implementation-Title>HawtIO Camel Deprecated Plugin</Implementation-Title>
             <Implementation-Version>${project.version}</Implementation-Version>
           </instructions>
         </configuration>
