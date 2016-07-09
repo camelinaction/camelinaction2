@@ -11,7 +11,7 @@ import org.apache.karaf.shell.console.OsgiCommandSupport;
  * <p/>
  * See also the file src/main/resources/OSGI-INF/blueprint/blueprint-command.xml where the command is setup for Karaf.
  */
-@Command(scope = "custom", name = "deprecated-components",
+@Command(scope = "oldstuff", name = "deprecated-components",
          description = "Lists all deprecated components in use.")
 public class DeprecatedComponentsCommand extends OsgiCommandSupport {
 

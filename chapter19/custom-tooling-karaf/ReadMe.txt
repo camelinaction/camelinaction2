@@ -28,15 +28,15 @@ And then install the tooling
 
 Then you can run the following command from the shell
 
-    custom:deprecated-components
+    oldstuff:deprecated-components
 
-However there is no Camel applications running, so lets install an application that uses a deprecated component
+However there is no Camel applications running, so lets install a Camel application that uses a deprecated component
 
     install -s mvn:com.camelinaction/chapter19-deprecated-component-karaf/2.0.0
 
 And run the command again
 
-    custom:deprecated-components
+    oldstuff:deprecated-components
 
 And it should report that the `quartz` component is in use which has been deprecated.
 

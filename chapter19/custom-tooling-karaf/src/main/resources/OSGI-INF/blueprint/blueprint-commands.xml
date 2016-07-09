@@ -4,7 +4,7 @@
   <!-- list of Karaf commands in this bundle -->
   <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
     <!-- this is our custom:deprecated-components command -->
-    <command name="custom/deprecated-components">
+    <command name="oldstuff/deprecated-components">
       <action class="camelinaction.karaf.DeprecatedComponentsCommand"/>
     </command>
   </command-bundle>
