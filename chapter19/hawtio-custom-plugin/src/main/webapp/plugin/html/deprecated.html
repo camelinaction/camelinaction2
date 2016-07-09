@@ -1,0 +1,25 @@
+<div class="camel-deprecated-controller" ng-controller="CamelDeprecated.CamelDeprecatedController">
+
+  <div class="row-fluid">
+    <div class="span6 offset3 centered">
+      <h2><h3 class="help-header centered">Camel Deprecated Components Checker</h3>
+      </h2>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6 offset3 centered">
+      <div class="dialog-body">
+        <div class="buttonBar">
+          <button class="btn btn-primary" ng-click="findDeprecatedComponents()">Run check</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-fluid" ng-show="output">
+    <div ng-repeat="component in output">
+      {{component}}
+    </div>
+  </div>
+</div>
