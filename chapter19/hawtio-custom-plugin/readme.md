@@ -15,6 +15,8 @@ and then afterwards this module using Maven:
 
     mvn clean install
 
+### Installing in Karaf/ServiceMix
+
 Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.x) run the following
 
     feature:repo-add camel 2.17.2
@@ -43,3 +45,32 @@ So you can install a Camel application that uses a deprecated component from the
     install -s mvn:com.camelinaction/chapter19-deprecated-component-karaf/2.0.0
 
 And when you run the check again then it should repor that `quart` component is deprecated.
+
+
+### Installing in Apache Tomcat
+
+You can install this plugin in Apache Tomcat or similar web container.
+We will use Tomcat as the example here.
+
+Start Apache Tomcat in the foreground such as running
+
+    bin/catalina run
+
+Then install hawtio by downloading the hawtio-default-offline WAR from:
+
+    http://hawt.io/getstarted/index.html
+
+.. and then rename the downloaded .war to `hawtio.war` and copy the file to Apache Tomcat
+in the webapps directory. This will install hawtio in Tomcat using the context-path `hawtio`.
+
+Then install this plugin by copying the `target/oldstuff-plugin.war` to Apache Tomcat
+in the webapps directory.
+
+Then open a web browser at:
+
+    http://localhost:8080/hawtio
+
+... and you should see the `Oldstuff` plugin being active in the top menu bar.
+
+After this you would need to install some Camel applications that uses deprecated components.
+

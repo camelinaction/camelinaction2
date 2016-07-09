@@ -1,3 +1,4 @@
-### Camel Deprecated Plugin
+### Oldstuff Plugin
 
-This plugin checks if any Camel application is using deprecated components.
+This is a hawtio plugin to run the custom tooling that can check if any Camel application
+is using deprecated Camel components.
