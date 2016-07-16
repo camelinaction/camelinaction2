@@ -1,6 +1,8 @@
 Chapter 19 - Custom Tooling Karaf
 ---------------------------------
 
+19.2.2 Camel tooling with Karaf
+
 This is a Karaf command to run the custom tooling that can check if any Camel application
 is using deprecated Camel components.
 

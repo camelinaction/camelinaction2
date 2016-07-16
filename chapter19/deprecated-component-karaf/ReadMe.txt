@@ -1,20 +1,24 @@
-Camel Router Project for Blueprint (OSGi)
-=========================================
+Chapter 19 - Deprecated Component Karaf
+---------------------------------------
+
+19.2.2 Camel tooling with Karaf
+
+This is a Camel application to run in Karaf that uses a deprecated Camel component.
+Which we can use custom tooling to check if any Camel application is using deprecated Camel components.
+
+### Installation
 
 To build this project use
 
-    mvn install
+    mvn clean install
 
-To run the project you can execute the following Maven goal
+Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.x) run the following
 
-    mvn camel:run
+    feature:repo-add camel 2.17.2
+    feature:install camel
+    feature:install camel-quartz
 
-To deploy the project in OSGi. For example using Apache ServiceMix
-or Apache Karaf. You can run the following command from its shell:
+And then install the example
 
     osgi:install -s mvn:com.camelinaction/deprecated-component-karaf/2.0.0
-
-For more help see the Apache Camel documentation
-
-    http://camel.apache.org/
 
