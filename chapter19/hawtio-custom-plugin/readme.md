@@ -1,6 +1,8 @@
 Chapter 19 - hawtio custom plugin
 ---------------------------------
 
+19.3.3 Building hawtio plugins
+
 This is a hawtio plugin to run the custom tooling that can check if any Camel application
 is using deprecated Camel components.
 
