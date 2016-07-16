@@ -1,9 +1,9 @@
-Chapter 19 - Validate
-=====================
+Chapter 19 - fabric8-camel-validate
+-----------------------------------
 
 Example that demonstrates the fabric8 Camel Validation using Maven tooling.
 
-19.1.3 Camel Validation using Maven
+### 19.1.3 Camel Validation using Maven
 
 You can run the validation using
 

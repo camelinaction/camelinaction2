@@ -1,23 +1,23 @@
 Chapter 19 - hawtio custom plugin
 ---------------------------------
 
-19.3.3 Building hawtio plugins
+### 19.3.3 Building hawtio plugins
 
 This is a hawtio plugin to run the custom tooling that can check if any Camel application
 is using deprecated Camel components.
 
-### Installing
+#### Installing
 
 To install this you first need to build the source code module of the following modules
 
- - chapter19/custom-tooling
- - chapter19/deprecated-component-karaf
+    chapter19/custom-tooling
+    chapter19/deprecated-component-karaf
 
 and then afterwards this module using Maven:
 
     mvn clean install
 
-### Installing in Karaf/ServiceMix
+#### Installing in Karaf/ServiceMix
 
 Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.x) run the following
 
@@ -49,7 +49,7 @@ So you can install a Camel application that uses a deprecated component from the
 And when you run the check again then it should repor that `quart` component is deprecated.
 
 
-### Installing in Apache Tomcat
+#### Installing in Apache Tomcat
 
 You can install this plugin in Apache Tomcat or similar web container.
 We will use Tomcat as the example here.

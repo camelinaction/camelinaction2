@@ -1,12 +1,12 @@
 Chapter19 - fabric8 Camel editor
 --------------------------------
 
-19.1.2 fabric8 Camel editor
+### 19.1.2 fabric8 Camel editor
 
 This is a Camel example used to demonstrate the fabric8 Camel editor, which you can run from IDEA or Eclipse.
 
 
-### Installing fabric8 in IDEA
+#### Installing fabric8 in IDEA
 
 From IDEA open `Preference` -> `Plugins` -> `Browse Repositories` and then type `Forge` in the search field to
 find the `JBoss Forge` plugin, which you can then install.
@@ -33,7 +33,7 @@ which you can find from Maven Central using the following url:
 
 
 
-### Installing fabric8 in Eclipse
+#### Installing fabric8 in Eclipse
 
 TODO: This is harder
 
@@ -56,7 +56,7 @@ which you can find from Maven Central using the following url:
    http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.fabric8.forge%22%20AND%20a%3A%22camel%22
 
 
-### Using the fabric8 Camel editor
+#### Using the fabric8 Camel editor
 
 Open the Java file `MySpringBootRouter` and position the cursor on the line with the Camel endpoint
 

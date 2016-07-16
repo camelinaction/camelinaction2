@@ -1,18 +1,18 @@
 Chapter19 - JBoss Tools for Apache Camel
 ----------------------------------------
 
-19.1.1 JBoss Tools for Apache Camel
+### 19.1.1 JBoss Tools for Apache Camel
 
 This is a Camel example used to demonstrate the JBoss Tools for Apache Camel editor (formerly known as Fuse IDE),
 which you can run from Eclipse.
 
 
-### Installing JBoss Tools for Apache Camel in Eclipse
+#### Installing JBoss Tools for Apache Camel in Eclipse
 
 TODO: This is harder
 
 
-### Using the editor
+#### Using the editor
 
 Open the `camel-context.xml` XML file which has the Camel route.
 

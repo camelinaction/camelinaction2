@@ -3,7 +3,7 @@ chapter19 - hawtio debug
 
 This shows how to debug a Camel route using the hawtio web console.
 
-19.3.2 Debugging Camel routes using hawtio
+### 19.3.2 Debugging Camel routes using hawtio
 
 Because we want to debug the route, we can start the example with hawtio embedded.
 This can be done by running the following Maven goal:
@@ -19,7 +19,7 @@ the message in the table in the bottom. You can then continue routing the messag
 by clicking either the run or single step button.
 
 
-### Connecting hawtio to existing running JVM
+#### Connecting hawtio to existing running JVM
 
 If you have any existing Java application running in a JVM, you can startup hawtio in standalone mode
 and then from hawtio connect to the existing JVM. In the example instead of running the hawto:run plugin,

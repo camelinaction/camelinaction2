@@ -1,12 +1,12 @@
 Chapter 19 - Custom Tooling Karaf
 ---------------------------------
 
-19.2.2 Camel tooling with Karaf
+### 19.2.2 Camel tooling with Karaf
 
 This is a Karaf command to run the custom tooling that can check if any Camel application
 is using deprecated Camel components.
 
-### Installing
+#### Installing
 
 To install this you first need to build the source code module of the following modules
 
@@ -27,6 +27,8 @@ And then install the tooling
 
     install -s mvn:com.camelinaction/chapter19-custom-tooling/2.0.0
     install -s mvn:com.camelinaction/chapter19-custom-tooling-karaf/2.0.0
+
+#### Running the custom command in Karaf
 
 Then you can run the following command from the shell
 

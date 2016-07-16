@@ -1,12 +1,12 @@
 Chapter 19 - Deprecated Component Karaf
 ---------------------------------------
 
-19.2.2 Camel tooling with Karaf
+### 19.2.2 Camel tooling with Karaf
 
 This is a Camel application to run in Karaf that uses a deprecated Camel component.
 Which we can use custom tooling to check if any Camel application is using deprecated Camel components.
 
-### Installation
+#### Installation
 
 To build this project use
 
