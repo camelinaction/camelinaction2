@@ -18,10 +18,10 @@
         <module>custom-tooling-karaf</module>
         <module>deprecated-component-karaf</module>
         <module>fabric8-camel-editor</module>
+        <module>fabric8-camel-validate</module>
         <module>fuse-ide</module>
         <module>hawtio-custom-plugin</module>
         <module>hawtio-debug</module>
-        <module>validate</module>
     </modules>
 
 </project>
