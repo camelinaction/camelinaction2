@@ -17,7 +17,7 @@
         <module>custom-tooling</module>
         <module>custom-tooling-karaf</module>
         <module>deprecated-component-karaf</module>
-        <module>fabric8</module>
+        <module>fabric8-camel-editor</module>
         <module>fuse-ide</module>
         <module>hawtio-custom-plugin</module>
         <module>hawtio-debug</module>
