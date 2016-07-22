@@ -152,7 +152,7 @@ var Oldstuff = (function(Oldstuff) {
       Oldstuff.log.info(Oldstuff.pluginName, " --> " + response.value);
       $scope.output = response.value;
       if ($scope.output.length === 0) {
-        $scope.output = "No deprecated components found";
+        $scope.output = ["No deprecated components found"];
       }
       $scope.error = null;
       Core.$apply($scope);
