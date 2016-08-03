@@ -18,5 +18,6 @@
       <module>order-router</module>
       <module>custom</module>
       <module>interceptor</module>
+      <module>hi-world</module>
   </modules>
 </project>
