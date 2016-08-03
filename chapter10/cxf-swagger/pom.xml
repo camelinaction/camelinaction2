@@ -29,7 +29,12 @@
       <artifactId>cxf-rt-frontend-jaxrs</artifactId>
       <version>${cxf-version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-rs-service-description-swagger</artifactId>
+      <version>${cxf-version}</version>
+    </dependency>
+    
     <!-- cxf http/jetty server -->
     <dependency>
       <groupId>org.apache.cxf</groupId>
