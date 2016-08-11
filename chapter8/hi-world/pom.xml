@@ -14,7 +14,7 @@
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
 
-  <name>Camel HiWorld Component Parent</name>
+  <name>Camel in Action 2 :: Chapter 8 :: Camel HiWorld Component Parent</name>
   <url>http://www.myorganization.org</url>
   <description>Parent project for Camel {HiWorld} Component</description>
 

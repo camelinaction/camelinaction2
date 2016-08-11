@@ -11,7 +11,7 @@
 
   <artifactId>hi-world-api</artifactId>
   <name>Camel HiWorld Component API</name>
-  <description>API for Camel HiWorld Component</description>
+  <description>Camel in Action 2 :: Chapter 8 :: API for Camel HiWorld Component</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

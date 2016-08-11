@@ -11,7 +11,7 @@
 
   <artifactId>hi-world</artifactId>
   <packaging>bundle</packaging>
-  <name>Camel HiWorld Component</name>
+  <name>Camel in Action 2 :: Chapter 8 :: Camel HiWorld Component</name>
   <description>Camel Component for HiWorld</description>
 
   <properties>
