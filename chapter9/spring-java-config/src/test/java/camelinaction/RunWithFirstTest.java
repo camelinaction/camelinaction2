@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(CamelSpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MyApplication.class, loader = CamelSpringDelegatingTestContextLoader.class)
-public class RuntWithFirstTest {
+public class RunWithFirstTest {
 
     @Autowired
     private CamelContext context;
