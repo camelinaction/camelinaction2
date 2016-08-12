@@ -100,7 +100,7 @@ public class PaxExamTest {
         return mavenBundle().
                 groupId("org.apache.camel.karaf").
                 artifactId("apache-camel")
-                .version("2.17.0")
+                .version("2.17.3")
                 .classifier("features")
                 .type("xml");
     }
