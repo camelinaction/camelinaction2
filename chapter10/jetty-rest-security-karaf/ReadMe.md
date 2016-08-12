@@ -12,7 +12,7 @@ To try this example you need to first build it
 Then copy the file `src/main/resources/rest-users.properties` to the Apache Karaf installation
 in the `etc` directory.
 
-And then start Apache Karaf (such as version 4.0.4)
+And then start Apache Karaf (such as version 4.0.5)
 
     bin/karaf
 
