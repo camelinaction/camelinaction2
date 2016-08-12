@@ -80,6 +80,13 @@
       <version>4.8.0</version>
       <scope>test</scope>
     </dependency>
+    <!-- OSGi -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.enterprise</artifactId>
+      <version>5.0.0</version>
+      <scope>provided</scope>
+    </dependency>
 
     <!-- apache karaf as dependency for pax-exam to use -->
     <dependency>
