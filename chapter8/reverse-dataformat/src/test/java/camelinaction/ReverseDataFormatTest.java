@@ -6,9 +6,6 @@ import org.apache.camel.spi.DataFormat;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ReverseDataFormatTest extends CamelTestSupport {
 
   @Test
@@ -21,7 +18,7 @@ public class ReverseDataFormatTest extends CamelTestSupport {
       template.sendBody("direct:back", marshalled);
       mock.assertIsSatisfied();
   }
-
+  
   @Override
   protected RouteBuilder createRouteBuilder() throws Exception {
       return new RouteBuilder() {
