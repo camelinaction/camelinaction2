@@ -29,12 +29,6 @@ This example can be run using:
  
     mvn test –Dtest=PurchaseOrderJSONTest
     
-### 3.4.6 - Writing your own data format
- 
- This example can be run using:
- 
-    mvn test –Dtest=ReverseDataFormatTest
-    
 ### 3.5.1 - Using Apache Velocity
  
  This example can be run using:
