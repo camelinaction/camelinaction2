@@ -24,10 +24,6 @@
       <id>claus.ibsen</id>
       <name>Claus Ibsen</name>
     </developer>
-    <developer>
-      <id>willem.jiang</id>
-      <name>Willem Jiang</name>
-    </developer>
   </developers>
 
   <modules>
@@ -36,6 +32,7 @@
     <module>chapter4</module>
     <module>chapter5</module>
     <module>chapter6</module>
+    <module>chapter7</module>
     <module>chapter8</module>
     <module>chapter9</module>
     <module>chapter10</module>
