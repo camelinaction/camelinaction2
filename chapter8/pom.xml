@@ -19,5 +19,6 @@
       <module>custom</module>
       <module>interceptor</module>
       <module>hi-world</module>
+      <module>reverse-dataformat</module>
   </modules>
 </project>
