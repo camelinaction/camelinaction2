@@ -1,19 +1,23 @@
 package camelinaction;
 
-import org.apache.camel.main.Main;
+import org.apache.camel.CamelContext;
+import org.apache.camel.impl.DefaultCamelContext;
 
 /**
- * Running Camel standalone using a Main class
+ * Running Camel by:
+ * - creating a CamelContext
+ * - add route(s)
+ * - start the CamelContext
  */
 public class HelloCamel {
 
     public static void main(String[] args) throws Exception {
-        // use org.apache.camel.main.Main to make it easier to run Camel standalone
-        Main main = new Main();
-        // add the routes
-        main.addRouteBuilder(new HelloRoute());
-        // run the application (keep it running)
-        main.run();
+        CamelContext context = new DefaultCamelContext();
+        context.addRoutes(new HelloRoute());
+        context.start();
+
+        // keep the JVM running (a bit of a hack)
+        Thread.sleep(Integer.MAX_VALUE);
     }
 
 }
