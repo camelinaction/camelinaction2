@@ -14,9 +14,8 @@
   <name>Camel in Action 2 :: Chapter 7</name>
 
   <modules>
-    <!--
+    <module>cdi</module>
     <module>standalone</module>
-  -->
   </modules>
 
 </project>
