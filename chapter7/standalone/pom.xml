@@ -23,7 +23,7 @@
       <artifactId>camel-jetty</artifactId>
     </dependency>
 
-     <dependency>
+    <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
     </dependency>
@@ -34,19 +34,41 @@
 
   </dependencies>
 
-  <build>
-    <plugins>
+  <profiles>
 
-      <!-- Allows the example to be run via 'mvn compile exec:java' -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <configuration>
-          <mainClass>camelinaction.HelloCamel</mainClass>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+    <profile>
+      <id>manual</id>
+      <build>
+        <plugins>
+          <!-- Allows the example to be run via 'mvn compile exec:java -Pmanual' -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <configuration>
+              <mainClass>camelinaction.HelloCamel</mainClass>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>main</id>
+      <build>
+        <plugins>
+          <!-- Allows the example to be run via 'mvn compile exec:java -Pmain' -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <configuration>
+              <mainClass>camelinaction.HelloMain</mainClass>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
 
 </project>
 
