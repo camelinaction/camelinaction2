@@ -6,7 +6,7 @@
   <parent>
     <groupId>camelinaction</groupId>
     <artifactId>hi-world-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>2.0.0</version>
   </parent>
 
   <artifactId>hi-world</artifactId>
@@ -27,26 +27,23 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
-      <version>2.17.3</version>
     </dependency>
     <dependency>
       <groupId>camelinaction</groupId>
       <artifactId>hi-world-api</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>2.0.0</version>
     </dependency>
 
     <!-- support camel documentation -->
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>apt</artifactId>
-      <version>2.17.3</version>
     </dependency>
 
     <!-- Camel annotations in provided scope to avoid compile errors in IDEs -->
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>spi-annotations</artifactId>
-      <version>2.17.3</version>
       <scope>provided</scope>
     </dependency>
 
@@ -54,7 +51,7 @@
     <dependency>
       <groupId>camelinaction</groupId>
       <artifactId>hi-world-api</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>2.0.0</version>
       <classifier>javadoc</classifier>
       <scope>provided</scope>
     </dependency>
@@ -63,18 +60,15 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.13</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.13</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
       <scope>test</scope>
     </dependency>
 
@@ -82,7 +76,6 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test</artifactId>
-      <version>2.17.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -95,7 +88,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
@@ -105,7 +97,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>2.6</version>
         <configuration>
           <encoding>UTF-8</encoding>
         </configuration>
@@ -142,6 +133,7 @@
       <plugin>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-api-component-maven-plugin</artifactId>
+        <version>2.17.3</version>
         <executions>
           <execution>
             <id>generate-test-component-classes</id>
@@ -154,17 +146,7 @@
                   <apiName>hello-file</apiName>
                   <proxyClass>camelinaction.api.HiWorldFileHello</proxyClass>
                   <fromSignatureFile>signatures/file-sig-api.txt</fromSignatureFile>
-                  <!-- Use substitutions to manipulate parameter names and avoid name clashes
-                  <substitutions>
-                    <substitution>
-                      <method>^.+$</method>
-                      <argName>^.+$</argName>
-                      <argType>java.lang.String</argType>
-                      <replacement>$1Param</replacement>
-                      <replaceWithType>false</replaceWithType>
-                    </substitution>
-                  </substitutions>
-                  -->
+
                   <!-- Exclude automatically generated endpoint options by name
                   <excludeConfigNames>name-pattern<excludeConfigNames>
                   -->
@@ -207,8 +189,24 @@
               <excludeConfigTypes/>
               <extraOptions>
               <fromJavadoc/>
-              <aliases/>
+              <aliases/>   
+              
               -->
+                                <!-- Use substitutions to manipulate parameter names and avoid name clashes -->
+                  <substitutions>
+                    <substitution>
+                      <method>^greetUs$</method>
+                      <argName>^(.+)$</argName>
+                      <replacement>$1Param</replacement>
+                    </substitution>
+                    <substitution>
+                      <method>^greetMe$</method>
+                      <argName>^name$</argName>
+                      <argType>^java.lang.(.+)$</argType>
+                      <replacement>$1Param</replacement>
+                      <replaceWithType>true</replaceWithType>
+                    </substitution>                                        
+                  </substitutions>
             </configuration>
           </execution>
         </executions>

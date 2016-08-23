@@ -163,6 +163,11 @@
           <version>${camel-version}</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-package-maven-plugin</artifactId>
+          <version>${camel-version}</version>
+        </plugin>
+        <plugin>
           <groupId>io.hawt</groupId>
           <artifactId>hawtio-maven-plugin</artifactId>
           <version>${hawtio-version}</version>
