@@ -198,6 +198,12 @@
         <type>pom</type>
       </dependency>
 
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>spi-annotations</artifactId>
+        <version>${camel-version}</version>
+      </dependency>
+
       <!-- ActiveMQ -->
       <dependency>
         <groupId>org.apache.activemq</groupId>
