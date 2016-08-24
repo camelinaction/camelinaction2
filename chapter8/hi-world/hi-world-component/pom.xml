@@ -133,7 +133,6 @@
       <plugin>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-api-component-maven-plugin</artifactId>
-        <version>2.17.3</version>
         <executions>
           <execution>
             <id>generate-test-component-classes</id>
@@ -146,67 +145,13 @@
                   <apiName>hello-file</apiName>
                   <proxyClass>camelinaction.api.HiWorldFileHello</proxyClass>
                   <fromSignatureFile>signatures/file-sig-api.txt</fromSignatureFile>
-
-                  <!-- Exclude automatically generated endpoint options by name
-                  <excludeConfigNames>name-pattern<excludeConfigNames>
-                  -->
-                  <!-- Exclude automatically generated endpoint options by type
-                  <excludeConfigTypes>type-pattern<excludeConfigTypes>
-                  -->
-                  <!-- Add custom endpoint options to generated EndpointConfiguration class for this API
-                  <extraOptions>
-                    <extraOption>
-                      <type>java.util.List&lt;String&gt;</type>
-                      <name>customOption</name>
-                    </extraOption>
-                  </extraOptions>
-                  -->
-                  <!-- Use method aliases in endpoint URIs, e.g. support 'widget' as alias for getWidget or setWidget
-                  <aliases>
-                    <alias>
-                      <methodPattern>[gs]et(.+)</methodPattern>
-                      <methodAlias>$1</methodAlias>
-                    </alias>
-                  </aliases>
-                  -->
                 </api>
                 <api>
                   <apiName>hello-javadoc</apiName>
                   <proxyClass>camelinaction.api.HiWorldJavadocHello</proxyClass>
-                  <fromJavadoc>
-                    <!-- Use exclude patterns to limit what gets exposed in component endpoint
-                    <excludePackages>package-name-patterns</excludePackages>
-                    <excludeClasses>class-name-patterns</excludeClasses>
-                    <excludeMethods>method-name-patterns</excludeMethods>
-                    <includeStaticMethods>use 'true' to include static methods, false by default<includeStaticMethods>
-                    -->
-                  </fromJavadoc>
+                  <fromJavadoc/>
                 </api>
               </apis>
-              <!-- Specify global values for all APIs here, these are overridden at API level
-              <substitutions/>
-              <excludeConfigNames/>
-              <excludeConfigTypes/>
-              <extraOptions>
-              <fromJavadoc/>
-              <aliases/>   
-              
-              -->
-                                <!-- Use substitutions to manipulate parameter names and avoid name clashes -->
-                  <substitutions>
-                    <substitution>
-                      <method>^greetUs$</method>
-                      <argName>^(.+)$</argName>
-                      <replacement>$1Param</replacement>
-                    </substitution>
-                    <substitution>
-                      <method>^greetMe$</method>
-                      <argName>^name$</argName>
-                      <argType>^java.lang.(.+)$</argType>
-                      <replacement>$1Param</replacement>
-                      <replaceWithType>true</replaceWithType>
-                    </substitution>                                        
-                  </substitutions>
             </configuration>
           </execution>
         </executions>
@@ -216,7 +161,6 @@
       <plugin>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-package-maven-plugin</artifactId>
-        <version>2.17.3</version>
         <executions>
           <execution>
             <id>prepare</id>
