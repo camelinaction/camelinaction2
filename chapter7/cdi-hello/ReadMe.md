@@ -1,7 +1,7 @@
-chapter7 - cdi
---------------
+chapter7 - cdi-hello
+--------------------
 
-Running Camel microservice using CDI.
+A very simple hello example running Camel microservice using CDI.
 
 ### 7.2.1 CDI Camel as microservice 
 
