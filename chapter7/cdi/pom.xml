@@ -12,6 +12,12 @@
   <artifactId>chapter7-cdi</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: CDI Camel</name>
 
+  <!-- TODO: require 2.18 -->
+  <properties>
+    <camel-version>2.18.0-SNAPSHOT</camel-version>
+  </properties>
+
+
   <dependencies>
 
     <!-- CDI API -->
@@ -42,14 +48,24 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
+      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-cdi</artifactId>
+      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jetty</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test-cdi</artifactId>
+      <version>${camel-version}</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
