@@ -8,7 +8,7 @@ import org.apache.camel.test.cdi.CamelCdiRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Basic unit test with camel-cdi-test
@@ -27,9 +27,9 @@ public class HelloRouteTest {
     @Test
     public void testHello() throws Exception {
         // call the url using the injected producer (with no body)
-        Object out = producer.request(String.class);
+        String out = producer.request(String.class);
         // assert that the reply message is what we expect
-        assertEquals("Hello from Camel CDI with properties", out);
+        assertTrue(out.startsWith("Hello from Camel CDI with properties"));
     }
 
 }

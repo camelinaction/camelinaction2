@@ -1,5 +1,6 @@
 package camelinaction;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.apache.camel.builder.RouteBuilder;
@@ -10,10 +11,14 @@ import org.apache.camel.builder.RouteBuilder;
 @Singleton
 public class HelloRoute extends RouteBuilder {
 
+    // use CDI @Inject to inject the bean of type HelloBean
+    @Inject
+    private HelloBean hello;
+
     @Override
     public void configure() throws Exception {
         from("jetty:http://localhost:8080/hello")
-            // use property placeholder with key: reply
-            .transform().simple("{{reply}}");
+            // call the sayHello method on the hello bean
+            .bean(hello, "sayHello");
     }
 }
