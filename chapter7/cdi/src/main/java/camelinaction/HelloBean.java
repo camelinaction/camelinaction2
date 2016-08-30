@@ -1,6 +1,5 @@
 package camelinaction;
 
-import java.net.UnknownHostException;
 import javax.inject.Singleton;
 
 import org.apache.camel.PropertyInject;
@@ -12,12 +11,10 @@ import org.apache.camel.util.InetAddressUtil;
 @Singleton
 public class HelloBean {
 
-    // inject the Camel property placeholder with the key reply
-    @PropertyInject("reply")
-    private String reply;
-
-    public String sayHello() throws UnknownHostException {
+    // use @PropertyInject("reply") to inject the property placeholder with the key: reply
+    // as a parameter to this method
+    public String sayHello(@PropertyInject("reply") String msg) throws Exception {
         // create a reply message which includes the hostname
-        return reply + " from " + InetAddressUtil.getLocalHostName();
+        return msg + " from " + InetAddressUtil.getLocalHostName();
     }
 }
