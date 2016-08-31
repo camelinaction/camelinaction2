@@ -9,7 +9,7 @@ To try this example you need to first build it
 
     mvn clean install
 
-And then start Apache Karaf (such as version 4.0.5)
+And then start Apache Karaf (such as version 4.0.x)
 
     bin/karaf
 
