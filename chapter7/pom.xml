@@ -16,6 +16,7 @@
   <modules>
     <module>cdi</module>
     <module>cdi-hello</module>
+    <module>cdi-karaf</module>
     <module>standalone</module>
   </modules>
 
