@@ -12,8 +12,10 @@ import org.apache.camel.util.InetAddressUtil;
 public class HelloBean {
 
     // use @PropertyInject("reply") to inject the property placeholder with the key: reply
-    // as a parameter to this method
-    public String sayHello(@PropertyInject("reply") String msg) throws Exception {
+    @PropertyInject("reply")
+    private String msg;
+
+    public String sayHello() throws Exception {
         // create a reply message which includes the hostname
         return msg + " from " + InetAddressUtil.getLocalHostName();
     }

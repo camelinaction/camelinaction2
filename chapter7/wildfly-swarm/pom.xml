@@ -11,44 +11,69 @@
 
   <artifactId>chapter7-wildfly-swarm</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: WildFly Swarm with Camel</name>
+  <packaging>war</packaging>
 
-  <!-- TODO: require 2.18 -->
   <properties>
-    <camel-version>2.18.0-SNAPSHOT</camel-version>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <wildfly-swarm-version>2016.8.1</wildfly-swarm-version>
   </properties>
+
+  <!-- wildfly-swarm BOM for dependency management -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>bom-all</artifactId>
+        <version>${wildfly-swarm-version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
 
-    <!-- CDI API -->
+    <!-- Java EE 7 dependency -->
     <dependency>
-      <groupId>javax.enterprise</groupId>
-      <artifactId>cdi-api</artifactId>
-      <version>1.2</version>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>7.0</version>
+      <scope>provided</scope>
     </dependency>
 
+    <!-- Wildfly Swarm Camel components -->
     <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-core</artifactId>
-      <version>${camel-version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
+      <groupId>org.wildfly.swarm</groupId>
       <artifactId>camel-cdi</artifactId>
-      <version>${camel-version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jetty</artifactId>
-      <version>${camel-version}</version>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>camel-undertow</artifactId>
+    </dependency>
+    <!-- Wildfly Swarm Fractions -->
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>cdi</artifactId>
     </dependency>
 
   </dependencies>
 
   <build>
-
+    <finalName>hello</finalName>
     <plugins>
+      <plugin>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>wildfly-swarm-plugin</artifactId>
+        <version>${wildfly-swarm-version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
-
   </build>
 
 </project>

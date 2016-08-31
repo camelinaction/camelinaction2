@@ -19,7 +19,7 @@ public class HelloRoute extends RouteBuilder {
     private HelloBean hello;
 
     // use camel-cdi @Uri to inject the endpoint
-    @Inject @Uri("jetty:http://localhost:8080/hello")
+    @Inject @Uri("undertow:http://localhost:8080/hello")
     private Endpoint jetty;
 
     @Override
