@@ -18,6 +18,7 @@
     <module>cdi-hello</module>
     <module>cdi-karaf</module>
     <module>standalone</module>
+    <module>wildfly-swarm</module>
   </modules>
 
 </project>
