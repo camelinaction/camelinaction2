@@ -19,12 +19,13 @@ public class HelloRoute extends RouteBuilder {
     private HelloBean hello;
 
     // use camel-cdi @Uri to inject the endpoint
+    // use undertow as HTTP server as WildFly Swarm comes out of the box with Undertow
     @Inject @Uri("undertow:http://localhost:8080/hello")
-    private Endpoint jetty;
+    private Endpoint undertow;
 
     @Override
     public void configure() throws Exception {
-        from(jetty)
+        from(undertow)
             // call the sayHello method on the hello bean
             .bean(hello, "sayHello");
     }

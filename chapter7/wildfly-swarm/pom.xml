@@ -18,7 +18,7 @@
     <wildfly-swarm-version>2016.8.1</wildfly-swarm-version>
   </properties>
 
-  <!-- wildfly-swarm BOM for dependency management -->
+  <!-- WildFly Swarm BOM for dependency management -->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -41,7 +41,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Wildfly Swarm Camel components -->
+    <!-- Wildfly Swarm Camel Fractions -->
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>camel-cdi</artifactId>
@@ -55,7 +55,6 @@
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>cdi</artifactId>
     </dependency>
-
   </dependencies>
 
   <build>
