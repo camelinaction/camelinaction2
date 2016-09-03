@@ -16,7 +16,9 @@
     <propertyPlaceholder id="properties" location="classpath:hello.properties"/>
 
     <route>
+      <!-- use undertow for the HTTP server as it comes out of the box with WF-Swarm -->
       <from uri="undertow:http://localhost:8080/hello"/>
+      <!-- call the hello bean -->
       <bean ref="helloBean" method="sayHello"/>
     </route>
   </camelContext>
