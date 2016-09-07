@@ -17,6 +17,7 @@
     <module>cdi</module>
     <module>cdi-hello</module>
     <module>cdi-karaf</module>
+    <module>springboot</module>
     <module>standalone</module>
     <module>wildfly-swarm</module>
     <module>wildfly-swarm-spring</module>
