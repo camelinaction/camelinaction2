@@ -45,9 +45,18 @@
   <build>
     <plugins>
       <plugin>
+        <!-- allows to run with mvn spring-boot:run -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot-version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <!-- to build fat-jar -->
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
