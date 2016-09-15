@@ -18,6 +18,7 @@
     <module>cdi-hello</module>
     <module>cdi-karaf</module>
     <module>springboot</module>
+    <module>springboot-camel</module>
     <module>springboot-rest-camel</module>
     <module>standalone</module>
     <module>wildfly-swarm</module>
