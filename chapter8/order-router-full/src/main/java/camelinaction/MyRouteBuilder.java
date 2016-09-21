@@ -36,6 +36,7 @@ public class MyRouteBuilder extends RouteBuilder {
           .to("jms:incomingOrders");
 
         from("cxf:bean:orderEndpoint")
+          .convertBodyTo(String.class)
           .to("log:camelinaction.order.ws")
           .inOnly("jms:incomingOrders")
           .transform(constant("OK"));
