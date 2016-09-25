@@ -1,12 +1,10 @@
-Chapter 11 - Writing custom InterceptStrategy
-====================
+Chapter 8 - interceptor 
+----------------
+
+### 8.6 - Developing interceptors
 
 To run this router either embed the jar inside Spring
 or to run the route from within maven try
 
     mvn camel:run
-
-For more help see the Apache Camel documentation
-
-    http://camel.apache.org/
-    
+   
