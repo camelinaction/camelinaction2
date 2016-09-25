@@ -1,13 +1,8 @@
-Camel Data Format Project
-=========================
+Chapter 8 - reverse-dataformat
+----------------
 
-This project is a template of a Camel data format.
+### 8.5 - Developing data formats
 
-To build this project use
+This directory contains a custom data format that can reverse strings. To run the test case, use the following command:
 
-    mvn install
-
-For more help see the Apache Camel documentation:
-
-    http://camel.apache.org/writing-components.html
-    
+	mvn test -Dtest=ReverseDataFormatTest
