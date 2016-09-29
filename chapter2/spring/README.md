@@ -1,5 +1,5 @@
 Chapter 2 - Spring Routing Example
-==================================
+----------------
 
 These examples show you how to configure Camel from Spring. The first 
 is a simple demonstration of pure Spring wiring of beans. Run it by 

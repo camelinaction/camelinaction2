@@ -1,5 +1,5 @@
 Chapter 2 - Wire Tap Example
-============================
+----------------
 
 The first example shows you how to use a Wire Tap from Camel. 
 To run this example, execute the following on the command line:

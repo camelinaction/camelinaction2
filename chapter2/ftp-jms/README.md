@@ -1,5 +1,5 @@
 Chapter 2 - FTP-JMS Routing Example
-===================================
+----------------
 
 These examples are not runnable in their current form as they reference
 an external FTP server.
