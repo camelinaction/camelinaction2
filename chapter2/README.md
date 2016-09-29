@@ -1,4 +1,11 @@
 Chapter 2 - Routing with Camel
-========================
+----------------------------------
 
-Chapter 2 covers Camel’s main feature, which is message routing. The Java DSL and Spring DSL are covered as are several enterprise integration patterns (EIPs). EIPs are basically canned solutions to integration problems.
+This chapter covers:
+
+- An overview of routing
+- Introducing the Rider Auto Parts scenario
+- The basics of FTP and JMS endpoints
+- Creating routes using the Java DSL
+- Configuring routes in XML
+- Routing using enterprise integration patterns (EIPs)
