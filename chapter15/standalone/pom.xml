@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>riderautoparts-standalone</artifactId>
-    <name>Camel in Action :: Chapter 15 :: Running Camel standalone</name>
+    <name>Camel in Action 2 :: Chapter 15 :: Running Camel standalone</name>
     <packaging>jar</packaging>
 
     <dependencies>

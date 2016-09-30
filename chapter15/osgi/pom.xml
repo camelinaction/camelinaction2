@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>riderautoparts-osgi</artifactId>
-    <name>Camel in Action :: Chapter 15 :: Running Camel in OSGi</name>
+    <name>Camel in Action 2 :: Chapter 15 :: Running Camel in OSGi</name>
     <packaging>bundle</packaging>
 
     <dependencies>
