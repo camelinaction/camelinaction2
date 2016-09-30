@@ -5,12 +5,12 @@
 
     <parent>
         <groupId>com.camelinaction</groupId>
-        <artifactId>chapter13</artifactId>
-        <version>1.0.0</version>
+        <artifactId>chapter15</artifactId>
+        <version>2.0.0</version>
     </parent>
 
     <artifactId>riderautoparts-standalone</artifactId>
-    <name>Camel in Action :: Chapter 13 :: Running Camel standalone</name>
+    <name>Camel in Action :: Chapter 15 :: Running Camel standalone</name>
     <packaging>jar</packaging>
 
     <dependencies>
