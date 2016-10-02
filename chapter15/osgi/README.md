@@ -1,4 +1,4 @@
-Chapter 13 - Running Camel in OSGi
+Chapter 15 - Running Camel in OSGi
 ========================================
 
 This example shows how to package the project as an OSGi bundle, ready to be deployed

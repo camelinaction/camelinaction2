@@ -1,4 +1,4 @@
-Chapter 13 - Running Camel standalone
+Chapter 15 - Running Camel standalone
 ========================================
 
 This example shows how to run Camel in standalone mode, using a Java main class (camelinaction.InventoryMain).

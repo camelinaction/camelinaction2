@@ -1,4 +1,4 @@
-Chapter 13 - Graceful Shutdown
+Chapter 15 - Graceful Shutdown
 ========================================
 
 This example demonstrates graceful shutdown, how Camel allow in-flight messages to complete

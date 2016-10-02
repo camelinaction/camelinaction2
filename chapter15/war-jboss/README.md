@@ -1,4 +1,4 @@
-Chapter 13 - Running Camel as Web Application in JBoss 5.x
+Chapter 15 - Running Camel as Web Application in JBoss 5.x
 ========================================
 
 This example shows how to run Camel as a Web Application (war) in JBoss 5.x.

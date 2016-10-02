@@ -1,4 +1,4 @@
-Chapter 13 - Using RoutePolicy
+Chapter 15 - Using RoutePolicy
 ========================================
 
 This is a example using RoutePolicy to demonstrate how to flip between two routes,

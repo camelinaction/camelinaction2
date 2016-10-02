@@ -1,4 +1,4 @@
-Chapter 13 - Running Camel as Web Application
+Chapter 15 - Running Camel as Web Application
 ========================================
 
 This example shows how to run Camel as a Web Application (war)
