@@ -13,11 +13,6 @@
   <name>Camel in Action 2 :: Chapter 7 :: CDI Camel Hello Service with Apache Karaf</name>
   <packaging>bundle</packaging>
 
-  <!-- TODO: require 2.18 -->
-  <properties>
-    <camel-version>2.18.0-SNAPSHOT</camel-version>
-  </properties>
-
   <dependencies>
 
     <!-- CDI API -->

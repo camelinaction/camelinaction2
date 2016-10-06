@@ -12,13 +12,6 @@
   <artifactId>chapter7-springboot-camel-xml</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: Spring Boot with Camel XML DSL</name>
 
-  <properties>
-    <!-- TODO: use newer version -->
-    <camel-version>2.18.0-SNAPSHOT</camel-version>
-    <spring-version>4.3.2.RELEASE</spring-version>
-    <spring-boot-version>1.4.0.RELEASE</spring-boot-version>
-  </properties>
-
   <dependencyManagement>
     <dependencies>
       <!-- import Spring Boot before Camel -->
