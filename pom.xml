@@ -51,8 +51,8 @@
 
   <properties>
 
-    <activemq-version>5.13.4</activemq-version>
-    <camel-version>2.17.3</camel-version>
+    <activemq-version>5.14.1</activemq-version>
+    <camel-version>2.18.0</camel-version>
     <cxf-version>3.1.7</cxf-version>
     <hawtio-version>1.4.65</hawtio-version>
 
@@ -71,8 +71,8 @@
     <scala-plugin-version>3.1.6</scala-plugin-version>
     <scala-version>2.11.5</scala-version>
     <slf4j-version>1.7.21</slf4j-version>
-    <spring-version>4.2.6.RELEASE</spring-version>
-    <spring-boot-version>1.3.7.RELEASE</spring-boot-version>
+    <spring-version>4.3.3.RELEASE</spring-version>
+    <spring-boot-version>1.4.1.RELEASE</spring-boot-version>
     <swagger-version>1.5.8</swagger-version>
     <xbean-version>3.18</xbean-version>
     <weld-version>2.3.5.Final</weld-version>
