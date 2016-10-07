@@ -66,6 +66,7 @@
     <junit-version>4.12</junit-version>
     <karaf-version>4.0.7</karaf-version>
     <log4j-version>1.2.17</log4j-version>
+    <!-- TODO need to update to 3.2.0 for everything like in chapter19/hawtio-custom-plugin -->
     <maven-bundle-plugin-version>2.3.7</maven-bundle-plugin-version>
     <mock-javamail-version>1.9</mock-javamail-version>
     <scala-plugin-version>3.1.6</scala-plugin-version>
