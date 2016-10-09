@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>chapter7-prototype</artifactId>
+    <version>2.0.0</version>
+  </parent>
+
+  <artifactId>chapter7-recommend</artifactId>
+  <name>Camel in Action 2 :: Chapter 7 :: Prototype :: Recommend Microservice</name>
+
+  <properties>
+    <!-- TODO: use newer version -->
+    <camel-version>2.18.0-SNAPSHOT</camel-version>
+    <spring-version>4.3.2.RELEASE</spring-version>
+    <spring-boot-version>1.4.0.RELEASE</spring-boot-version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- import Spring Boot before Camel -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- import Camel -->
+      <!--<dependency>-->
+        <!--<groupId>org.apache.camel</groupId>-->
+        <!--<artifactId>camel-parent</artifactId>-->
+        <!--<version>${camel-version}</version>-->
+        <!--<type>pom</type>-->
+        <!--<scope>import</scope>-->
+      <!--</dependency>-->
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+
+    <!-- spring-boot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- camel -->
+    <!--<dependency>-->
+      <!--<groupId>org.apache.camel</groupId>-->
+      <!--<artifactId>camel-spring-boot-starter</artifactId>-->
+    <!--</dependency>-->
+    <!-- notice we use -starter components from Camel which are designed to use with Spring Boot -->
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <!-- allows to run with mvn spring-boot:run -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot-version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <!-- to build fat-jar -->
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+

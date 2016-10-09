@@ -17,6 +17,7 @@
     <module>cdi</module>
     <module>cdi-hello</module>
     <module>cdi-karaf</module>
+    <module>prototype</module>
     <module>springboot</module>
     <module>springboot-camel</module>
     <module>springboot-rest-camel</module>
