@@ -15,6 +15,7 @@
 
   <modules>
     <module>recommend</module>
+    <module>rules</module>
   </modules>
 
 </project>
