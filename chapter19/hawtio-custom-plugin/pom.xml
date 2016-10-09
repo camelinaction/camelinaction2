@@ -49,7 +49,7 @@
     <dependency>
       <groupId>io.hawt</groupId>
       <artifactId>hawtio-plugin-mbean</artifactId>
-      <version>1.4.63</version>
+      <version>${hawtio-version}</version>
     </dependency>
 
     <!-- servlet API is provided by the container -->
