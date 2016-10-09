@@ -1,8 +1,9 @@
 package camelinaction;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 @ConfigurationProperties(prefix = "recommend")
 public class RecommendController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(RecommendController.class);
+
     private final RestTemplate restTemplate = new RestTemplate();
 
     private String rulesUrl;
@@ -24,10 +27,9 @@ public class RecommendController {
         // here we can do logic to find out the session/user to pass on the rules engine
         // call the rules backend
 
-        List<ItemDto> items = new ArrayList<>();
-        items.add(new ItemDto(1, "foo", "blah", 85));
-        items.add(new ItemDto(2, "bar", "blah blah", 82));
+        LOG.info("Calling rules backend {}", rulesUrl);
 
+        List<ItemDto> items = restTemplate.getForObject(rulesUrl, List.class);
         return items;
     }
 

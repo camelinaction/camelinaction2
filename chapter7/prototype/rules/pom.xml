@@ -9,7 +9,7 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter7-prototype-rules</artifactId>
+  <artifactId>chapter7-rules</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: Prototype :: Rules Microservice</name>
   <packaging>war</packaging>
 
