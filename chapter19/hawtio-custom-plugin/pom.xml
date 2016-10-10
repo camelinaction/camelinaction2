@@ -167,7 +167,8 @@
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
-        <version>${maven-bundle-plugin-version}</version>
+        <version>3.2.0</version>
+        <!-- <version>${maven-bundle-plugin-version}</version> -->
         <executions>
           <execution>
             <id>bundle-manifest</id>

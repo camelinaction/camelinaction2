@@ -14,6 +14,8 @@
 
   <properties>
     <citrus.version>2.6</citrus.version>
+    <!-- TODO newest version of spring cuased a stackoverflow... revisit-->
+    <spring-version>4.2.6.RELEASE</spring-version>
   </properties>
 
   <dependencies>
@@ -68,6 +70,16 @@
       <groupId>com.consol.citrus</groupId>
       <artifactId>citrus-http</artifactId>
       <version>${citrus.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-server</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-servlet</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.consol.citrus</groupId>
