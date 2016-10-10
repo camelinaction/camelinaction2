@@ -13,7 +13,7 @@
   <name>Camel in Action 2 :: Chapter 9 :: Testing Camel using Citrus Framework</name>
 
   <properties>
-    <citrus.version>2.6</citrus.version>
+    <citrus.version>2.6.1</citrus.version>
     <!-- TODO newest version of spring cuased a stackoverflow... revisit-->
     <spring-version>4.2.6.RELEASE</spring-version>
   </properties>
