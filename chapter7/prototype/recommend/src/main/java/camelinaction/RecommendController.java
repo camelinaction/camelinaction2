@@ -1,6 +1,9 @@
 package camelinaction;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,18 +22,35 @@ public class RecommendController {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
+    private String cartUrl;
     private String rulesUrl;
 
     @RequestMapping(value = "recommend", method = RequestMethod.GET, produces = "application/json")
-    public List<ItemDto> recommend() {
+    @SuppressWarnings("unchecked")
+    public List<ItemDto> recommend(HttpSession session) {
+        String id = session.getId();
+        LOG.info("HTTP session id {}", id);
 
-        // here we can do logic to find out the session/user to pass on the rules engine
-        // call the rules backend
+        // get the current item in the shopping cart
+        List<CartDto> carts = restTemplate.getForObject(cartUrl, List.class, id);
+        // provide details what we have in the shopping cart for the rules
+        String cartIds = null;
+        if (carts != null && !carts.isEmpty()) {
+            cartIds = carts.stream().map(CartDto::getItemId).collect(Collectors.joining(","));
+            LOG.info("Shopping cart items {}", cartIds);
+        }
 
         LOG.info("Calling rules backend {}", rulesUrl);
-
-        List<ItemDto> items = restTemplate.getForObject(rulesUrl, List.class);
+        List<ItemDto> items = restTemplate.getForObject(rulesUrl, List.class, id, cartIds);
         return items;
+    }
+
+    public String getCartUrl() {
+        return cartUrl;
+    }
+
+    public void setCartUrl(String cartUrl) {
+        this.cartUrl = cartUrl;
     }
 
     public String getRulesUrl() {

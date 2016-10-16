@@ -1,7 +1,5 @@
 package camelinaction;
 
-import io.swagger.annotations.ApiModelProperty;
-
 /**
  * DTO of the cart
  */
@@ -17,7 +15,6 @@ public class CartDto {
         this.itemId = itemId;
     }
 
-    @ApiModelProperty(value = "Id of the item in the shopping cart")
     public String getItemId() {
         return itemId;
     }
@@ -30,7 +27,6 @@ public class CartDto {
         return amount;
     }
 
-    @ApiModelProperty(value = "How many items to purchase")
     public void setAmount(int amount) {
         this.amount = amount;
     }

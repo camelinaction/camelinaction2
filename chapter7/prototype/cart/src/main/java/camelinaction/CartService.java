@@ -1,5 +1,6 @@
 package camelinaction;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -47,6 +48,10 @@ public class CartService {
 
     public Set<CartDto> getItems(@Header("sessionId") String sessionId) {
         LOG.info("getItems {}", sessionId);
-        return content.get(sessionId);
+        Set<CartDto> answer = content.get(sessionId);
+        if (answer == null) {
+            answer = Collections.EMPTY_SET;
+        }
+        return answer;
     }
 }

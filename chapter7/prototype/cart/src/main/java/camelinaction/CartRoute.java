@@ -19,17 +19,21 @@ public class CartRoute extends RouteBuilder {
                 // turn on json binding
                 .bindingMode(RestBindingMode.json)
                 // turn off binding error on empty beans
-                .dataFormatProperty("disableFeatures", "FAIL_ON_EMPTY_BEANS");
+                .dataFormatProperty("disableFeatures", "FAIL_ON_EMPTY_BEANS")
+                // enable swagger api documentation
+                .apiContextPath("api-doc")
+                .enableCORS(true);
 
         // define the rest service
         rest("/cart").consumes("application/json").produces("application/json")
             // get returns List<CartDto>
-            .get().outTypeList(CartDto.class)
+            .get().outTypeList(CartDto.class).description("Returns the items currently in the shopping cart")
                 .to("bean:cart?method=getItems")
             // get accepts CartDto
-            .post().type(CartDto.class)
+            .post().type(CartDto.class).description("Adds the item to the shopping cart")
                 .to("bean:cart?method=addItem")
-            .delete()
+            .delete().description("Removes the item from the shopping cart")
+                .param().name("itemId").description("Id of item to remove").endParam()
                 .to("bean:cart?method=removeItems");
     }
 }
