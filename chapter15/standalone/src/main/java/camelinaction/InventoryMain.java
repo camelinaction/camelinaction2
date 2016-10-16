@@ -30,8 +30,6 @@ public class InventoryMain {
         Main main = new Main();
         // to load Spring XML file
         main.setApplicationContextUri("META-INF/spring/camel-context.xml");
-        // and enable hangup support which means we can stop nicely when ctrl+c is pressed
-        main.enableHangupSupport();
         // and start (will wait until you stop with ctrl + c)
         main.start();
         // echo to console how you can stop
