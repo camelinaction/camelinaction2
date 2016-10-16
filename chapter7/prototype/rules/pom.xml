@@ -15,7 +15,7 @@
 
   <properties>
     <failOnMissingWebXml>false</failOnMissingWebXml>
-    <wildfly-swarm-version>2016.9</wildfly-swarm-version>
+    <wildfly-swarm-version>2016.10.0</wildfly-swarm-version>
   </properties>
 
   <!-- WildFly Swarm BOM for dependency management -->
