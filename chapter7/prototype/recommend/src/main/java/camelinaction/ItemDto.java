@@ -1,5 +1,8 @@
 package camelinaction;
 
+/**
+ * DTO of shopping item
+ */
 public class ItemDto {
 
     private int itemNo;

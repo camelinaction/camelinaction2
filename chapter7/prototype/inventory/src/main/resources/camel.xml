@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <!-- Here we define Camel, notice the namespace it uses -->
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <route id="checkInventory">
+      <from uri="activemq:queue:checkInventory"/>
+      <to uri="bean:checkInventory"/>
+    </route>
+  </camelContext>
+
+  <!-- create a Camel ActiveMQ component to use, using the Spring bean style -->
+  <!-- we use the vm protocol to communicate intra-jvm which is much faster than tcp -->
+  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+    <!-- vm is the vm protocol, and inventoryBroker is the broker name -->
+    <property name="brokerURL" value="vm://inventoryBroker?create=false&amp;waitForStart=5000"/>
+  </bean>
+
+  <bean id="checkInventory" class="camelinaction.InventoryService"/>
+
+</beans>
