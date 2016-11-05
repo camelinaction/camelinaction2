@@ -6,9 +6,9 @@
 
   <!-- Here we define Camel, notice the namespace it uses -->
   <camelContext xmlns="http://camel.apache.org/schema/spring">
-    <route id="checkInventory">
-      <from uri="activemq:queue:checkInventory"/>
-      <to uri="bean:checkInventory"/>
+    <route id="inventory">
+      <from uri="activemq:queue:inventory"/>
+      <to uri="bean:inventory"/>
     </route>
   </camelContext>
 
@@ -19,6 +19,6 @@
     <property name="brokerURL" value="vm://inventoryBroker?create=false&amp;waitForStart=5000"/>
   </bean>
 
-  <bean id="checkInventory" class="camelinaction.InventoryService"/>
+  <bean id="inventory" class="camelinaction.InventoryService"/>
 
 </beans>

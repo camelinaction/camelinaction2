@@ -1,0 +1,20 @@
+<items>
+  <item>
+    <itemNo>123</itemNo>
+    <name>Honda Brakepad</name>
+    <description>Basic brakepad for Honda</description>
+    <number>28</number>
+  </item>
+  <item>
+    <itemNo>456</itemNo>
+    <name>Suzuki Brakepad</name>
+    <description>Basic brakepad for Suzuki</description>
+    <number>149</number>
+  </item>
+  <item>
+    <itemNo>789</itemNo>
+    <name>Suzuki Engine 500</name>
+    <description>Suzuki 500cc engine</description>
+    <number>4</number>
+  </item>
+</items>

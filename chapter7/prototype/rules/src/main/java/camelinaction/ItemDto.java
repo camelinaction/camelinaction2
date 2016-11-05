@@ -1,20 +1,33 @@
 package camelinaction;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "item")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ItemDto {
 
+    @XmlElement
     private int itemNo;
+    @XmlElement
     private String name;
+    @XmlElement
     private String description;
+    @XmlElement
+    private int number;
+    @XmlElement
     private int rating;
 
     public ItemDto() {
     }
 
-    public ItemDto(int itemNo, String name, String description, int rating) {
+    public ItemDto(int itemNo, String name, String description, int number) {
         this.itemNo = itemNo;
         this.name = name;
         this.description = description;
-        this.rating = rating;
+        this.number = number;
     }
 
     public int getItemNo() {
@@ -41,6 +54,14 @@ public class ItemDto {
         this.description = description;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public int getRating() {
         return rating;
     }
@@ -48,4 +69,5 @@ public class ItemDto {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
 }

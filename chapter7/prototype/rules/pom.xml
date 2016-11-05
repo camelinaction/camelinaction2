@@ -46,6 +46,14 @@
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>camel-cdi</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>camel-jms</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>camel-jaxb</artifactId>
+    </dependency>
     <!-- Wildfly Swarm Fractions -->
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
