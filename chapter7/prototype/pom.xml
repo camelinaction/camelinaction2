@@ -16,6 +16,7 @@
   <modules>
     <module>cart</module>
     <module>inventory</module>
+    <module>rating</module>
     <module>recommend</module>
     <module>rules</module>
   </modules>

@@ -2,7 +2,6 @@ package camelinaction;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -24,6 +23,7 @@ public class RecommendController {
 
     private String cartUrl;
     private String rulesUrl;
+    private String ratingUrl;
 
     @RequestMapping(value = "recommend", method = RequestMethod.GET, produces = "application/json")
     @SuppressWarnings("unchecked")
@@ -42,6 +42,22 @@ public class RecommendController {
 
         LOG.info("Calling rules backend {}", rulesUrl);
         List<ItemDto> items = restTemplate.getForObject(rulesUrl, List.class, id, cartIds);
+
+        // gather item ids for rating
+        String itemIds = null;
+        if (items != null && !items.isEmpty()) {
+            itemIds = items.stream().map(item -> "" + item.getItemNo()).collect(Collectors.joining(","));
+            LOG.info("Inventory items {}", itemIds);
+        }
+
+        LOG.info("Calling rating backend {}", ratingUrl);
+        List<RatingDto> ratings = restTemplate.getForObject(ratingUrl, List.class, id, itemIds);
+
+        // append ratings to items to recommend
+        for (RatingDto rating : ratings) {
+            System.out.println("Rating " + rating);
+        }
+
         return items;
     }
 
@@ -59,5 +75,13 @@ public class RecommendController {
 
     public void setRulesUrl(String rulesUrl) {
         this.rulesUrl = rulesUrl;
+    }
+
+    public String getRatingUrl() {
+        return ratingUrl;
+    }
+
+    public void setRatingUrl(String ratingUrl) {
+        this.ratingUrl = ratingUrl;
     }
 }

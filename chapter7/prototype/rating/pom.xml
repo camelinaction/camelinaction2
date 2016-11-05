@@ -9,15 +9,23 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter7-recommend</artifactId>
-  <name>Camel in Action 2 :: Chapter 7 :: Prototype :: Recommend Microservice</name>
+  <artifactId>chapter7-rating</artifactId>
+  <name>Camel in Action 2 :: Chapter 7 :: Prototype :: SaaS Rating Microservice</name>
 
   <dependencyManagement>
     <dependencies>
+      <!-- import Spring Boot before Camel -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
         <version>${spring-boot-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-spring-boot-dependencies</artifactId>
+        <version>${camel-version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -31,6 +39,22 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+
+    <!-- camel -->
+    <!-- notice we use -starter components from Camel which are designed to use with Spring Boot -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-servlet-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jackson-starter</artifactId>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -40,6 +64,11 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot-version}</version>
+        <configuration>
+          <arguments>
+            <argument>--server.port=8383</argument>
+          </arguments>
+        </configuration>
         <executions>
           <execution>
             <goals>
