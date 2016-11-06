@@ -13,7 +13,7 @@
   <name>Camel in Action 2 :: Chapter 11 :: Bridge Error Handler</name>
 
   <properties>
-    <openjpa-version>2.3.0</openjpa-version>
+    <openjpa-version>2.4.1</openjpa-version>
   </properties>
 
   <dependencies>
@@ -60,18 +60,6 @@
   <build>
 
     <plugins>
-        <!-- TODO need to update to java 1.8-->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.3</version>
-          <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
-            <maxmem>512M</maxmem>
-            <showDeprecation>true</showDeprecation>
-          </configuration>
-        </plugin>
 
       <!-- openjpa needs to enahnce the JPA entity classes -->
       <plugin>
