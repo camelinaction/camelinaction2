@@ -4,7 +4,6 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-  <!-- Here we define Camel, notice the namespace it uses -->
   <camelContext xmlns="http://camel.apache.org/schema/spring">
     <route id="inventory">
       <from uri="activemq:queue:inventory"/>
@@ -19,6 +18,7 @@
     <property name="brokerURL" value="vm://inventoryBroker?create=false&amp;waitForStart=5000"/>
   </bean>
 
+  <!-- bean for the inventory service -->
   <bean id="inventory" class="camelinaction.InventoryService"/>
 
 </beans>

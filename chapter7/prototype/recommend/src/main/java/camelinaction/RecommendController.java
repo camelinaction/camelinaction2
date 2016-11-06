@@ -12,41 +12,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * REST service for the recommendation service.
+ */
 @RestController
 @RequestMapping("/api")
-@ConfigurationProperties(prefix = "recommend")
+@ConfigurationProperties(prefix = "recommend") // inject properties from application.properties using this prefix
 public class RecommendController {
 
     private static final Logger LOG = LoggerFactory.getLogger(RecommendController.class);
 
+    // use rest template to call external REST service
     private final RestTemplate restTemplate = new RestTemplate();
 
+    // these are injected from the application.properties
     private String cartUrl;
     private String rulesUrl;
     private String ratingsUrl;
 
     @RequestMapping(value = "recommend", method = RequestMethod.GET, produces = "application/json")
-    @SuppressWarnings("unchecked")
     public List<ItemDto> recommend(HttpSession session) {
         String id = session.getId();
         LOG.info("HTTP session id {}", id);
 
-        // get the current item in the shopping cart
+        // get the current item in the shopping cart associated with the HTTP session id
+        LOG.info("Calling cart service {}", cartUrl);
         CartDto[] carts = restTemplate.getForObject(cartUrl, CartDto[].class, id);
-        // provide details what we have in the shopping cart for the rules
         String cartIds = cartsToCommaString(carts);
         LOG.info("Shopping cart items {}", cartIds);
 
-        LOG.info("Calling rules backend {}", rulesUrl);
+        // call rules service with the items from the shopping cart to get list of items to be recommended
+        LOG.info("Calling rules service {}", rulesUrl);
         ItemDto[] items = restTemplate.getForObject(rulesUrl, ItemDto[].class, id, cartIds);
-
-        // gather item ids for rating
         String itemIds = itemsToCommaString(items);
-        LOG.info("Inventory items to be rated {}", itemIds);
+        LOG.info("Inventory items {}", itemIds);
 
-        LOG.info("Calling rating backend {}", ratingsUrl);
+        // call rating service
+        LOG.info("Calling rating service {}", ratingsUrl);
         RatingDto[] ratings = restTemplate.getForObject(ratingsUrl, RatingDto[].class, itemIds);
-
         // append ratings to items
         for (RatingDto rating : ratings) {
             appendRatingToItem(rating, items);

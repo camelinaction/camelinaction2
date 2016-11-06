@@ -17,6 +17,9 @@ import javax.ws.rs.core.MediaType;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.Uri;
 
+/**
+ * JAX-RS controller where we define our REST services
+ */
 @ApplicationScoped
 @Path("/api")
 public class RulesController {
@@ -51,6 +54,9 @@ public class RulesController {
         return new LinkedHashSet<>(answer);
 	}
 
+    /**
+     * Used for sorting the items to recommend.
+     */
 	private static class ItemSorter implements Comparator<ItemDto> {
 
         @Override

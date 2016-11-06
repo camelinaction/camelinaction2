@@ -16,6 +16,9 @@
  */
 package camelinaction;
 
+/**
+ * Rating DTO which Spring will automatic map from JSon to POJO
+ */
 public class RatingDto {
 
     private int itemNo;

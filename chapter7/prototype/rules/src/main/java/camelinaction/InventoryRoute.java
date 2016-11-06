@@ -23,7 +23,7 @@ public class InventoryRoute extends RouteBuilder {
         from("direct:start")
             // call the legacy system using JMS
             .to("jms:queue:inventory")
-            // convert XML to POJO
+            // the returned data is in XML format so convert that to POJO using JAXB
             .unmarshal(jaxb);
     }
 

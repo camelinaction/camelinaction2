@@ -1,7 +1,7 @@
 package camelinaction;
 
 /**
- * DTO of shopping item
+ * Item DTO which Spring will automatic map from JSon to POJO
  */
 public class ItemDto {
 

@@ -12,6 +12,7 @@ public class RatingRoute extends RouteBuilder {
 
     @Bean
     ServletRegistrationBean camelServlet() {
+        // TODO: Camel 2.19 should support this OOTB
         // use a @Bean to register the Camel servlet which we need to do
         // because we want to use the camel-servlet component for the Camel REST service
         ServletRegistrationBean mapping = new ServletRegistrationBean();
@@ -33,7 +34,6 @@ public class RatingRoute extends RouteBuilder {
 
         // define the rest service
         rest("/ratings/{ids}").produces("application/json")
-            .get().outTypeList(RatingDto.class)
-            .to("bean:ratingService");
+            .get().to("bean:ratingService");
     }
 }

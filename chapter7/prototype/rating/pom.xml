@@ -59,6 +59,18 @@
 
   <build>
     <plugins>
+
+      <!-- use Java 8 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
       <plugin>
         <!-- allows to run with mvn spring-boot:run -->
         <groupId>org.springframework.boot</groupId>
@@ -66,6 +78,7 @@
         <version>${spring-boot-version}</version>
         <configuration>
           <arguments>
+            <!-- run on port 8383 to not clash with 8080 -->
             <argument>--server.port=8383</argument>
           </arguments>
         </configuration>
@@ -78,14 +91,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
+
     </plugins>
   </build>
 
