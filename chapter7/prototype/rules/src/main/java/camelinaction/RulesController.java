@@ -3,7 +3,9 @@ package camelinaction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -27,7 +29,7 @@ public class RulesController {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
     @Path("/rules/{cartIds}")
-	public List<ItemDto> get(@PathParam("cartIds") String cartIds) {
+	public Set<ItemDto> get(@PathParam("cartIds") String cartIds) {
         List<ItemDto> answer = new ArrayList<>();
 
         // find all items in inventory (use Camel to call legacy system)
@@ -45,8 +47,8 @@ public class RulesController {
         // sort the list based on the ones we have the most of
         Collections.sort(answer, new ItemSorter());
 
-        // return the answer
-        return answer;
+        // return the answer as a set
+        return new LinkedHashSet<>(answer);
 	}
 
 	private static class ItemSorter implements Comparator<ItemDto> {

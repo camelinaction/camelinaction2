@@ -1,7 +1,7 @@
 package camelinaction;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ public class RecommendController {
 
     private String cartUrl;
     private String rulesUrl;
-    private String ratingUrl;
+    private String ratingsUrl;
 
     @RequestMapping(value = "recommend", method = RequestMethod.GET, produces = "application/json")
     @SuppressWarnings("unchecked")
@@ -32,33 +32,27 @@ public class RecommendController {
         LOG.info("HTTP session id {}", id);
 
         // get the current item in the shopping cart
-        List<CartDto> carts = restTemplate.getForObject(cartUrl, List.class, id);
+        CartDto[] carts = restTemplate.getForObject(cartUrl, CartDto[].class, id);
         // provide details what we have in the shopping cart for the rules
-        String cartIds = null;
-        if (carts != null && !carts.isEmpty()) {
-            cartIds = carts.stream().map(CartDto::getItemId).collect(Collectors.joining(","));
-            LOG.info("Shopping cart items {}", cartIds);
-        }
+        String cartIds = cartsToCommaString(carts);
+        LOG.info("Shopping cart items {}", cartIds);
 
         LOG.info("Calling rules backend {}", rulesUrl);
-        List<ItemDto> items = restTemplate.getForObject(rulesUrl, List.class, id, cartIds);
+        ItemDto[] items = restTemplate.getForObject(rulesUrl, ItemDto[].class, id, cartIds);
 
         // gather item ids for rating
-        String itemIds = null;
-        if (items != null && !items.isEmpty()) {
-            itemIds = items.stream().map(item -> "" + item.getItemNo()).collect(Collectors.joining(","));
-            LOG.info("Inventory items {}", itemIds);
-        }
+        String itemIds = itemsToCommaString(items);
+        LOG.info("Inventory items to be rated {}", itemIds);
 
-        LOG.info("Calling rating backend {}", ratingUrl);
-        List<RatingDto> ratings = restTemplate.getForObject(ratingUrl, List.class, id, itemIds);
+        LOG.info("Calling rating backend {}", ratingsUrl);
+        RatingDto[] ratings = restTemplate.getForObject(ratingsUrl, RatingDto[].class, itemIds);
 
-        // append ratings to items to recommend
+        // append ratings to items
         for (RatingDto rating : ratings) {
-            System.out.println("Rating " + rating);
+            appendRatingToItem(rating, items);
         }
 
-        return items;
+        return Arrays.asList(items);
     }
 
     public String getCartUrl() {
@@ -77,11 +71,43 @@ public class RecommendController {
         this.rulesUrl = rulesUrl;
     }
 
-    public String getRatingUrl() {
-        return ratingUrl;
+    public String getRatingsUrl() {
+        return ratingsUrl;
     }
 
-    public void setRatingUrl(String ratingUrl) {
-        this.ratingUrl = ratingUrl;
+    public void setRatingsUrl(String ratingsUrl) {
+        this.ratingsUrl = ratingsUrl;
+    }
+
+    private void appendRatingToItem(RatingDto rating, ItemDto[] items) {
+        for (ItemDto item : items) {
+            if (item.getItemNo() == rating.getItemNo()) {
+                item.setRating(rating.getRating());
+            }
+        }
+    }
+
+    private String cartsToCommaString(CartDto[] carts) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < carts.length; i++) {
+            CartDto cart = carts[i];
+            sb.append(cart.getItemId());
+            if (i < carts.length - 1) {
+                sb.append(",");
+            }
+        }
+        return sb.toString();
+    }
+
+    private String itemsToCommaString(ItemDto[] items) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < items.length; i++) {
+            ItemDto item = items[i];
+            sb.append(item.getItemNo());
+            if (i < items.length - 1) {
+                sb.append(",");
+            }
+        }
+        return sb.toString();
     }
 }

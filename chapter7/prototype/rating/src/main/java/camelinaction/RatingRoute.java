@@ -32,7 +32,7 @@ public class RatingRoute extends RouteBuilder {
             .bindingMode(RestBindingMode.json);
 
         // define the rest service
-        rest("/rating/{ids}").produces("application/json")
+        rest("/ratings/{ids}").produces("application/json")
             .get().outTypeList(RatingDto.class)
             .to("bean:ratingService");
     }

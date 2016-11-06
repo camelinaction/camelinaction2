@@ -8,16 +8,10 @@ public class ItemDto {
     private int itemNo;
     private String name;
     private String description;
+    private int number;
     private int rating;
 
     public ItemDto() {
-    }
-
-    public ItemDto(int itemNo, String name, String description, int rating) {
-        this.itemNo = itemNo;
-        this.name = name;
-        this.description = description;
-        this.rating = rating;
     }
 
     public int getItemNo() {
@@ -42,6 +36,14 @@ public class ItemDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public int getRating() {
