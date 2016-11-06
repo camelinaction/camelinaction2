@@ -87,15 +87,14 @@
 
     <pluginManagement>
       <plugins>
-        <!-- TODO: we should upgrade to 1.8 with Camel 2.18 -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.3</version>
           <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
-            <maxmem>256M</maxmem>
+            <source>1.8</source>
+            <target>1.8</target>
+            <maxmem>512M</maxmem>
             <showDeprecation>true</showDeprecation>
           </configuration>
         </plugin>
