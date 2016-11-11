@@ -28,7 +28,7 @@
       <dependency>
         <groupId>org.jboss.shrinkwrap.resolver</groupId>
         <artifactId>shrinkwrap-resolver-bom</artifactId>
-        <version>2.2.2</version>
+        <version>2.2.4</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -83,13 +83,12 @@
     <dependency>
       <groupId>org.jboss.shrinkwrap.resolver</groupId>
       <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-      <!--<version>2.2.2</version>-->
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.wildfly.arquillian</groupId>
       <artifactId>wildfly-arquillian-container-managed</artifactId>
-      <version>1.0.2.Final</version>
+      <version>1.1.0.Final</version>
       <scope>test</scope>
     </dependency>
 
