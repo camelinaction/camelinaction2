@@ -22,13 +22,13 @@ public class RecommendController {
 
     private static final Logger LOG = LoggerFactory.getLogger(RecommendController.class);
 
-    // use rest template to call external REST service
-    private final RestTemplate restTemplate = new RestTemplate();
-
     // these are injected from the application.properties
     private String cartUrl;
     private String rulesUrl;
     private String ratingsUrl;
+
+    // use rest template to call external REST service
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @RequestMapping(value = "recommend", method = RequestMethod.GET, produces = "application/json")
     public List<ItemDto> recommend(HttpSession session) {
