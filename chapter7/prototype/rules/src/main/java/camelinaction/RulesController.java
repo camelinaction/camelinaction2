@@ -24,13 +24,13 @@ public class RulesController {
 
     // inject Camel template to call the Camel route from java code
     @Inject
-    @Uri("direct:start")
+    @Uri("direct:inventory")
     private FluentProducerTemplate producer;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
     @Path("/rules/{cartIds}")
-	public List<ItemDto> get(@PathParam("cartIds") String cartIds) {
+    public List<ItemDto> rules(@PathParam("cartIds") String cartIds) {
         List<ItemDto> answer = new ArrayList<>();
 
         // find all items in inventory (use Camel to call legacy system)

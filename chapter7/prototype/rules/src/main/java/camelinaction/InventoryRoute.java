@@ -17,14 +17,11 @@ public class InventoryRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        // use JAXB to convert XML to POJO classes
-        JaxbDataFormat jaxb = new JaxbDataFormat("camelinaction");
-
-        from("direct:start")
+        from("direct:inventory")
             // call the legacy system using JMS
             .to("jms:queue:inventory")
             // the returned data is in XML format so convert that to POJO using JAXB
-            .unmarshal(jaxb);
+            .unmarshal().jaxb("camelinaction");
     }
 
     /**
