@@ -37,7 +37,7 @@ public class CartService {
         dtos.add(dto);
     }
 
-    public void removeItems(@Header("sessionId") String sessionId, @Header("itemId") String itemId) {
+    public void removeItem(@Header("sessionId") String sessionId, @Header("itemId") String itemId) {
         LOG.info("removeItem {} {}", sessionId, itemId);
 
         Set<CartDto> dtos = content.get(sessionId);

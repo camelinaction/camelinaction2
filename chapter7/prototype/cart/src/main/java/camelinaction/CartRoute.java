@@ -34,6 +34,6 @@ public class CartRoute extends RouteBuilder {
                 .to("bean:cart?method=addItem")
             .delete().description("Removes the item from the shopping cart")
                 .param().name("itemId").description("Id of item to remove").endParam()
-                .to("bean:cart?method=removeItems");
+                .to("bean:cart?method=removeItem");
     }
 }
