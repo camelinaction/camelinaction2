@@ -3,9 +3,7 @@ package camelinaction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -14,7 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.camel.ProducerTemplate;
+import org.apache.camel.FluentProducerTemplate;
 import org.apache.camel.cdi.Uri;
 
 /**
@@ -27,17 +25,16 @@ public class RulesController {
     // inject Camel template to call the Camel route from java code
     @Inject
     @Uri("direct:start")
-    private ProducerTemplate producer;
+    private FluentProducerTemplate producer;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
     @Path("/rules/{cartIds}")
-	public Set<ItemDto> get(@PathParam("cartIds") String cartIds) {
+	public List<ItemDto> get(@PathParam("cartIds") String cartIds) {
         List<ItemDto> answer = new ArrayList<>();
 
         // find all items in inventory (use Camel to call legacy system)
-        // TODO: when WF-Swarm is Camel 2.18 then use FluentProducerTemplate
-        ItemsDto inventory = producer.requestBody((Object) "", ItemsDto.class);
+        ItemsDto inventory = producer.request(ItemsDto.class);
 
         // filter out what we already have in the shopping cart
         for (ItemDto item : inventory.getItems()) {
@@ -49,9 +46,7 @@ public class RulesController {
 
         // sort the list based on the ones we have the most of
         Collections.sort(answer, new ItemSorter());
-
-        // return the answer as a set
-        return new LinkedHashSet<>(answer);
+        return answer;
 	}
 
     /**
