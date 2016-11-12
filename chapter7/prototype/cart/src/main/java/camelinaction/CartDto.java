@@ -26,11 +26,11 @@ public class CartDto {
         this.itemId = itemId;
     }
 
+    @ApiModelProperty(value = "How many items to purchase")
     public int getAmount() {
         return amount;
     }
 
-    @ApiModelProperty(value = "How many items to purchase")
     public void setAmount(int amount) {
         this.amount = amount;
     }
