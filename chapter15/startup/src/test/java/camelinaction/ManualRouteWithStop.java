@@ -53,15 +53,7 @@ public class ManualRouteWithStop extends RouteBuilder {
                     // pickup one file at the time. And if you need to
                     // pickup more files then you have to start the route
                     // manually again.
-
-                    // IMPORTANT: This is no longer possible from Camel 2.8.3 onwards
-                    // as stopping the route should be done from a separate thread
-                    // force stopping this route while we are routing an Exchange
-                    // requires two steps:
-                    // 1) unregister from the inflight registry
-                    // 2) stop the route using a separate thread which is required
-                    //    from Camel 2.8.3 onwards.
-                    getContext().getInflightRepository().remove(exchange);
+                    exchange.getContext().getInflightRepository().remove(exchange, "manual");
 
                     // spawn a thread to stop the route
                     ExecutorService executor = getContext().getExecutorServiceManager().newSingleThreadExecutor(this, "StopRouteManually");
