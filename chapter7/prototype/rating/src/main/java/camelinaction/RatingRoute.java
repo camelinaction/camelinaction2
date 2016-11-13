@@ -27,9 +27,8 @@ public class RatingRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        // use servlet for rest service
-        restConfiguration("servlet").contextPath("api").port(8080)
-            // turn on json binding
+        restConfiguration()
+            // turn on json binding in rest-dsl
             .bindingMode(RestBindingMode.json);
 
         // define the rest service

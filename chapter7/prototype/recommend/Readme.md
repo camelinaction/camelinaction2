@@ -18,6 +18,7 @@ You can run this service using:
     
 This microservice is running Spring Boot with Camel exposing a REST service at:
     
-    http://localhost:8080/api/recommand
+    http://localhost:8080/api/recommend
 
 **Note:** This implementation is a vanilla Spring Boot application (without Camel)
+

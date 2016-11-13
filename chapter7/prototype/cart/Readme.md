@@ -15,4 +15,5 @@ The service exposes a swagger api documentation you can access at:
     
     http://localhost:8282/api/api-doc
     
-**Note** this implementation uses Camels rest-dsl which we will cover extensively in chapter 10.    
+**Note** this implementation uses Camels rest-dsl which we will cover extensively in chapter 10.
+

@@ -13,3 +13,4 @@ This application is running using standalone Camel application an exposes a JMS 
 
 **Note** this implementation embeds an ActiveMQ broker to simulate a legacy system which
     can only be accessed using JMS messaging.
+

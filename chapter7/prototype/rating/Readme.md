@@ -18,4 +18,5 @@ For example to get ratings of item 123 and 456
 
     http://localhost:8383/api/ratings/123,456
       
-**Note** this implementation uses Camels rest-dsl which we will cover extensively in chapter 10.    
+**Note** this implementation uses Camels rest-dsl which we will cover extensively in chapter 10.
+

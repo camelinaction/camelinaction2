@@ -22,3 +22,4 @@ This application is implemented using JAX-RS to expose the REST service
 and then calling a Camel route which then integrates with a backend legacy inventory system using JMS.
 
 **Note:** This implementation using JEE APIs such as JAX-RS to expose the REST service.
+
