@@ -14,8 +14,8 @@
 
   <properties>
     <citrus.version>2.6.2</citrus.version>
-    <!-- TODO newest version of spring cuased a stackoverflow... revisit-->
-    <spring-version>4.2.6.RELEASE</spring-version>
+    <!-- TODO citrus 2.6.x requires Spring 4.2.x -->
+    <spring-version>4.2.8.RELEASE</spring-version>
   </properties>
 
   <dependencies>
