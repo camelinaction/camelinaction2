@@ -52,8 +52,7 @@
         </route>
 
         <!-- this is the update route which is shared and therefore started 1st -->
-        <!-- we must defer shutting down this route as its a shared route by the two others -->
-        <route id="update" startupOrder="1" shutdownRoute="Defer">
+        <route id="update" startupOrder="1">
             <from uri="direct:update"/>
             <to uri="bean:inventoryService?method=updateInventory"/>
         </route>

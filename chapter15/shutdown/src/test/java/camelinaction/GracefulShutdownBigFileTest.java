@@ -58,7 +58,7 @@ public class GracefulShutdownBigFileTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("META-INF/spring/camel-route-defer-java.xml");
+        return new ClassPathXmlApplicationContext("META-INF/spring/camel-route-java.xml");
     }
 
 }
