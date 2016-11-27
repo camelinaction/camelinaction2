@@ -41,7 +41,7 @@ public class GracefulShutdownBigFileTest extends CamelSpringTestSupport {
         template.sendBodyAndHeader("file:target/inventory/updates", input, Exchange.FILE_NAME, "acme-1.csv");
 
         // give it some time to pickup and start processing this big file
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         // now we will shutdown
     }
