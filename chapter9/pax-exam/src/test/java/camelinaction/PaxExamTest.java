@@ -66,8 +66,8 @@ public class PaxExamTest {
         return new Option[]{
                 // setup which karaf server we are using
                 karafDistributionConfiguration()
-                        .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.0.6").type("tar.gz"))
-                        .karafVersion("4.0.6")
+                        .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.0.7").type("tar.gz"))
+                        .karafVersion("4.0.7")
                         .name("Apache Karaf")
                         .useDeployFolder(false)
                         .unpackDirectory(new File("target/karaf")),
@@ -100,7 +100,7 @@ public class PaxExamTest {
         return mavenBundle().
                 groupId("org.apache.camel.karaf").
                 artifactId("apache-camel")
-                .version("2.17.3")
+                .version("2.18.0")
                 .classifier("features")
                 .type("xml");
     }
