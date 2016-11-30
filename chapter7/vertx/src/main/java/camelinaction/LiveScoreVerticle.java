@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Handler;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.ext.web.handler.sockjs.BridgeEventType;
@@ -22,6 +21,12 @@ import org.apache.camel.util.IOHelper;
  * Vert.x verticle for live scores.
  */
 public class LiveScoreVerticle extends AbstractVerticle {
+
+    // TODO: add button to start clock / reset clock
+    // TODO: add documentation
+    // TODO: add readme file
+    // TODO: add vertx-camel bridge to make Camel emit the goal events
+    // TODO: add ui option to turn on/off fast mode
 
     // to use fast mode where each second is a minute
     private boolean fastMode = true;
