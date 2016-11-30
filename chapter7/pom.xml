@@ -24,6 +24,7 @@
     <module>springboot-rest-camel</module>
     <module>springboot-xml</module>
     <module>standalone</module>
+    <module>vertx</module>
     <module>wildfly-swarm</module>
     <module>wildfly-swarm-spring</module>
   </modules>

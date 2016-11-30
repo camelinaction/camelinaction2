@@ -1,0 +1,86 @@
+<html>
+<head>
+  <title></title>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+  <script src="vertx-eventbus.js"></script>
+</head>
+
+<style>
+  .team {
+    font-size: 20pt;
+  }
+
+  .summary {
+    font-size: 20pt;
+  }
+</style>
+
+<body>
+
+<div class="news">Latest scores:</div>
+<br>
+
+<div id="home" class="team"></div> - <div id="away" class="team"></div> <div id="summary" class="team"></div>
+
+<script>
+  var eb = new EventBus("http://localhost:8080/eventbus");
+
+  eb.onopen = function () {
+    eb.registerHandler("goals", function (err, msg) {
+      playsound();
+
+      var arr = msg.body.split(',');
+      var home = arr[0];
+      var away = arr[1];
+      var min = arr[2];
+      var scorer = arr[3];
+      var team = arr[4];
+
+      document.getElementById("home").innerHTML = home;
+      document.getElementById("away").innerHTML = away;
+      document.getElementById("summary").innerHTML = " " + min + " minute. Goal scored by " + scorer;
+
+      if (team == 'Home') {
+        document.getElementById("home").style.color = 'red';
+        document.getElementById("away").style.color = 'black';
+        blinkHome()
+      } else {
+        document.getElementById("home").style.color = 'black';
+        document.getElementById("away").style.color = 'red';
+        blinkAway()
+      }
+
+      // clear scorer after event
+//      setTimeout(clearScorer(), 5000);
+    })
+  };
+
+  playsound = function() {
+    var audio = new Audio('dong.m4r');
+    audio.play();
+  };
+
+  blinkHome = function () {
+    for (i = 0; i < 5; i++) {
+      $("#home").fadeTo('slow', 0.1).fadeTo('slow', 1.0);
+    }
+  };
+
+  blinkAway = function () {
+    for (i = 0; i < 5; i++) {
+      $("#away").fadeTo('slow', 0.1).fadeTo('slow', 1.0);
+    }
+  };
+
+  clearScorer = function () {
+    // clear event
+    document.getElementById("home").innerHTML = "";
+    document.getElementById("away").innerHTML = "";
+    document.getElementById("summary").innerHTML = "";
+  };
+
+</script>
+
+</body>
+</html>
