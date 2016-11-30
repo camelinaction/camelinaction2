@@ -7,6 +7,10 @@
 </head>
 
 <style>
+  .clock {
+    font-size: 40pt;
+  }
+
   .team {
     font-size: 20pt;
   }
@@ -14,12 +18,32 @@
   .summary {
     font-size: 20pt;
   }
+
+  .games {
+    font-size: 12pt;
+    font-family: "Courier New";
+  }
 </style>
 
 <body>
 
-<div class="news">Latest scores:</div>
-<br>
+<div id="clock" class="clock"></div>
+
+<div id="games">
+  <table>
+    <thead>
+      <tr></tr>
+      <tr></tr>
+      <tr></tr>
+    </thead>
+    <tr>
+      <td>Home</td>
+      <td>Away</td>
+      <td>Score</td>
+    </tr>
+  </table>
+</div>
+
 
 <div id="home" class="team"></div> - <div id="away" class="team"></div> <div id="summary" class="team"></div>
 
@@ -27,16 +51,55 @@
   var eb = new EventBus("http://localhost:8080/eventbus");
 
   eb.onopen = function () {
+
+    eb.registerHandler("clock", function (err, msg) {
+      document.getElementById("clock").innerHTML = msg.body;
+    });
+
+    eb.registerHandler("games", function (err, msg) {
+      var arr = msg.body.split(',');
+      var game = arr[0];
+      var home = arr[1];
+      var away = arr[2];
+
+      var tableRef = document.getElementById('games').getElementsByTagName('tbody')[0];
+      var newRow = tableRef.insertRow(tableRef.rows.length);
+      var newCell = newRow.insertCell(0);
+      var newText = document.createTextNode(home);
+      newCell.appendChild(newText);
+      var newCell2 = newRow.insertCell(1);
+      var newText2 = document.createTextNode(away);
+      newCell2.appendChild(newText2);
+      var newCell3 = newRow.insertCell(2);
+      var newText3 = document.createTextNode("0 - 0");
+      newCell3.appendChild(newText3);
+    });
+
     eb.registerHandler("goals", function (err, msg) {
+      if (msg.body === 'empty') {
+        clearScorer();
+        return;
+      }
+
+      // there is a goal so play sound
       playsound();
 
       var arr = msg.body.split(',');
-      var home = arr[0];
-      var away = arr[1];
-      var min = arr[2];
-      var scorer = arr[3];
-      var team = arr[4];
+      var game = arr[0];
+      var min = arr[1];
+      var scorer = arr[2];
+      var home = arr[3];
+      var away = arr[4];
+      var team = arr[5];
+      var score = arr[6];
 
+      // update table with score
+      var tableRef = document.getElementById('games').getElementsByTagName('tbody')[0];
+      var row = tableRef.getElementsByTagName('tr')[game];
+      var cell = row.getElementsByTagName('td')[2];
+      cell.innerHTML = score;
+
+      // show flashing scorer also
       document.getElementById("home").innerHTML = home;
       document.getElementById("away").innerHTML = away;
       document.getElementById("summary").innerHTML = " " + min + " minute. Goal scored by " + scorer;
@@ -50,9 +113,6 @@
         document.getElementById("away").style.color = 'red';
         blinkAway()
       }
-
-      // clear scorer after event
-//      setTimeout(clearScorer(), 5000);
     })
   };
 

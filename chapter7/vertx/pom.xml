@@ -74,7 +74,7 @@
         <artifactId>vertx-maven-plugin</artifactId>
         <version>0.1.2</version>
         <configuration>
-          <verticle>camelinaction.GoalServer</verticle>
+          <verticle>camelinaction.LiveScoreVerticle</verticle>
         </configuration>
         <executions>
           <execution>
