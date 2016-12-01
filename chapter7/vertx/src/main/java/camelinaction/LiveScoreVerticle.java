@@ -31,6 +31,8 @@ public class LiveScoreVerticle extends AbstractVerticle {
     // to use fast mode where each second is a minute
     private boolean fastMode = true;
 
+    private final AtomicInteger gameTime = new AtomicInteger();
+
     @Override
     public void start() throws Exception {
 
@@ -80,6 +82,8 @@ public class LiveScoreVerticle extends AbstractVerticle {
         } catch (IOException e) {
             System.out.println("Error reading games.csv file due " + e.getMessage());
         }
+
+        vertx.eventBus().publish("clock", "" + gameTime.get());
     }
 
     private void streamLiveScore() {
@@ -99,7 +103,6 @@ public class LiveScoreVerticle extends AbstractVerticle {
         }
 
         // lets simulate each second as a minute
-        final AtomicInteger gameTime = new AtomicInteger();
         int time = fastMode ? 1000 : 60 * 1000;
 
         System.out.println("Publishing game clock");
