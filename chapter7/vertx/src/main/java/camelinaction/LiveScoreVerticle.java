@@ -102,8 +102,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
             return;
         }
 
-        // lets simulate each second as a minute
-        int time = fastMode ? 1000 : 60 * 1000;
+        int time = fastMode ? 5 * 1000 : 60 * 1000;
 
         System.out.println("Publishing game clock");
         vertx.setPeriodic(time, event -> {
@@ -133,7 +132,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
             } else {
                 goals.forEach(c -> {
                     // there are sometimes more goals so wait 10 sec between each goal
-                    int now = fastMode ? 100 : 10 * 1000;
+                    int now = fastMode ? 1000 : 10 * 1000;
                     vertx.setTimer(now, t -> vertx.eventBus().publish("goals", c));
                 });
             }
