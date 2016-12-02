@@ -52,15 +52,15 @@
   <properties>
 
     <activemq-version>5.14.1</activemq-version>
-    <camel-version>2.18.0</camel-version>
+    <camel-version>2.18.1</camel-version>
     <cxf-version>3.1.7</cxf-version>
-    <hawtio-version>1.4.65</hawtio-version>
+    <hawtio-version>1.4.67</hawtio-version>
 
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
-    <deltaspike-version>1.7.1</deltaspike-version>
+    <deltaspike-version>1.7.2</deltaspike-version>
     <jackson-version>2.8.3</jackson-version>
     <javax-mail-version>1.5.5</javax-mail-version>
-    <jolokia-version>1.3.4</jolokia-version>
+    <jolokia-version>1.3.5</jolokia-version>
     <jetty-plugin-version>8.1.17.v20150415</jetty-plugin-version>
     <jetty9-plugin-version>9.2.19.v20160908</jetty9-plugin-version>
     <junit-version>4.12</junit-version>
@@ -72,11 +72,11 @@
     <scala-plugin-version>3.1.6</scala-plugin-version>
     <scala-version>2.11.5</scala-version>
     <slf4j-version>1.7.21</slf4j-version>
-    <spring-version>4.3.3.RELEASE</spring-version>
-    <spring-boot-version>1.4.1.RELEASE</spring-boot-version>
+    <spring-version>4.3.4.RELEASE</spring-version>
+    <spring-boot-version>1.4.2.RELEASE</spring-boot-version>
     <swagger-version>1.5.10</swagger-version>
     <xbean-version>3.18</xbean-version>
-    <weld-version>2.4.0.Final</weld-version>
+    <weld-version>2.4.1.Final</weld-version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
