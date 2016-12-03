@@ -71,6 +71,11 @@
 
 <div id="clock" class="clock"></div>
 
+<div id="controls" class="controls">
+  <button onclick="startClock()" type="button">Start</button>
+  <button onclick="stopClock()" type="button">Stop</button>
+</div>
+
 <div id="games">
   <table class="gametable">
     <thead>
@@ -166,6 +171,14 @@
         blinkAway()
       }
     })
+  };
+
+  startClock = function () {
+    eb.send("control", "start");
+  };
+
+  stopClock = function () {
+    eb.send("control", "stop");
   };
 
   playsound = function () {

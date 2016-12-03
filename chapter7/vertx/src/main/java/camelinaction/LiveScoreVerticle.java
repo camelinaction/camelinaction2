@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -33,14 +34,17 @@ public class LiveScoreVerticle extends AbstractVerticle {
 
     private final AtomicInteger gameTime = new AtomicInteger();
 
+    private final AtomicBoolean clockRunning = new AtomicBoolean();
+
     @Override
     public void start() throws Exception {
 
         // create a vertx router to setup websocket and http server
         Router router = Router.router(vertx);
 
-        // allow outbound traffic to the games/goals address
+        // configure allowed inbound and outbound traffice
         BridgeOptions options = new BridgeOptions()
+                .addInboundPermitted(new PermittedOptions().setAddress("control"))
                 .addOutboundPermitted(new PermittedOptions().setAddress("clock"))
                 .addOutboundPermitted(new PermittedOptions().setAddress("games"))
                 .addOutboundPermitted(new PermittedOptions().setAddress("goals"));
@@ -67,7 +71,24 @@ public class LiveScoreVerticle extends AbstractVerticle {
         System.out.println("Listening on http://localhost:8080");
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
 
+        initControls();
+
         streamLiveScore();
+    }
+
+    private void initControls() {
+        vertx.eventBus().localConsumer("control", h -> {
+            String action = (String) h.body();
+            if ("start".equals(action)) {
+                System.out.println("Starting clock");
+                clockRunning.set(true);
+                vertx.eventBus().publish("clock", "" + gameTime.get());
+            } else if ("stop".equals(action)) {
+                System.out.println("Stopping clock");
+                clockRunning.set(false);
+                vertx.eventBus().publish("clock", "Stopped");
+            }
+        });
     }
 
     private void initGames() {
@@ -83,7 +104,11 @@ public class LiveScoreVerticle extends AbstractVerticle {
             System.out.println("Error reading games.csv file due " + e.getMessage());
         }
 
-        vertx.eventBus().publish("clock", "" + gameTime.get());
+        if (clockRunning.get()) {
+            vertx.eventBus().publish("clock", "" + gameTime.get());
+        } else {
+            vertx.eventBus().publish("clock", "Stopped");
+        }
     }
 
     private void streamLiveScore() {
@@ -106,6 +131,12 @@ public class LiveScoreVerticle extends AbstractVerticle {
 
         System.out.println("Publishing game clock");
         vertx.setPeriodic(time, event -> {
+            if (!clockRunning.get()) {
+                // show clock as stopped
+                vertx.eventBus().publish("clock", "Stopped");
+                return;
+            }
+
             int min = gameTime.incrementAndGet();
             if (min > 91) {
                 return;
@@ -119,6 +150,10 @@ public class LiveScoreVerticle extends AbstractVerticle {
 
         System.out.println("Publishing live score");
         vertx.setPeriodic(time, event -> {
+            if (!clockRunning.get()) {
+                return;
+            }
+
             int min = gameTime.get();
             if (min > 91) {
                 return;
