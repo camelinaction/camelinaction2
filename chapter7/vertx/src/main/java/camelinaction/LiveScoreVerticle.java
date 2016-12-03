@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -23,13 +24,11 @@ import org.apache.camel.util.IOHelper;
  */
 public class LiveScoreVerticle extends AbstractVerticle {
 
-    // TODO: add button to start clock / reset clock
     // TODO: add documentation
     // TODO: add readme file
     // TODO: add vertx-camel bridge to make Camel emit the goal events
-    // TODO: add ui option to turn on/off fast mode
 
-    // to use fast mode where each second is a minute
+    // to use fast mode where each 5 second is a minute
     private boolean fastMode = false;
 
     private final AtomicInteger gameTime = new AtomicInteger();
@@ -165,13 +164,20 @@ public class LiveScoreVerticle extends AbstractVerticle {
             if (goals.isEmpty()) {
                 vertx.eventBus().publish("goals", "empty");
             } else {
+                AtomicInteger delay = new AtomicInteger();
+                int initial = fastMode ? 1 : 5 * 1000;
+                delay.set(initial);
                 goals.forEach(c -> {
-                    // there are sometimes more goals so wait 10 sec between each goal
-                    int now = fastMode ? 1000 : 10 * 1000;
-                    vertx.setTimer(now, t -> vertx.eventBus().publish("goals", c));
+                    // there are sometimes more goals so wait 5 sec between each goal
+                    System.out.println("Publish goal in " + delay.get() + " msec for goal: " + c);
+                    vertx.setTimer(delay.get(), t -> vertx.eventBus().publish("goals", c));
+                    // delay between 8 - 12 sec for next goal
+                    int extra = fastMode ? 500 : 8000 + new Random().nextInt(4000);
+                    delay.set(delay.get() + extra);
                 });
             }
         });
+
     }
 
     private static Integer goalTime(String line) {
