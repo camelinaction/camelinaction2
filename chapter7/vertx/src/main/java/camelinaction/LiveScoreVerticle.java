@@ -29,7 +29,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
     // TODO: add ui option to turn on/off fast mode
 
     // to use fast mode where each second is a minute
-    private boolean fastMode = true;
+    private boolean fastMode = false;
 
     private final AtomicInteger gameTime = new AtomicInteger();
 

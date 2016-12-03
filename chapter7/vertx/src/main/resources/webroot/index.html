@@ -9,37 +9,38 @@
 <style>
   .clock {
     font-family: Helvetica, Arial, sans-serif;
-    margin-left: 140px;
+    margin-left: 180px;
     font-size: 40pt;
     color: darkblue;
   }
 
   .update {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 20pt;
+    font-size: 22pt;
   }
 
   .team {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 20pt;
+    font-size: 22pt;
   }
 
   .scorer {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 16pt;
+    font-size: 20pt;
   }
 
   .gametable {
     color: #333;
     font-family: Helvetica, Arial, sans-serif;
-    width: 320px;
+    font-size: 20pt;
+    width: 400px;
     border-collapse: collapse;
     border-spacing: 0;
   }
 
   .gametable .td, .th {
     border: 1px solid transparent; /* No more visible border */
-    height: 30px;
+    height: 36px;
     transition: all 0.3s; /* Simple transition for hover effect */
   }
 
@@ -73,9 +74,9 @@
 <div id="games">
   <table class="gametable">
     <thead>
-      <th>Home</th>
-      <th>Away</th>
-      <th>Score</th>
+      <th style="text-align: left">Home</th>
+      <th style="text-align: left">Away</th>
+      <th style="text-align: right">Score</th>
     </thead>
     <tbody>
       <tr>
@@ -119,6 +120,7 @@
       newCell2.appendChild(newText2);
       var newCell3 = newRow.insertCell(2);
       var newText3 = document.createTextNode("0 - 0");
+      newCell3.style = "text-align: right";
       newCell3.appendChild(newText3);
     });
 
