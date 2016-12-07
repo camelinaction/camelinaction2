@@ -25,7 +25,6 @@
 
 
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
     <!-- and use servlet transport -->
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
