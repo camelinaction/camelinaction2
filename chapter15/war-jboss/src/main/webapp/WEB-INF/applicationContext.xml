@@ -15,9 +15,6 @@
     <!-- the route builder -->
     <bean id="inventoryRoute" class="camelinaction.InventoryRoute"/>
 
-    <!-- to use Camel in JBoss we need to define this class resolver -->
-    <bean id="jbossResolver" class="org.apache.camel.jboss.JBossPackageScanClassResolver"/>
-
     <!-- the camel context -->
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <routeBuilder ref="inventoryRoute"/>
