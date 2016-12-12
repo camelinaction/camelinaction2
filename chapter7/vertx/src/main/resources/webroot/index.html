@@ -1,11 +1,13 @@
 <html>
 <head>
   <title>Premier League 2004 Week 7 Livescores</title>
+  <!-- load scripts which vert.x uses -->
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
   <script src="vertx-eventbus.js"></script>
 </head>
 
+<!-- CSS styles -->
 <style>
   .clock {
     font-family: Helvetica, Arial, sans-serif;
@@ -69,31 +71,34 @@
 
 <body>
 
+<!-- to show game clock -->
 <div id="clock" class="clock"></div>
 
+<!-- to show control buttons -->
 <div id="controls" class="controls">
   <button onclick="startClock()" type="button">Start</button>
   <button onclick="stopClock()" type="button">Stop</button>
 </div>
 
+<!-- table with list of games -->
 <div id="games">
   <table class="gametable">
     <thead>
-      <th style="text-align: left">Home</th>
-      <th style="text-align: left">Away</th>
-      <th style="text-align: right">Score</th>
+    <th style="text-align: left">Home</th>
+    <th style="text-align: left">Away</th>
+    <th style="text-align: right">Score</th>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
     </tbody>
   </table>
 </div>
 
-
+<!-- goal scorer ticker -->
 <div id="update" style="display:none">
   <div id="scorer" class="scorer"></div>
   <div id="home" class="team"></div>
@@ -101,14 +106,17 @@
 </div>
 
 <script>
+  // vert.x eventbus
   var eb = new EventBus("http://localhost:8080/eventbus");
 
   eb.onopen = function () {
 
+    // event for game time clock being updated
     eb.registerHandler("clock", function (err, msg) {
       document.getElementById("clock").innerHTML = msg.body;
     });
 
+    // event for list of games
     eb.registerHandler("games", function (err, msg) {
       var arr = msg.body.split(',');
       var game = arr[0];
@@ -129,6 +137,7 @@
       newCell3.appendChild(newText3);
     });
 
+    // event for every goal scored
     eb.registerHandler("goals", function (err, msg) {
       if (msg.body === 'empty') {
         clearScorer();

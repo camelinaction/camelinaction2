@@ -24,15 +24,10 @@ import org.apache.camel.util.IOHelper;
  */
 public class LiveScoreVerticle extends AbstractVerticle {
 
-    // TODO: add documentation
-    // TODO: add readme file
-    // TODO: add vertx-camel bridge to make Camel emit the goal events
-
     // to use fast mode where each 5 second is a minute
     private boolean fastMode = false;
 
     private final AtomicInteger gameTime = new AtomicInteger();
-
     private final AtomicBoolean clockRunning = new AtomicBoolean();
 
     @Override
@@ -41,7 +36,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
         // create a vertx router to setup websocket and http server
         Router router = Router.router(vertx);
 
-        // configure allowed inbound and outbound traffice
+        // configure allowed inbound and outbound traffics
         BridgeOptions options = new BridgeOptions()
                 .addInboundPermitted(new PermittedOptions().setAddress("control"))
                 .addOutboundPermitted(new PermittedOptions().setAddress("clock"))
@@ -70,8 +65,10 @@ public class LiveScoreVerticle extends AbstractVerticle {
         System.out.println("Listening on http://localhost:8080");
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
 
+        // init control buttons
         initControls();
 
+        // start streaming live score
         streamLiveScore();
     }
 
@@ -91,8 +88,10 @@ public class LiveScoreVerticle extends AbstractVerticle {
     }
 
     private void initGames() {
+        // load list of games from file
         InputStream is = LiveScoreVerticle.class.getClassLoader().getResourceAsStream("games.csv");
 
+        // split each line and publish to vertx eventbus
         try {
             String text = IOHelper.loadText(is);
             String[] lines = text.split("\n");
@@ -103,6 +102,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
             System.out.println("Error reading games.csv file due " + e.getMessage());
         }
 
+        // publish clock time also
         if (clockRunning.get()) {
             vertx.eventBus().publish("clock", "" + gameTime.get());
         } else {
@@ -113,13 +113,14 @@ public class LiveScoreVerticle extends AbstractVerticle {
     private void streamLiveScore() {
         List<String> lines = new ArrayList<>();
 
+        // read the goal scores from file
         InputStream is = LiveScoreVerticle.class.getClassLoader().getResourceAsStream("goals.csv");
         try {
             String text = IOHelper.loadText(is);
             String[] row = text.split("\n");
             lines.addAll(Arrays.asList(row));
 
-            // sort on minutes
+            // sort goals scored on minutes
             lines.sort((a, b) -> goalTime(a).compareTo(goalTime(b)));
         } catch (IOException e) {
             System.out.println("Error reading goals.csv file due " + e.getMessage());
@@ -137,7 +138,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
             }
 
             int min = gameTime.incrementAndGet();
-            if (min > 91) {
+            if (min > 92) {
                 return;
             }
 
@@ -154,7 +155,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
             }
 
             int min = gameTime.get();
-            if (min > 91) {
+            if (min > 92) {
                 return;
             }
 
@@ -164,10 +165,15 @@ public class LiveScoreVerticle extends AbstractVerticle {
             if (goals.isEmpty()) {
                 vertx.eventBus().publish("goals", "empty");
             } else {
+                // to remember delay between each goal
                 AtomicInteger delay = new AtomicInteger();
                 int initial = fastMode ? 1 : 5 * 1000;
                 delay.set(initial);
+
                 goals.forEach(c -> {
+                    // for each goal then publish them to the goals eventbus
+                    // but simulate some delay between each goal so they are not all published at the same time
+
                     // there are sometimes more goals so wait 5 sec between each goal
                     System.out.println("Publish goal in " + delay.get() + " msec for goal: " + c);
                     vertx.setTimer(delay.get(), t -> vertx.eventBus().publish("goals", c));

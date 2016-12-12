@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>chapter7-vertx</artifactId>
-  <name>Camel in Action 2 :: Chapter 7 :: Vert.x and Camel</name>
+  <name>Camel in Action 2 :: Chapter 7 :: Vert.x</name>
 
   <properties>
     <verx-version>3.3.3</verx-version>
@@ -31,12 +31,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-core</artifactId>
-      <version>${camel-version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
     </dependency>
@@ -45,17 +39,12 @@
       <artifactId>slf4j-log4j12</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test</artifactId>
-      <version>${camel-version}</version>
-      <scope>test</scope>
-    </dependency>
-
   </dependencies>
 
   <build>
-    <defaultGoal>install</defaultGoal>
+
+    <finalName>livescore</finalName>
+
     <plugins>
       <!-- vert.x requires Java 8 -->
       <plugin>
@@ -69,6 +58,7 @@
       </plugin>
 
       <!-- vert.x maven plugin to generate the fat-jar -->
+      <!-- the example can run with mvn vertx:run -->
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>vertx-maven-plugin</artifactId>
@@ -85,7 +75,6 @@
             </goals>
           </execution>
         </executions>
-
       </plugin>
 
     </plugins>
