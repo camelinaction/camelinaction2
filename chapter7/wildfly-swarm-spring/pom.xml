@@ -11,10 +11,8 @@
 
   <artifactId>chapter7-wildfly-swarm-spring</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: WildFly Swarm with Camel Spring XML</name>
-  <packaging>war</packaging>
 
   <properties>
-    <failOnMissingWebXml>false</failOnMissingWebXml>
     <wildfly-swarm-version>2016.12.0</wildfly-swarm-version>
   </properties>
 
@@ -46,6 +44,10 @@
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>spring</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>monitor</artifactId>
     </dependency>
   </dependencies>
 
