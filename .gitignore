@@ -1,6 +1,6 @@
 target
+activemq-data
 chapter1/file-copy/data/outbox/
-chapter2/cbr/activemq-data/
 .idea
 *.i??
 .classpath
