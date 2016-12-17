@@ -68,7 +68,8 @@
         <version>1.0.1</version>
         <configuration>
           <verticle>camelinaction.LiveScoreVerticle</verticle>
-        </configuration>
+          <serviceProviderCombination>none</serviceProviderCombination>
+          </configuration>
         <executions>
           <execution>
             <id>vmp</id>

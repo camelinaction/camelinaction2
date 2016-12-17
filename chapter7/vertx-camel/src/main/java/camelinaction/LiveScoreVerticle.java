@@ -1,8 +1,7 @@
 package camelinaction;
 
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -22,6 +21,8 @@ import io.vertx.ext.web.handler.sockjs.SockJSHandler;
  * Vert.x verticle for live scores.
  */
 public class LiveScoreVerticle extends AbstractVerticle {
+
+    // TODO: Use Camel bridge to let Camel stream the goals / games
 
     // to use fast mode where each 5 second is a minute
     private boolean fastMode = false;
@@ -89,13 +90,15 @@ public class LiveScoreVerticle extends AbstractVerticle {
     private void initGames() {
         try {
             // load list of games from file
-            URL url = LiveScoreVerticle.class.getClassLoader().getResource("games.csv");
-            Stream<String> text = Files.lines(Paths.get(url.toURI()));
+            InputStream is = LiveScoreVerticle.class.getClassLoader().getResourceAsStream("games.csv");
+            String text = IOHelper.loadText(is);
+            Stream<String> games = Arrays.stream(text.split("\n"));
 
             // split each line and publish to vertx eventbus
-            text.forEach(l -> vertx.eventBus().publish("games", l));
+            games.forEach(game -> vertx.eventBus().publish("games", game));
         } catch (Exception e) {
             System.out.println("Error reading games.csv file due " + e.getMessage());
+            e.printStackTrace();
         }
 
         // publish clock time also
@@ -111,8 +114,10 @@ public class LiveScoreVerticle extends AbstractVerticle {
 
         try {
             // read the goal scores from file
-            URL url = LiveScoreVerticle.class.getClassLoader().getResource("goals.csv");
-            Stream<String> goals = Files.lines(Paths.get(url.toURI()));
+            InputStream is = LiveScoreVerticle.class.getClassLoader().getResourceAsStream("goals.csv");
+            String text = IOHelper.loadText(is);
+
+            Stream<String> goals = Arrays.stream(text.split("\n"));
 
             // sort goals scored on minutes
             goals = goals.sorted((a, b) -> goalTime(a).compareTo(goalTime(b)));
