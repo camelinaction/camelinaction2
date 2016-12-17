@@ -12,10 +12,6 @@
   <artifactId>chapter7-vertx</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: Vert.x</name>
 
-  <properties>
-    <verx-version>3.3.3</verx-version>
-  </properties>
-
   <dependencies>
 
     <dependency>

@@ -12,10 +12,6 @@
   <artifactId>chapter7-vertx-camel</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: Vert.x and Apache Camel</name>
 
-  <properties>
-    <verx-version>3.3.3</verx-version>
-  </properties>
-
   <dependencies>
 
     <dependency>
@@ -27,6 +23,13 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-web</artifactId>
+      <version>${verx-version}</version>
+    </dependency>
+
+    <!-- vertx-camel-bridge to use Vert.X and Camel together -->
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-camel-bridge</artifactId>
       <version>${verx-version}</version>
     </dependency>
 
