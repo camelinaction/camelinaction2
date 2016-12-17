@@ -32,7 +32,7 @@ public class GoalRouteBuilder extends RouteBuilder {
         // then we want to start/suspend the livescore route accordingly
         from("vertx:control").routeId("control")
             .log("Control event: ${body}")
-            .toD("controlbus:route?routeId=livescore&action=${body}");
+            .toD("controlbus:route?routeId=livescore&async=true&action=${body}");
 
     }
 }

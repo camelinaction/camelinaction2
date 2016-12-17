@@ -11,17 +11,17 @@ import java.util.stream.Collectors;
 import org.apache.camel.Endpoint;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import org.apache.camel.Suspendable;
 import org.apache.camel.impl.DefaultConsumer;
 
 import static java.lang.Thread.sleep;
 
-public class GoalConsumer extends DefaultConsumer {
+public class GoalConsumer extends DefaultConsumer implements Suspendable {
 
     private final List<String> goals;
-
-    private AtomicInteger gameTime = new AtomicInteger();
-    private TimerTask task = new GoalTask();
-    private Timer timer = new Timer();
+    private final AtomicInteger gameTime = new AtomicInteger();
+    private final Timer timer = new Timer();
+    private TimerTask task;
 
     public GoalConsumer(Endpoint endpoint, Processor processor, List<String> goals) {
         super(endpoint, processor);
@@ -33,13 +33,39 @@ public class GoalConsumer extends DefaultConsumer {
         super.doStart();
 
         log.info("Starting goal live stream");
-        timer.scheduleAtFixedRate(task, 1000, 60 * 1000L);
+        if (task == null) {
+            task = new GoalTask();
+            timer.scheduleAtFixedRate(task, 1000, 60 * 1000L);
+        }
+    }
+
+    @Override
+    public void resume() throws Exception {
+        log.info("Resuming goal live stream");
+
+        // signal the clock is started
+        Exchange exchange = getEndpoint().createExchange();
+        exchange.getIn().setHeader("action", "clock");
+        exchange.getIn().setBody(String.valueOf(gameTime.get()));
+        getProcessor().process(exchange);
+    }
+
+    @Override
+    protected void doSuspend() throws Exception {
+        log.info("Suspending goal live stream");
+
+        // signal the clock is stopped
+        Exchange exchange = getEndpoint().createExchange();
+        exchange.getIn().setHeader("action", "clock");
+        exchange.getIn().setBody("Stopped");
+        getProcessor().process(exchange);
     }
 
     @Override
     protected void doStop() throws Exception {
         log.info("Stopping goal live stream");
         timer.cancel();
+        task = null;
 
         // signal the clock is stopped
         Exchange exchange = getEndpoint().createExchange();
@@ -58,7 +84,7 @@ public class GoalConsumer extends DefaultConsumer {
 
         @Override
         public void run() {
-            if (!isRunAllowed()) {
+            if (!isRunAllowed() || isSuspended()) {
                 // the route has been suspended when the user click the stop button
                 return;
             }
