@@ -2,13 +2,9 @@ package camelinaction;
 
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import camelinaction.goal.GoalRouteBuilder;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
@@ -16,19 +12,15 @@ import io.vertx.ext.web.handler.sockjs.BridgeEventType;
 import io.vertx.ext.web.handler.sockjs.BridgeOptions;
 import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
+import org.apache.camel.CamelContext;
+import org.apache.camel.impl.DefaultCamelContext;
 
 /**
  * Vert.x verticle for live scores.
  */
 public class LiveScoreVerticle extends AbstractVerticle {
 
-    // TODO: Use Camel bridge to let Camel stream the goals / games
-
-    // to use fast mode where each 5 second is a minute
-    private boolean fastMode = false;
-
-    private final AtomicInteger gameTime = new AtomicInteger();
-    private final AtomicBoolean clockRunning = new AtomicBoolean();
+    private CamelContext camelContext;
 
     @Override
     public void start() throws Exception {
@@ -65,26 +57,15 @@ public class LiveScoreVerticle extends AbstractVerticle {
         System.out.println("Listening on http://localhost:8080");
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
 
-        // init control buttons
-        initControls();
-
-        // start streaming live score
-        streamLiveScore();
+        // setup Camel to stream live scores
+        camelContext = new DefaultCamelContext();
+        camelContext.addRoutes(new GoalRouteBuilder(vertx));
+        camelContext.start();
     }
 
-    private void initControls() {
-        vertx.eventBus().localConsumer("control", h -> {
-            String action = (String) h.body();
-            if ("start".equals(action)) {
-                System.out.println("Starting clock");
-                clockRunning.set(true);
-                vertx.eventBus().publish("clock", "" + gameTime.get());
-            } else if ("stop".equals(action)) {
-                System.out.println("Stopping clock");
-                clockRunning.set(false);
-                vertx.eventBus().publish("clock", "Stopped");
-            }
-        });
+    @Override
+    public void stop() throws Exception {
+        camelContext.stop();
     }
 
     private void initGames() {
@@ -100,96 +81,6 @@ public class LiveScoreVerticle extends AbstractVerticle {
             System.out.println("Error reading games.csv file due " + e.getMessage());
             e.printStackTrace();
         }
-
-        // publish clock time also
-        if (clockRunning.get()) {
-            vertx.eventBus().publish("clock", "" + gameTime.get());
-        } else {
-            vertx.eventBus().publish("clock", "Stopped");
-        }
-    }
-
-    private void streamLiveScore() {
-        List<String> lines;
-
-        try {
-            // read the goal scores from file
-            InputStream is = LiveScoreVerticle.class.getClassLoader().getResourceAsStream("goals.csv");
-            String text = IOHelper.loadText(is);
-
-            Stream<String> goals = Arrays.stream(text.split("\n"));
-
-            // sort goals scored on minutes
-            goals = goals.sorted((a, b) -> goalTime(a).compareTo(goalTime(b)));
-
-            // store goals in a list
-            lines = goals.collect(Collectors.toList());
-        } catch (Exception e) {
-            System.out.println("Error reading goals.csv file due " + e.getMessage());
-            return;
-        }
-
-        int time = fastMode ? 5 * 1000 : 60 * 1000;
-
-        System.out.println("Publishing game clock");
-        vertx.setPeriodic(time, event -> {
-            if (!clockRunning.get()) {
-                // show clock as stopped
-                vertx.eventBus().publish("clock", "Stopped");
-                return;
-            }
-
-            int min = gameTime.incrementAndGet();
-            if (min > 92) {
-                return;
-            }
-
-            System.out.println("Game time " + min);
-
-            // publish game time
-            vertx.eventBus().publish("clock", String.valueOf(min));
-        });
-
-        System.out.println("Publishing live score");
-        vertx.setPeriodic(time, event -> {
-            if (!clockRunning.get()) {
-                return;
-            }
-
-            int min = gameTime.get();
-            if (min > 92) {
-                return;
-            }
-
-            // stream all goals for the current game time
-            List<String> goals = lines.stream().filter(next -> goalTime(next) == gameTime.get()).collect(Collectors.toList());
-
-            if (goals.isEmpty()) {
-                vertx.eventBus().publish("goals", "empty");
-            } else {
-                // to remember delay between each goal
-                AtomicInteger delay = new AtomicInteger();
-                int initial = fastMode ? 1 : 5 * 1000;
-                delay.set(initial);
-
-                goals.forEach(c -> {
-                    // for each goal then publish them to the goals eventbus
-                    // but simulate some delay between each goal so they are not all published at the same time
-
-                    // there are sometimes more goals so wait 5 sec between each goal
-                    System.out.println("Publish goal in " + delay.get() + " msec for goal: " + c);
-                    vertx.setTimer(delay.get(), t -> vertx.eventBus().publish("goals", c));
-                    // delay between 8 - 12 sec for next goal
-                    int extra = fastMode ? 500 : 8000 + new Random().nextInt(4000);
-                    delay.set(delay.get() + extra);
-                });
-            }
-        });
-
-    }
-
-    private static Integer goalTime(String line) {
-        return Integer.valueOf(line.split(",")[1]);
     }
 
 }

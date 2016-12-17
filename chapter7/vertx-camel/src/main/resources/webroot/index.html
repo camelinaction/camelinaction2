@@ -72,7 +72,7 @@
 <body>
 
 <!-- to show game clock -->
-<div id="clock" class="clock"></div>
+<div id="clock" class="clock">Stopped</div>
 
 <!-- to show control buttons -->
 <div id="controls" class="controls">
@@ -191,14 +191,14 @@
 
   startClock = function () {
     // user click start button
-    // send start message to the control address on the Vert.X eventbus
+    // send start/resume message to the control address on the Vert.X eventbus
     eb.send("control", "start");
   };
 
   stopClock = function () {
     // user click stop button
-    // send stop message to the control address on the Vert.X eventbus
-    eb.send("control", "stop");
+    // send suspend message to the control address on the Vert.X eventbus
+    eb.send("control", "suspend");
   };
 
   playsound = function () {

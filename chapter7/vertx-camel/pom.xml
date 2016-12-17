@@ -14,25 +14,31 @@
 
   <dependencies>
 
+    <!-- Vert.X -->
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
       <version>${verx-version}</version>
     </dependency>
-
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-web</artifactId>
       <version>${verx-version}</version>
     </dependency>
 
-    <!-- vertx-camel-bridge to use Vert.X and Camel together -->
+    <!-- camel -->
     <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-camel-bridge</artifactId>
-      <version>${verx-version}</version>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-vertx</artifactId>
+      <version>${camel-version}</version>
     </dependency>
 
+    <!-- logging -->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -68,8 +74,9 @@
         <version>1.0.1</version>
         <configuration>
           <verticle>camelinaction.LiveScoreVerticle</verticle>
+          <!-- TODO: remove me in next release -->
           <serviceProviderCombination>none</serviceProviderCombination>
-          </configuration>
+        </configuration>
         <executions>
           <execution>
             <id>vmp</id>
