@@ -106,9 +106,11 @@
 </div>
 
 <script>
-  // vert.x eventbus
+  // connect to Vert.X eventbus on port 8080/eventbus
   var eb = new EventBus("http://localhost:8080/eventbus");
 
+  // when opening a new connection
+  // then register the following handlers (clock, games, goals)
   eb.onopen = function () {
 
     // event for game time clock being updated
@@ -117,12 +119,14 @@
     });
 
     // event for list of games
+    // notice there is one message per game, and there are 9 games and hence this handler receives 9 messages
     eb.registerHandler("games", function (err, msg) {
       var arr = msg.body.split(',');
       var game = arr[0];
       var home = arr[1];
       var away = arr[2];
 
+      // append the game to the end of the table
       var tableRef = document.getElementById('games').getElementsByTagName('tbody')[0];
       var newRow = tableRef.insertRow(tableRef.rows.length);
       var newCell = newRow.insertCell(0);
@@ -138,8 +142,10 @@
     });
 
     // event for every goal scored
+    // there is also an event if there was no goal scored in a new game clock so the web page can clear
     eb.registerHandler("goals", function (err, msg) {
       if (msg.body === 'empty') {
+        // this time there was no goal scored so clear the display
         clearScorer();
         return;
       }
@@ -147,6 +153,7 @@
       // there is a goal so play sound
       playsound();
 
+      // split the message into pieces so we know more details about the goal scored
       var arr = msg.body.split(',');
       var game = arr[0];
       var min = arr[1];
@@ -183,14 +190,19 @@
   };
 
   startClock = function () {
+    // user click start button
+    // send start message to the control address on the Vert.X eventbus
     eb.send("control", "start");
   };
 
   stopClock = function () {
+    // user click stop button
+    // send stop message to the control address on the Vert.X eventbus
     eb.send("control", "stop");
   };
 
   playsound = function () {
+    // play the dong sound
     var audio = new Audio('dong.m4r');
     audio.play();
   };
