@@ -1,14 +1,14 @@
 package camelinaction;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
@@ -17,7 +17,6 @@ import io.vertx.ext.web.handler.sockjs.BridgeEventType;
 import io.vertx.ext.web.handler.sockjs.BridgeOptions;
 import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
-import org.apache.camel.util.IOHelper;
 
 /**
  * Vert.x verticle for live scores.
@@ -88,17 +87,14 @@ public class LiveScoreVerticle extends AbstractVerticle {
     }
 
     private void initGames() {
-        // load list of games from file
-        InputStream is = LiveScoreVerticle.class.getClassLoader().getResourceAsStream("games.csv");
-
-        // split each line and publish to vertx eventbus
         try {
-            String text = IOHelper.loadText(is);
-            String[] lines = text.split("\n");
-            for (String line : lines) {
-                vertx.eventBus().publish("games", line);
-            }
-        } catch (IOException e) {
+            // load list of games from file
+            URL url = LiveScoreVerticle.class.getClassLoader().getResource("games.csv");
+            Stream<String> text = Files.lines(Paths.get(url.toURI()));
+
+            // split each line and publish to vertx eventbus
+            text.forEach(l -> vertx.eventBus().publish("games", l));
+        } catch (Exception e) {
             System.out.println("Error reading games.csv file due " + e.getMessage());
         }
 
@@ -111,18 +107,19 @@ public class LiveScoreVerticle extends AbstractVerticle {
     }
 
     private void streamLiveScore() {
-        List<String> lines = new ArrayList<>();
+        List<String> lines;
 
-        // read the goal scores from file
-        InputStream is = LiveScoreVerticle.class.getClassLoader().getResourceAsStream("goals.csv");
         try {
-            String text = IOHelper.loadText(is);
-            String[] row = text.split("\n");
-            lines.addAll(Arrays.asList(row));
+            // read the goal scores from file
+            URL url = LiveScoreVerticle.class.getClassLoader().getResource("goals.csv");
+            Stream<String> goals = Files.lines(Paths.get(url.toURI()));
 
             // sort goals scored on minutes
-            lines.sort((a, b) -> goalTime(a).compareTo(goalTime(b)));
-        } catch (IOException e) {
+            goals = goals.sorted((a, b) -> goalTime(a).compareTo(goalTime(b)));
+
+            // store goals in a list
+            lines = goals.collect(Collectors.toList());
+        } catch (Exception e) {
             System.out.println("Error reading goals.csv file due " + e.getMessage());
             return;
         }

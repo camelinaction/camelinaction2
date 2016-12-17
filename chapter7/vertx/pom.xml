@@ -62,7 +62,7 @@
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>vertx-maven-plugin</artifactId>
-        <version>0.1.2</version>
+        <version>1.0.1</version>
         <configuration>
           <verticle>camelinaction.LiveScoreVerticle</verticle>
         </configuration>
