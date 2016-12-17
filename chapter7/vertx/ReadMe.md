@@ -21,5 +21,4 @@ And from a web browser open the following url:
 You can also run the example as a fat-jar using: 
 
     java -jar target/livescore-fat.jar
-    
-    
+
