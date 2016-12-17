@@ -19,7 +19,7 @@ import static java.lang.Thread.sleep;
 public class GoalConsumer extends DefaultConsumer implements Suspendable {
 
     private final List<String> goals;
-    private final AtomicInteger gameTime = new AtomicInteger();
+    private final AtomicInteger gameTime = new AtomicInteger(-1);
     private final Timer timer = new Timer();
     private TimerTask task;
 
@@ -40,7 +40,7 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
     }
 
     @Override
-    public void resume() throws Exception {
+    public void doResume() throws Exception {
         log.info("Resuming goal live stream");
 
         // signal the clock is started
@@ -90,7 +90,7 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
             }
 
             // start from 0
-            int min = gameTime.getAndIncrement();
+            int min = gameTime.incrementAndGet();
 
             // if the match is ended then there is no more goals
             if (min > 92) {
