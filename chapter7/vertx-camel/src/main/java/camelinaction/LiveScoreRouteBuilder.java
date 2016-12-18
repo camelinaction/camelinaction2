@@ -20,8 +20,7 @@ public class LiveScoreRouteBuilder extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         // use vertx instance on the Camel vertx component
-        VertxComponent vc = getContext().getComponent("vertx", VertxComponent.class);
-        vc.setVertx(vertx);
+        getContext().getComponent("vertx", VertxComponent.class).setVertx(vertx);
 
         // initialize the list of games which is called when a new client connects to Vert.X backend
         from("direct:init-games").routeId("init-games")
@@ -46,6 +45,6 @@ public class LiveScoreRouteBuilder extends RouteBuilder {
         from("vertx:control").routeId("control")
             .log("Control event: ${body}")
             .toD("controlbus:route?routeId=livescore&async=true&action=${body}");
-
     }
+
 }
