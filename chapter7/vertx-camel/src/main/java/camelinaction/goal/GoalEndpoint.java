@@ -26,7 +26,16 @@ public class GoalEndpoint extends ResourceEndpoint {
 
     @Override
     public Producer createProducer() throws Exception {
-        throw new UnsupportedOperationException("Not supported");
+        // load games from resource
+        InputStream is = getResourceAsInputStream();
+        String text = IOHelper.loadText(is);
+
+        // store games in a list
+        Stream<String> stream = Arrays.stream(text.split("\n"));
+        List<String> games = stream.collect(Collectors.toList());
+
+        // create producer with the games
+        return new GoalProducer(this, games);
     }
 
     @Override

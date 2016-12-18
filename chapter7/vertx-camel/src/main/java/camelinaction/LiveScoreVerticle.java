@@ -1,9 +1,5 @@
 package camelinaction;
 
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.stream.Stream;
-
 import camelinaction.goal.GoalRouteBuilder;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
@@ -13,6 +9,7 @@ import io.vertx.ext.web.handler.sockjs.BridgeOptions;
 import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 import org.apache.camel.CamelContext;
+import org.apache.camel.FluentProducerTemplate;
 import org.apache.camel.impl.DefaultCamelContext;
 
 /**
@@ -21,6 +18,7 @@ import org.apache.camel.impl.DefaultCamelContext;
 public class LiveScoreVerticle extends AbstractVerticle {
 
     private CamelContext camelContext;
+    private FluentProducerTemplate template;
 
     @Override
     public void start() throws Exception {
@@ -41,7 +39,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
                 System.out.println("Websocket connection created");
 
                 // a new client connected so setup its screen with the list of games
-                vertx.setTimer(500, h -> initGames());
+                vertx.setTimer(100, h -> template.to("direct:init-games").send());
 
             } else if (event.type() == BridgeEventType.SOCKET_CLOSED) {
                 System.out.println("Websocket connection closed");
@@ -60,27 +58,14 @@ public class LiveScoreVerticle extends AbstractVerticle {
         // setup Camel to stream live scores
         camelContext = new DefaultCamelContext();
         camelContext.addRoutes(new GoalRouteBuilder(vertx));
+        template = camelContext.createFluentProducerTemplate();
         camelContext.start();
     }
 
     @Override
     public void stop() throws Exception {
+        template.stop();
         camelContext.stop();
-    }
-
-    private void initGames() {
-        try {
-            // load list of games from file
-            InputStream is = LiveScoreVerticle.class.getClassLoader().getResourceAsStream("games.csv");
-            String text = IOHelper.loadText(is);
-            Stream<String> games = Arrays.stream(text.split("\n"));
-
-            // split each line and publish to vertx eventbus
-            games.forEach(game -> vertx.eventBus().publish("games", game));
-        } catch (Exception e) {
-            System.out.println("Error reading games.csv file due " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 
 }

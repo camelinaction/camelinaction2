@@ -18,6 +18,13 @@ public class GoalRouteBuilder extends RouteBuilder {
         VertxComponent vc = getContext().getComponent("vertx", VertxComponent.class);
         vc.setVertx(vertx);
 
+        // initialize the list of games which is called when a new client connects to Vert.X backend
+        from("direct:init-games").routeId("init-games")
+                .log("Init games event")
+                .to("goal:games.csv")
+                .split(body())
+                .to("vertx:games");
+
         // the route for handling live score updates from the goal
         // component which is published to vertx addresses
         from("goal:goals.csv").routeId("livescore").autoStartup(false)
