@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>chapter7-hystrix</artifactId>
-  <name>Camel in Action 2 :: Chapter 7 :: Hystrix with plain</name>
+  <name>Camel in Action 2 :: Chapter 7 :: Hystrix with plain Java</name>
 
   <dependencies>
 
