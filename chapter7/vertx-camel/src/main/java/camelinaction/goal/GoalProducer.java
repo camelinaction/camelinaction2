@@ -6,6 +6,9 @@ import org.apache.camel.Endpoint;
 import org.apache.camel.Exchange;
 import org.apache.camel.impl.DefaultProducer;
 
+/**
+ * The producer can gather the list of football games
+ */
 public class GoalProducer extends DefaultProducer {
 
     private final List<String> games;

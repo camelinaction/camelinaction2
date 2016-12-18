@@ -5,6 +5,9 @@ import java.util.Map;
 import org.apache.camel.Endpoint;
 import org.apache.camel.impl.DefaultComponent;
 
+/**
+ * A component to support live scoring streams
+ */
 public class GoalComponent extends DefaultComponent {
 
     @Override

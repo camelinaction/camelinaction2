@@ -16,6 +16,10 @@ import org.apache.camel.impl.DefaultConsumer;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * The consumer can stream a live score updates and support suspend/resume
+ * to stop the game clock as well.
+ */
 public class GoalConsumer extends DefaultConsumer implements Suspendable {
 
     private final List<String> goals;

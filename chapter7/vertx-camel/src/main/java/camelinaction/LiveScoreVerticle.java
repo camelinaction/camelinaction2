@@ -1,6 +1,5 @@
 package camelinaction;
 
-import camelinaction.goal.GoalRouteBuilder;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
@@ -57,7 +56,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
 
         // setup Camel to stream live scores
         camelContext = new DefaultCamelContext();
-        camelContext.addRoutes(new GoalRouteBuilder(vertx));
+        camelContext.addRoutes(new LiveScoreRouteBuilder(vertx));
         template = camelContext.createFluentProducerTemplate();
         camelContext.start();
     }
