@@ -13,6 +13,8 @@ import org.apache.camel.impl.DefaultCamelContext;
 
 /**
  * Vert.x verticle for live scores.
+ * <p/>
+ * This verticle uses Vert.X together with Camel routes from the {@link LiveScoreRouteBuilder} class.
  */
 public class LiveScoreVerticle extends AbstractVerticle {
 
@@ -21,6 +23,15 @@ public class LiveScoreVerticle extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
+
+        // create a CamelContext
+        camelContext = new DefaultCamelContext();
+        // add the Camel routes which streams live scores
+        camelContext.addRoutes(new LiveScoreRouteBuilder(vertx));
+        // create a producer template which is used below when a new client connects
+        template = camelContext.createFluentProducerTemplate();
+        // start Camel
+        camelContext.start();
 
         // create a vertx router to setup websocket and http server
         Router router = Router.router(vertx);
@@ -53,16 +64,11 @@ public class LiveScoreVerticle extends AbstractVerticle {
         // let router accept on port 8080
         System.out.println("Listening on http://localhost:8080");
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
-
-        // setup Camel to stream live scores
-        camelContext = new DefaultCamelContext();
-        camelContext.addRoutes(new LiveScoreRouteBuilder(vertx));
-        template = camelContext.createFluentProducerTemplate();
-        camelContext.start();
     }
 
     @Override
     public void stop() throws Exception {
+        // stop Camel
         template.stop();
         camelContext.stop();
     }
