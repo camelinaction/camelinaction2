@@ -36,8 +36,8 @@
     <bean id="inventoryRoute" class="camelinaction.InventoryRoute"/>
 
     <!-- Camel -->
-    <camel:camelContext id="myCamelContext">
-        <camel:routeBuilder ref="inventoryRoute"/>
-    </camel:camelContext>
+    <camelContext id="myCamelContext" xmlns="http://camel.apache.org/schema/blueprint">    
+        <routeBuilder ref="inventoryRoute"/>
+    </camelContext>
 
 </blueprint>
