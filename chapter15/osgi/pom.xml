@@ -82,7 +82,6 @@
                         <Export-Package>camelinaction,camelinaction.inventory</Export-Package>
                         <!-- just using dynamic import to let the OSGi container figure out the imports -->
                         <Import-Package>*</Import-Package>
-                        <DynamicImport-Package>*</DynamicImport-Package>
 
                         <Implementation-Title>Rider Auto Parts OSGi</Implementation-Title>
                         <Implementation-Version>${project.version}</Implementation-Version>
