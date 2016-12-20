@@ -3,6 +3,9 @@ package camelinaction;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Test of basic hystrix command in pure Java with fallback
+ */
 public class MyCommandWithFallbackTest {
 
     @Test
