@@ -84,7 +84,7 @@
                 <configuration>
                     <instructions>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
-                        <Bundle-SymbolicName>riderautoparts-osgi</Bundle-SymbolicName>
+                        <Bundle-SymbolicName>riderautoparts-osgi-msf</Bundle-SymbolicName>
 
                         <!-- we need to export these two packages so the route can be started
                              and that Apache CXF can access the generated model objects -->
