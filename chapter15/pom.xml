@@ -22,6 +22,7 @@
         <module>war-servlet</module>
         <module>war-jboss</module>
         <module>osgi</module>
+        <module>osgi-msf</module>
     </modules>
 </project>
 
