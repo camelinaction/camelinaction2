@@ -35,14 +35,13 @@
     <!-- the route builder -->
     <bean id="inventoryRoute" class="camelinaction.InventoryRoute"/>
 
-    <bean id="camelServiceFactory" class="camelinaction.FileInventoryRouteCamelServiceFactory" init-method="init">
-        <property name="bundleContext" ref="blueprintBundleContext"/>
-        <property name="camelContext" ref="myCamelContext"/>
-    </bean>
-
     <!-- Camel -->
     <camelContext id="myCamelContext" xmlns="http://camel.apache.org/schema/blueprint">    
         <routeBuilder ref="inventoryRoute"/>
     </camelContext>
 
+    <bean id="camelServiceFactory" class="camelinaction.FileInventoryServiceFactory" init-method="init">
+        <property name="bundleContext" ref="blueprintBundleContext"/>
+        <property name="camelContext" ref="myCamelContext"/>
+    </bean>
 </blueprint>

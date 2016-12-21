@@ -14,9 +14,9 @@ import org.osgi.service.cm.ManagedServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FileInventoryRouteCamelServiceFactory implements ManagedServiceFactory {
+public class FileInventoryServiceFactory implements ManagedServiceFactory {
     
-    private static final Logger LOG = LoggerFactory.getLogger(FileInventoryRouteCamelServiceFactory.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FileInventoryServiceFactory.class);
 
     private CamelContext camelContext;
     private BundleContext bundleContext;
