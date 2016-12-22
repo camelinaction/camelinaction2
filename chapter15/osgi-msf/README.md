@@ -29,3 +29,5 @@ To spin up additional route instances, simply add configuration to Karaf's etc d
 and contents like:
 
     path=file://target/inventory/updates
+
+There are example configuration files ready to go in the etc directory of this example.
