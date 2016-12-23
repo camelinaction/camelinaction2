@@ -66,8 +66,8 @@ public class PaxExamTest {
         return new Option[]{
                 // setup which karaf server we are using
                 karafDistributionConfiguration()
-                        .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.0.7").type("tar.gz"))
-                        .karafVersion("4.0.7")
+                        .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.0.8").type("tar.gz"))
+                        .karafVersion("4.0.8")
                         .name("Apache Karaf")
                         .useDeployFolder(false)
                         .unpackDirectory(new File("target/karaf")),

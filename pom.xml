@@ -65,7 +65,7 @@
     <jetty-plugin-version>8.1.17.v20150415</jetty-plugin-version>
     <jetty9-plugin-version>9.2.19.v20160908</jetty9-plugin-version>
     <junit-version>4.12</junit-version>
-    <karaf-version>4.0.7</karaf-version>
+    <karaf-version>4.0.8</karaf-version>
     <log4j-version>1.2.17</log4j-version>
     <!-- TODO need to update to 3.2.0 for everything like in chapter19/hawtio-custom-plugin -->
     <maven-bundle-plugin-version>2.3.7</maven-bundle-plugin-version>
