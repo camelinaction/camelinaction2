@@ -2,7 +2,7 @@ package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
 
-public class HystrixRoute extends RouteBuilder {
+public class HystrixWithFallbackRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
@@ -12,6 +12,9 @@ public class HystrixRoute extends RouteBuilder {
                 .to("bean:counter")
                 // notice you can have more Camel EIPs/nodes here
                 // .to("bean:anotherBean")
+            .onFallback()
+                // use a constant message as fallback
+                .transform(constant("No Counter"))
             .end()
             // run outside hystrix
             .log("After calling counter service: ${body}");
