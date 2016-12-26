@@ -18,6 +18,7 @@
     <module>cdi-hello</module>
     <module>cdi-karaf</module>
     <module>hystrix</module>
+    <module>hystrix-camel</module>
     <module>prototype</module>
     <module>springboot</module>
     <module>springboot-camel</module>
