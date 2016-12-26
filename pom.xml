@@ -74,8 +74,8 @@
     <scala-version>2.11.5</scala-version>
     <slf4j-version>1.7.21</slf4j-version>
     <spring-version>4.3.5.RELEASE</spring-version>
-    <spring-boot-version>1.4.2.RELEASE</spring-boot-version>
-    <swagger-version>1.5.10</swagger-version>
+    <spring-boot-version>1.4.3.RELEASE</spring-boot-version>
+    <swagger-version>1.5.11</swagger-version>
     <xbean-version>3.18</xbean-version>
     <verx-version>3.3.3</verx-version>
     <weld-version>2.4.1.Final</weld-version>
