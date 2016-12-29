@@ -26,7 +26,17 @@ public class SpringCamelHystrixTimeoutAndFallbackTest extends CamelSpringTestSup
     public void testSlow() throws Exception {
         // this calls the slow route and therefore causes a timeout which triggers the fallback
         Object out = template.requestBody("direct:start", "slow");
-        // TODO: requires Camel 2.18.2 or better
-        // assertEquals("Fallback response", out);
+        assertEquals("Fallback response", out);
+    }
+
+    @Test
+    public void testSlowLoop() throws Exception {
+        // this calls the slow route and therefore causes a timeout which triggers the fallback
+        for (int i = 0; i < 10; i++) {
+            log.info(">>> test run " + i + " <<<");
+            Object out = template.requestBody("direct:start", "slow");
+            log.info(">>> test response " + out + " <<<");
+            assertEquals("Fallback response", out);
+        }
     }
 }

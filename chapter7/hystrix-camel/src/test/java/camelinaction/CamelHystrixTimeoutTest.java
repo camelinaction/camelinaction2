@@ -1,5 +1,7 @@
 package camelinaction;
 
+import java.util.concurrent.TimeoutException;
+
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -24,7 +26,23 @@ public class CamelHystrixTimeoutTest extends CamelTestSupport {
             template.requestBody("direct:start", "slow");
             fail("Should fail due timeout");
         } catch (Exception e) {
-            // expected
+            // expected a timeout
+            assertIsInstanceOf(TimeoutException.class, e.getCause().getCause());
+        }
+    }
+
+    @Test
+    public void testSlowLoop() throws Exception {
+        // this calls the slow route and therefore causes a timeout which triggers an exception
+        for (int i = 0; i < 10; i++) {
+            try {
+                log.info(">>> test run " + i + " <<<");
+                template.requestBody("direct:start", "slow");
+                fail("Should fail due timeout");
+            } catch (Exception e) {
+                // expected a timeout
+                assertIsInstanceOf(TimeoutException.class, e.getCause().getCause());
+            }
         }
     }
 

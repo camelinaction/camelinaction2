@@ -1,5 +1,7 @@
 package camelinaction;
 
+import java.util.concurrent.TimeoutException;
+
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -29,7 +31,8 @@ public class SpringCamelHystrixTimeoutTest extends CamelSpringTestSupport {
             template.requestBody("direct:start", "slow");
             fail("Should fail due timeout");
         } catch (Exception e) {
-            // expected
+            // expected a timeout
+            assertIsInstanceOf(TimeoutException.class, e.getCause().getCause());
         }
     }
 }
