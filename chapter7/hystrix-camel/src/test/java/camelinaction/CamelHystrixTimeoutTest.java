@@ -31,21 +31,6 @@ public class CamelHystrixTimeoutTest extends CamelTestSupport {
         }
     }
 
-    @Test
-    public void testSlowLoop() throws Exception {
-        // this calls the slow route and therefore causes a timeout which triggers an exception
-        for (int i = 0; i < 10; i++) {
-            try {
-                log.info(">>> test run " + i + " <<<");
-                template.requestBody("direct:start", "slow");
-                fail("Should fail due timeout");
-            } catch (Exception e) {
-                // expected a timeout
-                assertIsInstanceOf(TimeoutException.class, e.getCause().getCause());
-            }
-        }
-    }
-
     @Override
     protected RoutesBuilder createRouteBuilder() throws Exception {
         return new RouteBuilder() {
