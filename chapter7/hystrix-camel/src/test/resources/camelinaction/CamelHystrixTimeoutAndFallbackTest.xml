@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+    ">
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <route>
+      <from uri="direct:start"/>
+      <hystrix>
+        <!-- uses 2 second timeout -->
+        <hystrixConfiguration executionTimeoutInMilliseconds="2000"/>
+        <log message="Hystrix processing start: ${threadName}"/>
+        <toD uri="direct:${body}"/>
+        <log message="Hystrix processing end: ${threadName}"/>
+        <onFallback>
+          <!-- use fallback if there was an exception or timeout -->
+          <log message="Hystrix fallback start: ${threadName}"/>
+          <transform>
+            <constant>Fallback response</constant>
+          </transform>
+          <log message="Hystrix fallback end: ${threadName}"/>
+        </onFallback>
+      </hystrix>
+      <log message="After Hystrix ${body}"/>
+    </route>
+
+    <!-- this is a fast route and takes 1 second to respond -->
+    <route>
+      <from uri="direct:fast"/>
+      <log message="Fast processing start: ${threadName}"/>
+      <delay>
+        <constant>1000</constant>
+      </delay>
+      <transform>
+        <constant>Fast response</constant>
+      </transform>
+      <log message="Fast processing end: ${threadName}"/>
+    </route>
+
+    <!-- this is a slow route and takes 3 second to respond -->
+    <route>
+      <from uri="direct:slow"/>
+      <log message="Slow processing start: ${threadName}"/>
+      <delay>
+        <constant>3000</constant>
+      </delay>
+      <transform>
+        <constant>Slow response</constant>
+      </transform>
+      <log message="Slow processing end: ${threadName}"/>
+    </route>
+
+  </camelContext>
+
+</beans>
