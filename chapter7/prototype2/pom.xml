@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>chapter7</artifactId>
+    <version>2.0.0</version>
+  </parent>
+
+  <artifactId>chapter7-prototype2</artifactId>
+  <packaging>pom</packaging>
+  <name>Camel in Action 2 :: Chapter 7 :: Prototype 2</name>
+
+  <modules>
+    <module>cart2</module>
+    <module>inventory2</module>
+    <module>rating2</module>
+    <module>recommend2</module>
+    <module>rules2</module>
+  </modules>
+
+</project>
+

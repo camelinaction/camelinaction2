@@ -20,6 +20,7 @@
     <module>hystrix</module>
     <module>hystrix-camel</module>
     <module>prototype</module>
+    <module>prototype2</module>
     <module>springboot</module>
     <module>springboot-camel</module>
     <module>springboot-rest-camel</module>
