@@ -15,15 +15,20 @@ import org.apache.camel.converter.jaxb.JaxbDataFormat;
 @ApplicationScoped
 public class InventoryRoute extends RouteBuilder {
 
-    // TODO: add circuit breaker with fallback that returns a fixed/cached response
-
     @Override
     public void configure() throws Exception {
+        JaxbDataFormat jaxb = new JaxbDataFormat();
+        jaxb.setContextPath("camelinaction");
+
         from("direct:inventory")
-            // call the legacy system using JMS
-            .to("jms:queue:inventory")
-            // the returned data is in XML format so convert that to POJO using JAXB
-            .unmarshal().jaxb("camelinaction");
+            .hystrix()
+                // call the legacy system using JMS
+                .to("jms:queue:inventory")
+                // the returned data is in XML format so convert that to POJO using JAXB
+                .unmarshal(jaxb)
+            .onFallback()
+                // fallback and read inventory from classpath which is in XML format
+                .transform().constant("resource:classpath:fallback-inventory.xml");
     }
 
     /**

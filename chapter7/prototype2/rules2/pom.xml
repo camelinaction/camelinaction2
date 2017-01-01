@@ -53,6 +53,11 @@
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>camel-jaxb</artifactId>
     </dependency>
+    <!-- camel-hystrix is provide in the camel-other WildFly fraction -->
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>camel-other</artifactId>
+    </dependency>
     <!-- Wildfly Swarm Fractions -->
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
