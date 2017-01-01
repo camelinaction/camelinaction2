@@ -25,7 +25,7 @@ public class ShoppingCartService {
         return cartIds;
     }
 
-    public String emptyCart() {
+    public String emptyCart(String cartUrl, String id) {
         return "";
     }
 

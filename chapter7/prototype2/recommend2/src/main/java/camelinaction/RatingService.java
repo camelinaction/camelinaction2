@@ -33,6 +33,7 @@ public class RatingService {
             if (dto.getItemNo() == 999) {
                 dto.setRating(10);
             }
+            dtos[i] = dto;
         }
 
         return dtos;

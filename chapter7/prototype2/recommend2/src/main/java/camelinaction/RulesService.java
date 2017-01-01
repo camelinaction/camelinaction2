@@ -18,11 +18,11 @@ public class RulesService {
     public ItemDto[] rules(String rulesUrl, String id, String cartIds) {
         LOG.info("Calling rules service {}", rulesUrl);
         ItemDto[] items = restTemplate.getForObject(rulesUrl, ItemDto[].class, id, cartIds);
-        LOG.info("Inventory items {}", items);
+        LOG.info("Inventory items {}", (Object[]) items);
         return items;
     }
 
-    public ItemDto[] standardItems() {
+    public ItemDto[] standardItems(String rulesUrl, String id, String cartIds) {
         // a special item to use as fallback
         ItemDto special = new ItemDto();
         special.setItemNo(999);
