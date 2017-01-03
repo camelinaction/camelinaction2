@@ -1,5 +1,5 @@
-chapter7-prototype-cart
------------------------
+chapter7-prototype2-cart
+------------------------
 
 Shopping cart microservice.
 

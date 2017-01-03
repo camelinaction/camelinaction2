@@ -1,5 +1,5 @@
-chapter7-prototype-rating
--------------------------
+chapter7-prototype2-rating
+--------------------------
 
 SaaS rating microservice.
 

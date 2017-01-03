@@ -1,5 +1,5 @@
-chapter7-prototype-rules
-------------------------
+chapter7-prototype2-rules
+-------------------------
 
 Rules Engine microservice.
 
