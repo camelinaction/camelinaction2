@@ -17,7 +17,7 @@
     <dependency>
       <groupId>com.netflix.hystrix</groupId>
       <artifactId>hystrix-core</artifactId>
-      <version>1.5.8</version>
+      <version>${hystrix-version}</version>
     </dependency>
 
     <dependency>
