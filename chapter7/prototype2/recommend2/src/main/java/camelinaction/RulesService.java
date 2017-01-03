@@ -28,6 +28,7 @@ public class RulesService {
         special.setItemNo(999);
         special.setDescription("Special Rider Auto Part premium service");
         special.setName("special");
+        special.setNumber(100);
 
         return new ItemDto[]{special};
     }

@@ -37,10 +37,12 @@ public class RulesController {
         ItemsDto inventory = producer.request(ItemsDto.class);
 
         // filter out what we already have in the shopping cart
-        for (ItemDto item : inventory.getItems()) {
-            boolean duplicate = cartIds != null && cartIds.contains("" + item.getItemNo());
-            if (!duplicate) {
-                answer.add(item);
+        if (inventory != null) {
+            for (ItemDto item : inventory.getItems()) {
+                boolean duplicate = cartIds != null && cartIds.contains("" + item.getItemNo());
+                if (!duplicate) {
+                    answer.add(item);
+                }
             }
         }
 

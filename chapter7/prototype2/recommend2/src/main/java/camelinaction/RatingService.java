@@ -29,10 +29,6 @@ public class RatingService {
             RatingDto dto = new RatingDto();
             dto.setItemNo(Integer.valueOf(id));
             dto.setRating(6);
-            // if its the special item then a high rating
-            if (dto.getItemNo() == 999) {
-                dto.setRating(10);
-            }
             dtos[i] = dto;
         }
 

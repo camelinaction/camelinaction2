@@ -40,7 +40,8 @@ public class RecommendController {
 
     @RequestMapping(value = "recommend", method = RequestMethod.GET, produces = "application/json")
     public List<ItemDto> recommend(HttpSession session) {
-        String id = session.getId();
+        // make things easier and hardcode the session id to the same
+        String id = "123";
         LOG.info("HTTP session id {}", id);
 
         // get the current item in the shopping cart associated with the HTTP session id
