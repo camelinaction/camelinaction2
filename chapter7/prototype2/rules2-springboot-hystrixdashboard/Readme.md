@@ -12,6 +12,10 @@ This time we have enabled support for Hystrix Dashboard which can be streamed fr
 
     http://localhost:8181/hystrix.stream
 
+![Hystrix Dashboard](img/dashboard.png)
+
+### How to run
+
 You need to download and run the Hystrix Dashboard from:
 
     https://github.com/kennedyoliveira/standalone-hystrix-dashboard
