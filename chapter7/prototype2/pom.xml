@@ -19,6 +19,7 @@
     <module>rating2</module>
     <module>recommend2</module>
     <module>rules2</module>
+    <module>rules2-springboot</module>
   </modules>
 
 </project>
