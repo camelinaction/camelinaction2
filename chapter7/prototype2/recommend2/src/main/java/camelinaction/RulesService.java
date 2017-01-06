@@ -17,7 +17,12 @@ public class RulesService {
     @HystrixCommand(fallbackMethod = "standardItems")
     public ItemDto[] rules(String rulesUrl, String id, String cartIds) {
         LOG.info("Calling rules service {}", rulesUrl);
-        ItemDto[] items = restTemplate.getForObject(rulesUrl, ItemDto[].class, id, cartIds);
+        ItemDto[] items;
+        // if not existing items in the shopping cart then use item 999 as special
+        if (cartIds == null || cartIds.isEmpty()) {
+            cartIds = "999";
+        }
+        items = restTemplate.getForObject(rulesUrl, ItemDto[].class, id, cartIds);
         LOG.info("Inventory items {}", (Object[]) items);
         return items;
     }

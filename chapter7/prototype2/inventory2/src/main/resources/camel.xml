@@ -8,6 +8,7 @@
     <!-- Camel route to do request/reply over JMS calling the inventory bean -->
     <route id="inventory">
       <from uri="activemq:queue:inventory"/>
+      <log message="Requesting inventory"/>
       <to uri="bean:inventory"/>
     </route>
   </camelContext>

@@ -21,6 +21,7 @@ public class InventoryRoute extends RouteBuilder {
         jaxb.setContextPath("camelinaction");
 
         from("direct:inventory")
+            .log("Calling inventory service using JMS")
             .hystrix()
                 // call the legacy system using JMS
                 .to("jms:queue:inventory")
