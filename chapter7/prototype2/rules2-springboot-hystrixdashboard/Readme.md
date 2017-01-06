@@ -1,5 +1,5 @@
-chapter7-prototype2-rules-springboot
-------------------------------------
+chapter7-prototype2-rules-springboot-hystrixdashboard
+-----------------------------------------------------
 
 Rules Engine microservice.
 
@@ -8,18 +8,42 @@ and filter which items to recommend to users whom are shopping the Rider Auto Pa
 
 This example is using Spring Boot instead of WildFly Swarm as the original rules service.
 
-You can run this service using:
+This time we have enabled support for Hystrix Dashboard which can be streamed from the following url:
 
-    mvn spring-boot:run
-    
-This microservice is running Spring Boot with Camel exposing a REST service at:
-    
-    http://localhost:8181/api/rules
+    http://localhost:8181/hystrix.stream
 
-For example to get rules of item 123 and 456
+You need to download and run the Hystrix Dashboard from:
 
-    http://localhost:8181/api/rules/123,456
+    https://github.com/kennedyoliveira/standalone-hystrix-dashboard
+   
+Which is a standalone JAR file you run with:
+   
+    java -jar standalone-hystrix-dashboard-1.5.6-all.jar
+   
+And then open web browser on:
+   
+    http://localhost:7979/hystrix-dashboard/
+   
+And in the UI you type in:
+   
+    http://localhost:8181/hystrix.stream
       
-This application is implemented using Spring REST to expose the REST service
-and then calling a Camel route which then integrates with a backend legacy inventory system using JMS.
+And click the `Add stream` button. 
+
+Then button 'Monitor Streams' takes you to the Hystrix Dashboard where you should see the Hystrix EIP
+       which are used by the Camel route to call the downstream inventory service.
+       
+Then start the inventory service in a separate shell
+       
+       cd chapter7/prototype2/inventory2
+       mvn compile exec:java
+       
+Then you can run the little script to put some load on the system
+       
+       ./hitme.sh
+       
+And then you can look at the Hystrix Dashboard, and then try to stop and start the inventory service
+       to trigger failures and see how the circuit breaker behaves accordingly.
+
+
 
