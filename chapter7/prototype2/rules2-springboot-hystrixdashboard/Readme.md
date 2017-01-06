@@ -18,7 +18,7 @@ This time we have enabled support for Hystrix Dashboard which can be streamed fr
 
 You need to download and run the Hystrix Dashboard from:
 
-    https://github.com/kennedyoliveira/standalone-hystrix-dashboard
+  https://github.com/kennedyoliveira/standalone-hystrix-dashboard
    
 Which is a standalone JAR file you run with:
    
@@ -34,7 +34,7 @@ And in the UI you type in:
       
 And click the `Add stream` button. 
 
-Then button 'Monitor Streams' takes you to the Hystrix Dashboard where you should see the Hystrix EIP
+Then button `Monitor Streams` takes you to the Hystrix Dashboard where you should see the Hystrix EIP
        which are used by the Camel route to call the downstream inventory service.
        
 Then start the inventory service in a separate shell
