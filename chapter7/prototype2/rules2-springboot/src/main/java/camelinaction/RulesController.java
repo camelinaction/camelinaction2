@@ -1,9 +1,8 @@
 package camelinaction;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.camel.FluentProducerTemplate;
 import org.apache.camel.Produce;
@@ -30,24 +29,16 @@ public class RulesController {
 
     @RequestMapping(value = "rules/{cartIds}", method = RequestMethod.GET, produces = "application/json")
     public List<ItemDto> rules(@PathVariable String cartIds) {
-        List<ItemDto> answer = new ArrayList<>();
-
         // find all items in inventory (use Camel to call legacy system)
         ItemsDto inventory = producer.request(ItemsDto.class);
 
-        // filter out what we already have in the shopping cart
-        if (inventory != null) {
-            for (ItemDto item : inventory.getItems()) {
-                boolean duplicate = cartIds != null && cartIds.contains("" + item.getItemNo());
-                if (!duplicate) {
-                    answer.add(item);
-                }
-            }
-        }
-
-        // sort the list based on the ones we have the most of
-        Collections.sort(answer, new ItemSorter());
-        return answer;
+        return inventory.getItems().stream()
+            // filter out duplicate from the shopping cart
+            .filter((i) -> cartIds == null || !cartIds.contains("" + i.getItemNo()))
+            // sort the items
+            .sorted(new ItemSorter())
+            // and collect to the list to use for response
+            .collect(Collectors.toList());
     }
 
     /**
