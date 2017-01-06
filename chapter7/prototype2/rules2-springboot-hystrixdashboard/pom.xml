@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>chapter7-prototype2</artifactId>
+    <version>2.0.0</version>
+  </parent>
+
+  <artifactId>chapter7-rules2-springboot-hystrixdashboard</artifactId>
+  <name>Camel in Action 2 :: Chapter 7 :: Prototype 2 :: Rules Microservice with Hystrix Dashboard</name>
+
+  <properties>
+    <spring-cloud-version>1.2.3.RELEASE</spring-cloud-version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- import Spring Boot before Camel -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- import Camel -->
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-parent</artifactId>
+        <version>${camel-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- spring-boot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-activemq</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <!-- spring-boot hystrix -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-hystrix</artifactId>
+      <version>${spring-cloud-version}</version>
+    </dependency>
+
+    <!-- camel -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-hystrix-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jms-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jaxb-starter</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <!-- use Java 8 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <!-- allows to run with mvn spring-boot:run -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot-version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <!-- to build fat-jar -->
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+

@@ -20,6 +20,7 @@
     <module>recommend2</module>
     <module>rules2</module>
     <module>rules2-springboot</module>
+    <module>rules2-springboot-hystrixdashboard</module>
   </modules>
 
 </project>
