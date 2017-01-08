@@ -47,6 +47,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-activemq</artifactId>
     </dependency>
+    <!-- actuator is needed to support hystrix streams for the dashboard -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
