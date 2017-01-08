@@ -1,9 +1,9 @@
-Chapter 15 - Running Camel via WildFly-Camel
+Chapter 15 - Running Camel with CDI
 ============================================
 
-This example shows how to run Camel using the WildFly-Camel subsystem.
+This example shows how to deploy Camel to WildFly using CDI.
 
-You can package this example as a skinny WAR (WildFly-Camel manages the dependencies) using:
+You can package this example using:
 
     mvn install -Pdeploy
 
