@@ -24,6 +24,7 @@
         <module>wildfly-camel</module>
         <module>osgi</module>
         <module>osgi-msf</module>
+        <module>cdi</module>
     </modules>
 </project>
 
