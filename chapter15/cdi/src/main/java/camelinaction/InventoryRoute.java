@@ -28,12 +28,6 @@ public class InventoryRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        // this is the webservice route which is started last
-        from("cxf:bean:inventoryEndpoint")
-            .routeId("webservice").startupOrder(3)
-            .to("direct:update")
-            .transform().method("inventoryService", "replyOk");
-
         // this is the file route which is started 2nd last
         from("file://target/inventory/updates")
             .routeId("file").startupOrder(2)
