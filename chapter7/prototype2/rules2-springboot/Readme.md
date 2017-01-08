@@ -1,6 +1,8 @@
 chapter7-prototype2-rules-springboot
 ------------------------------------
 
+## 7.4.9 Using Camel Hystrix with Spring Boot
+
 Rules Engine microservice.
 
 This service is simulating a rules engine used by the recommendation service to rank

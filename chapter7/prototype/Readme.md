@@ -29,5 +29,5 @@ To run this prototype you need to start all the microservices from their own com
     cd recommend
     mvn spring-boot:run
     
-Then you can open a web browser and open `http://localhost:8080/recommend`
+Then you can open a web browser and open `http://localhost:8080/api/recommend`
 

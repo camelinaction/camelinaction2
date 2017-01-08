@@ -16,22 +16,22 @@ For this 2nd prototype the microservices are designed with fault tolerance using
 
 To run this prototype you need to start all the microservices from their own command shell:
 
-    cd cart
+    cd cart2
     mvn compile exec:java
     
-    cd inventory
+    cd inventory2
     mvn compile exec:java
     
-    cd rating
+    cd rating2
     mvn spring-boot:run
     
-    cd rules
+    cd rules2
     mvn wildfly-swarm:run
     
-    cd recommend
+    cd recommend2
     mvn spring-boot:run
     
-Then you can open a web browser and open `http://localhost:8080/recommend`
+Then you can open a web browser and open `http://localhost:8080/api/recommend`
 
 Because the microservices are fault tolerant, you should be able to stop individual microservices
 and have the system continue running and deal with those failures in a graceful way using fallbacks.

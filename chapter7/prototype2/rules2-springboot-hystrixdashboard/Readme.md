@@ -1,6 +1,8 @@
 chapter7-prototype2-rules-springboot-hystrixdashboard
 -----------------------------------------------------
 
+## 7.4.10 The Hystrix Dashboard
+
 Rules Engine microservice.
 
 This service is simulating a rules engine used by the recommendation service to rank
