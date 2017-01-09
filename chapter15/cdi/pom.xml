@@ -11,7 +11,7 @@
 
   <artifactId>riderautoparts-cdi</artifactId>
   <name>Camel in Action 2 :: Chapter 15 :: Running Camel in WildFly using CDI</name>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <dependencies>
 
@@ -42,7 +42,7 @@
 
   <build>
     <plugins>
-
+<!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -51,7 +51,7 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
-
+-->
       <plugin>
         <groupId>org.wildfly.plugins</groupId>
         <artifactId>wildfly-maven-plugin</artifactId>
