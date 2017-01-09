@@ -16,14 +16,9 @@
  */
 package camelinaction;
 
-import camelinaction.inventory.UpdateInventoryInput;
 import org.apache.camel.builder.RouteBuilder;
+import camelinaction.inventory.UpdateInventoryInput;
 
-/**
- * Java DSL routes for the inventory examples showing how to use startupOrder.
- *
- * @version $Revision$
- */
 public class InventoryRoute extends RouteBuilder {
 
     @Override

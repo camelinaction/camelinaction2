@@ -20,11 +20,12 @@
       <artifactId>camel-cdi</artifactId>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>javax.enterprise</groupId>
-      <artifactId>cdi-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
+<dependency>
+   <groupId>javax.enterprise</groupId>
+   <artifactId>cdi-api</artifactId>
+   <version>1.2</version>
+   <scope>provided</scope>
+</dependency>
 
     <dependency>
       <groupId>log4j</groupId>
