@@ -20,12 +20,12 @@
       <artifactId>camel-cdi</artifactId>
       <scope>provided</scope>
     </dependency>
-<dependency>
-   <groupId>javax.enterprise</groupId>
-   <artifactId>cdi-api</artifactId>
-   <version>1.2</version>
-   <scope>provided</scope>
-</dependency>
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <version>1.2</version>
+      <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>log4j</groupId>
@@ -42,16 +42,6 @@
 
   <build>
     <plugins>
-<!--
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
--->
       <plugin>
         <groupId>org.wildfly.plugins</groupId>
         <artifactId>wildfly-maven-plugin</artifactId>
