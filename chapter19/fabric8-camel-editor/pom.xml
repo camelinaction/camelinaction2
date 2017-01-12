@@ -11,7 +11,7 @@
 
   <packaging>war</packaging>
   <artifactId>chapter19-fabric8-camel-editor</artifactId>
-  <name>Camel in Action 2 :: Chapter 19 :: Camel editor using fabric8</name>
+  <name>Camel in Action 2 :: Chapter 19 :: Camel editor using fabric8 (deprecated)</name>
 
   <dependencyManagement>
     <dependencies>

@@ -19,7 +19,7 @@ and then afterwards this module using Maven:
 
 Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.x) run the following
 
-    feature:repo-add camel 2.17.3
+    feature:repo-add camel 2.18.1
     feature:install camel
     feature:install camel-quartz
 
