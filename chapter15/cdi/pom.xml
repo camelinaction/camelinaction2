@@ -13,9 +13,9 @@
   <name>Camel in Action 2 :: Chapter 15 :: Running Camel in WildFly using CDI</name>
   <packaging>jar</packaging>
 
-    <properties>
-        <version.wildfly.camel>4.4.0</version.wildfly.camel>
-    </properties>
+  <properties>
+    <version.wildfly.camel>4.4.0</version.wildfly.camel>
+  </properties>
 
   <dependencies>
 
@@ -29,11 +29,11 @@
       <artifactId>cdi-api</artifactId>
       <scope>provided</scope>
     </dependency>
-        <dependency>
-            <groupId>org.wildfly.camel</groupId>
-            <artifactId>wildfly-camel-subsystem-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
+    <dependency>
+      <groupId>org.wildfly.camel</groupId>
+      <artifactId>wildfly-camel-subsystem-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>log4j</groupId>
