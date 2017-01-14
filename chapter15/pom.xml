@@ -21,7 +21,7 @@
         <module>war</module>
         <module>war-servlet</module>
         <module>war-wildfly</module>
-        <module>wildfly-camel</module>
+        <module>wildfly-camel-war</module>
         <module>osgi</module>
         <module>osgi-msf</module>
         <module>cdi</module>

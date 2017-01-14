@@ -9,7 +9,7 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>riderautoparts-war-jboss</artifactId>
+  <artifactId>riderautoparts-war-wildfly</artifactId>
   <name>Camel in Action 2 :: Chapter 15 :: Running Camel as web application in WildFly</name>
   <packaging>war</packaging>
 
