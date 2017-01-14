@@ -20,7 +20,7 @@
         <module>standalone</module>
         <module>war</module>
         <module>war-servlet</module>
-        <module>war-jboss</module>
+        <module>war-wildfly</module>
         <module>wildfly-camel</module>
         <module>osgi</module>
         <module>osgi-msf</module>
