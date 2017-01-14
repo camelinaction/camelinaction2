@@ -10,7 +10,7 @@
   </parent>
 
   <artifactId>riderautoparts-war-jboss</artifactId>
-  <name>Camel in Action 2 :: Chapter 15 :: Running Camel as web application in JBoss AS</name>
+  <name>Camel in Action 2 :: Chapter 15 :: Running Camel as web application in WildFly</name>
   <packaging>war</packaging>
 
   <dependencies>
