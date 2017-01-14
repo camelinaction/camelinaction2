@@ -9,7 +9,7 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>riderautoparts-wildfly-camel</artifactId>
+  <artifactId>riderautoparts-wildfly-camel-war</artifactId>
   <name>Camel in Action 2 :: Chapter 15 :: Running Camel via WildFly-Camel Subsystem</name>
   <packaging>war</packaging>
 
