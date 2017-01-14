@@ -19,7 +19,6 @@ package camelinaction;
 import java.util.Random;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import camelinaction.inventory.UpdateInventoryInput;
 import camelinaction.inventory.UpdateInventoryOutput;
@@ -29,7 +28,6 @@ import camelinaction.inventory.UpdateInventoryOutput;
  *
  * @version $Revision$
  */
-@Singleton
 @Named("inventoryService")
 public class InventoryService {
 

@@ -13,6 +13,10 @@
   <name>Camel in Action 2 :: Chapter 15 :: Running Camel in WildFly using CDI</name>
   <packaging>jar</packaging>
 
+    <properties>
+        <version.wildfly.camel>4.4.0</version.wildfly.camel>
+    </properties>
+
   <dependencies>
 
     <dependency>
@@ -23,22 +27,43 @@
     <dependency>
       <groupId>javax.enterprise</groupId>
       <artifactId>cdi-api</artifactId>
-      <version>1.2</version>
       <scope>provided</scope>
     </dependency>
+        <dependency>
+            <groupId>org.wildfly.camel</groupId>
+            <artifactId>wildfly-camel-subsystem-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <scope>provided</scope>
     </dependency>
 
   </dependencies>
+    <!-- Dependency Management -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- WildFly Camel -->
+            <dependency>
+                <groupId>org.wildfly.camel</groupId>
+                <artifactId>wildfly-camel</artifactId>
+                <version>${version.wildfly.camel}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.camel</groupId>
+                <artifactId>wildfly-camel-patch</artifactId>
+                <version>${version.wildfly.camel}</version>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
   <build>
     <plugins>

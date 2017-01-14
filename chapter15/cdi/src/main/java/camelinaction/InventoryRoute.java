@@ -18,7 +18,9 @@ package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
 import camelinaction.inventory.UpdateInventoryInput;
+import org.wildfly.extension.camel.CamelAware;
 
+@CamelAware
 public class InventoryRoute extends RouteBuilder {
 
     @Override
