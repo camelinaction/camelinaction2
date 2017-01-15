@@ -11,10 +11,10 @@ First start Apache Karaf such as using the following command:
 
 Then install Camel in Karaf:
 
-    feature:repo-add camel 2.16.0
+    feature:repo-add camel 2.18.1
     feature:install camel
 
-where `2.16.0` is the Camel version to install.
+where `2.18.1` is the Camel version to install.
 
 Now we need to install a Camel application in Karaf.
 At first we need to build this example:
