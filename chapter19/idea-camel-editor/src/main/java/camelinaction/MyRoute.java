@@ -1,11 +1,12 @@
 package camelinaction;
 
-import org.apache.camel.spring.boot.FatJarRouter;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.apache.camel.builder.RouteBuilder;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
-public class MySpringBootRouter extends FatJarRouter {
+/**
+ * A simple Camel route
+ */
+public class MyRoute extends RouteBuilder {
 
     @Override
     public void configure() {

@@ -9,7 +9,6 @@
     <version>2.0.0</version>
   </parent>
 
-  <packaging>war</packaging>
   <artifactId>chapter19-idea-camel-editor</artifactId>
   <name>Camel in Action 2 :: Chapter 19 :: Intellij IDEA Camel editor</name>
 
@@ -38,6 +37,11 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
+    <!-- use undertow instead of tomcat as its better -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-undertow</artifactId>
+    </dependency>
 
     <!-- Testing -->
     <dependency>
@@ -50,21 +54,9 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-          <attachClasses>true</attachClasses>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot-version}</version>
-        <configuration>
-          <mainClass>org.apache.camel.spring.boot.FatJarRouter</mainClass>
-        </configuration>
         <executions>
           <execution>
             <goals>
