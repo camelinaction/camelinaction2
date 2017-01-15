@@ -40,15 +40,15 @@ public class ERPEndpoint extends DefaultEndpoint {
         return true;
     }
 
-    @ManagedAttribute(description = "Whether to use verbose activity logging")
+    @ManagedAttribute(description = "Verbose logging enabled")
     public boolean isVerbose() {
         return verbose;
     }
 
     /**
-     * Whether to use verbose activity logging
+     * Verbose logging enabled
      */
-    @ManagedAttribute(description = "Whether to use verbose activity logging")
+    @ManagedAttribute(description = "Verbose logging enabled")
     public void setVerbose(boolean verbose) {
         this.verbose = verbose;
     }
