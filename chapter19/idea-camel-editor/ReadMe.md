@@ -1,5 +1,5 @@
-Chapter19 - fabric8 Camel editor
---------------------------------
+Chapter19 - Camel IDEA editor
+-----------------------------
 
 ### 19.1.2 Camel IDEA plugin
 
