@@ -10,8 +10,8 @@
   </parent>
 
   <packaging>war</packaging>
-  <artifactId>chapter19-fabric8-camel-editor</artifactId>
-  <name>Camel in Action 2 :: Chapter 19 :: Camel editor using fabric8 (deprecated)</name>
+  <artifactId>chapter19-idea-camel-editor</artifactId>
+  <name>Camel in Action 2 :: Chapter 19 :: Intellij IDEA Camel editor</name>
 
   <dependencyManagement>
     <dependencies>
