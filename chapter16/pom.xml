@@ -27,7 +27,6 @@
         <module>metrics</module>
         <module>notifier</module>
         <module>tracer</module>
-        <module>spring-boot</module>
     </modules>
 
 </project>
