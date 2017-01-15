@@ -10,7 +10,7 @@ public class MyRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-        from("timer:trigger")
+        from("timer:trigger?delay=500")
                 .transform().simple("ref:myBean")
                 .to("log:out");
     }
