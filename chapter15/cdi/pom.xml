@@ -45,25 +45,25 @@
     </dependency>
 
   </dependencies>
-    <!-- Dependency Management -->
-    <dependencyManagement>
-        <dependencies>
-            <!-- WildFly Camel -->
-            <dependency>
-                <groupId>org.wildfly.camel</groupId>
-                <artifactId>wildfly-camel</artifactId>
-                <version>${version.wildfly.camel}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.camel</groupId>
-                <artifactId>wildfly-camel-patch</artifactId>
-                <version>${version.wildfly.camel}</version>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+  <!-- Dependency Management -->
+  <dependencyManagement>
+    <dependencies>
+      <!-- WildFly Camel -->
+      <dependency>
+        <groupId>org.wildfly.camel</groupId>
+        <artifactId>wildfly-camel</artifactId>
+        <version>${version.wildfly.camel}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.wildfly.camel</groupId>
+        <artifactId>wildfly-camel-patch</artifactId>
+        <version>${version.wildfly.camel}</version>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <plugins>
