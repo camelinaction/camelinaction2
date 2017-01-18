@@ -31,7 +31,7 @@
             <to uri="file:target/mail/backup"/>
             <log message="Trying to send mail to ${header.to}"/>
             <bean ref="orderService" method="sendMail"/>
-            <log message="Mail send to ${header.to}"/>
+            <log message="Mail sent to ${header.to}"/>
         </route>
 
     </camelContext>

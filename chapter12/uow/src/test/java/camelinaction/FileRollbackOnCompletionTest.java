@@ -60,7 +60,7 @@ public class FileRollbackOnCompletionTest extends CamelTestSupport {
                     .to("file:target/mail/backup")
                     .log("Trying to send mail to ${header.to}")
                     .bean(OrderService.class, "sendMail")
-                    .log("Mail send to ${header.to}");
+                    .log("Mail sent to ${header.to}");
             }
         };
     }
