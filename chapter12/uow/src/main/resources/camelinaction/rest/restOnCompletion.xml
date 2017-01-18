@@ -25,7 +25,7 @@
     <restConfiguration component="netty4-http" bindingMode="json" host="localhost" port="8080" contextPath="service"/>
 
     <!-- use rest-dsl to define the rest service to get the order -->
-    <rest path="book" produces="application/json">
+    <rest produces="application/json">
       <get uri="/order/{id}">
         <to uri="bean:orderService?method=getOrder"/>
       </get>

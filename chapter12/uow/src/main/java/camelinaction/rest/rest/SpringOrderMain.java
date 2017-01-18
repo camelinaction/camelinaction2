@@ -3,7 +3,7 @@ package camelinaction.rest.rest;
 import org.apache.camel.spring.Main;
 
 /**
- * Main class using camel-spring to bootup the order service using Sprig.
+ * Main class using camel-spring to boot the order service using XML DSL.
  */
 public class SpringOrderMain {
 

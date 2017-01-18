@@ -20,3 +20,8 @@ The example can be run with:
     mvn compile exec:java
     mvn compile exec:java -Pspring
 
+You can call the service from a shell using curl
+
+    curl -i http://localhost:8080/service/order/123
+
+Notice we use the `-i` parameter to show the returned HTTP headers which should include the generated token.

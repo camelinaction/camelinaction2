@@ -3,7 +3,7 @@ package camelinaction.rest.rest;
 import org.apache.camel.main.Main;
 
 /**
- * Main class using camel-core to bootup the order service.
+ * Main class using camel-core to boot the order service using Java DSL.
  */
 public class JavaOrderMain {
 

@@ -10,7 +10,7 @@ public class OrderRoute extends RouteBuilder {
         // configure rest to use netty4-http component as the HTTP server component
         // enable json binding mode so we can leverage camel-jackson to bind json to/from pojos
         restConfiguration().component("netty4-http").bindingMode(RestBindingMode.json)
-                // expose the service as localhost:8080/book
+                // expose the service as localhost:8080/service
                 .host("localhost").port(8080).contextPath("service");
 
         // include a token id header, which we insert before the consumer completes
@@ -19,7 +19,7 @@ public class OrderRoute extends RouteBuilder {
                 .setHeader("Token").method("tokenService");
 
         // use rest-dsl to define the rest service to lookup orders
-        rest("service")
+        rest()
             .get("/order/{id}")
                 .to("bean:orderService?method=getOrder");
 
