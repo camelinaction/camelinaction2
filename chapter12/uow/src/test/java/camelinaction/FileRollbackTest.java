@@ -68,6 +68,8 @@ public class FileRollbackTest extends CamelTestSupport {
                             // exchange.addOnCompletion(new FileRollback());
                         }
                     })
+                    // or use Java 8 style with lambda instead of the inlined processor above
+                    // .process(e -> e.addOnCompletion(new FileRollback()))
                     .bean(OrderService.class, "createMail")
                     .log("Saving mail backup file")
                     .to("file:target/mail/backup")

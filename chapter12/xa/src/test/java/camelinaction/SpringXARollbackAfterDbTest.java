@@ -41,7 +41,7 @@ public class SpringXARollbackAfterDbTest extends CamelSpringTestSupport {
         int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
         assertEquals(0, rows);
 
-        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
+        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201603180816</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete with failure

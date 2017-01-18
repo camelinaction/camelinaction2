@@ -44,7 +44,7 @@ public class XARollbackBeforeDbTest extends CamelSpringTestSupport {
         assertEquals(0, rows);
 
         // partner id as 0 will cause rollback
-        String xml = "<?xml version=\"1.0\"?><partner id=\"0\"><date>201503180816</date><code>200</code><time>4387</time></partner>";
+        String xml = "<?xml version=\"1.0\"?><partner id=\"0\"><date>201603180816</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete with failure
