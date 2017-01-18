@@ -7,9 +7,10 @@
     <property name="dataSource" ref="myDataSource"/>
   </bean>
 
-  <bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDataSource" />
+  <bean id="myDataSource" destroy-method="close" class="org.apache.commons.dbcp2.BasicDataSource">
     <property name="url" value="jdbc:derby:partner;create=true" />
+    <!-- connection pool size -->
+    <property name="initialSize" value="3"/>
   </bean>
 
 </beans>
