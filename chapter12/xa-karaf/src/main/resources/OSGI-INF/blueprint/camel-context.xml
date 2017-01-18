@@ -84,6 +84,7 @@
   </bean>
 
   <!-- define the datasource to the database - in this example we use an in memory database using Derby -->
+  <!-- in a real world scenarios you should look for a better JDBC connection pool than Apache DBCP -->
   <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedXADataSource"/>
     <property name="url" value="jdbc:derby:memory:order;create=true"/>
