@@ -53,7 +53,7 @@
 
   <!-- the ConnectionFactory to connect to the JMS broker -->
   <bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-    <property name="brokerURL" value="tcp://localhost:61616"/>
+    <property name="brokerURL" value="vm://localhost"/>
     <!-- when running in karaf the default ActiveMQ broker requires login with karaf/karaf -->
     <property name="userName" value="karaf"/>
     <property name="password" value="karaf"/>

@@ -3,6 +3,12 @@ Chapter 12 - riderautoparts-partner-karaf
 
 This is a Karaf based example of the `riderautoparts-partner` example, which is covered in section 12.1.1 to 12.1.3.
 
+IMPORTANT: Embedded ActiveMQ in Apache Karaf is not a recommended approach.
+Its better to run AcitveMQ as a separate instance with OSGi.
+ Apache ActiveMQ is not so OSGi friendly and has some problems of the latest 5.14.x releases.
+ 
+This example currently does not work! 
+
 
 To try this example you need to first build it
 
@@ -20,7 +26,8 @@ And from the Karaf Shell install the example feature:
 
     feature:install chapter12-riderautoparts-partner-karaf
 
-Then wait a while, and if all is okay you should see a Camel application if you type
+Then wait a while. Despite Karaf being a dynamic container its a good idea to restart Karaf
+because we install a whole lot of stuff in one goal which can cause it to not work.
 
     camel:context-list
 
@@ -39,7 +46,7 @@ Notice the first time you need to configured login credentials, which hawtio sho
 Use `karaf/karaf` as user name and password, and close the prefernce by clicking the X button in the top righter corner.
 
 
-If all goes well, the message gets dequed from the ActiveMQ queue and processed by Camel and inserted into the database.
+If all goes well, the message gets de-queued from the ActiveMQ queue and processed by Camel and inserted into the database.
 
 In the Karaf log you will see something like:
 

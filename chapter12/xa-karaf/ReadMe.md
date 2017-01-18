@@ -3,12 +3,21 @@ Chapter 12 - xa-karaf
 
 This is a Karaf based example of the `xa` example, which is covered in section 12.3.2
 
+IMPORTANT: Embedded ActiveMQ in Apache Karaf is not a recommended approach.
+Its better to run AcitveMQ as a separate instance with OSGi.
+ Apache ActiveMQ is not so OSGi friendly and has some problems of the latest 5.14.x releases.
+ 
+This example currently does not work! 
+
+### Building this example
 
 To try this example you need to first build it
 
     mvn clean install
 
-And then start Apache Karaf (such as version 4.0.3)
+### Running Apache Karaf
+
+And then start Apache Karaf (such as version 4.0.8)
 
     bin/karaf
 
@@ -20,33 +29,29 @@ And from the Karaf Shell install the example feature:
 
     feature:install chapter12-xa-karaf
 
-Then wait a while, and if all is okay you should see a Camel application if you type
+Then wait a while. Despite Karaf being a dynamic container its a good idea to restart Karaf
+because we install a whole lot of stuff in one goal which can cause it to not work.
+
+When restarted and if all is good you should see a Camel application if you type
 
     camel:context-list
 
-Then from the hawtio web console you can browse the applicatiom, and send a XML message to the ActiveMQ queue
+Then from the ActiveMQ web console you can send a message to the queue:
 
-    http://localhost:8181/hawtio/
-
-Login using `karaf/karaf` as username and password.
-
+    http://localhost:8161
 
 In the `partners` queue in the ActiveMQ plugin, you can click the `Send` button and send the following XML
 
     <?xml version="1.0"?><partner id="123"><date>201611150815</date><code>200</code><time>4387</time></partner>
 
-Notice the first time you need to configured login credentials, which hawtio shows on the screen in the `Send` dialog.
-Use `karaf/karaf` as user name and password, and close the prefernce by clicking the X button in the top righter corner.
-
-
-If all goes well, the message gets dequed from the ActiveMQ queue and processed by Camel and inserted into the database.
+If all goes well, the message gets de-queued from the ActiveMQ queue and processed by Camel and inserted into the database.
 
 In the Karaf log you will see something like:
 
 ```
-2016-11-21 16:09:02,402 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.16.0 | incoming message <?xml version="1.0"?><partner id="123"><date>201611150815</date><code>200</code><time>4387</time></partner>
-2016-11-21 16:09:02,419 | INFO  | nsumer[partners] | XPathBuilder                     | 74 - org.apache.camel.camel-core - 2.16.0 | Created default XPathFactory org.apache.xpath.jaxp.XPathFactoryImpl@4ada27a1
-2016-11-21 16:09:02,657 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.16.0 | inserted into database
+2016-11-21 16:09:02,402 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.18.1 | incoming message <?xml version="1.0"?><partner id="123"><date>201611150815</date><code>200</code><time>4387</time></partner>
+2016-11-21 16:09:02,419 | INFO  | nsumer[partners] | XPathBuilder                     | 74 - org.apache.camel.camel-core - 2.18.1 | Created default XPathFactory org.apache.xpath.jaxp.XPathFactoryImpl@4ada27a1
+2016-11-21 16:09:02,657 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.18.1 | inserted into database
 ```
 
 If you see `inserted into database` then it worked.

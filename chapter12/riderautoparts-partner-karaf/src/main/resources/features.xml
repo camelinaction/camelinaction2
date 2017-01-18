@@ -1,12 +1,12 @@
 <features>
-  <repository>mvn:org.apache.activemq/activemq-karaf/${activemq-version}/xml/features</repository>
+  <repository>mvn:org.apache.activemq/activemq-karaf/${activemq-karaf-version}/xml/features</repository>
   <repository>mvn:org.apache.camel.karaf/apache-camel/${camel-version}/xml/features</repository>
   <repository> mvn:io.hawt/hawtio-karaf/${hawtio-version}/xml/features</repository>
 
   <feature name='chapter12-riderautoparts-partner-karaf' version='${project.version}'>
     <feature version="${hawtio-version}">hawtio-offline</feature>
-    <feature version="${activemq-version}">activemq-broker-noweb</feature>
-    <feature version="${activemq-version}">activemq-camel</feature>
+    <feature version="${activemq-karaf-version}">activemq-broker-noweb</feature>
+    <feature version="${activemq-karaf-version}">activemq-camel</feature>
     <feature version="${camel-version}">camel</feature>
     <feature version="${camel-version}">camel-jms</feature>
     <feature version="${camel-version}">camel-sql</feature>
