@@ -57,41 +57,41 @@ b7d28c875855
 When running this example and following the instructions you should see something similar to the sample output below
 
     [INFO] --- exec-maven-plugin:1.1.1:java (default-cli) @ chapter11-bridge ---
-    2015-05-11 20:08:19,502 [rderMain.main()] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) is starting
-    2015-05-11 20:08:19,732 [rderMain.main()] INFO  JpaComponent                   - Using EntityManagerFactory configured: org.springframework.orm.jpa.LocalEntityManagerFactoryBean@4befe1a1
-    2015-05-11 20:08:19,734 [rderMain.main()] WARN  JpaComponent                   - No TransactionManager has been configured on this JpaComponent. Each JpaEndpoint will auto create their own JpaTransactionManager.
-    2015-05-11 20:08:19,817 [rderMain.main()] INFO  SpringCamelContext             - AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
-    2015-05-11 20:08:19,817 [rderMain.main()] INFO  SpringCamelContext             - StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
-    2015-05-11 20:08:20,366 [rderMain.main()] INFO  SpringCamelContext             - Route: books started and consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
-    2015-05-11 20:08:20,367 [rderMain.main()] INFO  SpringCamelContext             - Total 1 routes, of which 1 is started.
-    2015-05-11 20:08:20,368 [rderMain.main()] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) started in 0.867 seconds
-    2015-05-11 20:08:20,369 [rderMain.main()] INFO  MainSupport                    - Apache Camel 2.16.0 starting
-    2015-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
-    2015-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - Make sure to have Postgres database up and running, as configured in the src/test/resources/META-INF/persistence.xml file
-    2015-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
-    2015-05-11 20:08:21,529 [ction.BookOrder] INFO  books                          - Incoming book order 401 - 1 of Camel in Action 2nd ed
-    2015-05-11 20:08:25,621 [rderMain.main()] INFO  BookOrderExample               - ... sleeping for 5 seconds and then stopping the route
-    2015-05-11 20:08:25,622 [rderMain.main()] INFO  DefaultShutdownStrategy        - Starting to graceful shutdown 1 routes (timeout 300 seconds)
-    2015-05-11 20:08:25,626 [ - ShutdownTask] INFO  DefaultShutdownStrategy        - Waiting as there are still 1 inflight and pending exchanges to complete, timeout in 300 seconds.
-    2015-05-11 20:08:26,629 [ - ShutdownTask] INFO  DefaultShutdownStrategy        - Route: books shutdown complete, was consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
-    2015-05-11 20:08:26,629 [rderMain.main()] INFO  DefaultShutdownStrategy        - Graceful shutdown of 1 routes completed in 1 seconds
-    2015-05-11 20:08:26,630 [rderMain.main()] INFO  SpringCamelContext             - Route: books is stopped, was consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
-    2015-05-11 20:08:26,700 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
-    2015-05-11 20:08:26,700 [rderMain.main()] INFO  BookOrderExample               - Now we want to provoke a connection error, so stop the postgres database - and then press ENTER to continue!
-    2015-05-11 20:08:26,700 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
-    2015-05-11 20:08:38,415 [rderMain.main()] INFO  SpringCamelContext             - Route: books started and consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
-    2015-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - ... starting route which should indicate some errors, which the bridge error handler should catch and handle
-    2015-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - Notice that the consumer will backoff and not poll so fast, instead of every second, it now runs x10 sec.
-    2015-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - Press CTRL+C to exit this application!
-    2015-05-11 20:08:39,425 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-    2015-05-11 20:08:50,441 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-    2015-05-11 20:09:01,456 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-    2015-05-11 20:09:12,536 [ction.BookOrder] INFO  books                          - Incoming book order 402 - 3 of ActiveMQ in Action
-    ^C2015-05-11 20:09:19,336 [Thread-1       ] INFO  MainSupport$HangupInterceptor  - Received hang up - stopping the main instance.
-    2015-05-11 20:09:19,336 [Thread-1       ] INFO  MainSupport                    - Apache Camel 2.16.0 stopping
-    2015-05-11 20:09:19,337 [Thread-1       ] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) is shutting down
-    2015-05-11 20:09:19,338 [Thread-1       ] INFO  DefaultShutdownStrategy        - Starting to graceful shutdown 1 routes (timeout 300 seconds)
-    2015-05-11 20:09:19,338 [ - ShutdownTask] INFO  DefaultShutdownStrategy        - Route: books shutdown complete, was consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
-    2015-05-11 20:09:19,338 [Thread-1       ] INFO  DefaultShutdownStrategy        - Graceful shutdown of 1 routes completed in 0 seconds
-    2015-05-11 20:09:19,345 [Thread-1       ] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) uptime 59.846 seconds
-    2015-05-11 20:09:19,345 [Thread-1       ] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) is shutdown in 0.007 seconds
+    2016-05-11 20:08:19,502 [rderMain.main()] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) is starting
+    2016-05-11 20:08:19,732 [rderMain.main()] INFO  JpaComponent                   - Using EntityManagerFactory configured: org.springframework.orm.jpa.LocalEntityManagerFactoryBean@4befe1a1
+    2016-05-11 20:08:19,734 [rderMain.main()] WARN  JpaComponent                   - No TransactionManager has been configured on this JpaComponent. Each JpaEndpoint will auto create their own JpaTransactionManager.
+    2016-05-11 20:08:19,817 [rderMain.main()] INFO  SpringCamelContext             - AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
+    2016-05-11 20:08:19,817 [rderMain.main()] INFO  SpringCamelContext             - StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+    2016-05-11 20:08:20,366 [rderMain.main()] INFO  SpringCamelContext             - Route: books started and consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
+    2016-05-11 20:08:20,367 [rderMain.main()] INFO  SpringCamelContext             - Total 1 routes, of which 1 is started.
+    2016-05-11 20:08:20,368 [rderMain.main()] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) started in 0.867 seconds
+    2016-05-11 20:08:20,369 [rderMain.main()] INFO  MainSupport                    - Apache Camel 2.16.0 starting
+    2016-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
+    2016-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - Make sure to have Postgres database up and running, as configured in the src/test/resources/META-INF/persistence.xml file
+    2016-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
+    2016-05-11 20:08:21,529 [ction.BookOrder] INFO  books                          - Incoming book order 401 - 1 of Camel in Action 2nd ed
+    2016-05-11 20:08:25,621 [rderMain.main()] INFO  BookOrderExample               - ... sleeping for 5 seconds and then stopping the route
+    2016-05-11 20:08:25,622 [rderMain.main()] INFO  DefaultShutdownStrategy        - Starting to graceful shutdown 1 routes (timeout 300 seconds)
+    2016-05-11 20:08:25,626 [ - ShutdownTask] INFO  DefaultShutdownStrategy        - Waiting as there are still 1 inflight and pending exchanges to complete, timeout in 300 seconds.
+    2016-05-11 20:08:26,629 [ - ShutdownTask] INFO  DefaultShutdownStrategy        - Route: books shutdown complete, was consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
+    2016-05-11 20:08:26,629 [rderMain.main()] INFO  DefaultShutdownStrategy        - Graceful shutdown of 1 routes completed in 1 seconds
+    2016-05-11 20:08:26,630 [rderMain.main()] INFO  SpringCamelContext             - Route: books is stopped, was consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
+    2016-05-11 20:08:26,700 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
+    2016-05-11 20:08:26,700 [rderMain.main()] INFO  BookOrderExample               - Now we want to provoke a connection error, so stop the postgres database - and then press ENTER to continue!
+    2016-05-11 20:08:26,700 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
+    2016-05-11 20:08:38,415 [rderMain.main()] INFO  SpringCamelContext             - Route: books started and consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
+    2016-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - ... starting route which should indicate some errors, which the bridge error handler should catch and handle
+    2016-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - Notice that the consumer will backoff and not poll so fast, instead of every second, it now runs x10 sec.
+    2016-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - Press CTRL+C to exit this application!
+    2016-05-11 20:08:39,425 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+    2016-05-11 20:08:50,441 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+    2016-05-11 20:09:01,456 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+    2016-05-11 20:09:12,536 [ction.BookOrder] INFO  books                          - Incoming book order 402 - 3 of ActiveMQ in Action
+    ^C2016-05-11 20:09:19,336 [Thread-1       ] INFO  MainSupport$HangupInterceptor  - Received hang up - stopping the main instance.
+    2016-05-11 20:09:19,336 [Thread-1       ] INFO  MainSupport                    - Apache Camel 2.16.0 stopping
+    2016-05-11 20:09:19,337 [Thread-1       ] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) is shutting down
+    2016-05-11 20:09:19,338 [Thread-1       ] INFO  DefaultShutdownStrategy        - Starting to graceful shutdown 1 routes (timeout 300 seconds)
+    2016-05-11 20:09:19,338 [ - ShutdownTask] INFO  DefaultShutdownStrategy        - Route: books shutdown complete, was consuming from: Endpoint[jpa://camelinaction.BookOrder?backoffErrorThreshold=1&backoffMultiplier=10&consumer.bridgeErrorHandler=true&delay=1000]
+    2016-05-11 20:09:19,338 [Thread-1       ] INFO  DefaultShutdownStrategy        - Graceful shutdown of 1 routes completed in 0 seconds
+    2016-05-11 20:09:19,345 [Thread-1       ] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) uptime 59.846 seconds
+    2016-05-11 20:09:19,345 [Thread-1       ] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) is shutdown in 0.007 seconds
