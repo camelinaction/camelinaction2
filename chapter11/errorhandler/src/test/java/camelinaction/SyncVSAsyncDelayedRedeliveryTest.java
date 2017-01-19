@@ -38,8 +38,8 @@ public class SyncVSAsyncDelayedRedeliveryTest extends CamelTestSupport {
 
                 from("seda:queue.inbox")
                     .log("Received input ${body}")
-                    .beanRef("orderService", "validate")
-                    .beanRef("orderService", "enrich")
+                    .bean("orderService", "validate")
+                    .bean("orderService", "enrich")
                     .log("Received order ${body}")
                     .to("mock:queue.order");
             }
@@ -73,8 +73,8 @@ public class SyncVSAsyncDelayedRedeliveryTest extends CamelTestSupport {
 
                 from("seda:queue.inbox")
                     .log("Received input ${body}")
-                    .beanRef("orderService", "validate")
-                    .beanRef("orderService", "enrich")
+                    .bean("orderService", "validate")
+                    .bean("orderService", "enrich")
                     .log("Received order ${body}")
                     .to("mock:queue.order");
             }

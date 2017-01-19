@@ -46,7 +46,7 @@ public class SpringHandleFaultTest extends CamelSpringTestSupport {
         MockEndpoint dead = getMockEndpoint("mock:dead");
         dead.expectedMessageCount(1);
         // and on the EXCEPTION_CAUGHT property we have the caused exception which we can assert contains the fault message
-        dead.message(0).property(Exchange.EXCEPTION_CAUGHT).convertTo(String.class).contains("ActiveMQ in Action is out of stock");
+        dead.message(0).exchangeProperty(Exchange.EXCEPTION_CAUGHT).convertTo(String.class).contains("ActiveMQ in Action is out of stock");
 
         template.sendBody("seda:queue.inbox","amount=1,name=ActiveMQ in Action");
 

@@ -92,7 +92,7 @@ public class RouteScopeTest extends CamelTestSupport {
 
                 // this first route will fallback and use the context scoped default error handler
                 from("file://target/orders?delay=10000")
-                    .beanRef("orderService", "toCsv")
+                    .bean("orderService", "toCsv")
                     .to("mock:file")
                     .to("seda:queue.inbox");
 
@@ -101,8 +101,8 @@ public class RouteScopeTest extends CamelTestSupport {
                     .errorHandler(deadLetterChannel("log:DLC")
                             .maximumRedeliveries(5).retryAttemptedLogLevel(LoggingLevel.INFO)
                             .redeliveryDelay(250).backOffMultiplier(2))
-                    .beanRef("orderService", "validate")
-                    .beanRef("orderService", "enrich")
+                    .bean("orderService", "validate")
+                    .bean("orderService", "enrich")
                     .to("mock:queue.order");
             }
         };

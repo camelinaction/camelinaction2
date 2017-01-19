@@ -37,7 +37,7 @@ public class HandleFaultTest extends CamelTestSupport {
         MockEndpoint dead = getMockEndpoint("mock:dead");
         dead.expectedMessageCount(1);
         // and on the EXCEPTION_CAUGHT property we have the caused exception which we can assert contains the fault message
-        dead.message(0).property(Exchange.EXCEPTION_CAUGHT).convertTo(String.class).contains("ActiveMQ in Action is out of stock");
+        dead.message(0).exchangeProperty(Exchange.EXCEPTION_CAUGHT).convertTo(String.class).contains("ActiveMQ in Action is out of stock");
 
         template.sendBody("seda:queue.inbox","amount=1,name=ActiveMQ in Action");
 
@@ -57,7 +57,7 @@ public class HandleFaultTest extends CamelTestSupport {
 
                 // or you can enable it specific per route as shown below
                 from("seda:queue.inbox").handleFault()
-                    .beanRef("orderService", "toSoap")
+                    .bean("orderService", "toSoap")
                     .to("mock:queue.order");
             }
         };

@@ -55,8 +55,8 @@ public class DefaultErrorHandlerTest extends CamelTestSupport {
                     .retryAttemptedLogLevel(LoggingLevel.WARN));
 
                 from("seda:queue.inbox")
-                    .beanRef("orderService", "validate")
-                    .beanRef("orderService", "enrich")
+                    .bean("orderService", "validate")
+                    .bean("orderService", "enrich")
                     .log("Received order ${body}")
                     .to("mock:queue.order");
             }
