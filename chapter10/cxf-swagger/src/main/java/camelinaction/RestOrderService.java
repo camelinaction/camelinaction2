@@ -42,7 +42,11 @@ public class RestOrderService {
      */
     @GET
     @Path("/{id}")
-    @ApiOperation(value = "Gets an order by id", response = Order.class)
+    @ApiOperation(value = "Get order", response = Order.class)
+    @ApiResponses({
+        @ApiResponse(code = 200, response = String.class, message = "The found order"),
+        @ApiResponse(code = 404, response = String.class, message = "Cannot find order with the id")
+    })
     public Response getOrder(
             @ApiParam(value = "The id of the order", required = true) @PathParam("id") int orderId) {
         Order order = orderService.getOrder(orderId);
@@ -57,7 +61,7 @@ public class RestOrderService {
      * The PUT update order operation
      */
     @PUT
-    @ApiOperation(value = "Updates an existing order")
+    @ApiOperation(value = "Update order")
     public Response updateOrder(
             @ApiParam(value = "The order to update", required = true) Order order) {
         orderService.updateOrder(order);
@@ -68,7 +72,7 @@ public class RestOrderService {
      * The POST create order operation
      */
     @POST
-    @ApiOperation(value = "Creates a new order")
+    @ApiOperation(value = "Create order")
     @ApiResponses({
         @ApiResponse(code = 200, response = String.class, message = "The id of the created order")
     })
