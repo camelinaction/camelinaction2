@@ -30,6 +30,8 @@
     <module>spring-boot</module>
     <module>spring-java-config</module>
     <module>spring-xml</module>
+    <module>wildfly</wildfly>
+    <module>wildfly-swarm</module>
   </modules>
 
 </project>

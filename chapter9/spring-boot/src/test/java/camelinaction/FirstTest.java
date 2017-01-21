@@ -6,19 +6,19 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.NotifyBuilder;
-import org.apache.camel.test.spring.CamelSpringJUnit4ClassRunner;
+import org.apache.camel.test.spring.CamelSpringBootRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.apache.camel.test.junit4.TestSupport.deleteDirectory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(CamelSpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(MyApplication.class)
+@RunWith(CamelSpringBootRunner.class)
+@SpringBootTest(classes = MyApplication.class)
 public class FirstTest {
 
     @Autowired
