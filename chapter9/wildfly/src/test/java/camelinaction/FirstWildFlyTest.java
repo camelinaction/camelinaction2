@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
 /**
- * System test for testing against a managed wildfly container
+ * System test for testing against a managed WildFly container
  */
 @RunWith(Arquillian.class)
 public class FirstWildFlyTest {

@@ -1,12 +1,13 @@
 package camelinaction;
 
+import javax.inject.Singleton;
+
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.cdi.ContextName;
 
 /**
  * The Hello World example of integration kits, which is moving a file.
  */
-@ContextName("helloCamel")
+@Singleton
 public class FileMoveRoute extends RouteBuilder {
 
     @Override

@@ -1,12 +1,13 @@
 package camelinaction;
 
+import javax.inject.Singleton;
+
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.cdi.ContextName;
 
 /**
  * A simple hello route that returns a hello message
  */
-@ContextName("helloCamel")
+@Singleton
 public class HelloRoute extends RouteBuilder {
 
     @Override
