@@ -56,7 +56,6 @@
   </dependencies>
 
   <build>
-    <finalName>filemove</finalName>
     <plugins>
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
