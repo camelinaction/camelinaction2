@@ -8,7 +8,7 @@ import org.apache.camel.builder.RouteBuilder;
  * Routing between two internal SEDA queues in Camel
  */
 @Singleton
-public class SedaMoveRoute extends RouteBuilder {
+public class SedaRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {

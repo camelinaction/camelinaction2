@@ -3,7 +3,7 @@ chapter9 - wildfly
 
 How to get started using Arquillian to do integration tests of Camel deployments in an existing running WildlFly server.
 
-### 9.2.6 Camel testing with WildFly
+### 9.2.7 Camel testing with WildFly
 
 To try this example you need to download and install JBoss WildFly:
 

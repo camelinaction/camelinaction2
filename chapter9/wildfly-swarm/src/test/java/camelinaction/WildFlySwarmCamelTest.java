@@ -1,14 +1,12 @@
 package camelinaction;
 
 import javax.inject.Inject;
-import javax.naming.InitialContext;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ConsumerTemplate;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.Uri;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.wildfly.swarm.arquillian.DefaultDeployment;
@@ -23,24 +21,19 @@ import static org.junit.Assert.assertEquals;
 @DefaultDeployment
 public class WildFlySwarmCamelTest {
 
-    @ArquillianResource
-    InitialContext context;
-
     @Inject
     private CamelContext camelContext;
 
     @Inject @Uri("seda:inbox")
-    private ProducerTemplate template;
+    private ProducerTemplate producer;
 
     @Test
     public void testSeda() throws Exception {
         // send to the seda inbox queue
-        template.sendBody("Hello Swarm");
+        producer.sendBody("Hello Swarm");
 
-        // receive from the seda outbox queue using a consumer template
         ConsumerTemplate consumer = camelContext.createConsumerTemplate();
-
-        // use 5 second timeout
+        // use 5 second timeout to receive the message from outbox
         Object body = consumer.receiveBody("seda:outbox", 5000);
 
         // expect it was the message we sent
