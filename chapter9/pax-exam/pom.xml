@@ -14,6 +14,10 @@
   <!-- remember to set packaging=bundle for OSGi -->
   <packaging>bundle</packaging>
 
+  <properties>
+    <pax-example-version>4.9.2</pax-example-version>
+  </properties>
+
   <dependencies>
 
     <!-- camel -->
@@ -53,31 +57,31 @@
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
-      <version>4.8.0</version>
+      <version>${pax-example-version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-junit4</artifactId>
-      <version>4.8.0</version>
+      <version>${pax-example-version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-inject</artifactId>
-      <version>4.8.0</version>
+      <version>${pax-example-version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-container-karaf</artifactId>
-      <version>4.8.0</version>
+      <version>${pax-example-version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-link-mvn</artifactId>
-      <version>4.8.0</version>
+      <version>${pax-example-version}</version>
       <scope>test</scope>
     </dependency>
     <!-- OSGi -->

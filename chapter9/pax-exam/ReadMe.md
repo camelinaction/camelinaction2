@@ -17,7 +17,7 @@ Then you can run the unit test that runs Pax Exam:
 
 You can install this example into Apache Karaf/ServiceMix using:
 
-    feature:repo-add camel 2.18.0
+    feature:repo-add camel 2.18.1
     feature:install camel
     feature:repo-add mvn:com.camelinaction/chapter9-pax-exam/2.0.0/xml/features
     feature:install camel-quote
