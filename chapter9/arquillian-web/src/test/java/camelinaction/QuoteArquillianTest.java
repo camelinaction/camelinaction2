@@ -13,7 +13,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static com.jayway.restassured.RestAssured.given;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.collection.IsIn.isIn;
 
 @RunWith(Arquillian.class)
@@ -40,7 +40,7 @@ public class QuoteArquillianTest {
     public void testQuote(@ArquillianResource URL url) throws Exception {
         // the URL is the URL to the web application that was deployed
 
-        // use rest assurred to define a test case
+        // use Rest Assured to define a test case
         given().
             baseUri(url.toString()).
         when().

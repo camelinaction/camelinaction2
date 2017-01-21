@@ -67,11 +67,10 @@
     </dependency>
 
     <!-- use rest assured for REST/JSon testing -->
-    <!-- TODO: upgrade to 3.0.x which is different groupId -->
     <dependency>
-      <groupId>com.jayway.restassured</groupId>
+      <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>2.9.0</version>
+      <version>3.0.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
