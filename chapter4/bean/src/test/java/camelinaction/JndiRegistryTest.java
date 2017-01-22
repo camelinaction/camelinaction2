@@ -33,7 +33,7 @@ public class JndiRegistryTest extends TestCase {
         // add the route using an inlined RouteBuilder
         context.addRoutes(new RouteBuilder() {
             public void configure() throws Exception {
-                from("direct:hello").bean("helloBean");
+                from("direct:hello").bean("helloBean", "hello");
             }
         });
         // star Camel

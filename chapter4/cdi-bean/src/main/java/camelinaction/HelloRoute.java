@@ -1,14 +1,15 @@
 package camelinaction;
 
+import javax.inject.Singleton;
+
 import org.apache.camel.Endpoint;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.cdi.ContextName;
 
 /**
- * Camel routes which belong to the CamelContext with name myCamel
+ * Camel routes
  */
-@ContextName("myCamel")
+@Singleton
 public class HelloRoute extends RouteBuilder {
 
     // we can inject Camel endpoints (or also just use the uris directly in the Java DSL below)
