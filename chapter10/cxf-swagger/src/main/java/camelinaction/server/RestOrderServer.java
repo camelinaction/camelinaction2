@@ -50,7 +50,7 @@ public class RestOrderServer {
 
         // keep the JVM running
         Console console = System.console();
-        System.out.println("Server started on http://localhost:9090/");
+        System.out.println("Server started on http://localhost:9000/");
         System.out.println("");
 
         // If you run the main class from IDEA/Eclipse then you may not have a console, which is null)
