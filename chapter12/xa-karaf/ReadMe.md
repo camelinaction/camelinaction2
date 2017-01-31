@@ -49,9 +49,9 @@ If all goes well, the message gets de-queued from the ActiveMQ queue and process
 In the Karaf log you will see something like:
 
 ```
-2016-11-21 16:09:02,402 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.18.1 | incoming message <?xml version="1.0"?><partner id="123"><date>201611150815</date><code>200</code><time>4387</time></partner>
-2016-11-21 16:09:02,419 | INFO  | nsumer[partners] | XPathBuilder                     | 74 - org.apache.camel.camel-core - 2.18.1 | Created default XPathFactory org.apache.xpath.jaxp.XPathFactoryImpl@4ada27a1
-2016-11-21 16:09:02,657 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.18.1 | inserted into database
+2016-11-21 16:09:02,402 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.18.2 | incoming message <?xml version="1.0"?><partner id="123"><date>201611150815</date><code>200</code><time>4387</time></partner>
+2016-11-21 16:09:02,419 | INFO  | nsumer[partners] | XPathBuilder                     | 74 - org.apache.camel.camel-core - 2.18.2 | Created default XPathFactory org.apache.xpath.jaxp.XPathFactoryImpl@4ada27a1
+2016-11-21 16:09:02,657 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.18.2 | inserted into database
 ```
 
 If you see `inserted into database` then it worked.

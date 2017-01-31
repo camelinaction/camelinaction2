@@ -15,7 +15,7 @@ To run this example in Apache Karaf 4.0.8 or better, then start Karaf with
 
 To add Apache Camel to Karaf, run the following command:
 
-    feature:repo-add camel 2.18.1
+    feature:repo-add camel 2.18.2
     feature:install http camel camel-cxf
 
 To install this application run the following command:
