@@ -29,7 +29,9 @@ public class CitrusIT extends JUnit4CitrusTestDesigner {
         // random 5 digit order number
         variable("orderId", "citrus:randomNumber(5)");
 
+        // the HTTP client is sending the order
         http().client("statusHttpClient")
+            .send()
                 .get("/status?id=${orderId}")
                 .contentType("text/xml").accept("text/xml")
                 // use fork so we can continue with the test design (otherwise this would be a synchronous call)
@@ -52,6 +54,7 @@ public class CitrusIT extends JUnit4CitrusTestDesigner {
 
         // the HTTP client is expected to receive a 200 OK message with the following XML structure
         http().client("statusHttpClient")
+            .receive()
                 .response(HttpStatus.OK)
                 .payload("<order><id>${orderId}</id><status>ON HOLD</status></order>")
                 .contentType("text/xml");

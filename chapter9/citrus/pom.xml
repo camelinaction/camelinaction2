@@ -13,9 +13,7 @@
   <name>Camel in Action 2 :: Chapter 9 :: Testing Camel using Citrus Framework</name>
 
   <properties>
-    <citrus.version>2.6.2</citrus.version>
-    <!-- TODO citrus 2.6.x requires Spring 4.2.x -->
-    <spring-version>4.2.9.RELEASE</spring-version>
+    <citrus.version>2.7</citrus.version>
   </properties>
 
   <dependencies>
