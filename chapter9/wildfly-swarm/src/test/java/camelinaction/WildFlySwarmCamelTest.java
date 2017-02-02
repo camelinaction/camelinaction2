@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  * We test the Hello World example of integration kits, which is moving a file.
  */
 @RunWith(Arquillian.class)
-@DefaultDeployment
+@DefaultDeployment(type = DefaultDeployment.Type.JAR)
 public class WildFlySwarmCamelTest {
 
     @Inject
