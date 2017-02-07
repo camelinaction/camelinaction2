@@ -7,7 +7,7 @@
     <feature version="${camel-version}">camel-jetty9</feature>
     <feature>pax-cdi-weld</feature>
     <!-- we should start last -->
-    <bundle start-level="90">mvn:com.camelinaction/chapter7-karaf-cdi/${project.version}</bundle>
+    <bundle start-level="90">mvn:com.camelinaction/chapter7-cdi-karaf/${project.version}</bundle>
   </feature>
 
 </features>
