@@ -23,7 +23,7 @@ import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 public class LiveScoreVerticle extends AbstractVerticle {
 
     // to use fast mode where each 5 second is a minute
-    private boolean fastMode = false;
+    private boolean fastMode = true;
 
     private final AtomicInteger gameTime = new AtomicInteger();
     private final AtomicBoolean clockRunning = new AtomicBoolean();
@@ -76,7 +76,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
             if ("start".equals(action)) {
                 System.out.println("Starting clock");
                 clockRunning.set(true);
-                vertx.eventBus().publish("clock", "" + gameTime.get());
+                vertx.eventBus().publish("clock", gameTime.get() + ":00");
             } else if ("stop".equals(action)) {
                 System.out.println("Stopping clock");
                 clockRunning.set(false);
@@ -100,7 +100,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
 
         // publish clock time also
         if (clockRunning.get()) {
-            vertx.eventBus().publish("clock", "" + gameTime.get());
+            vertx.eventBus().publish("clock", gameTime.get() + ":00");
         } else {
             vertx.eventBus().publish("clock", "Stopped");
         }
@@ -141,10 +141,10 @@ public class LiveScoreVerticle extends AbstractVerticle {
                 return;
             }
 
-            System.out.println("Game time " + min);
+            System.out.println("Game time " + min + ":00");
 
             // publish game time
-            vertx.eventBus().publish("clock", String.valueOf(min));
+            vertx.eventBus().publish("clock", min + ":00");
         });
 
         System.out.println("Publishing live score");
@@ -177,7 +177,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
                     System.out.println("Publish goal in " + delay.get() + " msec for goal: " + c);
                     vertx.setTimer(delay.get(), t -> vertx.eventBus().publish("goals", c));
                     // delay between 8 - 12 sec for next goal
-                    int extra = fastMode ? 500 : 8000 + new Random().nextInt(4000);
+                    int extra = fastMode ? 2000 : 8000 + new Random().nextInt(4000);
                     delay.set(delay.get() + extra);
                 });
             }

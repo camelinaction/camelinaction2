@@ -22,6 +22,9 @@ import static java.lang.Thread.sleep;
  */
 public class GoalConsumer extends DefaultConsumer implements Suspendable {
 
+    // to use fast mode where each 5 second is a minute
+    private boolean fastMode = true;
+
     private final List<String> goals;
     private final AtomicInteger gameTime = new AtomicInteger(-1);
     private final Timer timer = new Timer();
@@ -39,7 +42,8 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
         log.info("Starting goal live stream");
         if (task == null) {
             task = new GoalTask();
-            timer.scheduleAtFixedRate(task, 1000, 60 * 1000L);
+            int period = fastMode ? 5 * 1000 : 60 * 1000;
+            timer.scheduleAtFixedRate(task, 1000, period);
         }
     }
 
@@ -105,7 +109,7 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
                 // publish game time
                 Exchange exchange = getEndpoint().createExchange();
                 exchange.getIn().setHeader("action", "clock");
-                exchange.getIn().setBody(String.valueOf(min));
+                exchange.getIn().setBody(min +":00");
 
                 getProcessor().process(exchange);
 
@@ -127,7 +131,7 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
                         if (it.hasNext()) {
                             // there are more goals so wait a bit before next
                             // delay between 8 - 12 sec for next goal
-                            int extra = 8000 + new Random().nextInt(4000);
+                            int extra = fastMode ? 2000 : 8000 + new Random().nextInt(4000);
                             sleep(extra);
                         }
                     };
