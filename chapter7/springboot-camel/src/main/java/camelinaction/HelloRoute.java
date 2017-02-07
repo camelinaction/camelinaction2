@@ -32,7 +32,8 @@ public class HelloRoute extends RouteBuilder {
         // define a Camel REST service using the rest-dsl
         // where we define a GET /hello as a service that routes to the hello route
         // we will cover rest-dsl in chapter 10
-        rest("/")
+
+        rest("/").produces("text/plain")
             .get("hello")
             .to("direct:hello");
 
