@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -42,6 +44,7 @@ public class DummyOrderService implements OrderService {
         orders.remove(orderId);
     }
 
+    @PostConstruct
     public void setupDummyOrders() {
         Order order = new Order();
         order.setAmount(1);

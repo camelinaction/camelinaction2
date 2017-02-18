@@ -5,19 +5,17 @@ import java.util.Map;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.test.spring.CamelSpringBootRunner;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = OrderRoute.class)
-@WebIntegrationTest(randomPort = true)
+@RunWith(CamelSpringBootRunner.class)
+@SpringBootTest(classes = OrderApplication.class)
 public class RestOrderServiceTest extends Assert {
 
     private static final Logger LOG = LoggerFactory.getLogger(RestOrderServiceTest.class);

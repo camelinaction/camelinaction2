@@ -2,10 +2,10 @@ package camelinaction;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.camel.spring.boot.FatJarRouter;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
-@SpringBootApplication
+@Component
 public class OrderRoute extends FatJarRouter {
 
     @Bean(name = "jsonProvider")
