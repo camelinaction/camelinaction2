@@ -13,12 +13,11 @@ public class ServerBar {
     }
 
     public void boot() throws Exception {
-
         // setup the hazelcast route policy
         ConsulRoutePolicy routePolicy = new ConsulRoutePolicy();
         // the service names must be same in the foo and bar server
         routePolicy.setServiceName("myLock");
-        routePolicy.setTtl(15);
+        routePolicy.setTtl(5);
 
         main = new Main();
         // bind the hazelcast route policy to the name myPolicy which we refer to from the route

@@ -16,6 +16,7 @@
     <modules>
         <module>cluster-file-consul</module>
         <module>cluster-file-hazelcast</module>
+        <module>cluster-jms-client</module>
     </modules>
 
 </project>

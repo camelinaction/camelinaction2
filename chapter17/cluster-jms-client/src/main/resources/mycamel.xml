@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <!-- setup JMS connection factory to refer to the ActiveMQ brokers -->
+  <bean id="jmsConnectionFactory"
+        class="org.apache.activemq.ActiveMQConnectionFactory">
+    <!-- configure to use failover between the two brokers -->
+    <property name="brokerURL" value="failover:tcp://localhost:61616,tcp://localhost:51515"/>
+  </bean>
+
+  <!-- setup connection pooling -->
+  <bean id="pooledConnectionFactory"
+        class="org.apache.activemq.pool.PooledConnectionFactory"
+        init-method="start" destroy-method="stop">
+    <!-- number of connections in the pool - use a low number for testing purpose -->
+    <property name="maxConnections" value="2"/>
+    <property name="connectionFactory" ref="jmsConnectionFactory"/>
+  </bean>
+
+  <!-- setup Camel JMS component -->
+  <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+    <property name="connectionFactory" ref="pooledConnectionFactory"/>
+  </bean>
+
+  <camelContext id="client" xmlns="http://camel.apache.org/schema/spring">
+    <route>
+      <from uri="timer:clock"/>
+      <transform>
+        <simple>Time is now ${date:now}</simple>
+      </transform>
+      <log message="Sending message: ${body}"/>
+      <to uri="jms:queue:clock"/>
+      <log message="Sent message: ${body}"/>
+    </route>
+  </camelContext>
+
+</beans>
