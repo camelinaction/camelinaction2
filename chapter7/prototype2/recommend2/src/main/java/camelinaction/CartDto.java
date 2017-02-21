@@ -6,7 +6,7 @@ package camelinaction;
 public class CartDto {
 
     private String itemId;
-    private int amount;
+    private int quantity;
 
     public CartDto() {
     }
@@ -23,12 +23,12 @@ public class CartDto {
         this.itemId = itemId;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override
