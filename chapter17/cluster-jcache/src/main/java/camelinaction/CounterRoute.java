@@ -3,6 +3,7 @@ package camelinaction;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.jcache.JCacheConstants;
 
 /**
  * Route used by both foo and bar server.
@@ -25,8 +26,9 @@ public class CounterRoute extends RouteBuilder {
         // HTTP service
         fromF("jetty:http://localhost:" + port)
 
-            // get the counter from the hazelcast cache
-            .to("infinispan:localhost:11222?cacheName=myCounter&command=get")
+            // get the counter from the cache
+            .setHeader(JCacheConstants.KEY, constant("myCounter"))
+            .to("jcache:myCache?cachingProvider=org.infinispan.jcache.remote.JCachingProvider&cacheConfigurationProperties=#hotrod&action=get")
 
             // update the counter using java code
             .process(new Processor() {
@@ -41,8 +43,9 @@ public class CounterRoute extends RouteBuilder {
                 }
             })
 
-            // update the counter in the hazelcast cache
-            .to("infinispan:localhost:11222?cacheName=myCounter&command=put")
+            // update the counter in the cache
+            .setHeader(JCacheConstants.KEY, constant("myCounter"))
+            .to("jcache:myCache?cachingProvider=org.infinispan.jcache.remote.JCachingProvider&cacheConfigurationProperties=#hotrod&action=put")
 
             // prepare http response
             .log(name + ": counter is now ${body}")

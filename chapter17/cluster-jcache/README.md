@@ -5,16 +5,34 @@ This directory holds an example how to use Infinispan as clustered distributed c
 
 ### 17.1.4 Clustering Cache with Camel
 
+#### Running Infinispan
+
 You need to run an Infinispan Server which you can download from (chose Server)
 
     http://infinispan.org/download/
     
-And then unzip and start the server
+And then unzip Infinispan
      
     unzip infinispan-server-8.2.6.Final-bin.zip
-    
+
+Then we need to create an user
+
     cd infinispan-server-8.2.6.Final-bin
-    bin/standalone.sh
+    ./bin/add-user.sh          (Windows users run the .bar file instead of .sh)               
+    
+.. create the user as administrator such as with `admin` as username and `admin` as password    
+
+Then start Infinispan in domain mode 
+
+    bin/domain.sh      (Windows users run the .bar file instead of .sh)
+   
+And then login to the web console at
+   
+    http://127.0.0.1:9990/console
+
+In the web console you need to add a new cache with the name `myCache`. As a type you can choose `replicated`.
+
+#### Running the Camel servers
 
 The example requires to run at two JVMs concurrently by starting each Maven goal from each terminal:
 
@@ -29,7 +47,7 @@ To call the FOO server:
 
 To call the BAR server:
 
-    http://localhost:9999
+    http://localhost:8887
 
 You should then be able to receive a response with a increasing counter that is distributed. So if you
 mix the calls between the two JVMs then the counter is correct increased by one each time.
@@ -52,7 +70,6 @@ BAR: counter is now 7
 
 You can try to restart either FOO or BAR which should ensure the counter survives in the cache and is updated correctly.
 
-#### Running with atomic counter
+From the Infinispan web console you should be able to see cache statistics as shown in the screenshot below:
 
-Infinispan does not at this time of writing support clustered counters.
-
+![Infinispan Web Console](infinispan-console.png "Cache Statistics")

@@ -9,8 +9,8 @@
     <version>2.0.0</version>
   </parent>
 
-  <artifactId>chapter17-cluster-cache-infinispan</artifactId>
-  <name>Camel in Action 2 :: Chapter 17 :: Clustered cache using Infinispan</name>
+  <artifactId>chapter17-cluster-cache-jcache</artifactId>
+  <name>Camel in Action 2 :: Chapter 17 :: Clustered cache using JCache</name>
 
   <properties>
     <camel-version>2.19.0-SNAPSHOT</camel-version>
@@ -25,7 +25,14 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-infinispan</artifactId>
+      <artifactId>camel-jcache</artifactId>
+    </dependency>
+
+    <!-- use infinispan remote as jcache provider -->
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-jcache-remote</artifactId>
+      <version>8.2.6.Final</version>
     </dependency>
 
     <dependency>
