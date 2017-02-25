@@ -40,3 +40,12 @@ BAR: counter is now 7
 ```
 
 You can try to restart either FOO or BAR which should ensure the counter survives in the cache and is updated correctly.
+
+#### Running with atomic counter
+
+This example can also use the atomic-counter instead which you can run using
+
+    mvn compile exec:java -Pfoo-atomic
+    mvn compile exec:java -Pbar-atomic
+
+See more details in `CounterRoute` and `AtomicCounterRouter.java` source code.
