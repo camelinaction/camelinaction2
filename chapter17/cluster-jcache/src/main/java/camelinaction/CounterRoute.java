@@ -28,7 +28,7 @@ public class CounterRoute extends RouteBuilder {
 
             // get the counter from the cache
             .setHeader(JCacheConstants.KEY, constant("myCounter"))
-            .to("jcache:myCache?cachingProvider=org.infinispan.jcache.remote.JCachingProvider&cacheConfigurationProperties=#hotrod&action=get")
+            .to("jcache:myCache?action=get")
 
             // update the counter using java code
             .process(new Processor() {
@@ -45,7 +45,7 @@ public class CounterRoute extends RouteBuilder {
 
             // update the counter in the cache
             .setHeader(JCacheConstants.KEY, constant("myCounter"))
-            .to("jcache:myCache?cachingProvider=org.infinispan.jcache.remote.JCachingProvider&cacheConfigurationProperties=#hotrod&action=put")
+            .to("jcache:myCache?action=put")
 
             // prepare http response
             .log(name + ": counter is now ${body}")

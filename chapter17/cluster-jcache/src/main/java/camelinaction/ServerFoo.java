@@ -1,9 +1,8 @@
 package camelinaction;
 
-import java.io.FileInputStream;
-import java.util.Properties;
-
+import org.apache.camel.component.jcache.JCacheComponent;
 import org.apache.camel.main.Main;
+import org.infinispan.jcache.remote.JCachingProvider;
 
 public class ServerFoo {
 
@@ -11,18 +10,21 @@ public class ServerFoo {
 
     public static void main(String[] args) throws Exception {
         ServerFoo foo = new ServerFoo();
-        foo.boot(args);
+        foo.boot();
     }
 
-    public void boot(String[] args) throws Exception {
+    public void boot() throws Exception {
         main = new Main();
 
-        // load infinispan client properties
-        Properties client = new Properties();
-        client.load(new FileInputStream("src/main/resources/hotrod-client.properties"));
+        // create jcache component and configure it
+        JCacheComponent jcache = new JCacheComponent();
+        // use infinispan
+        jcache.setCachingProvider(JCachingProvider.class.getName());
+        // load infinispan client (hotrod) configuration from the classpath
+        jcache.setConfigurationUri("hotrod-client.properties");
 
-        // and bind in Camel registry so we can use it by the jcache component
-        main.bind("hotrod", client);
+        // register the component to Camel with the name jcache
+        main.bind("jcache", jcache);
 
         main.addRouteBuilder(new CounterRoute("FOO", 8888));
         main.run();
