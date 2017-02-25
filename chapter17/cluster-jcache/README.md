@@ -47,7 +47,7 @@ To call the FOO server:
 
 To call the BAR server:
 
-    http://localhost:8887
+    http://localhost:8889
 
 You should then be able to receive a response with a increasing counter that is distributed. So if you
 mix the calls between the two JVMs then the counter is correct increased by one each time.
