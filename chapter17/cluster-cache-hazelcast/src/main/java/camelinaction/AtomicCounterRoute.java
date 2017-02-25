@@ -27,7 +27,7 @@ public class AtomicCounterRoute extends RouteBuilder {
 
             // increase the atomic clustered counter from the hazelcast cache
             .setHeader(HazelcastConstants.OBJECT_ID, constant("myCounter"))
-            .to("hazelcast:atomicvalue:Cache?hazelcastInstance=#hazelcast&defaultOperation=increment")
+            .to("hazelcast:atomicvalue:Cache?hazelcastInstance=#hz&defaultOperation=increment")
 
             // prepare http response
             .log(name + ": counter is now ${body}")

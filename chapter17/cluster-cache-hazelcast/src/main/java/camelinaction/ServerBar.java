@@ -19,7 +19,7 @@ public class ServerBar {
         HazelcastInstance hz = Hazelcast.newHazelcastInstance();
 
         main = new Main();
-        main.bind("hazelcast", hz);
+        main.bind("hz", hz);
 
         if (args.length == 0) {
             // route which uses get/put operations

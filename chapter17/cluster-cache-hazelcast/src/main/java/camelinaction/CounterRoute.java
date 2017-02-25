@@ -33,7 +33,7 @@ public class CounterRoute extends RouteBuilder {
 
             // get the counter from the hazelcast cache
             .setHeader(HazelcastConstants.OBJECT_ID, constant("myCounter"))
-            .to("hazelcast:map:myCache?hazelcastInstance=#hazelcast&defaultOperation=get")
+            .to("hazelcast:map:myCache?hazelcastInstance=#hz&defaultOperation=get")
 
             // update the counter using java code
             .process(new Processor() {
@@ -50,7 +50,7 @@ public class CounterRoute extends RouteBuilder {
 
             // update the counter in the hazelcast cache
             .setHeader(HazelcastConstants.OBJECT_ID, constant("myCounter"))
-            .to("hazelcast:map:myCache?hazelcastInstance=#hazelcast&defaultOperation=put")
+            .to("hazelcast:map:myCache?hazelcastInstance=#hz&defaultOperation=put")
 
             // prepare http response
             .log(name + ": counter is now ${body}")
