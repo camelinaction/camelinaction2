@@ -10,6 +10,11 @@ import org.apache.camel.component.hazelcast.HazelcastConstants;
  * <p/>
  * This route will expose a HTTP server on localhost port 8080 or 9090 and then update a counter value
  * on the clustered hazelcast data-grid. The HTTP server returns the current counter value.
+ * <p/>
+ * The use-case for atomic counter is better implemented as in {@link AtomicCounterRoute} because this
+ * implementation is not thread-safe as the foo server may read a value as 16 and then update the value to 17
+ * and at the same time the bar server also reads the value as 16 and therefore you can end up with "lost updates".
+ * The map is better for storing other kind of shared data in the cluster.
  */
 public class CounterRoute extends RouteBuilder {
 

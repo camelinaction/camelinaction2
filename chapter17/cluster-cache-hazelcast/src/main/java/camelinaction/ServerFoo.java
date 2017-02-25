@@ -10,17 +10,24 @@ public class ServerFoo {
 
     public static void main(String[] args) throws Exception {
         ServerFoo foo = new ServerFoo();
-        foo.boot();
+        foo.boot(args);
     }
 
-    public void boot() throws Exception {
+    public void boot(String[] args) throws Exception {
         // create and embed the hazelcast server
         // (you can use the hazelcast client if you want to connect to external hazelcast server)
         HazelcastInstance hz = Hazelcast.newHazelcastInstance();
 
         main = new Main();
         main.bind("hazelcast", hz);
-        main.addRouteBuilder(new CounterRoute("FOO", 8080));
+
+        if (args.length == 0) {
+            // route which uses get/put operations
+            main.addRouteBuilder(new CounterRoute("FOO", 8080));
+        } else {
+            // route which uses atomic counter
+            main.addRouteBuilder(new AtomicCounterRoute("FOO", 8080));
+        }
         main.run();
     }
 

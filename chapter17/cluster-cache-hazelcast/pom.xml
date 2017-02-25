@@ -53,9 +53,23 @@
       </properties>
     </profile>
     <profile>
+      <id>foo-atomic</id>
+      <properties>
+        <target.main.class>camelinaction.ServerFoo</target.main.class>
+        <target.cmd.args>atomic</target.cmd.args>
+      </properties>
+    </profile>
+    <profile>
       <id>bar</id>
       <properties>
         <target.main.class>camelinaction.ServerBar</target.main.class>
+      </properties>
+    </profile>
+    <profile>
+      <id>bar-atomic</id>
+      <properties>
+        <target.main.class>camelinaction.ServerBar</target.main.class>
+        <target.cmd.args>atomic</target.cmd.args>
       </properties>
     </profile>
   </profiles>
