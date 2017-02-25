@@ -5,6 +5,12 @@ import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.hazelcast.HazelcastConstants;
 
+/**
+ * Route used by both foo and bar server.
+ * <p/>
+ * This route will expose a HTTP server on localhost port 8080 or 9090 and then update a counter value
+ * on the clustered hazelcast data-grid. The HTTP server returns the current counter value.
+ */
 public class CounterRoute extends RouteBuilder {
 
     private String name;
@@ -17,7 +23,7 @@ public class CounterRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        // read files from the shared directory
+        // HTTP service
         fromF("jetty:http://localhost:" + port)
 
             // get the counter from the hazelcast cache
