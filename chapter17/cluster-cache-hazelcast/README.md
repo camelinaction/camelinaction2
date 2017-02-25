@@ -3,7 +3,7 @@ Chapter 17 - cluster-cache-hazelcast
 
 This directory holds an example how to use Hazelcast as clustered distributed cache
 
-### 17.1.4 Clustering Cache with Camel
+### 17.2.1 Clustered cache using Hazelcast with Camel
 
 The example requires to run at two JVMs concurrently by starting each Maven goal from each terminal:
 
