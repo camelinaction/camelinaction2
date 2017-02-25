@@ -18,6 +18,7 @@
         <module>cluster-file-hazelcast</module>
         <module>cluster-jms-client</module>
         <module>cluster-cache-hazelcast</module>
+        <module>cluster-cache-infinispan</module>
     </modules>
 
 </project>
