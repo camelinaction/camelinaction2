@@ -16,6 +16,11 @@ Then you need to initialize the database by running a script which you can run f
 
     mvn compile exec:java -P init
 
+The SQL script to initialize the Postgres database is located in the `tables_postgres.sql` file.
+You can find SQL scripts for other databases that Quartz supports if you download Quartz from
+its website (http://www.quartz-scheduler.org/) and unzip the download and look in the 
+`doc/dbTables` directory.
+
 #### Running Camel
 
 When the database is up and running its ready to accept connections on port 5432 and because
