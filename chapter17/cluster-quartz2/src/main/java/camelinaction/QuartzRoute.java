@@ -15,7 +15,9 @@ public class QuartzRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+        // run this route once per minute between 08-18 hours on every day the week
         from("quartz2:myGroup/myTrigger?cron=0+0/1+08-18+?+*+*")
+            // just log when the job was fired
             .log(name + " running at ${header.fireTime}");
     }
 

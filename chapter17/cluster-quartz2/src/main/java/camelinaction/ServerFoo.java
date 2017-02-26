@@ -15,9 +15,11 @@ public class ServerFoo {
     public void boot() throws Exception {
         main = new Main();
 
+        // setup quartz component
         QuartzComponent quartz = new QuartzComponent();
         quartz.setPropertiesFile("quartz.properties");
 
+        // add the component to Camel
         main.bind("quartz2", quartz);
 
         main.addRouteBuilder(new QuartzRoute("FOO"));

@@ -35,6 +35,13 @@
       <version>9.4-1201-jdbc4</version>
     </dependency>
 
+    <!-- use spring jdbc to init the database -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
@@ -49,9 +56,9 @@
 
   <profiles>
     <profile>
-      <id>derby</id>
+      <id>init</id>
       <properties>
-        <target.main.class>camelinaction.DerbyDatabase</target.main.class>
+        <target.main.class>camelinaction.InitDatabase</target.main.class>
       </properties>
     </profile>
     <profile>
