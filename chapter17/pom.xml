@@ -19,6 +19,7 @@
         <module>cluster-jms-client</module>
         <module>cluster-cache-hazelcast</module>
         <module>cluster-jcache</module>
+        <module>cluster-quartz2</module>
     </modules>
 
 </project>
