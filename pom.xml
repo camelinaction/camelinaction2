@@ -83,7 +83,7 @@
     <xbean-version>3.18</xbean-version>
     <verx-version>3.3.3</verx-version>
     <weld-version>2.4.2.Final</weld-version>
-    <wildfly-swarm-version>2017.2.0</wildfly-swarm-version>
+    <wildfly-swarm-version>2017.3.2</wildfly-swarm-version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
