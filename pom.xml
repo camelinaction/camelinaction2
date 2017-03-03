@@ -74,8 +74,6 @@
     <!-- TODO need to update to 3.2.0 for everything like in chapter19/hawtio-custom-plugin -->
     <maven-bundle-plugin-version>2.3.7</maven-bundle-plugin-version>
     <mock-javamail-version>1.9</mock-javamail-version>
-    <scala-plugin-version>3.1.6</scala-plugin-version>
-    <scala-version>2.11.5</scala-version>
     <slf4j-version>1.7.21</slf4j-version>
     <spring-version>4.3.6.RELEASE</spring-version>
     <spring-boot-version>1.4.4.RELEASE</spring-boot-version>
