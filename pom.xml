@@ -75,13 +75,13 @@
     <maven-bundle-plugin-version>2.3.7</maven-bundle-plugin-version>
     <mock-javamail-version>1.9</mock-javamail-version>
     <slf4j-version>1.7.21</slf4j-version>
-    <spring-version>4.3.6.RELEASE</spring-version>
-    <spring-boot-version>1.4.4.RELEASE</spring-boot-version>
+    <spring-version>4.3.7.RELEASE</spring-version>
+    <spring-boot-version>1.4.5.RELEASE</spring-boot-version>
     <swagger-version>1.5.12</swagger-version>
     <xbean-version>3.18</xbean-version>
     <verx-version>3.3.3</verx-version>
     <weld-version>2.4.2.Final</weld-version>
-    <wildfly-swarm-version>2017.3.2</wildfly-swarm-version>
+    <wildfly-swarm-version>2017.3.3</wildfly-swarm-version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
