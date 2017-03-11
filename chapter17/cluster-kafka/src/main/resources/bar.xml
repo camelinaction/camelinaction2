@@ -12,10 +12,10 @@
     <property name="brokers" value="localhost:9092"/>
   </bean>
 
-  <camelContext id="client" xmlns="http://camel.apache.org/schema/spring">
+  <camelContext id="bar" xmlns="http://camel.apache.org/schema/spring">
     <route>
       <from uri="kafka:words?groupId=mygroup"/>
-      <log message="Got word ${body}"/>
+      <log message="BAR got word ${body}"/>
     </route>
   </camelContext>
 

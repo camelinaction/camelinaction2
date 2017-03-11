@@ -35,7 +35,7 @@ In a production system you would of course have to make Kafka highly available i
 When Kafka is up and running you can start the producer which sends messages to Kafka
 
     cd chapter17/cluster-kafka
-    mvn compile camel:run
+    mvn compile exec:java -P producer
     
 You should then see in the console printed
     
@@ -48,26 +48,26 @@ The producer will send approximately 100 messages per second which is logged onc
 
 ### Running the consumer
 
-In another shell you can run the consumer which will receive the messages that the producer sends
+In another shell you can run the foo consumer which will receive the messages that the producer sends
 
     cd chapter17/cluster-kafka
-    mvn camel:run
+    mvn compile exec:java -P foo
     
 You should then see in the console the words being printed, with an increasing counter as prefix:
     
 ```
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #21-Hawt
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #22-Bad
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #23-Dude
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #24-Beer
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #25-Dude
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #26-Beer
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #27-Donkey
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #28-Beer
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #29-Bad
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #30-Camel
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #31-Rocks
-[read #0 - KafkaConsumer[words]] route1                         INFO  Got word #32-Whiskey
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #21-Hawt
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #22-Bad
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #23-Dude
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #24-Beer
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #25-Dude
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #26-Beer
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #27-Donkey
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #28-Beer
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #29-Bad
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #30-Camel
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #31-Rocks
+[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #32-Whiskey
 ```
 
 ### Failover the consumer
@@ -75,7 +75,7 @@ You should then see in the console the words being printed, with an increasing c
 You can scale up the consumers by starting a new consumer from a shell
 
     cd chapter17/cluster-kafka
-    mvn camel:run
+    mvn compile exec:java -P bar
 
 When the 2nd consumer is up and running, you should be able to stop or kill the running consumer, and then see that the 2nd consumer
 will failover and start processing the messages. You can then bring the first consumer back online and it should be able to failover if

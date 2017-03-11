@@ -44,28 +44,45 @@
 
   </dependencies>
 
+  <profiles>
+
+    <!-- to produce messages to Kafka run `mvn compile exec:java -P producer` -->
+    <profile>
+      <id>producer</id>
+      <properties>
+        <target.main.class>camelinaction.producer.WordGeneratorApplication</target.main.class>
+      </properties>
+    </profile>
+
+    <!-- to consumes messages to Kafka run `mvn compile exec:java -P foo` -->
+    <profile>
+      <id>foo</id>
+      <properties>
+        <target.main.class>org.apache.camel.spring.Main</target.main.class>
+        <target.cmd.args>-ac foo.xml</target.cmd.args>
+      </properties>
+    </profile>
+    <!-- to consumes messages to Kafka run `mvn compile exec:java -P bar` -->
+    <profile>
+      <id>bar</id>
+      <properties>
+        <target.main.class>org.apache.camel.spring.Main</target.main.class>
+        <target.cmd.args>-ac bar.xml</target.cmd.args>
+      </properties>
+    </profile>
+  </profiles>
+
   <build>
     <plugins>
-
-      <!-- to generate messages to kafka 'mvn compile exec:java' -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
-          <mainClass>camelinaction.producer.WordGeneratorApplication</mainClass>
+          <mainClass>${target.main.class}</mainClass>
           <includePluginDependencies>false</includePluginDependencies>
+          <commandlineArgs>${target.cmd.args}</commandlineArgs>
         </configuration>
       </plugin>
-
-      <!-- to consume from Kafka 'mvn camel:run' -->
-      <plugin>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-maven-plugin</artifactId>
-        <configuration>
-          <applicationContextUri>mycamel.xml</applicationContextUri>
-        </configuration>
-      </plugin>
-
     </plugins>
   </build>
 

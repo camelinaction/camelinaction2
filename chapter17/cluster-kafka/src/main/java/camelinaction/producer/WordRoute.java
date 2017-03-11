@@ -7,6 +7,9 @@ public class WordRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
+        // lets shutdown quicker
+        getContext().getShutdownStrategy().setTimeout(10);
+
         // configure the kafka component to use the broker
         KafkaComponent kafka = new KafkaComponent();
 
@@ -16,11 +19,11 @@ public class WordRoute extends RouteBuilder {
         // add component to CamelContext
         getContext().addComponent("kafka", kafka);
 
-        // use a timer to trigger every 10 milli seconds and generate a random word
+        // use a timer to trigger every 100 milli seconds and generate a random word
         // which is sent to kafka
-        from("timer:foo?period=10")
+        from("timer:foo?period=100")
             .bean(new WordBean())
-            .to("kafka:words?groupId=camel&key=mykey")
+            .to("kafka:words?key=mykey")
             .to("log:words?groupInterval=1000");
     }
 }
