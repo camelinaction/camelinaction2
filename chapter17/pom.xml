@@ -22,6 +22,7 @@
         <module>cluster-jcache</module>
         <module>cluster-quartz2</module>
         <module>cluster-zookeeper-master</module>
+        <module>cluster-zookeeper-master-routepolicy</module>
     </modules>
 
 </project>
