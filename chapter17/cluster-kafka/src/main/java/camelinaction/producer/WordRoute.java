@@ -23,7 +23,7 @@ public class WordRoute extends RouteBuilder {
         // which is sent to kafka
         from("timer:foo?period=100")
             .bean(new WordBean())
-            .to("kafka:words?key=mykey")
+            .to("kafka:words")
             .to("log:words?groupInterval=1000");
     }
 }
