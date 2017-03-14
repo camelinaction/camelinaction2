@@ -3,7 +3,7 @@ Chapter 17 - cluster-file-hazelcast
 
 This directory holds an example how to use Hazelcast as clustered route policy in active/passive mode.
 
-### 17.1.2 Clustering files/FTP with Camel
+### 17.2.1 Clustered active/passive mode using Hazelcast
 
 The example requires to run at two JVMs concurrently by starting each Maven goal from each terminal:
 

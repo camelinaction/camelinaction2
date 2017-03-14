@@ -3,7 +3,7 @@ Chapter 17 - cluster-jms-client
 
 This directory holds an example how to cluster ActiveMQ JMS client used by the Camel JMS component. 
 
-### 17.1.3 Cluster JMS with Camel
+### 17.3.1 Client side clustering with JMS and ActiveMQ
 
 This example requires to run two instances of Apache ActiveMQ brokers separately. To do this
 

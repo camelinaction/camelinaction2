@@ -8,7 +8,7 @@ The application has two parts
 - A producer which sends random words to a Kafka topic
 - A consumer which receives the messages from the Kafka topic
 
-### 17.1.4 Cluster Kafka with Camel
+### 17.4 Clustered Kafka
 
 This example requires to run a Kafka Broker
 

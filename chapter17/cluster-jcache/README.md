@@ -4,7 +4,7 @@ Chapter 17 - cluster-jcache
 This directory holds an example how to use Infinispan as clustered distributed cache.
 The Camel application is using the JCache component and the JCache API to access the cache. 
 
-### 17.2.2 Clustering cache using JCache and Infinispan with Camel
+### 17.5.2 Clustering cache using JCache and Infinispan
 
 #### Running Infinispan
 

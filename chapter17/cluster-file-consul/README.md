@@ -3,7 +3,7 @@ Chapter 17 - cluster-file-consul
 
 This directory holds an example how to use Consul as clustered route policy in active/passive mode.
 
-### 17.1.2 Clustering files/FTP with Camel
+### 17.2.2 Clustered active/passive mode using Consul
 
 At first you must run a consul server which you can do using docker by running
 

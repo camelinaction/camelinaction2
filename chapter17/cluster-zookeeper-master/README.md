@@ -3,8 +3,7 @@ Chapter 17 - cluster-zookeeper-master
 
 This directory holds an example how to use ZooKeeper as clustered master route in active/passive mode.
 
-TODO update me
-### 17.1.2 Clustering ZooKeeper
+### 17.2.3 Clustered active/passive mode using ZooKeeper
 
 At first you must run a ZooKeeper server which you can do using Docker by running
 
