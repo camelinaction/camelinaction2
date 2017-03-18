@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>hello-docker</artifactId>
+    <version>2.0.0</version>
+  </parent>
+
+  <artifactId>helloswarm-docker</artifactId>
+  <name>Camel in Action 2 :: Chapter 18 :: Hello WildFly Swarm :: Docker</name>
+  <version>2.0.0</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <wildfly.swarm.version>2017.3.3</wildfly.swarm.version>
+    <docker.maven.plugin.version>0.20.0</docker.maven.plugin.version>
+
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>bom-all</artifactId>
+        <version>${wildfly.swarm.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+
+    <finalName>${project.artifactId}-${project.version}</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.wildfly.swarm</groupId>
+        <artifactId>wildfly-swarm-plugin</artifactId>
+        <version>${wildfly.swarm.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- docker-maven-plugin which builds the docker image -->
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>${docker.maven.plugin.version}</version>
+        <configuration>
+          <images>
+            <image>
+              <name>camelinaction/helloswarm-docker</name>
+              <build>
+                <from>openjdk:latest</from>
+                <assembly>
+                  <!-- need to inline an assembly because wildfly-swarm generate the uberjar with -swarm
+                       and docker-maven-plugin includes the non uber jar by default -->
+                  <inline>
+                    <fileSets>
+                      <fileSet>
+                        <directory>target</directory>
+                        <outputDirectory>.</outputDirectory>
+                        <includes>
+                          <include>*-swarm.jar</include>
+                        </includes>
+                      </fileSet>
+                    </fileSets>
+                  </inline>
+                </assembly>
+                <!-- command to run the uber jar -->
+                <cmd>java -jar maven/${project.artifactId}-${project.version}-swarm.jar</cmd>
+              </build>
+              <run>
+                <!-- port mapping to call external->internal port in the container,
+                     usually you map the same port export->internal -->
+                <ports>
+                  <port>8080:8080</port>
+                </ports>
+              </run>
+            </image>
+          </images>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <dependencies>
+    <!-- Java EE 7 dependency -->
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-api</artifactId>
+      <version>7.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Wildfly Swarm Fractions -->
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>monitor</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>camel-cdi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>camel-undertow</artifactId>
+    </dependency>
+  </dependencies>
+</project>
