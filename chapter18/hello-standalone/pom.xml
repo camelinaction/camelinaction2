@@ -16,6 +16,7 @@
 
   <modules>
     <module>hello-swarm</module>
+    <module>client-spring</module>
   </modules>
 
 </project>
