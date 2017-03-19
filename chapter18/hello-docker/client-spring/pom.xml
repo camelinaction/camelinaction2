@@ -16,6 +16,8 @@
   <packaging>jar</packaging>
 
   <properties>
+    <docker.maven.plugin.version>0.20.0</docker.maven.plugin.version>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
@@ -70,7 +72,37 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot-version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
+
+      <!-- docker-maven-plugin which builds the docker image -->
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>${docker.maven.plugin.version}</version>
+        <configuration>
+          <images>
+            <image>
+              <name>camelinaction/spring-docker</name>
+              <build>
+                <from>openjdk:latest</from>
+                <assembly>
+                  <descriptorRef>artifact</descriptorRef>
+                </assembly>
+                <!-- command to run the uber jar -->
+                <cmd>java -jar maven/${project.artifactId}-${project.version}.jar</cmd>
+              </build>
+            </image>
+          </images>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 

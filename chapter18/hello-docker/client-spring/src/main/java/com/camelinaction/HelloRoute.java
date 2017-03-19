@@ -12,8 +12,9 @@ public class HelloRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("timer:foo?period=2000")
-                .to("http4://localhost:8080/say")
-                .log("${body}");
+            // need to use the IP address of the wildfly-swarm application
+            .to("http4://{{swarm.ip}}:8080/say")
+            .log("${body}");
     }
 }
 
