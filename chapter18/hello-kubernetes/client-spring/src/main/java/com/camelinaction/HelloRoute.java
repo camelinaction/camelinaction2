@@ -11,9 +11,9 @@ public class HelloRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("timer:foo?period=2000")
-            // need to use the IP address of the wildfly-swarm application
-            .to("http4://{{swarm.ip}}:8080/say")
+        from("timer:bar?period=2000")
+            // call the service using its servicename as hostname
+            .to("http4://helloswarm-kubernetes/say?connectionClose=true")
             .log("${body}");
     }
 }
