@@ -14,7 +14,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <docker.maven.plugin.version>0.20.0</docker.maven.plugin.version>
+    <fabric8.maven.plugin.version>3.3.0</fabric8.maven.plugin.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -81,7 +81,7 @@
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>fabric8-maven-plugin</artifactId>
-        <version>3.2.31</version>
+        <version>${fabric8.maven.plugin.version}</version>
         <executions>
           <execution>
             <id>fmp</id>

@@ -12,8 +12,8 @@ public class HelloRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("timer:bar?period=2000")
-            // call the service using its servicename as hostname
-            .to("http4://helloswarm-kubernetes/say?connectionClose=true")
+            // call the service using {{service:name}}
+            .to("http4://{{service:helloswarm-kubernetes}}/say?connectionClose=true")
             .log("${body}");
     }
 }
