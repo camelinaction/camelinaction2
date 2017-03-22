@@ -30,10 +30,10 @@ public class InventoryMain {
         Main main = new Main();
         // to load Spring XML file
         main.setApplicationContextUri("META-INF/spring/camel-context.xml");
-        // and start (will wait until you stop with ctrl + c)
-        main.start();
         // echo to console how you can stop
         System.out.println("\n\nApplication has now been started. You can press ctrl + c to stop.\n\n");
+        // and run (will wait until you stop with ctrl + c)
+        main.run();
     }
 
 }
