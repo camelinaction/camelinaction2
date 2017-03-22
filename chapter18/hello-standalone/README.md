@@ -23,7 +23,7 @@ This play a role later when we run this microservice in Docker and Kubernetes.
 
 You can also call the hello service from a web browser using
 
-    http://localhost:8080/say
+    http://localhost:8080
 
 #### Notice
 

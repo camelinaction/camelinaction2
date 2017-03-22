@@ -44,7 +44,7 @@ so we do that with `-p8080:8080`
 
 You can test if the WildFly-Swarm application runs correctly by opening from a web browser:
 
-    http://localhost:8080/say
+    http://localhost:8080
 
 #### Running Spring-Boot    
 

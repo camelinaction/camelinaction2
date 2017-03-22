@@ -13,7 +13,7 @@ import org.apache.camel.cdi.Uri;
 @Singleton
 public class HelloRoute extends RouteBuilder {
 
-    @Inject @Uri("undertow:http://0.0.0.0:8080/say")
+    @Inject @Uri("undertow:http://0.0.0.0:8080")
     private Endpoint undertow;
 
     @Inject
