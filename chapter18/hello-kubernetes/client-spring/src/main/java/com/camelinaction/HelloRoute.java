@@ -13,7 +13,7 @@ public class HelloRoute extends RouteBuilder {
     public void configure() throws Exception {
         from("timer:foo?period=2000")
             // call the service using {{service:name}}
-            .to("http4://{{service:helloswarm-kubernetes}}?connectionClose=true")
+            .to("http4://{{service:helloswarm}}?connectionClose=true")
             .log("${body}");
     }
 }
