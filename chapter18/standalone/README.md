@@ -1,5 +1,5 @@
-Chapter 18 - hello-standalone
------------------------------
+Chapter 18 - standalone
+-----------------------
 
 This holds the standalone version of the hello microservice.
 
@@ -33,4 +33,4 @@ as both Spring-Boot and WildFly-Swarm are using that port. If so you would need
 to reconfigure one of them to use another port number.
     
 You will not have such problem with Docker or Kubernetes. But they bring their
-own set of networking problems to the table.  
+own set of networking problems to the table.

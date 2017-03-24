@@ -15,7 +15,7 @@
   <name>Camel in Action 2 :: Chapter 18</name>
 
   <modules>
-    <module>hello-standalone</module>
+    <module>standalone</module>
     <module>hello-docker</module>
     <module>hello-kubernetes</module>
   </modules>
