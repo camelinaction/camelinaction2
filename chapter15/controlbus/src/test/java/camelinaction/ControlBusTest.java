@@ -77,7 +77,7 @@ public class ControlBusTest extends CamelTestSupport {
         assertTrue("Should match notifier", matches);
 
         // we gotta wait just a little extra to stop, before querying status
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         // it should have stopped itself
         assertTrue("Route should be stopped", context.getRouteStatus("manual").isStopped());
     }
