@@ -15,10 +15,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>client-spring</module>
-    <module>client-spring2</module>
-    <module>hello-swarm</module>
-    <module>hello-swarm2</module>
+    <!-- do not auto build as they require running kubernetes -->
   </modules>
 
 </project>
