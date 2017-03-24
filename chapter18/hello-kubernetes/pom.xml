@@ -15,8 +15,9 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>hello-swarm</module>
     <module>client-spring</module>
+    <module>client-spring2</module>
+    <module>hello-swarm</module>
     <module>hello-swarm2</module>
   </modules>
 
