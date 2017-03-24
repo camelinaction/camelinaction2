@@ -4,7 +4,7 @@
 
   <parent>
     <groupId>com.camelinaction</groupId>
-    <artifactId>hello-kubernetes</artifactId>
+    <artifactId>kubernetes</artifactId>
     <version>2.0.0</version>
   </parent>
 

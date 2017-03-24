@@ -1,5 +1,5 @@
-Chapter 18 - hello-kubernetes
------------------------------
+Chapter 18 - kubernetes
+-----------------------
 
 This holds the Kubernetes version of the hello microservice.
 
