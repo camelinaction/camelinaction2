@@ -16,6 +16,7 @@
     <modules>
         <module>startup</module>
         <module>routepolicy</module>
+        <module>controlbus</module>
         <module>shutdown</module>
         <module>standalone</module>
         <module>war</module>
