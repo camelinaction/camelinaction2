@@ -16,7 +16,7 @@
 
   <modules>
     <module>standalone</module>
-    <module>hello-docker</module>
+    <module>docker</module>
     <module>hello-kubernetes</module>
   </modules>
 

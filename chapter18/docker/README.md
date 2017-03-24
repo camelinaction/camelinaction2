@@ -1,5 +1,5 @@
-Chapter 18 - hello-docker
------------------------------
+Chapter 18 - docker
+-------------------
 
 This holds the Docker version of the hello microservice.
 
