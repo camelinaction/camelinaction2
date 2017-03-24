@@ -16,12 +16,7 @@
  */
 package camelinaction;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-
 import camelinaction.inventory.UpdateInventoryInput;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
