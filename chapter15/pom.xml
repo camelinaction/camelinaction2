@@ -26,7 +26,6 @@
         <module>osgi</module>
         <module>osgi-msf</module>
         <module>cdi</module>
-        <module>cdi-karaf</module>
     </modules>
 </project>
 
