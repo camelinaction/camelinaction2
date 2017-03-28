@@ -15,6 +15,7 @@
 
   <modules>
     <module>reactive-streams</module>
+    <module>rx-java2</module>
     <module>vertx</module>
     <module>vertx-camel</module>
   </modules>
