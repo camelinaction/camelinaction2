@@ -1,11 +1,9 @@
 package camelinaction;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
-import org.reactivestreams.Subscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +18,7 @@ public class FirstTest extends TestCase {
         // create a publisher with just these words
         Publisher<String> publisher = Flowable.just("Camel", "rocks", "streams", "as", "well");
 
-        Observable<String> subscriber = Observable.fromPublisher(publisher)
+        Flowable<String> subscriber = Flowable.fromPublisher(publisher)
             // upper case the word
             .map(w -> w.toUpperCase())
             // log the big number
