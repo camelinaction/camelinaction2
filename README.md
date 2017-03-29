@@ -43,9 +43,10 @@ Part 5 - Running and Managing Camel
 
 Part 6 - Out in the Wild
 
-- 18 [Camel and Containers in the Cloud](chapter18)
+- 18 [Microservices with Docker and Kubernetes](chapter18)
 - 19 [Camel Tooling](chapter19)
-- 20 [Camel IoT](chapter20)
+- 20 [Camel IoT by Henryk Konsek](chapter20)
+- 21 [Reactive Camel](chapter21)
 
 Appendixes
 
