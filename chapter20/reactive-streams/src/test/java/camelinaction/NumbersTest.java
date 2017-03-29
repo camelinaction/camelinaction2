@@ -1,46 +1,35 @@
 package camelinaction;
 
-import org.apache.camel.RoutesBuilder;
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.reactive.streams.api.CamelReactiveStreams;
-import org.apache.camel.component.reactive.streams.api.CamelReactiveStreamsService;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import java.time.Duration;
+import java.util.Random;
+
+import junit.framework.TestCase;
 import org.junit.Test;
-import org.reactivestreams.Publisher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
 
-public class NumbersTest extends CamelTestSupport {
+public class NumbersTest extends TestCase {
+
+    private static final Logger LOG = LoggerFactory.getLogger(NumbersTest.class);
 
     @Test
     public void testNumbers() throws Exception {
-        CamelReactiveStreamsService reactive = CamelReactiveStreams.get(context);
+        LOG.info("Starting Reactive-Core Flux numbers");
 
-        // create a published that receive from the numbers stream
-        Publisher<Integer> numbers = reactive.fromStream("numbers", Integer.class);
-
-        // use stream engine to subscribe from the publisher
-        // where we filter out the big numbers which is logged
-        Flux.from(numbers)
+        // use stream engine to subscribe from a timer interval that runs a continued
+        // stream with data once per second
+        Flux.interval(Duration.ofSeconds(1))
+            // map the message to a random number between 0..9
+            .map(i -> new Random().nextInt(10))
+            // filter out to only include big numbers, eg 6..9
             .filter(n -> n > 5)
-            .doOnNext(c -> log.info("Streaming big number {}", c))
+            // log the big number
+            .doOnNext(c -> LOG.info("Streaming big number {}", c))
+            // start the subscriber so it runs
             .subscribe();
 
         // let it run for 10 seconds
         Thread.sleep(10000);
-    }
-
-    @Override
-    protected RoutesBuilder createRouteBuilder() throws Exception {
-        return new RouteBuilder() {
-            @Override
-            public void configure() throws Exception {
-                // use timer to create a continued stream of numbers
-                from("timer:number")
-                    .transform(simple("${random(0,10)}"))
-                    .log("Generated random number ${body}")
-                    // send the numbers to the stream named numbers
-                    .to("reactive-streams:numbers");
-            }
-        };
     }
 }
