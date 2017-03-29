@@ -4,7 +4,7 @@ chapter21 - vertx
 Using vert.x to build a microservice which simulates a football
 live score ticker which authentic _dong_ sound when goals are scored.
 
-### 7.2.5 Using Vert.x to build microservices 
+### 21.2.1 Building a dong simulator using Vert.x
 
 You need to build this example first
 
