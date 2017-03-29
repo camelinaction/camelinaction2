@@ -7,6 +7,5 @@ This chapters covers
 - Developing microservices with Camel
 - WildFly Swarm and Camel
 - Spring Boot and Camel
-- Vert.x and Camel
 - Designing for failures
 - Netflix Hystrix circuit breakers
