@@ -20,7 +20,7 @@ public class SimplePropertiesTest extends CamelTestSupport {
     }
     
     @Test
-    public void testSimpleBuilder() throws Exception {
+    public void testSimpleProperties() throws Exception {
         getMockEndpoint("mock:end").expectedBodiesReceived("Camel Rocks!");
         
         template.sendBody("direct:start", "Camel");
