@@ -19,7 +19,7 @@
 
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <route>
-            <from uri="jetty:https://localhost:8080/early?sslContextParametersRef=sslContextParameters"/>
+            <from uri="jetty:https://localhost:8080/early?sslContextParameters=sslContextParameters"/>
             <transform>
                 <constant>Hi</constant>
             </transform>

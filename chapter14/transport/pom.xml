@@ -13,6 +13,10 @@
   <artifactId>chapter14-transport</artifactId>
   <name>Camel in Action 2 :: Chapter 14 :: Transport Security</name>
 
+  <properties>
+    <camel-version>2.19.0-SNAPSHOT</camel-version>
+  </properties>
+
   <dependencies>
 
     <dependency>
@@ -26,7 +30,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jetty</artifactId>
+      <artifactId>camel-jetty9</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>

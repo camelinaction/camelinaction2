@@ -16,7 +16,7 @@ public class SpringHttpsTest extends CamelSpringTestSupport {
     // this will utilize the truststore we defined in sslContextParameters bean to access the HTTPS endpoint
     @Test
     public void testHttps() throws Exception {
-        String reply = template.requestBody("jetty:https://localhost:8080/early?sslContextParametersRef=sslContextParameters", "Hi Camel!", String.class);
+        String reply = template.requestBody("jetty:https://localhost:8080/early?sslContextParameters=sslContextParameters", "Hi Camel!", String.class);
         assertEquals("Hi", reply);
     }
 
