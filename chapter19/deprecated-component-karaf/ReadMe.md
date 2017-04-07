@@ -14,7 +14,7 @@ To build this project use
 
 Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.x) run the following
 
-    feature:repo-add camel 2.18.2
+    feature:repo-add camel 2.19.0
     feature:install camel
     feature:install camel-quartz
 
