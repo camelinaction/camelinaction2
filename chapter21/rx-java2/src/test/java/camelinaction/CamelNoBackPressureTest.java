@@ -9,6 +9,14 @@ import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 
+/**
+ * Two test sets to demonstrate when there is:
+ * - no pack pressure
+ * - back pressure enabled using Camel's inflight route policy.
+ *
+ * @see CamelNoBackPressureTest
+ * @see CamelInflightBackPressureTest
+ */
 public class CamelNoBackPressureTest extends CamelTestSupport {
 
     @Test
