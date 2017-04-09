@@ -40,8 +40,8 @@ public class CamelConsumerBackPressureTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                // allow at most 10 inflight messages and use 10 concurrent consumers
-                from("reactive-streams:inbox?maxInflightExchanges=10&concurrentConsumers=10")
+                // allow at most 5 inflight messages and use 5 concurrent consumers
+                from("reactive-streams:inbox?maxInflightExchanges=5&concurrentConsumers=5")
                     // use a little delay so us humans can follow what happens
                     .delay(constant(10))
                     .log("Processing message ${body}");
