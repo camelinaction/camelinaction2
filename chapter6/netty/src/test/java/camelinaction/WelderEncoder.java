@@ -13,7 +13,6 @@ public class WelderEncoder extends MessageToMessageEncoder<String> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, String msg, List<Object> out) throws Exception {
-        // TODO
         ByteBuf buf = ByteBufAllocator.DEFAULT.buffer(msg.length());
         buf.writeBytes(msg.getBytes());
         out.add(buf);
