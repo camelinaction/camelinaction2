@@ -31,7 +31,7 @@ public class CamelInflightBackPressureTest extends CamelTestSupport {
         // use stream engine to subscribe from the publisher
         Flowable.fromPublisher(inbox)
             .doOnNext(c -> {
-                log.info("Reactive Subscriber got message {}", c);
+                log.info("Processing message {}", c);
                 Thread.sleep(1000);
             })
             .subscribe();
@@ -58,8 +58,6 @@ public class CamelInflightBackPressureTest extends CamelTestSupport {
                 inflight.setMaxInflightExchanges(20);
                 // start Camel consumer again when we are down or below 25% of max
                 inflight.setResumePercentOfMax(25);
-                // when the throttler state changes then log that at WARN level so we can seee it
-                inflight.setLoggingLevel(LoggingLevel.WARN);
 
                 from("seda:inbox").routePolicy(inflight)
                     // use a little delay as otherwise Camel is to fast and the inflight throttler cannot react so precisely
