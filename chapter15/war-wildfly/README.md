@@ -1,5 +1,5 @@
 Chapter 15 - Running Camel as Web Application in WildFly
-========================================
+--------------------------
 
 This example shows how to run Camel as a Web Application (war) in WildFly.
 

@@ -1,5 +1,5 @@
 Chapter 15 - Using RoutePolicy
-========================================
+--------------------------
 
 This is a example using RoutePolicy to demonstrate how to flip between two routes,
 so only one route is active at any time.

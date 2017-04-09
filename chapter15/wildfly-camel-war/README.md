@@ -1,5 +1,5 @@
 Chapter 15 - Running Camel via WildFly-Camel
-============================================
+--------------------------
 
 This example shows how to run Camel using the WildFly-Camel subsystem.
 

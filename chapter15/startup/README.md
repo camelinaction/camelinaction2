@@ -1,5 +1,5 @@
 Chapter 15 - Startup ordering
-========================================
+--------------------------
 
 There are 2 examples you can try.
 

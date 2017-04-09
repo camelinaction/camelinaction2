@@ -1,5 +1,5 @@
 Chapter 15 - Running Camel with CDI
-============================================
+--------------------------
 
 This example shows how to deploy Camel to WildFly using CDI.
 
