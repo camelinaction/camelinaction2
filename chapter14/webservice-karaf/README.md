@@ -11,10 +11,10 @@ First start Apache Karaf such as using the following command:
 
 Then install Camel and CXF WS Security support in Karaf:
 
-    feature:repo-add camel 2.16.0
+    feature:repo-add camel 2.19.0
     feature:install camel-cxf cxf-ws-security camel-blueprint
 
-where `2.16.0` is the Camel version to install.
+where `2.19.0` is the Camel version to install.
 
 Now we need to install a Camel application in Karaf.
 At first we need to build this example:
