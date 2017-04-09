@@ -12,12 +12,14 @@ import org.junit.Test;
 import org.reactivestreams.Publisher;
 
 /**
- * Two test sets to demonstrate when there is:
+ * Three test sets to demonstrate when there is:
  * - no pack pressure
  * - back pressure enabled using Camel's inflight route policy.
+ * - process only latest message
  *
  * @see CamelNoBackPressureTest
  * @see CamelInflightBackPressureTest
+ * @see CamelLatestBackPressureTest
  */
 public class CamelInflightBackPressureTest extends CamelTestSupport {
 
