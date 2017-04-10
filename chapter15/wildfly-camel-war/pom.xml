@@ -112,7 +112,6 @@
           <plugin>
             <groupId>org.wildfly.plugins</groupId>
             <artifactId>wildfly-maven-plugin</artifactId>
-            <version>1.1.0.Alpha11</version>
             <executions>
               <execution>
                 <id>wildfly-deploy</id>
