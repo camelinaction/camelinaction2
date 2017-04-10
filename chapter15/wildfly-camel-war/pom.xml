@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -100,41 +100,40 @@
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
-     </plugins>
-    </build>
+    </plugins>
+  </build>
 
-    <!-- Profiles -->
-    <profiles>
-        <profile>
-            <id>deploy</id>
-              <build>
-                <plugins>
-            
-                  <plugin>
-                    <groupId>org.wildfly.plugins</groupId>
-                    <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>1.1.0.Alpha11</version>
-                    <executions>
-                      <execution>
-                         <id>wildfly-deploy</id>
-                         <phase>install</phase>
-                         <goals>
-                           <goal>deploy-only</goal>
-                         </goals>
-                       </execution>
-                       <execution>
-                         <id>wildfly-undeploy</id>
-                         <phase>clean</phase>
-                         <goals>
-                           <goal>undeploy</goal>
-                         </goals>
-                       </execution>
-                     </executions>
-                   </plugin>
-                 </plugins>
-               </build>
-        </profile>
-    </profiles>
+  <!-- Profiles -->
+  <profiles>
+    <profile>
+      <id>deploy</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-maven-plugin</artifactId>
+            <version>1.1.0.Alpha11</version>
+            <executions>
+              <execution>
+                <id>wildfly-deploy</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>deploy-only</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>wildfly-undeploy</id>
+                <phase>clean</phase>
+                <goals>
+                  <goal>undeploy</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
 
