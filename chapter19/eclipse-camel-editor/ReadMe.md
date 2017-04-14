@@ -1,21 +1,21 @@
-Chapter19 - JBoss Tools for Apache Camel
-----------------------------------------
+Chapter19 - JBoss Camel Developer Tools
+---------------------------------------
 
-### 19.1.1 JBoss Tools for Apache Camel
+### 19.1.1 JBoss Camel Developer Tools
 
-This is a Camel example used to demonstrate the JBoss Tools for Apache Camel editor (formerly known as Fuse IDE),
+This is a Camel example used to demonstrate the JBoss Camel Developer Tools
 which you can run from Eclipse.
 
 
-#### Installing JBoss Tools for Apache Camel in Eclipse
+#### Installing JBoss Camel Developer Tools in Eclipse
 
 You need to use Eclipse Neon 4.6
 
 From Eclipse you choose `Help` -> `Eclipse Markeplace...`
   and then type `Camel` in the find field and press the Go button. 
 
-In the selection list search select `Red Hat Developer Studio Integration Stack` which is the lovely
-name Red Hat chosen for the Camel and integration tools as part of the Red Hat JBoss Fuse product.
+In the selection list search select `Red Hat Developer Studio Integration Stack` which is the 
+name chosen for the Camel and integration tools as part of the Red Hat JBoss Fuse product.
 
 Don't worry the tooling is open source and 100% free to use.
 
