@@ -2,21 +2,21 @@ package camelinaction.karaf;
 
 import java.util.List;
 
-import camelinaction.DeprecatedValidator;
-import org.apache.felix.gogo.commands.Command;
-import org.apache.karaf.shell.console.OsgiCommandSupport;
+import camelinaction.old.DeprecatedValidator;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 
 /**
  * A Karaf command that checks if any Camel application is using deprecated Camel components
- * <p/>
- * See also the file src/main/resources/OSGI-INF/blueprint/blueprint-command.xml where the command is setup for Karaf.
  */
 @Command(scope = "oldstuff", name = "deprecated-components",
          description = "Lists all deprecated components in use.")
-public class DeprecatedComponentsCommand extends OsgiCommandSupport {
+@Service
+public class DeprecatedComponentsCommand implements Action {
 
     @Override
-    protected Object doExecute() throws Exception {
+    public Object execute() throws Exception {
         // create the validator to use which is from the chapter19-custom-tooling module
         DeprecatedValidator validator = new DeprecatedValidator();
         // find all the deprecated component names that are in use
@@ -33,5 +33,4 @@ public class DeprecatedComponentsCommand extends OsgiCommandSupport {
 
         return null;
     }
-
 }

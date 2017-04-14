@@ -17,14 +17,15 @@ and then afterwards this module using Maven:
 
     mvn clean install
 
-Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.x) run the following
+Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.1.x) run the following
 
-    feature:repo-add camel 2.18.2
+    feature:repo-add camel 2.19.0
     feature:install camel
     feature:install camel-quartz
 
 And then install the tooling
 
+    feature:install camel-catalog
     install -s mvn:com.camelinaction/chapter19-custom-tooling/2.0.0
     install -s mvn:com.camelinaction/chapter19-custom-tooling-karaf/2.0.0
 

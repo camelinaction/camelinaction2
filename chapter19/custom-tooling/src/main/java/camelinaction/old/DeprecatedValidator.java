@@ -1,4 +1,4 @@
-package camelinaction;
+package camelinaction.old;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,6 @@ import javax.management.ObjectName;
 import org.apache.camel.catalog.CamelCatalog;
 import org.apache.camel.catalog.DefaultCamelCatalog;
 import org.apache.camel.util.JsonSchemaHelper;
-
-import static camelinaction.CamelContextController.findCamelContexts;
-import static camelinaction.CamelContextController.findComponentNames;
 
 /**
  * A validator to check for deprecated usage of Camel components and options
@@ -37,10 +34,10 @@ public class DeprecatedValidator {
         List<String> answer = new ArrayList<>();
 
         // find all Camel applications running
-        Set<ObjectName> camels = findCamelContexts();
+        Set<ObjectName> camels = CamelContextController.findCamelContexts();
         for (ObjectName on : camels) {
             // find all the component names that the camel application uses
-            List<String> names = findComponentNames(on);
+            List<String> names = CamelContextController.findComponentNames(on);
 
             // is any of these component deprecated
             for (String name : names) {

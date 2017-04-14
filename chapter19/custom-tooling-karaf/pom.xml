@@ -25,7 +25,7 @@
     <!-- karaf -->
     <dependency>
       <groupId>org.apache.karaf.shell</groupId>
-      <artifactId>org.apache.karaf.shell.console</artifactId>
+      <artifactId>org.apache.karaf.shell.commands</artifactId>
       <version>${karaf-version}</version>
     </dependency>
 
@@ -37,11 +37,12 @@
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
-        <version>2.3.7</version>
+        <version>${maven-bundle-plugin-version}</version>
         <extensions>true</extensions>
         <configuration>
           <instructions>
             <Bundle-SymbolicName>chapter19-custom-tooling-karaf</Bundle-SymbolicName>
+            <Karaf-Commands>*</Karaf-Commands>
           </instructions>
         </configuration>
       </plugin>

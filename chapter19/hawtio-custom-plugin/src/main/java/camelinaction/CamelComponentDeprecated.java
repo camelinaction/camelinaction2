@@ -1,11 +1,12 @@
 package camelinaction;
 
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
 import java.util.List;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
+
+import camelinaction.old.DeprecatedValidator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

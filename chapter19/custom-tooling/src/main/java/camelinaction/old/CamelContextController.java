@@ -1,4 +1,4 @@
-package camelinaction;
+package camelinaction.old;
 
 import java.lang.management.ManagementFactory;
 import java.util.List;
