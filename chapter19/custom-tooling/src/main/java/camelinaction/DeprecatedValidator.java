@@ -22,8 +22,8 @@ public class DeprecatedValidator {
     private CamelCatalog catalog;
 
     public DeprecatedValidator() {
-        // create the catalog, and turn on caching
-        catalog = new DefaultCamelCatalog(true);
+        // create the catalog
+        catalog = new DefaultCamelCatalog();
     }
 
     /**
