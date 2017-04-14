@@ -19,15 +19,15 @@ and then afterwards this module using Maven:
 
 #### Installing in Karaf/ServiceMix
 
-Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.x) run the following
+Then in a running Apache Karaf/ServiceMix container (requires Karaf 4.1.x) run the following
 
-    feature:repo-add camel 2.17.3
+    feature:repo-add camel 2.19.0
     feature:install camel
     feature:install camel-quartz
 
 And then install hawtio
 
-    feature:repo-add hawtio 1.4.63
+    feature:repo-add hawtio 1.5.0
     feature:install hawtio
 
 Then install this custom hawtio plugin
