@@ -32,7 +32,7 @@ public class HttpsTest extends CamelTestSupport {
         sslContextParameters.setTrustManagers(tmp);
         
         JndiRegistry registry = super.createRegistry();
-        registry.bind("sslContextParameters", sslContextParameters);
+        registry.bind("ssl", sslContextParameters);
 
         return registry;
     }
@@ -40,7 +40,7 @@ public class HttpsTest extends CamelTestSupport {
     // this will utilize the truststore we defined in sslContextParameters bean to access the HTTPS endpoint
     @Test
     public void testHttps() throws Exception {
-        String reply = template.requestBody("jetty:https://localhost:8080/early?sslContextParameters=#sslContextParameters", "Hi Camel!", String.class);
+        String reply = template.requestBody("jetty:https://localhost:8080/early?sslContextParameters=#ssl", "Hi Camel!", String.class);
         assertEquals("Hi", reply);
     }
 
@@ -56,7 +56,7 @@ public class HttpsTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("jetty:https://localhost:8080/early?sslContextParameters=#sslContextParameters")
+                from("jetty:https://localhost:8080/early?sslContextParameters=#ssl")
                     .transform().constant("Hi");
             }
         };

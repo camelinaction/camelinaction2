@@ -7,7 +7,7 @@
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-    <sslContextParameters id="sslContextParameters"
+    <sslContextParameters id="ssl"
         xmlns="http://camel.apache.org/schema/spring">
         <keyManagers keyPassword="secret">
             <keyStore resource="./cia_keystore.jks" password="supersecret" />
@@ -19,7 +19,7 @@
 
     <camelContext xmlns="http://camel.apache.org/schema/spring">
         <route>
-            <from uri="jetty:https://localhost:8080/early?sslContextParameters=#sslContextParameters"/>
+            <from uri="jetty:https://localhost:8080/early?sslContextParameters=#ssl"/>
             <transform>
                 <constant>Hi</constant>
             </transform>
