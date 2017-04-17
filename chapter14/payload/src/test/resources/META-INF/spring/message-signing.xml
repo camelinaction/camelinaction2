@@ -13,13 +13,17 @@
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">                                
         <route>
             <from uri="direct:sign"/>
-            <to uri="crypto:sign://keystore?keyStoreParameters=#keystore&amp;alias=jon&amp;password=secret"/>
+            <to uri="crypto:sign://keystore?keyStoreParameters=#keystore&amp;
+                     alias=jon&amp;
+                     password=secret"/>
             <to uri="mock:signed"/>
             <to uri="direct:verify"/>
         </route>
         <route>
             <from uri="direct:verify"/>
-            <to uri="crypto:verify://keystore?keyStoreParameters=#truststore&amp;alias=jon&amp;password=secret"/>
+            <to uri="crypto:verify://keystore?keyStoreParameters=#truststore&amp;
+                     alias=jon&amp;
+                     password=secret"/>
             <to uri="mock:verified"/>
         </route>
     </camelContext>
