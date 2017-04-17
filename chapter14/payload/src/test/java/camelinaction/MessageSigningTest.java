@@ -48,12 +48,14 @@ public class MessageSigningTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("direct:sign")
-                    .to("crypto:sign://keystore?keystore=#keystore&alias=jon&password=secret")
+                    .toF("crypto:sign://keystore?keystore=%s&alias=%s&password=%s", 
+                         "#keystore", "jon", "secret")
                     .to("mock:signed")
                     .to("direct:verify");
                 
                 from("direct:verify")
-                    .to("crypto:verify://keystore?keystore=#truststore&alias=jon&password=secret")
+                    .toF("crypto:verify://keystore?keystore=%s&alias=%s&password=%s",
+                        "#truststore", "jon", "secret")
                     .to("mock:verified");
             }
         };
