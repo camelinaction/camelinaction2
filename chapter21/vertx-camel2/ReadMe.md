@@ -1,8 +1,14 @@
 chapter21 - vertx-camel2
-----------------------
+------------------------
 
 Using vert.x and Apache Camel to build a microservice which simulates a football
 live score ticker which authentic _dong_ sound when goals are scored.
+
+#### Note 
+
+This example uses the `vertx-camel-bridge` component which requires setting up
+the bridge using vert.x style with inbound and outbound mappings.
+The Camel route then need to use seda endpoints to route between vert.x and Camel.
 
 ### 21.2.2 Using Camel together with Vert.x
 
