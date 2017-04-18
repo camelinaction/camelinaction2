@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>chapter17</artifactId>
+    <version>2.0.0</version>
+  </parent>
+
+  <artifactId>chapter17-cluster-servicecall</artifactId>
+  <name>Camel in Action 2 :: Chapter 17 :: Clustered ServiceCall EIP</name>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>foo-server</module>
+    <module>bar-server</module>
+    <module>client</module>
+  </modules>
+
+</project>
+

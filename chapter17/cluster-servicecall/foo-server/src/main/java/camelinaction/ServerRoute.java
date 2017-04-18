@@ -1,0 +1,14 @@
+package camelinaction;
+
+import org.apache.camel.builder.RouteBuilder;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ServerRoute extends RouteBuilder {
+
+    @Override
+    public void configure() throws Exception {
+        from("undertow:http://localhost:8081")
+            .transform().constant("Hello from foo server on port 8081");
+    }
+}
