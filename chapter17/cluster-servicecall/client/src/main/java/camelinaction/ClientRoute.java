@@ -10,7 +10,7 @@ public class ClientRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("timer:trigger?period=2000")
-            .serviceCall("service-1")
+            .serviceCall("hello-service/camel/hello")
             .log("Response ${body}");
     }
 }
