@@ -13,7 +13,7 @@ See section 18.2.1 in the book.
 At first you need to run the WildFly-Swarm service which hosts the hello service 
 that the Spring-Boot client will call.
 
-Before deploying its a good idea to setup the command shell to work with the cluster
+Before deploying it's a good idea to setup the command shell to work with the cluster
 
     eval $(minikube docker-env)
 
