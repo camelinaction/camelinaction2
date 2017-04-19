@@ -21,7 +21,7 @@ Don't worry the tooling is open source and 100% free to use.
 
 Then click `Install` on the selected and prepare for it to download and install a bunch of stuff which can take some time.
 
-If the editor dont seem to be installing, then mind that its known to happen that a license agreement confirmation
+If the editor does not seem to be installing, then mind that its known to happen that a license agreement confirmation
 box may show up below the window so you have to move the windows to find it.
 
 After you restart Eclipse then you still need to install more. In the `Install/Update` page which is shown
