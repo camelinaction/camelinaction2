@@ -27,7 +27,7 @@ This will deploy the application in the local Kubernetes cluster.
 
 #### Running Spring-Boot    
 
-Before deploying its a good idea to setup the command shell to work with the cluster
+Before deploying it's a good idea to setup the command shell to work with the cluster
 
     eval $(minikube docker-env)
 
