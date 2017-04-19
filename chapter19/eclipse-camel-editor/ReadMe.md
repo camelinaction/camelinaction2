@@ -43,5 +43,15 @@ You can now use the graphical drag'n'drop editor to edit the EIP patterns.
 The editor is 2-way editor, so you can always edit the XML source directly, and switch over
 to the graphical editor, and continue editing. There is no lock-in.
 
+
+#### Going further
+
+The tooling is providing several features:
+- Graphical Route Editor (as seen in previous paragraph)
+- Graphical Data Mapper
+- Integrated debugger: debugging can be done on the graphical editor and in the Java code
+- Monitoring by connecting to the JMX Camel MBean
+- Deployment on different Runtimes: facilities to deploy locally, on Karaf/FUSE, on Wildfly/JBoss EAP and on OpenShift.
+
 For more details see: http://tools.jboss.org/features/apachecamel.html
 
