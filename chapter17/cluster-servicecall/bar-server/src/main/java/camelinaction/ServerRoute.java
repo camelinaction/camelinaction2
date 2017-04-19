@@ -8,7 +8,7 @@ public class ServerRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("undertow:http://localhost:8082")
+        from("servlet:hello")
             .transform().constant("Hello from bar server on port 8082");
     }
 }

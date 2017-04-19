@@ -1,14 +1,14 @@
 {
   "services": [{
-    "id": "s1-foo",
-    "name": "service-1",
-    "tags": ["camel", "service-call"],
+    "id": "hello-foo",
+    "name": "hello-service",
+    "tags": ["camel"],
     "address": "localhost",
     "port": 8081
   }, {
-    "id": "s1-bar",
-    "name": "service-1",
-    "tags": ["camel", "service-call"],
+    "id": "hello-bar",
+    "name": "hello-service",
+    "tags": ["camel"],
     "address": "localhost",
     "port": 8082
   }]
