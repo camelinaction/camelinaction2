@@ -51,7 +51,9 @@
 
   <build>
     <plugins>
-      <!-- allows the route to be ran via 'mvn camel:run' -->
+      <!-- allows the route:
+              - to be ran via Right-click -> Run as Local Camel Context and 'mvn camel:run'
+              - to be debugged via Right-click -> Debug as Local Camel Context -->
       <plugin>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-maven-plugin</artifactId>
