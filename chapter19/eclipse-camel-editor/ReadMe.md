@@ -17,8 +17,6 @@ From Eclipse you choose `Help` -> `Eclipse Marketplace...`
 In the selection list search select `Red Hat Developer Studio Integration Stack` which is the 
 name chosen for the Camel and integration tools as part of the Red Hat JBoss Fuse product.
 
-Don't worry the tooling is open source and 100% free to use.
-
 Then click `Install` on the selected and prepare for it to download and install a bunch of stuff which can take some time.
 
 If the editor does not seem to be installing, then mind that its known to happen that a license agreement confirmation
@@ -32,8 +30,10 @@ on the center of the screen, select
 And click the `Install` button. In any wizards that shows up, then click `Next` to install all the features
 and to accept any license agreements.
 
-Don't worry the tooling is open source and 100% free to use.
-    
+The tooling is open source and free to use.
+
+You can find the source code of the tooling at github: https://github.com/jbosstools/jbosstools-fuse
+   
     
 #### Using the editor
 
