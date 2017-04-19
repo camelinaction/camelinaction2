@@ -11,7 +11,7 @@ You can run a test like:
 
 ### 8.2.2 - Debugging an issue with your new Camel project
 
-You can the debugger test like:
+You can run the debugger test like:
 
 	mvn test -Dtest=OrderRouterDebuggerTest
 
