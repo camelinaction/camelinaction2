@@ -37,7 +37,9 @@ Don't worry the tooling is open source and 100% free to use.
     
 #### Using the editor
 
-Open the `camel-context.xml` XML file which has the Camel route.
+Open the `camel-context.xml` XML file which has the Camel route. The Camel route will be displayed graphically:
+
+![Screenshot](img/camelRoute.png)
 
 You can now use the graphical drag'n'drop editor to edit the EIP patterns.
 The editor is 2-way editor, so you can always edit the XML source directly, and switch over
