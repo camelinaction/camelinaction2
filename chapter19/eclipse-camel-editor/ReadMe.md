@@ -11,7 +11,7 @@ which you can run from Eclipse.
 
 You need to use Eclipse Neon 4.6
 
-From Eclipse you choose `Help` -> `Eclipse Markeplace...`
+From Eclipse you choose `Help` -> `Eclipse Marketplace...`
   and then type `Camel` in the find field and press the Go button. 
 
 In the selection list search select `Red Hat Developer Studio Integration Stack` which is the 
