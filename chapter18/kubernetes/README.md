@@ -46,7 +46,7 @@ Notice we use `fabric8:run` which runs the application and automatic tail the lo
     route1    Swarm says hello from helloswarm-kubernetes-4221986457-3w1q9
     route1    Swarm says hello from helloswarm-kubernetes-4221986457-3w1q9
     
-You can then press `ctrl + c` to stop the application and it will automatic be undeployed.
+You can then press `ctrl + c` to stop the application and it will automatically be undeployed.
     
 An alternative is to deploy the applicatiom using `mvn clean install fabric8:deploy`, and then
     you can tail the logs with `mvn fabric8:log`.
