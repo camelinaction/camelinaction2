@@ -29,7 +29,7 @@ on the center of the screen, select
 
     JBoss Fuse Development
     
-And click the Install button. In any wizards that shows up, then click `Next` to install all the features
+And click the `Install` button. In any wizards that shows up, then click `Next` to install all the features
 and to accept any license agreements.
 
 Don't worry the tooling is open source and 100% free to use.
