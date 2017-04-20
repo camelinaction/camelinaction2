@@ -50,7 +50,7 @@
     <!-- this is the route that pickup new book orders -->
     <route id="books">
       <from uri="ref:newBookOrders"/>
-      <log message="Incoming book order ${body.orderId} - ${body.amount} of ${body.title}"/>
+      <log message="Order ${body.orderId} - ${body.title}"/>
     </route>
 
   </camelContext>

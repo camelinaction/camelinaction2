@@ -69,7 +69,7 @@ When running this example and following the instructions you should see somethin
     2016-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
     2016-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - Make sure to have Postgres database up and running, as configured in the src/test/resources/META-INF/persistence.xml file
     2016-05-11 20:08:20,371 [rderMain.main()] INFO  BookOrderExample               - -------------------------------------------------------------------------------------------------------------------------
-    2016-05-11 20:08:21,529 [ction.BookOrder] INFO  books                          - Incoming book order 401 - 1 of Camel in Action 2nd ed
+    2016-05-11 20:08:21,529 [ction.BookOrder] INFO  books                          - Order 401 - Camel in Action 2nd ed
     2016-05-11 20:08:25,621 [rderMain.main()] INFO  BookOrderExample               - ... sleeping for 5 seconds and then stopping the route
     2016-05-11 20:08:25,622 [rderMain.main()] INFO  DefaultShutdownStrategy        - Starting to graceful shutdown 1 routes (timeout 300 seconds)
     2016-05-11 20:08:25,626 [ - ShutdownTask] INFO  DefaultShutdownStrategy        - Waiting as there are still 1 inflight and pending exchanges to complete, timeout in 300 seconds.
@@ -86,7 +86,7 @@ When running this example and following the instructions you should see somethin
     2016-05-11 20:08:39,425 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
     2016-05-11 20:08:50,441 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
     2016-05-11 20:09:01,456 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-    2016-05-11 20:09:12,536 [ction.BookOrder] INFO  books                          - Incoming book order 402 - 3 of ActiveMQ in Action
+    2016-05-11 20:09:12,536 [ction.BookOrder] INFO  books                          - Order 402 - ActiveMQ in Action
     ^C2016-05-11 20:09:19,336 [Thread-1       ] INFO  MainSupport$HangupInterceptor  - Received hang up - stopping the main instance.
     2016-05-11 20:09:19,336 [Thread-1       ] INFO  MainSupport                    - Apache Camel 2.16.0 stopping
     2016-05-11 20:09:19,337 [Thread-1       ] INFO  SpringCamelContext             - Apache Camel 2.16.0 (CamelContext: camel) is shutting down
