@@ -83,9 +83,9 @@ When running this example and following the instructions you should see somethin
     2016-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - ... starting route which should indicate some errors, which the bridge error handler should catch and handle
     2016-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - Notice that the consumer will backoff and not poll so fast, instead of every second, it now runs x10 sec.
     2016-05-11 20:08:38,415 [rderMain.main()] INFO  BookOrderExample               - Press CTRL+C to exit this application!
-    2016-05-11 20:08:39,425 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-    2016-05-11 20:08:50,441 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
-    2016-05-11 20:09:01,456 [ction.BookOrder] WARN  books                          - Some exception happened but we do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+    2016-05-11 20:08:39,425 [ction.BookOrder] WARN  books                          - We do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+    2016-05-11 20:08:50,441 [ction.BookOrder] WARN  books                          - We do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+    2016-05-11 20:09:01,456 [ction.BookOrder] WARN  books                          - We do not care Connection to 192.168.59.103:5432 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
     2016-05-11 20:09:12,536 [ction.BookOrder] INFO  books                          - Order 402 - ActiveMQ in Action
     ^C2016-05-11 20:09:19,336 [Thread-1       ] INFO  MainSupport$HangupInterceptor  - Received hang up - stopping the main instance.
     2016-05-11 20:09:19,336 [Thread-1       ] INFO  MainSupport                    - Apache Camel 2.16.0 stopping
