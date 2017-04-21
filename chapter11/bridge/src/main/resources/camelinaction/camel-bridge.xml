@@ -44,7 +44,7 @@
         <constant>true</constant>
       </handled>
       <!-- .. as we log a custom error message with just a little detail -->
-      <log message="Some exception happened but we do not care ${exception.message}" loggingLevel="WARN"/>
+      <log message="We do not care ${exception.message}" loggingLevel="WARN"/>
     </onException>
 
     <!-- this is the route that pickup new book orders -->
