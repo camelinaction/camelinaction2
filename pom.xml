@@ -56,7 +56,7 @@
 
   <properties>
 
-    <activemq-version>5.14.4</activemq-version>
+    <activemq-version>5.14.5</activemq-version>
     <activemq-karaf-version>5.13.5</activemq-karaf-version>
     <camel-version>2.18.3</camel-version>
     <cxf-version>3.1.9</cxf-version>
@@ -68,9 +68,9 @@
     <hystrix-version>1.5.9</hystrix-version>
     <jackson-version>2.8.5</jackson-version>
     <javax-mail-version>1.5.5</javax-mail-version>
-    <jolokia-version>1.3.5</jolokia-version>
+    <jolokia-version>1.3.6</jolokia-version>
     <jetty-plugin-version>8.1.17.v20150415</jetty-plugin-version>
-    <jetty9-plugin-version>9.2.19.v20160908</jetty9-plugin-version>
+    <jetty9-plugin-version>9.2.21.v20170120</jetty9-plugin-version>
     <junit-version>4.12</junit-version>
     <!-- TODO: upgrade to 4.1.x -->
     <karaf-version>4.0.9</karaf-version>
