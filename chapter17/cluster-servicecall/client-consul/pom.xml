@@ -10,8 +10,8 @@
     <relativePath>../..</relativePath>
   </parent>
 
-  <artifactId>chapter17-cluster-servicecall-client</artifactId>
-  <name>Camel in Action 2 :: Chapter 17 :: Clustered ServiceCall EIP :: Client</name>
+  <artifactId>chapter17-cluster-servicecall-client-consul</artifactId>
+  <name>Camel in Action 2 :: Chapter 17 :: Clustered ServiceCall EIP :: Client Consul</name>
 
   <properties>
     <spring.cloud-version>1.1.3.RELEASE</spring.cloud-version>

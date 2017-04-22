@@ -48,7 +48,7 @@ Then you can run the the two server JVMs concurrently by starting each Maven goa
 
 Then you can start the client JVM
 
-    cd client
+    cd client-consul
     mvn spring-boot:run
 
 TODO: more bla bla
