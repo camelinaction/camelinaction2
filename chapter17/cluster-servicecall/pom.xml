@@ -16,6 +16,7 @@
   <modules>
     <module>foo-server</module>
     <module>bar-server</module>
+    <module>client-static</module>
     <module>client-consul</module>
   </modules>
 
