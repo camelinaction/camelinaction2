@@ -5,6 +5,14 @@ This directory holds an example how to use ServiceCall EIP to call services in a
 
 ### 17.7 Calling clustered services using Service Call EIP
 
+TODO: Some generic stuff goes here
+
+#### 17.7.1 Static example
+
+TODO: document me
+
+#### 17.7.2 Consul example
+
 The example uses Consul for service discovery.
 
 #### Running consul
