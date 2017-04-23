@@ -7,8 +7,8 @@ The first example shows you how to use a Multicast from Camel.
 
 To run this example, execute the following on the command line:
 
-	mvn clean test -Dtest=OrderRouterWithMulticast
-	mvn clean test -Dtest=SpringOrderRouterWithMulticast
+	mvn clean test -Dtest=OrderRouterWithMulticastTest
+	mvn clean test -Dtest=SpringOrderRouterWithMulticastTest
 
 The next example shows you how to use a Multicast from Camel with parallel option. 
 To run this example, execute the following on the command line:
