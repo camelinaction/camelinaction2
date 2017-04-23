@@ -10,8 +10,8 @@
     <relativePath>../..</relativePath>
   </parent>
 
-  <artifactId>chapter17-cluster-servicecall-client-static</artifactId>
-  <name>Camel in Action 2 :: Chapter 17 :: Clustered ServiceCall EIP :: Client Static</name>
+  <artifactId>chapter17-cluster-servicecall-client-static-xml</artifactId>
+  <name>Camel in Action 2 :: Chapter 17 :: Clustered ServiceCall EIP :: Client Static XML</name>
 
   <dependencies>
 
@@ -19,6 +19,10 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>

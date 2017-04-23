@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring
+         http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- setup default service call configuration -->
+    <defaultServiceCallConfiguration component="http4">
+      <staticServiceDiscovery>
+        <!-- the syntax is name@hostname:port -->
+        <servers>hello-service@localhost:8081</servers>
+        <servers>hello-service@localhost:8082</servers>
+      </staticServiceDiscovery>
+    </defaultServiceCallConfiguration>
+
+    <!-- Camel route that calls the service -->
+    <route>
+      <from uri="timer:trigger?period=2000"/>
+      <!-- `hello-service` = name of service
+           `/camel/hello` is used in uri templating which
+           means this is used in the context-path of the actual http4 uri -->
+      <serviceCall name="hello-service/camel/hello"/>
+      <log message="Response ${body}"/>
+    </route>
+
+  </camelContext>
+
+</beans>
