@@ -48,9 +48,9 @@ The client then calls the foo and bar server using round robin mode.
 
 
 
-### 17.7.6 Service Call using Consul service registry
+### 17.7.6 Service Call using Spring Boot Cloud and Consul
 
-The example uses Consul for service discovery.
+The example uses Consul for service discovery, and runs using Spring Boot Cloud as the client.
 
 #### Running consul
 
