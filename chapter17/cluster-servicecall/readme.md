@@ -3,15 +3,52 @@ Chapter 17 - cluster-servicecall
 
 This directory holds an example how to use ServiceCall EIP to call services in a clustered or distributed system. 
 
-### 17.7 Calling clustered services using Service Call EIP
+### 17.7.2 Service Call using static service registry
 
-TODO: Some generic stuff goes here
+The example uses a static list for service discovery.
 
-#### 17.7.1 Static example
+#### Running the servers and the client
 
-TODO: document me
+Then you can run the the two server JVMs concurrently by starting each Maven goal from each terminal:
 
-#### 17.7.2 Consul example
+    cd foo-server
+    mvn spring-boot:run
+    
+    cd bar-server
+    mvn spring-boot:run
+
+Then you can start the client JVM
+
+    cd client-static
+    mvn camel:run -P embedded
+    
+  or if using XML DSL
+    
+    cd client-static-xml
+    mvn camel:run -P embedded
+    
+The client then calls the foo and bar server using round robin mode.
+
+
+### 17.7.4 Configuring Service Call EIP
+
+The client can be configured to use global Service Call configuration.
+
+Then you can start the client JVM
+
+    cd client-static
+    mvn camel:run -P global
+    
+  or if using XML DSL
+    
+    cd client-static-xml
+    mvn camel:run -P global
+    
+The client then calls the foo and bar server using round robin mode.
+
+
+
+### 17.7.6 Service Call using Consul service registry
 
 The example uses Consul for service discovery.
 
@@ -59,4 +96,5 @@ Then you can start the client JVM
     cd client-consul
     mvn spring-boot:run
 
-TODO: more bla bla
+The client then calls the foo and bar server using round robin mode.
+
