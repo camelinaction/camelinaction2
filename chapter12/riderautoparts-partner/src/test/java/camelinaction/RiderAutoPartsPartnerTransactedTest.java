@@ -88,9 +88,14 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
         assertEquals(0, rows);
 
+        // uncomment this if you read section 12.2.3 and follow the instructions in the book
+        //Object body = consumer.receiveBodyNoWait("activemq:queue:partners");
+        //assertNotNull("Should not lose message", body);
+
+        // uncomment this if you read section 12.2.3 and follow the instructions in the book
         // now check that the message was moved to the DLQ
-        Object body = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 5000);
-        assertNotNull("Should be in ActiveMQ DLQ", body);
+        // Object body = consumer.receiveBody("activemq:queue:ActiveMQ.DLQ", 5000);
+        // assertNotNull("Should be in ActiveMQ DLQ", body);
     }
 
     @Test
