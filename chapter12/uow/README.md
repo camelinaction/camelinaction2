@@ -3,12 +3,18 @@ Chapter 12 - uow
 
 This directory holds examples how to use Camels `UnitOfWork` concept.
 
-### 12.4.3 - Using onCompletion
+### 12.4.2 Using synchronization callbacks
 
 The example can be run with:
 
     mvn test -Dtest=FileRollbackTest
-    mvn test -Dtest=SpringFileRollbackTest
+
+### 12.4.3 - Using onCompletion
+
+The example can be run with:
+
+    mvn test -Dtest=FileRollbackOnCompletionTest
+    mvn test -Dtest=SpringFileRollbackOnCompletionTest
 
 ### 12.4.3 - Using BeforeConsumer mode
 

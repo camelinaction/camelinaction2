@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Demonstrates how to use OnCompletion in Spring XML.
  */
-public class SpringFileRollbackTest extends CamelSpringTestSupport {
+public class SpringFileRollbackOnCompletionTest extends CamelSpringTestSupport {
 
     @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
