@@ -111,15 +111,6 @@
         <version>${maven-bundle-plugin-version}</version>
         <extensions>true</extensions>
         <configuration>
-          <!--<instructions>-->
-            <!-- to make loading the JDBC driver and connection pool possible -->
-            <!--<Import-Package>-->
-              <!--org.apache.derby.*,-->
-              <!--org.apache.commons.dbcp.*,-->
-              <!--*-->
-            <!--</Import-Package>-->
-            <!--<DynamicImport-Package>*</DynamicImport-Package>-->
-          <!--</instructions>-->
         </configuration>
       </plugin>
 
