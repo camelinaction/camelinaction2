@@ -59,7 +59,7 @@
     <activemq-version>5.14.5</activemq-version>
     <activemq-karaf-version>5.13.5</activemq-karaf-version>
     <camel-version>2.18.3</camel-version>
-    <cxf-version>3.1.9</cxf-version>
+    <cxf-version>3.1.11</cxf-version>
     <hawtio-version>1.5.0</hawtio-version>
 
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
