@@ -11,7 +11,7 @@ This example can be run using:
 
 And you can also run Camel CDI from the command line with
 
-    mvn came:run
+    mvn camel:run
 
 From a command line you can use curl to retrieve order 1 in xml using:
 
