@@ -1,10 +1,21 @@
 package camelinaction;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "order")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Order {
 
+    @XmlElement
     private int id;
+    @XmlElement
     private String partName;
+    @XmlElement
     private int amount;
+    @XmlElement
     private String customerName;
 
     public int getId() {
