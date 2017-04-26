@@ -15,7 +15,7 @@
 
     <!-- TODO remove when 2.19.0 is GA -->
     <properties>
-        <camel-version>2.19.0-SNAPSHOT</camel-version>
+        <camel-version>2.19.0</camel-version>
     </properties>
 
     <modules>

@@ -13,7 +13,7 @@
   <name>Camel in Action 2 :: Chapter 17 :: Clustered Quartz 2.x scheduler</name>
 
   <properties>
-    <camel-version>2.19.0-SNAPSHOT</camel-version>
+    <camel-version>2.19.0</camel-version>
   </properties>
 
   <dependencies>

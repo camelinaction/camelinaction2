@@ -14,7 +14,7 @@
   <name>Camel in Action 2 :: Chapter 14 :: Transport Security</name>
 
   <properties>
-    <camel-version>2.19.0-SNAPSHOT</camel-version>
+    <camel-version>2.19.0</camel-version>
   </properties>
 
   <dependencies>

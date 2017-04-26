@@ -50,12 +50,12 @@
 
     <plugins>
 
-      <!-- TODO: requires 2.19.0-SNAPSHOT -->
+      <!-- TODO: requires 2.19.0 -->
       <!-- run using camel:validate -->
       <plugin>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-maven-plugin</artifactId>
-        <version>2.19.0-SNAPSHOT</version>
+        <version>2.19.0</version>
         <executions>
           <execution>
             <configuration>
