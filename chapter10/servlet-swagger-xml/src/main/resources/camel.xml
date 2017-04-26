@@ -12,10 +12,10 @@
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
     <onException>
-      <exception>camelinaction.OrderNotFoundException</exception>
+      <exception>camelinaction.OrderInvalidException</exception>
       <handled><constant>true</constant></handled>
       <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
-        <constant>204</constant>
+        <constant>400</constant>
       </setHeader>
       <setBody>
         <constant/>
@@ -23,10 +23,10 @@
     </onException>
 
     <onException>
-      <exception>camelinaction.OrderInvalidException</exception>
+      <exception>camelinaction.OrderNotFoundException</exception>
       <handled><constant>true</constant></handled>
       <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
-        <constant>400</constant>
+        <constant>404</constant>
       </setHeader>
       <setBody>
         <constant/>
@@ -68,7 +68,7 @@
         <description>Service to get details of an existing order</description>
         <param name="id" type="path" description="The order id"/>
         <responseMessage code="200" message="The order with the given id"/>
-        <responseMessage code="204" message="Order not found"/>
+        <responseMessage code="404" message="Order not found"/>
         <responseMessage code="500" message="Server error"/>
         <to uri="bean:orderService?method=getOrder(${header.id})"/>
       </get>
@@ -91,7 +91,7 @@
       <delete uri="{id}">
         <description>Service to cancel an existing order</description>
         <param name="id" type="path" description="The order id"/>
-        <responseMessage code="204" message="Order not found"/>
+        <responseMessage code="404" message="Order not found"/>
         <responseMessage code="500" message="Server error"/>
         <to uri="bean:orderService?method=cancelOrder(${header.id})"/>
       </delete>

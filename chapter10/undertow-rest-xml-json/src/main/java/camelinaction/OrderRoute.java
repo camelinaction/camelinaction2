@@ -20,16 +20,16 @@ public class OrderRoute extends RouteBuilder {
 
         // error handling to return custom HTTP status codes for the various exceptions
 
-        onException(OrderNotFoundException.class)
-            .handled(true)
-            // use HTTP status 204 when data was not found
-            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(204))
-            .setBody(constant(""));
-
         onException(OrderInvalidException.class)
             .handled(true)
             // use HTTP status 400 when input data is invalid
             .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(400))
+            .setBody(constant(""));
+
+        onException(OrderNotFoundException.class)
+            .handled(true)
+            // use HTTP status 404 when data was not found
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(404))
             .setBody(constant(""));
 
         onException(Exception.class)
