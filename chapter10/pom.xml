@@ -37,6 +37,7 @@
     <module>undertow-rest-xml-json</module>
     <module>undertow-swagger</module>
     <module>swagger-ui</module>
+    <module>rest-producer</module>
   </modules>
 </project>
 
