@@ -44,7 +44,7 @@
       </setBody>
     </onException>
 
-    <restConfiguration component="servlet" bindingMode="json"
+    <restConfiguration component="servlet" bindingMode="json_xml"
                        contextPath="chapter10-swagger-ui/rest" port="8080"
                        apiContextPath="api-doc" apiContextListing="true"
                        enableCORS="true">
@@ -53,7 +53,6 @@
       <dataFormatProperty key="prettyPrint" value="true"/>
 
       <!-- setup swagger api descriptions -->
-      <apiProperty key="cors" value="true"/> <!-- TODO: remove in Camel 2.18 -->
       <apiProperty key="base.path" value="rest"/>
       <apiProperty key="api.version" value="2.0.0"/>
       <apiProperty key="api.title" value="Rider Auto Parts Order Services"/>
@@ -62,7 +61,9 @@
 
     </restConfiguration>
 
-    <rest path="/orders" consumes="application/json" produces="application/json">
+    <rest path="/orders"
+          consumes="application/json,application/xml"
+          produces="application/json,application/xml">
       <description>Order Service</description>
 
       <get uri="/{id}" outType="camelinaction.Order">
