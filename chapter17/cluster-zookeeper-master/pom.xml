@@ -12,10 +12,6 @@
   <artifactId>chapter17-cluster-zookeeper-master</artifactId>
   <name>Camel in Action 2 :: Chapter 17 :: Clustered ZooKeeper Master</name>
 
-  <properties>
-    <camel-version>2.19.0</camel-version>
-  </properties>
-
   <dependencies>
 
     <!-- Camel -->

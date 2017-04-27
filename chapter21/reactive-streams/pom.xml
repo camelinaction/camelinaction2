@@ -12,9 +12,7 @@
   <artifactId>chapter21-reactive-streams</artifactId>
   <name>Camel in Action 2 :: Chapter 21 :: Reactive Streams and Apache Camel</name>
 
-  <!-- TODO: requires 2.19 -->
   <properties>
-    <camel-version>2.19.0</camel-version>
     <reactor-version>3.0.5.RELEASE</reactor-version>
   </properties>
 

@@ -13,11 +13,6 @@
     <version>2.0.0</version>
     <name>Camel in Action 2 :: Chapter 17</name>
 
-    <!-- TODO remove when 2.19.0 is GA -->
-    <properties>
-        <camel-version>2.19.0</camel-version>
-    </properties>
-
     <modules>
         <module>cluster-file-consul</module>
         <module>cluster-file-hazelcast</module>

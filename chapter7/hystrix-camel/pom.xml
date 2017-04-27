@@ -12,10 +12,6 @@
   <artifactId>chapter7-hystrix-camel</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: Camel with Hystrix</name>
 
-  <properties>
-    <camel-version>2.19.0</camel-version>
-  </properties>
-
   <dependencies>
 
     <dependency>

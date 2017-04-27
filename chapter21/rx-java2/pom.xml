@@ -12,10 +12,8 @@
   <artifactId>chapter21-rx-java2</artifactId>
   <name>Camel in Action 2 :: Chapter 21 :: RX-Java 2 and Apache Camel</name>
 
-  <!-- TODO: requires 2.19 -->
   <properties>
-    <camel-version>2.19.0</camel-version>
-    <rx-java-version>2.0.7</rx-java-version>
+    <rx-java-version>2.0.9</rx-java-version>
   </properties>
 
   <dependencies>
