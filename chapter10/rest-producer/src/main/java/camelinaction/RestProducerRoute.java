@@ -29,11 +29,10 @@ public class RestProducerRoute extends RouteBuilder {
     }
 
     /**
-     * Generte a random city
+     * Generate a random city
      */
     public static Object randomCity() {
-        Random random = new Random();
-        int ran = random.nextInt(3);
+        int ran = new Random().nextInt(3);
         if (ran == 0) {
             return "London";
         } else if (ran == 1) {
