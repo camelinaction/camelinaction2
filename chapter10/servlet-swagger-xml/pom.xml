@@ -50,13 +50,6 @@
       <version>${camel-version}</version>
     </dependency>
 
-    <!-- to use xml -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jaxb</artifactId>
-      <version>${camel-version}</version>
-    </dependency>
-
     <!-- logging -->
     <dependency>
       <groupId>org.slf4j</groupId>

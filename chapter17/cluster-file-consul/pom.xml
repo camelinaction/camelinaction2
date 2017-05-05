@@ -12,11 +12,6 @@
   <artifactId>chapter17-cluster-file-consul</artifactId>
   <name>Camel in Action 2 :: Chapter 17 :: Clustered file using Consul</name>
 
-  <properties>
-    <!-- TODO: require 2.19 -->
-    <camel-version>2.19.0-SNAPSHOT</camel-version>
-  </properties>
-
   <dependencies>
 
     <dependency>

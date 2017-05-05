@@ -29,16 +29,16 @@ public class OrderRoute extends RouteBuilder {
 
         // error handling to return custom HTTP status codes for the various exceptions
 
-        onException(OrderNotFoundException.class)
-            .handled(true)
-            // use HTTP status 204 when data was not found
-            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(204))
-            .setBody(constant(""));
-
         onException(OrderInvalidException.class)
             .handled(true)
             // use HTTP status 400 when input data is invalid
             .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(400))
+            .setBody(constant(""));
+
+        onException(OrderNotFoundException.class)
+            .handled(true)
+            // use HTTP status 404 when data was not found
+            .setHeader(Exchange.HTTP_RESPONSE_CODE, constant(404))
             .setBody(constant(""));
 
         onException(Exception.class)
@@ -57,7 +57,7 @@ public class OrderRoute extends RouteBuilder {
                 .description("Service to get details of an existing order")
                 .param().name("id").description("The order id").endParam()
                 .responseMessage().code(200).message("The order with the given id").endResponseMessage()
-                .responseMessage().code(204).message("Order not found").endResponseMessage()
+                .responseMessage().code(404).message("Order not found").endResponseMessage()
                 .responseMessage().code(500).message("Server error").endResponseMessage()
                 .to("bean:orderService?method=getOrder(${header.id})")
 
@@ -79,7 +79,7 @@ public class OrderRoute extends RouteBuilder {
             .delete("{id}")
                 .description("Service to cancel an existing order")
                 .param().name("id").description("The order id").endParam()
-                .responseMessage().code(204).message("Order not found").endResponseMessage()
+                .responseMessage().code(404).message("Order not found").endResponseMessage()
                 .responseMessage().code(500).message("Server error").endResponseMessage()
                 .to("bean:orderService?method=cancelOrder(${header.id})");
     }

@@ -58,7 +58,7 @@
 
     <activemq-version>5.14.5</activemq-version>
     <activemq-karaf-version>5.13.5</activemq-karaf-version>
-    <camel-version>2.18.3</camel-version>
+    <camel-version>2.19.0</camel-version>
     <cxf-version>3.1.11</cxf-version>
     <hawtio-version>1.5.0</hawtio-version>
 
@@ -72,14 +72,13 @@
     <jetty-plugin-version>8.1.17.v20150415</jetty-plugin-version>
     <jetty9-plugin-version>9.2.21.v20170120</jetty9-plugin-version>
     <junit-version>4.12</junit-version>
-    <!-- TODO: upgrade to 4.1.x -->
-    <karaf-version>4.0.9</karaf-version>
+    <karaf-version>4.1.1</karaf-version>
     <log4j-version>1.2.17</log4j-version>
     <maven-bundle-plugin-version>3.2.0</maven-bundle-plugin-version>
     <mock-javamail-version>1.9</mock-javamail-version>
     <slf4j-version>1.7.21</slf4j-version>
-    <spring-version>4.3.7.RELEASE</spring-version>
-    <spring-boot-version>1.4.5.RELEASE</spring-boot-version>
+    <spring-version>4.3.8.RELEASE</spring-version>
+    <spring-boot-version>1.5.2.RELEASE</spring-boot-version>
     <swagger-version>1.5.12</swagger-version>
     <xbean-version>3.18</xbean-version>
     <verx-version>3.4.1</verx-version>
@@ -89,34 +88,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
-
-  <!-- TODO remove when 2.19.0 is GA -->
-  <repositories>
-    <repository>
-      <id>apache.snapshots</id>
-      <url>http://repository.apache.org/snapshots/</url>
-      <name>Apache Snapshot Repo</name>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>apache.snapshots</id>
-      <url>http://repository.apache.org/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </pluginRepository>
-  </pluginRepositories>
 
   <build>
     <defaultGoal>install</defaultGoal>
