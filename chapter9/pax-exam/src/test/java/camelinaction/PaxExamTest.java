@@ -66,8 +66,8 @@ public class PaxExamTest {
         return new Option[]{
                 // setup which karaf server we are using
                 karafDistributionConfiguration()
-                        .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.0.8").type("tar.gz"))
-                        .karafVersion("4.0.8")
+                        .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.1.1").type("tar.gz"))
+                        .karafVersion("4.1.1")
                         .name("Apache Karaf")
                         .useDeployFolder(false)
                         .unpackDirectory(new File("target/karaf")),
@@ -96,11 +96,11 @@ public class PaxExamTest {
     }
 
     public static UrlReference getCamelKarafFeatureUrl() {
-        // the Apache Camel karaf feaature file
+        // the Apache Camel Karaf feature file
         return mavenBundle().
                 groupId("org.apache.camel.karaf").
                 artifactId("apache-camel")
-                .version("2.18.0")
+                .version("2.19.0")
                 .classifier("features")
                 .type("xml");
     }
