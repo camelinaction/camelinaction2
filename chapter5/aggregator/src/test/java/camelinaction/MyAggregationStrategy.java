@@ -31,8 +31,8 @@ public class MyAggregationStrategy implements AggregationStrategy {
         // we want to merge together.
 
         // in this example we add their bodies
-        String oldBody = oldExchange.getIn().getBody(String.class);
-        String newBody = newExchange.getIn().getBody(String.class);
+        String oldBody = oldExchange.getIn().getBody(String.class).trim();
+        String newBody = newExchange.getIn().getBody(String.class).trim();
 
         // the body should be the two bodies added together
         String body = oldBody + newBody;

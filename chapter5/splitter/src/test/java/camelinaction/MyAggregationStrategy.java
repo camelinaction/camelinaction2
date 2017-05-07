@@ -12,8 +12,8 @@ public class MyAggregationStrategy implements AggregationStrategy {
         }
 
         // append the new word to the existing
-        String body = newExchange.getIn().getBody(String.class);
-        String existing = oldExchange.getIn().getBody(String.class);
+        String body = newExchange.getIn().getBody(String.class).trim();
+        String existing = oldExchange.getIn().getBody(String.class).trim();
 
         oldExchange.getIn().setBody(existing + "+" + body);
         return oldExchange;
