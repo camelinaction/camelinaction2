@@ -47,6 +47,10 @@
     </dependency>
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
+      <artifactId>camel-activemq</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
       <artifactId>camel-jms</artifactId>
     </dependency>
     <dependency>

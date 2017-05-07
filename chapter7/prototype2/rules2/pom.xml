@@ -51,12 +51,15 @@
     </dependency>
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
-      <artifactId>camel-jaxb</artifactId>
+      <artifactId>camel-activemq</artifactId>
     </dependency>
-    <!-- camel-hystrix is provide in the camel-other WildFly fraction -->
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
-      <artifactId>camel-other</artifactId>
+      <artifactId>camel-jaxb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.swarm</groupId>
+      <artifactId>camel-hystrix</artifactId>
     </dependency>
     <!-- Wildfly Swarm Fractions -->
     <dependency>
@@ -71,6 +74,7 @@
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>jaxrs-cdi</artifactId>
     </dependency>
+    <!-- ActiveMQ -->
   </dependencies>
 
   <build>
