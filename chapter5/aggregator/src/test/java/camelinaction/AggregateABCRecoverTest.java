@@ -63,7 +63,8 @@ public class AggregateABCRecoverTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                LevelDBAggregationRepository levelDB = new LevelDBAggregationRepository("myrepo", "data/myrepo.dat");
+                LevelDBAggregationRepository levelDB = 
+                    new LevelDBAggregationRepository("myrepo", "data/myrepo.dat");
                 // will recover by default
                 levelDB.setUseRecovery(true);
                 // try at most 4 times

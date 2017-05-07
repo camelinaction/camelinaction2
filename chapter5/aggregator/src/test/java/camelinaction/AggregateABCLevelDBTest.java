@@ -36,7 +36,8 @@ public class AggregateABCLevelDBTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                LevelDBAggregationRepository levelDB = new LevelDBAggregationRepository("myrepo", "data/myrepo.dat");
+                LevelDBAggregationRepository levelDB = 
+                    new LevelDBAggregationRepository("myrepo", "data/myrepo.dat");
 
                 from("file:target/inbox")
                     // do a little logging when we load the file
