@@ -15,9 +15,9 @@
         <route>
             <from uri="direct:start"/>
             <!-- use the load balancer EIP with failover -->
-            <loadBalance>
+            <loadBalance inheritErrorHandler="false">
                 <!-- use round robin mode and try at most 1 failover attempt -->
-                <failover roundRobin="true" maximumFailoverAttempts="1"/>
+                <failover maximumFailoverAttempts="1" roundRobin="true"/>
                 <to uri="direct:a"/>
                 <to uri="direct:b"/>
             </loadBalance>
