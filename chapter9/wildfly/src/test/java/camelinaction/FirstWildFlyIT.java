@@ -4,6 +4,7 @@ import java.io.File;
 import javax.inject.Inject;
 
 import org.apache.camel.CamelContext;
+import org.hamcrest.CoreMatchers;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -14,12 +15,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assume.assumeThat;
 
 /**
  * System test for testing against a managed WildFly container
  */
 @RunWith(Arquillian.class)
-public class FirstWildFlyTest {
+public class FirstWildFlyIT {
 
     @Inject
     CamelContext camelContext;
@@ -40,6 +42,10 @@ public class FirstWildFlyTest {
 
     @Test
     public void testHello() throws Exception {
+        // assume jboss is running
+        String home = System.getenv("JBOSS_HOME");
+        assumeThat("JBoss WildFly must be installed in JBOSS_HOME directory", home, CoreMatchers.anything(home));
+
         String out = camelContext.createProducerTemplate().requestBody("direct:hello", "Donald", String.class);
         assertEquals("Hello Donald", out);
     }

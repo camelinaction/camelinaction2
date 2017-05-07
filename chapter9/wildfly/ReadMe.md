@@ -15,5 +15,5 @@ Then you need to setup `JBOSS_HOME` environment variable such as:
 
 After this is done you are ready for running the system tests, which is as simple as running Maven test.
 
-    mvn test -Dtest=FirstWildFlyTest
+    mvn integration-test -P wildfly
 
