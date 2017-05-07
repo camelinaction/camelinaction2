@@ -5,13 +5,9 @@ Example of testing a Camel OSGi application with Pax-Exam testing framework.
 
 ### 9.6.2 Using Pax Exam to test Camel applications
 
-You need to build the example first **without** testing
+Then you can run the integration test that runs Pax Exam:
 
-    mvn clean install -Dtest=false
-
-Then you can run the unit test that runs Pax Exam:
-
-    mvn test
+    mvn integration-test
 
 #### Installing in existing Karaf/ServiceMix
 

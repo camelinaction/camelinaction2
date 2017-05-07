@@ -28,12 +28,12 @@ import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRunti
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.logLevel;
 
 /**
- * Unit test to test this example running in Apache Karaf using Pax-Exam for testing on the container.
+ * Integration test to test this example running in Apache Karaf using Pax-Exam for testing on the container.
  */
 @RunWith(PaxExam.class)
-public class PaxExamTest {
+public class PaxExamIT {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PaxExamTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PaxExamIT.class);
 
     @Inject
     protected BundleContext bundleContext;
@@ -49,8 +49,11 @@ public class PaxExamTest {
         long total = camelContext.getManagedCamelContext().getExchangesTotal();
         assertEquals("Should be 0 exchanges completed", 0, total);
 
+        // need a little delay to be ready
+        Thread.sleep(2000);
+
         // call the servlet, and log what it returns
-        String url = "http://localhost:8181/camel/say";
+        String url = "http4://localhost:8181/camel/say";
         ProducerTemplate template = camelContext.createProducerTemplate();
         String json = template.requestBody(url, null, String.class);
         System.out.println("Wiseman says: " + json);
@@ -88,7 +91,7 @@ public class PaxExamTest {
                 features(getCamelKarafFeatureUrl(), "camel", "camel-test"),
 
                 // and use camel-http for testing
-                features(getCamelKarafFeatureUrl(), "camel-http"),
+                features(getCamelKarafFeatureUrl(), "camel-http4"),
 
                 // install our example feature
                 features(maven().groupId("com.camelinaction").artifactId("chapter9-pax-exam").version("2.0.0").classifier("features").type("xml"), "camel-quote")
