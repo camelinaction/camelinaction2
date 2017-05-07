@@ -9,6 +9,8 @@ You can try these examples by running these goal:
 
     mvn test -Dtest=FirstMockTest
     mvn test -Dtest=SpringFirstMockTest
+    mvn test -Dtest=SecondMockTest
+    mvn test -Dtest=SpringSecondMockTest
 
 ### 9.3.5 Testing the ordering of messages
 
