@@ -29,9 +29,21 @@ public class EndpointConfig {
     private String jmsBrokerUrl;
 
     /**
+     * Citrus JMS endpoint
+     * do a sync request/reply over JMS on the queue named order.status with a timeout of 10 seconds
+     */
+    @Bean
+    public JmsEndpoint statusEndpoint() {
+        return CitrusEndpoints.jms().synchronous()
+            .connectionFactory(jmsConnectionFactory())
+            .destination("order.status")
+            .timeout(10000L)
+            .build();
+    }
+
+    /**
      * Citrus Http client
      * do a sync request/reply over HTTP on localhost:8080/order with a GET call and timeout for 60 seconds
-     * @return http client component.
      */
     @Bean
     public HttpClient statusHttpClient() {
@@ -45,24 +57,9 @@ public class EndpointConfig {
     }
 
     /**
-     * Citrus JMS endpoint
-     * do a sync request/reply over JMS on the queue named order.status with a timeout of 10 seconds
-     * @return jms synchronous endpoint component.
-     */
-    @Bean
-    public JmsEndpoint statusEndpoint() {
-        return CitrusEndpoints.jms().synchronous()
-                .connectionFactory(jmsConnectionFactory())
-                .destination("order.status")
-                .timeout(10000L)
-                .build();
-    }
-
-    /**
      * ActiveMQ jms connection factory depends on embedded message broker.
      * Setup the JMS connection factory to use for integration test
      * we will embed an ActiveMQ broker
-     * @return
      */
     @Bean
     @DependsOn("jmsMessageBroker")
@@ -72,7 +69,6 @@ public class EndpointConfig {
 
     /**
      * ActiveMQ message broker as embedded service.
-     * @return ActiveMQ message broker service.
      */
     @Bean
     public BrokerService jmsMessageBroker() throws Exception {

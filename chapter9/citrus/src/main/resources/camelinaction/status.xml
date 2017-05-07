@@ -34,6 +34,7 @@
   <!-- setup JMS component that uses the jmsConnectionFactory -->
   <!-- configure jmsConnectionFactory with the JMS provider you are using such as WebSphere, ActiveMQ etc. -->
   <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+    <!-- setup the JMS connection factory to your broker -->
     <property name="connectionFactory" ref="jmsConnectionFactory"/>
   </bean>
 
