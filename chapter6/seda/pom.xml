@@ -7,12 +7,14 @@
     <groupId>com.camelinaction</groupId>
     <artifactId>chapter6</artifactId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
 
   <artifactId>chapter6-seda</artifactId>
   <name>Camel in Action 2 :: Chapter 6 :: SEDA Component Examples</name>
 
   <dependencies>
+
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
@@ -21,10 +23,12 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jms</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-all</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
@@ -33,22 +37,13 @@
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test</artifactId>
       <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
 </project>

@@ -7,6 +7,7 @@
     <groupId>com.camelinaction</groupId>
     <artifactId>chapter3</artifactId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
 
   <artifactId>chapter3-transform</artifactId>
@@ -48,7 +49,6 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
 
 </project>
 

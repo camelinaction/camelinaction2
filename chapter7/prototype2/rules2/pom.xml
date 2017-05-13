@@ -7,6 +7,7 @@
     <groupId>com.camelinaction</groupId>
     <artifactId>chapter7-prototype2</artifactId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
 
   <artifactId>chapter7-rules2</artifactId>

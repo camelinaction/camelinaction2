@@ -7,6 +7,7 @@
     <groupId>com.camelinaction</groupId>
     <artifactId>chapter2</artifactId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
 
   <artifactId>chapter2-cbr</artifactId>
@@ -59,4 +60,3 @@
   </dependencies>
 
 </project>
-
