@@ -14,8 +14,8 @@ public class MyStaticRouteGlobal extends RouteBuilder {
             // add the static list of servers
             .staticServiceDiscovery()
                 // the syntax is name@hostname:port
-                .server("hello-service@localhost:8081")
-                .server("hello-service@localhost:8082");
+                // and you can separate multiple servers by comma
+                .servers("hello-service@localhost:8081,hello-service@localhost:8082");
 
         // set as global configuration on CamelContext
         getContext().setServiceCallConfiguration(global);

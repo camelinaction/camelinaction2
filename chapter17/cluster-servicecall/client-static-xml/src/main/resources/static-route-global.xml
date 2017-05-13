@@ -13,8 +13,8 @@
     <defaultServiceCallConfiguration component="http4">
       <staticServiceDiscovery>
         <!-- the syntax is name@hostname:port -->
-        <servers>hello-service@localhost:8081</servers>
-        <servers>hello-service@localhost:8082</servers>
+        <!-- and you can separate multiple servers by comma -->
+        <servers>hello-service@localhost:8081,hello-service@localhost:8082</servers>
       </staticServiceDiscovery>
     </defaultServiceCallConfiguration>
 

@@ -20,8 +20,8 @@ public class MyStaticRouteEmbedded extends RouteBuilder {
                 // add the static list of servers
                 .staticServiceDiscovery()
                     // the syntax is name@hostname:port
-                    .server("hello-service@localhost:8081")
-                    .server("hello-service@localhost:8082")
+                    // and you can separate multiple servers by comma
+                    .servers("hello-service@localhost:8081,hello-service@localhost:8082")
                 .end() // end static list
             .end() // end service call
             .log("Response ${body}");
