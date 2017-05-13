@@ -1,29 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.camelinaction</groupId>
-        <artifactId>parent</artifactId>
-        <version>2.0.0</version>
-    </parent>
-
-    <artifactId>chapter17</artifactId>
-    <packaging>pom</packaging>
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>parent</artifactId>
     <version>2.0.0</version>
-    <name>Camel in Action 2 :: Chapter 17</name>
+    <relativePath>..</relativePath>
+  </parent>
 
-    <modules>
-        <module>cluster-file-consul</module>
-        <module>cluster-file-hazelcast</module>
-        <module>cluster-jms-client</module>
-        <module>cluster-kafka</module>
-        <module>cluster-cache-hazelcast</module>
-        <module>cluster-jcache</module>
-        <module>cluster-quartz2</module>
-        <module>cluster-zookeeper-master</module>
-        <module>cluster-zookeeper-master-routepolicy</module>
-    </modules>
+  <artifactId>chapter17</artifactId>
+  <packaging>pom</packaging>
+  <version>2.0.0</version>
+  <name>Camel in Action 2 :: Chapter 17</name>
+
+  <modules>
+    <module>cluster-file-consul</module>
+    <module>cluster-file-hazelcast</module>
+    <module>cluster-jms-client</module>
+    <module>cluster-kafka</module>
+    <module>cluster-cache-hazelcast</module>
+    <module>cluster-jcache</module>
+    <module>cluster-quartz2</module>
+    <module>cluster-servicecall</module>
+    <module>cluster-zookeeper-master</module>
+    <module>cluster-zookeeper-master-routepolicy</module>
+  </modules>
 
 </project>
 
