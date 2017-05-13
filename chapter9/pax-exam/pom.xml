@@ -138,25 +138,34 @@
         </executions>
       </plugin>
 
-      <!-- maven plugin to run integration tests -->
-      <!-- yes its a weirdname but its designed to run integration tests - no this is not a joke -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.18.1</version> <!-- must use 2.18.1 as newer version do not work with pax-exam -->
-        <executions>
-          <execution>
-            <id>integration-tests</id>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>pax</id>
+      <build>
+        <plugins>
+          <!-- maven plugin to run integration tests -->
+          <!-- yes its a weirdname but its designed to run integration tests - no this is not a joke -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.18.1</version> <!-- must use 2.18.1 as newer version do not work with pax-exam -->
+            <executions>
+              <execution>
+                <id>integration-tests</id>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
 
