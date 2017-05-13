@@ -1,31 +1,33 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.camelinaction</groupId>
-        <artifactId>parent</artifactId>
-        <version>2.0.0</version>
-    </parent>
-
-    <artifactId>chapter15</artifactId>
-    <packaging>pom</packaging>
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>parent</artifactId>
     <version>2.0.0</version>
-    <name>Camel in Action 2 :: Chapter 15</name>
+    <relativePath>..</relativePath>
+  </parent>
 
-    <modules>
-        <module>startup</module>
-        <module>routepolicy</module>
-        <module>controlbus</module>
-        <module>shutdown</module>
-        <module>standalone</module>
-        <module>war</module>
-        <module>war-servlet</module>
-        <module>war-wildfly</module>
-        <module>wildfly-camel-war</module>
-        <module>osgi</module>
-        <module>osgi-msf</module>
-        <module>cdi</module>
-    </modules>
+  <artifactId>chapter15</artifactId>
+  <packaging>pom</packaging>
+  <version>2.0.0</version>
+  <name>Camel in Action 2 :: Chapter 15</name>
+
+  <modules>
+    <module>startup</module>
+    <module>routepolicy</module>
+    <module>controlbus</module>
+    <module>shutdown</module>
+    <module>standalone</module>
+    <module>war</module>
+    <module>war-servlet</module>
+    <module>war-wildfly</module>
+    <module>wildfly-camel-war</module>
+    <module>osgi</module>
+    <module>osgi-msf</module>
+    <module>cdi</module>
+  </modules>
 </project>
 

@@ -7,6 +7,7 @@
     <artifactId>chapter8</artifactId>
     <groupId>com.camelinaction</groupId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
 
   <groupId>camelinaction</groupId>

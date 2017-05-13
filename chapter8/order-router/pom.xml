@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <artifactId>chapter8</artifactId>
     <groupId>com.camelinaction</groupId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
+
   <groupId>camelinaction</groupId>
   <artifactId>chapter8-order-router</artifactId>
   <version>2.0.0</version>
   <name>Camel in Action 2 :: Chapter 8 :: Order Router</name>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.camel</groupId>

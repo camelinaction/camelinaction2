@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <artifactId>chapter8</artifactId>
     <groupId>com.camelinaction</groupId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
+
   <groupId>camelinaction</groupId>
   <artifactId>chapter8-order-router-full</artifactId>
   <version>2.0.0</version>
   <name>Camel in Action 2 :: Chapter 8 :: Order Router Full Example</name>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -20,7 +26,7 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring</artifactId>
     </dependency>
-       
+
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test</artifactId>
@@ -31,7 +37,7 @@
       <artifactId>camel-test-spring</artifactId>
       <scope>test</scope>
     </dependency>
-       
+
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jms</artifactId>
@@ -54,10 +60,10 @@
 
     <!-- xbean is needed for ActiveMQ broker XML configuration in Spring XML files -->
     <dependency>
-       <groupId>org.apache.xbean</groupId>
-       <artifactId>xbean-spring</artifactId>
+      <groupId>org.apache.xbean</groupId>
+      <artifactId>xbean-spring</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-ftp</artifactId>
@@ -66,8 +72,8 @@
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
     </dependency>
-    
-        <!-- for simulating with a FTP server -->
+
+    <!-- for simulating with a FTP server -->
     <dependency>
       <groupId>org.apache.ftpserver</groupId>
       <artifactId>ftpserver-core</artifactId>
@@ -84,24 +90,23 @@
       <artifactId>mina-core</artifactId>
       <version>2.0.0-M4</version>
     </dependency>
-    
-        <dependency>
+
+    <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-cxf</artifactId>
     </dependency>
-    
-        <!-- using Jetty with CXF -->
+
+    <!-- using Jetty with CXF -->
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-transports-http-jetty</artifactId>
       <version>${cxf-version}</version>
     </dependency>
-    
-  </dependencies>
- 
-   <build>
-    <plugins>
 
+  </dependencies>
+
+  <build>
+    <plugins>
       <plugin>
         <groupId>org.apache.cxf</groupId>
         <artifactId>cxf-codegen-plugin</artifactId>
@@ -127,9 +132,7 @@
           </execution>
         </executions>
       </plugin>
-
-
     </plugins>
   </build>
- 
+
 </project>

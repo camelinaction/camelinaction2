@@ -8,6 +8,7 @@
     <artifactId>chapter14</artifactId>
     <groupId>com.camelinaction</groupId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
 
   <artifactId>chapter14-transport</artifactId>

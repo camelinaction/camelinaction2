@@ -7,6 +7,7 @@
     <groupId>com.camelinaction</groupId>
     <artifactId>parent</artifactId>
     <version>2.0.0</version>
+    <relativePath>..</relativePath>
   </parent>
 
   <artifactId>chapter10</artifactId>
@@ -39,5 +40,6 @@
     <module>swagger-ui</module>
     <module>rest-producer</module>
   </modules>
+
 </project>
 
