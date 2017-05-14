@@ -13,7 +13,7 @@ public class JSonOrderService {
                                       @Bean(ref = "guid", method = "generate") int orderId) {
 
         // convert the order to a CSV and inject the generated order id
-        return String.format("%s,%s,'%s'", orderId, customerId, item);
+        return String.format("%d,%s,'%s'", orderId, customerId, item);
     }
 
 }
