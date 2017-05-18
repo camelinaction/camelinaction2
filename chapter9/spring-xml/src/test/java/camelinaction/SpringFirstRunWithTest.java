@@ -5,7 +5,7 @@ import java.io.File;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
-import org.apache.camel.test.spring.CamelSpringJUnit4ClassRunner;
+import org.apache.camel.test.spring.CamelSpringRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
  * Our first unit test with the Camel Test Kit testing Spring XML routes.
  * We test the Hello World example of integration kits, which is moving a file.
  */
-@RunWith(CamelSpringJUnit4ClassRunner.class)
+@RunWith(CamelSpringRunner.class)
 @ContextConfiguration(locations = {"firststep.xml"})
 public class SpringFirstRunWithTest {
 
