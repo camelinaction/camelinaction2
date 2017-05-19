@@ -15,7 +15,6 @@
   <packaging>jar</packaging>
 
   <properties>
-    <wildfly.swarm.version>2017.3.3</wildfly.swarm.version>
     <fabric8.maven.plugin.version>3.3.0</fabric8.maven.plugin.version>
 
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -29,7 +28,7 @@
       <dependency>
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>bom-all</artifactId>
-        <version>${wildfly.swarm.version}</version>
+        <version>${wildfly-swarm-version}</version>
         <scope>import</scope>
         <type>pom</type>
       </dependency>
@@ -44,7 +43,7 @@
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>wildfly-swarm-plugin</artifactId>
-        <version>${wildfly.swarm.version}</version>
+        <version>${wildfly-swarm-version}</version>
         <executions>
           <execution>
             <goals>
