@@ -80,6 +80,7 @@
       <scope>provided</scope>
     </dependency>
     <!-- Wildfly Swarm Fractions -->
+    <!-- add monitor fraction to enable health checks in wildfly-swarm -->
     <dependency>
       <groupId>org.wildfly.swarm</groupId>
       <artifactId>monitor</artifactId>
