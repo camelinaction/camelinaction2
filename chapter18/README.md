@@ -1,4 +1,4 @@
-Chapter 17 - Microservices with Docker and Kubernetes
+Chapter 18 - Microservices with Docker and Kubernetes
 -----------------------------------------------------
 
 This chapters covers
