@@ -27,9 +27,14 @@ import static org.junit.Assert.assertTrue;
 @RequiresKubernetes
 public class HelloSwarmKT {
 
+    // the client is not used in this test but it can be handy to have
     @ArquillianResource
     KubernetesClient client;
 
+    // inject the url to this service
+    // and enable port forwarding so we can call the service externally
+    // from this unit test which runs on your host operating system
+    // and then call the running pod inside the kubernetes cluster which runs wildfly-swarm
     @Named("helloswarm-kubernetes")
     @PortForward
     @ArquillianResource
