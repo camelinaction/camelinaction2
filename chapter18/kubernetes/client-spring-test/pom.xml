@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -9,8 +9,8 @@
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>helloswarm-kubernetes</artifactId>
-  <name>Camel in Action 2 :: Chapter 18 :: Hello WildFly Swarm :: Kubernetes</name>
+  <artifactId>spring-kubernetes</artifactId>
+  <name>Camel in Action 2 :: Chapter 18 :: Hello Spring Boot :: Kubernetes</name>
   <!-- use SNAPSHOT so f-m-p create a new docker image with a new unique tag -->
   <version>2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -19,22 +19,29 @@
     <fabric8.maven.plugin.version>3.4.0</fabric8.maven.plugin.version>
     <arquillian-cube-version>1.4.0</arquillian-cube-version>
 
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <failOnMissingWebXml>false</failOnMissingWebXml>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
+      <!-- import Spring Boot before Camel -->
       <dependency>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>bom-all</artifactId>
-        <version>${wildfly-swarm-version}</version>
-        <scope>import</scope>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot-version}</version>
         <type>pom</type>
+        <scope>import</scope>
       </dependency>
-
+      <!-- import Camel -->
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-parent</artifactId>
+        <version>${camel-version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <!-- include arquillian-cube BOM -->
       <dependency>
         <groupId>org.arquillian.cube</groupId>
@@ -43,69 +50,38 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
 
-  <build>
-
-    <finalName>${project.artifactId}-${project.version}</finalName>
-
-    <plugins>
-      <plugin>
-        <groupId>org.wildfly.swarm</groupId>
-        <artifactId>wildfly-swarm-plugin</artifactId>
-        <version>${wildfly-swarm-version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>package</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-maven-plugin</artifactId>
-        <version>${fabric8.maven.plugin.version}</version>
-        <executions>
-          <execution>
-            <id>fmp</id>
-            <goals>
-              <goal>resource</goal>
-              <goal>helm</goal>
-              <goal>build</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
   <dependencies>
-    <!-- Java EE 7 dependency -->
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>7.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <!-- Wildfly Swarm Fractions -->
 
-    <!-- include monitor fraction so we have health-check on /health included -->
+    <!-- spring-boot -->
+
+    <!-- notice we use -web to embed HTTP server for health checks -->
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
-      <artifactId>monitor</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-undertow</artifactId>
+    </dependency>
+
+    <!-- turn on health check -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-actuator</artifactId>
     </dependency>
 
     <!-- camel -->
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
-      <artifactId>camel-cdi</artifactId>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring-boot-starter</artifactId>
     </dependency>
+    <!-- notice we use -starter components from Camel which are designed to use with Spring Boot -->
     <dependency>
-      <groupId>org.wildfly.swarm</groupId>
-      <artifactId>camel-undertow</artifactId>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-netty4-http-starter</artifactId>
     </dependency>
 
     <!-- arquillian and kubernetes -->
@@ -134,28 +110,44 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- logging -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <scope>test</scope>
-    </dependency>
-
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot-version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-maven-plugin</artifactId>
+        <version>${fabric8.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <id>fmp</id>
+            <goals>
+              <goal>resource</goal>
+              <goal>helm</goal>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>   
+
+    </plugins>
+  </build>
 
   <profiles>
 
-    <!-- run integration tests with mvn integration-test -P kubernetes -->
+    <!-- run integration tests with mvn install -P kubernetes -->
     <profile>
       <id>kubernetes</id>
       <build>
@@ -185,7 +177,7 @@
         </plugins>
       </build>
     </profile>
-    
+
   </profiles>
 
 </project>
