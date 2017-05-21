@@ -1,5 +1,6 @@
 package com.camelinaction;
 
+import io.fabric8.kubernetes.assertions.KubernetesAssert;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import org.arquillian.cube.kubernetes.impl.requirement.RequiresKubernetes;
 import org.jboss.arquillian.junit.Arquillian;
@@ -25,7 +26,7 @@ public class PodStartedKT {
     public void testPodStarted() throws Exception {
         // assert that the deployment works and that the pod is ready
         // for a stable period of time (10 sec).
-        assertThat(client).deployments().pods().isPodReadyForPeriod();
+        new KubernetesAssert(client).deployments().pods().isPodReadyForPeriod();
     }
 
 }

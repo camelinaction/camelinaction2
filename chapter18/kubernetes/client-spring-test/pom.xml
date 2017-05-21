@@ -96,6 +96,13 @@
       <artifactId>arquillian-cube-kubernetes</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- must use version 2.4.1 as 2.6.0 does not work with kubernetes-assertions: https://github.com/fabric8io/fabric8/issues/6863 -->
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>2.4.1</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>io.fabric8</groupId>
       <artifactId>kubernetes-assertions</artifactId>
@@ -107,6 +114,23 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit-version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- logging -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
       <scope>test</scope>
     </dependency>
 
