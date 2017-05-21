@@ -22,7 +22,7 @@ public class PodStartedKT {
     KubernetesClient client;
 
     @Test
-    public void testAppProvisionsRunningPods() throws Exception {
+    public void testPodStarted() throws Exception {
         // assert that the deployment works and that the pod is ready
         // for a stable period of time (10 sec).
         assertThat(client).deployments().pods().isPodReadyForPeriod();
