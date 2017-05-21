@@ -13,7 +13,8 @@ public class HelloRoute extends RouteBuilder {
     public void configure() throws Exception {
         from("timer:foo?period=2000")
             // call the service using {{service:name}}
-//            .to("netty4-http://{{service:helloswarm-kubernetes:localhost:8080}}?disconnect=true&keepAlive=false")
+            // and fallback to call localhost:8080 if the service is not available
+            .to("netty4-http://{{service:helloswarm-kubernetes:localhost:8080}}?disconnect=true&keepAlive=false")
             .log("${body}");
     }
 }
