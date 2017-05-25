@@ -27,7 +27,7 @@ public class StopRouteProcessor implements Processor {
         // 1) unregister from the inflight registry
         // 2) stop the route
         LOG.info("Stopping route: " + name);
-        exchange.getContext().getInflightRepository().remove(exchange, "manual");
+        exchange.getContext().getInflightRepository().remove(exchange, name);
         exchange.getContext().stopRoute(name);
     }
 }
