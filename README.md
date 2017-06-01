@@ -45,7 +45,7 @@ Part 6 - Out in the Wild
 
 - 18 [Microservices with Docker and Kubernetes](chapter18)
 - 19 [Camel Tooling](chapter19)
-- 20 [Camel IoT by Henryk Konsek](chapter20)
+- 20 Camel IoT (by Henryk Konsek)
 - 21 [Reactive Camel](chapter21)
 
 Appendixes
