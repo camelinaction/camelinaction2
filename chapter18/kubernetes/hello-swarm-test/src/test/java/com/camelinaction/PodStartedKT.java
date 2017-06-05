@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import static io.fabric8.kubernetes.assertions.Assertions.assertThat;
 
 /**
- * JUnit test using Arquillian to perform an integration test by running
+ * JUnit test using Arquillian to perform an unit test by running
  * this application as a container in a temporary created namespace
  * and then check if the pod can deploy and startup and be ready for a stable period of time.
  */

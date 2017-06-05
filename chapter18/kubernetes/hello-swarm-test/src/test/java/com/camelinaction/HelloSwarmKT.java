@@ -19,7 +19,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
- * JUnit test using Arquillian to perform an integration test by running
+ * JUnit test using Arquillian to perform an unit test by running
  * this application as a container in a temporary created namespace
  * and then call the service and assert the response is what we expect
  */
