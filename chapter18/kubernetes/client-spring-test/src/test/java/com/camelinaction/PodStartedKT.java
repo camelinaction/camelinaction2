@@ -8,8 +8,6 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static io.fabric8.kubernetes.assertions.Assertions.assertThat;
-
 /**
  * JUnit test using Arquillian to perform an integration test by running
  * this application as a container in a temporary created namespace
