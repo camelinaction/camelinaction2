@@ -211,6 +211,8 @@
           <childDelegation>false</childDelegation>
           <useFile>true</useFile>
           <failIfNoTests>false</failIfNoTests>
+          <!-- lets re-run the failed test one more time, just to be sure -->
+          <rerunFailingTestsCount>2</rerunFailingTestsCount>
           <includes>
             <include>**/*Test.java</include>
           </includes>
