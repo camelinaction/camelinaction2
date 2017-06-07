@@ -52,6 +52,12 @@
             </goals>
           </execution>
         </executions>
+        <!-- favor IPv4Stack as IP6 can cause trobule on some operating systems and WildFly-Swarm -->
+        <configuration>
+          <properties>
+            <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+          </properties>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>io.fabric8</groupId>
