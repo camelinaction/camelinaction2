@@ -23,7 +23,7 @@ public class JsonPredicateTest extends CamelTestSupport {
         getMockEndpoint("mock:queue:regular").expectedMessageCount(0);
 
         // prepare a JSon document from a String
-        String json = "{ \"order\": { \"customerId\": 88, \"item\": \"ActiveMQ in Action\" } }";
+        String json = "{ \"order\": { \"loyaltyCode\": 88, \"item\": \"ActiveMQ in Action\" } }";
 
         // store the order as a file which is picked up by the route
         template.sendBodyAndHeader("file://target/order", json, Exchange.FILE_NAME, "order.json");
@@ -38,7 +38,7 @@ public class JsonPredicateTest extends CamelTestSupport {
         getMockEndpoint("mock:queue:regular").expectedMessageCount(0);
 
         // prepare a JSon document from a String
-        String json = "{ \"order\": { \"customerId\": 4444, \"item\": \"Camel in Action\" } }";
+        String json = "{ \"order\": { \"loyaltyCode\": 4444, \"item\": \"Camel in Action\" } }";
 
         // store the order as a file which is picked up by the route
         template.sendBodyAndHeader("file://target/order", json, Exchange.FILE_NAME, "order.json");
