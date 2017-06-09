@@ -14,11 +14,11 @@ You need to run an Infinispan Server which you can download from (chose Server)
     
 And then unzip Infinispan
      
-    unzip infinispan-server-8.2.6.Final-bin.zip
+    unzip infinispan-server-9.0.1.Final-bin.zip
 
 Then we need to create an user
 
-    cd infinispan-server-8.2.6.Final-bin
+    cd infinispan-server-9.0.1.Final-bin
     ./bin/add-user.sh          (Windows users run the .bar file instead of .sh)               
     
 .. create the user as administrator such as with `admin` as username and `admin` as password    
