@@ -1,8 +1,12 @@
 package camelinaction;
 
+import java.util.Properties;
+
 import org.apache.camel.component.infinispan.InfinispanConfiguration;
 import org.apache.camel.component.infinispan.policy.InfinispanRoutePolicy;
 import org.apache.camel.main.Main;
+import org.infinispan.client.hotrod.RemoteCacheManager;
+import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
 
 public class ServerFoo {
 
@@ -14,10 +18,21 @@ public class ServerFoo {
     }
 
     public void boot() throws Exception {
-        // setup infinispan configuration
+        // list of urls for the infinispan server
+        // as we run in domain node we have two servers out of the box, and can therefore include both
+        // that the client can load balance/failover to be highly available
+        Properties props = new Properties();
+        props.setProperty("infinispan.client.hotrod.server_list", "localhost:11222;localhost:11372");
+
+        // create remote infinispan cache manager and start it
+        RemoteCacheManager remote = new RemoteCacheManager(
+            new ConfigurationBuilder().withProperties(props).build(),
+            true
+        );
+
+        // setup Camel infinispan configuration to use the remote cache manager
         InfinispanConfiguration ic = new InfinispanConfiguration();
-        // load infinispan client (hotrod) configuration from the classpath
-        ic.setConfigurationUri("hotrod-client.properties");
+        ic.setCacheContainer(remote);
 
         // setup the hazelcast route policy
         InfinispanRoutePolicy routePolicy = new InfinispanRoutePolicy(ic);
