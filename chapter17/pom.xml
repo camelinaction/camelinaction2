@@ -18,6 +18,7 @@
   <modules>
     <module>cluster-file-consul</module>
     <module>cluster-file-hazelcast</module>
+    <module>cluster-file-infinispan</module>
     <module>cluster-jms-client</module>
     <module>cluster-kafka</module>
     <module>cluster-cache-hazelcast</module>

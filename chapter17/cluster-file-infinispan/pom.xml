@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.camelinaction</groupId>
+    <artifactId>chapter17</artifactId>
+    <version>2.0.0</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <artifactId>chapter17-cluster-file-infinispan</artifactId>
+  <name>Camel in Action 2 :: Chapter 17 :: Clustered file using Infinispan locking</name>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-infinispan</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>foo</id>
+      <properties>
+        <target.main.class>camelinaction.ServerFoo</target.main.class>
+      </properties>
+    </profile>
+    <profile>
+      <id>bar</id>
+      <properties>
+        <target.main.class>camelinaction.ServerBar</target.main.class>
+      </properties>
+    </profile>
+  </profiles>
+
+  <build>
+    <plugins>
+      <!-- Allows the example to be run via 'mvn compile exec:java -Pfoo' -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>${target.main.class}</mainClass>
+          <includePluginDependencies>false</includePluginDependencies>
+          <commandlineArgs>${target.cmd.args}</commandlineArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+
