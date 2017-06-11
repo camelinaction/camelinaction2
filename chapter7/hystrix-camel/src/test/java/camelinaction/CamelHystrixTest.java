@@ -45,7 +45,7 @@ public class CamelHystrixTest extends CamelTestSupport {
             template.requestBody("direct:start", "Hello");
             fail("Should have thrown exception");
         } catch (Exception e) {
-            IOException cause = assertIsInstanceOf(IOException.class, e.getCause());
+            IOException cause = assertIsInstanceOf(IOException.class, e.getCause().getCause());
             assertEquals("Forced error", cause.getMessage());
         }
     }
