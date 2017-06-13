@@ -2,7 +2,7 @@ chapter21 - vertx-camel2
 ------------------------
 
 Using vert.x and Apache Camel to build a microservice which simulates a football
-live score ticker which authentic _dong_ sound when goals are scored.
+live score ticker which authentic _bell_ sound when goals are scored.
 
 #### Note 
 
