@@ -23,10 +23,10 @@ public class CamelNoBackPressureTest extends CamelTestSupport {
 
     @Test
     public void testNoBackPressure() throws Exception {
-        CamelReactiveStreamsService rxCamel = CamelReactiveStreams.get(context);
+        CamelReactiveStreamsService rsCamel = CamelReactiveStreams.get(context);
 
         // create a published that receive from the inbox stream
-        Publisher<String> inbox = rxCamel.fromStream("inbox", String.class);
+        Publisher<String> inbox = rsCamel.fromStream("inbox", String.class);
 
         // use stream engine to subscribe from the publisher
         Flowable.fromPublisher(inbox)

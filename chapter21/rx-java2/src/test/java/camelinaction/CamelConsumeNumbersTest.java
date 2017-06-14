@@ -12,14 +12,14 @@ public class CamelConsumeNumbersTest extends CamelTestSupport {
 
     @Test
     public void testConsumeNumbers() throws Exception {
-        CamelReactiveStreamsService rxCamel = CamelReactiveStreams.get(context);
+        CamelReactiveStreamsService rsCamel = CamelReactiveStreams.get(context);
 
         // use stream engine create a publisher
         // that just sends 5 numbers, which needs to be sorted
         // and then each data is send to Camel on the reactive-streams:number endpoint
         Flowable.just("3", "4", "1", "5", "2")
             .sorted(String::compareToIgnoreCase)
-            .subscribe(rxCamel.streamSubscriber("numbers", String.class));
+            .subscribe(rsCamel.streamSubscriber("numbers", String.class));
 
         // let it run for 2 seconds
         Thread.sleep(2000);

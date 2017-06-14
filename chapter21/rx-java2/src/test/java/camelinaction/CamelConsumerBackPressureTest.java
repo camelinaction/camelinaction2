@@ -15,7 +15,7 @@ public class CamelConsumerBackPressureTest extends CamelTestSupport {
 
     @Test
     public void testConsumerBackPressure() throws Exception {
-        CamelReactiveStreamsService rxCamel = CamelReactiveStreams.get(context);
+        CamelReactiveStreamsService rsCamel = CamelReactiveStreams.get(context);
 
         // create an array with the messages
         String[] inbox = new String[100];
@@ -29,7 +29,7 @@ public class CamelConsumerBackPressureTest extends CamelTestSupport {
                 // log each time we are request more data from the publisher
                 log.info("Requesting " + l + " messages");
             })
-            .subscribe(rxCamel.streamSubscriber("inbox", String.class));
+            .subscribe(rsCamel.streamSubscriber("inbox", String.class));
 
         // let it run for 10 seconds
         Thread.sleep(10 * 1000L);

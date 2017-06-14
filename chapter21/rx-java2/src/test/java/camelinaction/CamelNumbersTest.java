@@ -13,10 +13,10 @@ public class CamelNumbersTest extends CamelTestSupport {
 
     @Test
     public void testNumbers() throws Exception {
-        CamelReactiveStreamsService rxCamel = CamelReactiveStreams.get(context);
+        CamelReactiveStreamsService rsCamel = CamelReactiveStreams.get(context);
 
         // create a published that receive from the numbers stream
-        Publisher<Integer> numbers = rxCamel.fromStream("numbers", Integer.class);
+        Publisher<Integer> numbers = rsCamel.fromStream("numbers", Integer.class);
 
         // use stream engine to subscribe from the publisher
         // where we filter out the big numbers which is logged

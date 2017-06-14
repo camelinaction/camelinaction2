@@ -16,17 +16,17 @@ public class CamelFilesTest extends CamelTestSupport {
         getMockEndpoint("mock:inbox").expectedMessageCount(4);
         getMockEndpoint("mock:camel").expectedMessageCount(2);
 
-        CamelReactiveStreamsService rxCamel = CamelReactiveStreams.get(context);
+        CamelReactiveStreamsService rsCamel = CamelReactiveStreams.get(context);
 
         // use stream engine to subscribe from the publisher
         // where we filter out the big numbers which is logged
-        Flowable.fromPublisher(rxCamel.from("file:target/inbox"))
+        Flowable.fromPublisher(rsCamel.from("file:target/inbox"))
             // call the direct:inbox Camel route from within this flow
-            .doOnNext(e -> rxCamel.to("direct:inbox", e))
+            .doOnNext(e -> rsCamel.to("direct:inbox", e))
             // filter out files which has Camel in the text
             .filter(e -> e.getIn().getBody(String.class).contains("Camel"))
             // let Camel also be subscriber by the endpoint direct:camel
-            .subscribe(rxCamel.subscriber("direct:camel"));
+            .subscribe(rsCamel.subscriber("direct:camel"));
 
         // create some test files
         fluentTemplate.to("file:target/inbox").withBody("Hello World").withHeader(Exchange.FILE_NAME, "hello.txt").send();

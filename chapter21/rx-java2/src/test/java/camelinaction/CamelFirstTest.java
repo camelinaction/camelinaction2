@@ -24,13 +24,13 @@ public class CamelFirstTest extends TestCase {
         CamelContext camel = new DefaultCamelContext();
 
         // create Reative Camel
-        CamelReactiveStreamsService rxCamel = CamelReactiveStreams.get(camel);
+        CamelReactiveStreamsService rsCamel = CamelReactiveStreams.get(camel);
 
         camel.start();
-        rxCamel.start();
+        rsCamel.start();
 
         // create a publisher from Camel seda:words endpoint
-        Publisher<String> publisher = rxCamel.from("seda:words", String.class);
+        Publisher<String> publisher = rsCamel.from("seda:words", String.class);
 
         Flowable.fromPublisher(publisher)
             // upper case the word
@@ -52,7 +52,7 @@ public class CamelFirstTest extends TestCase {
         Thread.sleep(1000);
 
         camel.stop();
-        rxCamel.stop();
+        rsCamel.stop();
     }
 
 }
