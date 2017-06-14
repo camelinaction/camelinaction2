@@ -71,8 +71,8 @@ public class LiveScoreVerticle extends AbstractVerticle {
     }
 
     private void initControls() {
-        vertx.eventBus().localConsumer("control", h -> {
-            String action = (String) h.body();
+        vertx.eventBus().<String>consumer("control", h -> {
+            String action = h.body();
             if ("start".equals(action)) {
                 System.out.println("Starting clock");
                 clockRunning.set(true);

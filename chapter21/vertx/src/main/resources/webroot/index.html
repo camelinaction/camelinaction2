@@ -108,8 +108,8 @@
 </div>
 
 <script>
-  // connect to Vert.X eventbus on port 8080/eventbus
-  var eb = new EventBus("http://localhost:8080/eventbus");
+  // connect to Vert.X eventbus at /eventbus
+  var eb = new EventBus("/eventbus");
 
   // when opening a new connection
   // then register the following handlers (clock, games, goals)
