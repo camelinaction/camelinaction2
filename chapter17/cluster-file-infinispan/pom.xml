@@ -13,6 +13,11 @@
   <artifactId>chapter17-cluster-file-infinispan</artifactId>
   <name>Camel in Action 2 :: Chapter 17 :: Clustered file using Infinispan locking</name>
 
+  <!-- TODO: requires next version 2.19.2 or better -->
+  <properties>
+    <camel-version>2.20.0-SNAPSHOT</camel-version>
+  </properties>
+
   <dependencies>
 
     <dependency>
