@@ -44,12 +44,12 @@ public class FtpToJMSWithPropertyPlaceholderTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 // load file orders from src/data into the JMS queue
-				from("file:src/data?noop=true")
-					.to("jms:{{myDest}}");
-                       
+                from("file:src/data?noop=true")
+                    .to("jms:{{myDest}}");
+
                 // test that our route is working
                 from("jms:incomingOrders")
-	                .to("mock:incomingOrders");                
+                    .to("mock:incomingOrders");
             }
         };
     }
