@@ -15,6 +15,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * The foo test want to test with only the FooRoute as the Camel route.
+ * Therefore we need to specify which java routes to include in the filter, as done
+ * with the properties on the @SpringBootTest annotation just below.
+ * <p/>
+ * The filter with <tt>Foo*</tt> will match any Java routes that has a class name that starts with Foo, such
+ * as FooRoute, FoolishRoute etc. The class name is the simple class name without any package name.
+ */
 @RunWith(CamelSpringBootRunner.class)
 @SpringBootTest(classes = {MyApplication.class},
     properties = { "camel.springboot.java-routes-filter=Foo*"})
