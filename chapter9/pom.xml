@@ -29,6 +29,7 @@
     <module>notify</module>
     <module>pax-exam</module>
     <module>spring-boot</module>
+    <module>spring-boot-single-route</module>
     <module>spring-java-config</module>
     <module>spring-xml</module>
     <module>wildfly</module>
