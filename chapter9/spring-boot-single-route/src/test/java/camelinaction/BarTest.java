@@ -7,11 +7,14 @@ import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.test.spring.CamelSpringBootRunner;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
+import static org.apache.camel.test.junit4.TestSupport.deleteDirectory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -20,12 +23,14 @@ import static org.junit.Assert.assertTrue;
  * Therefore we need to specify which java routes to include in the filter, as done
  * with the properties on the @SpringBootTest annotation just below.
  * <p/>
- * The filter with <tt>Bar*</tt> will match any Java routes that has a class name that starts with Bar, such
- * as BarRoute, BarBeerRoute etc. The class name is the simple class name without any package name.
+ * The filter with ** / Bar* will match any Java routes that has a class name that starts with Bar, such
+ * as BarRoute, BarBeerRoute etc.
+ * Note you can also use an exclude filter.
  */
+@DirtiesContext
 @RunWith(CamelSpringBootRunner.class)
 @SpringBootTest(classes = {MyApplication.class},
-    properties = { "camel.springboot.java-routes-filter=Bar*"})
+    properties = { "camel.springboot.java-routes-include-pattern=**/Bar*"})
 public class BarTest {
 
     @Autowired
@@ -33,6 +38,13 @@ public class BarTest {
 
     @Autowired
     private ProducerTemplate template;
+
+    @Before
+    public void cleanDir() throws Exception {
+        // delete directories so we have a clean start
+        deleteDirectory("target/inbox");
+        deleteDirectory("target/bar");
+    }
 
     @Test
     public void testBar() throws Exception {
