@@ -7,8 +7,8 @@ How to test with only one route (RouteBuilder) enabled with Camel on Spring Boot
 
 You can try this example by running this goal:
 
-    mvn test -Dtest=FooRoute
-    mvn test -Dtest=BarRoute
+    mvn test -Dtest=FooTest
+    mvn test -Dtest=BarTest
 
 
 
