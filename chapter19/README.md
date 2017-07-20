@@ -9,4 +9,3 @@ This chapters covers
 - Debugging Camel routes from Eclipse or a web browser
 - hawtio web console with Camel plugin
 - Camel Catalog
-- Build custom tooling
