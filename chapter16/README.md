@@ -7,7 +7,6 @@ This chapter covers:
 - Tracking application activities
 - Using notifications
 - Managing Camel applications with JMX and REST using Jolokia
-- Using the Camel management commands
 - Overview of the Camel management API
 - Accessing the Camel management API from with Camel or as Java JMX client
 - Gathering details from the runtime performance statistics
