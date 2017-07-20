@@ -28,7 +28,6 @@
     <module>logging</module>
     <module>metrics</module>
     <module>notifier</module>
-    <module>tracer</module>
   </modules>
 
 </project>
