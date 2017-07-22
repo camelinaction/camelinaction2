@@ -44,6 +44,10 @@ Then start the inventory service in a separate shell
        cd chapter7/prototype2/inventory2
        mvn compile exec:java
        
+Then from another shell start this application
+
+      mvn spring-boot:run 
+
 Then you can run the little script to put some load on the system
        
        ./hitme.sh
