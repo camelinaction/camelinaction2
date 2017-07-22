@@ -1,4 +1,4 @@
-Chapter 21 - reactive-streams
+Chapter 20 - reactive-streams
 -----------------------------
 
 This directory holds beginner examples with standalone Reactive Streams

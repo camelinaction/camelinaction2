@@ -1,10 +1,15 @@
-chapter21 - vertx
------------------
+chapter20 - vertx-camel
+----------------------
 
-Using vert.x to build a microservice which simulates a football
+Using vert.x and Apache Camel to build a microservice which simulates a football
 live score ticker which authentic _bell_ sound when goals are scored.
 
-### 21.2.1 Building a football simulator using Vert.x
+#### Note 
+
+This example uses the `camel-vertx` component which uses a regular Camel
+component to route between vert.x and Camel.
+
+### 21.2.2 Using Camel together with Vert.x
 
 You need to build this example first
 

@@ -45,13 +45,15 @@ Part 6 - Out in the Wild
 
 - 18 [Microservices with Docker and Kubernetes](chapter18)
 - 19 [Camel Tooling](chapter19)
-- 20 Camel IoT (by Henryk Konsek)
-- 21 [Reactive Camel](chapter21)
 
 Appendixes
 
 - The Simple Language
 - Contributing to Apache Camel
+
+Bonus Chapters (online only)
+- 20 [Reactive Camel](chapter20)
+- 21 Camel IoT (by Henryk Konsek)
 
 
 Downloading the source code

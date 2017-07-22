@@ -5,28 +5,41 @@
 
   <parent>
     <groupId>com.camelinaction</groupId>
-    <artifactId>chapter21</artifactId>
+    <artifactId>chapter20</artifactId>
     <version>2.0.0</version>
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>chapter21-vertx</artifactId>
-  <name>Camel in Action 2 :: Chapter 21 :: Vert.x</name>
+  <artifactId>chapter20-vertx-camel</artifactId>
+  <name>Camel in Action 2 :: Chapter 20 :: Vert.x and Apache Camel</name>
 
   <dependencies>
 
+    <!-- Vert.X -->
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
       <version>${verx-version}</version>
     </dependency>
-
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-web</artifactId>
       <version>${verx-version}</version>
     </dependency>
 
+    <!-- camel -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-vertx</artifactId>
+      <version>${camel-version}</version>
+    </dependency>
+
+    <!-- logging -->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>

@@ -1,4 +1,4 @@
-Chapter 21 - rx-java2
+Chapter 20 - rx-java2
 ---------------------
 
 This directory holds beginner examples with standalone RX-Java 2.x

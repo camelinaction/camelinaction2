@@ -10,9 +10,9 @@
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>chapter21</artifactId>
+  <artifactId>chapter20</artifactId>
   <packaging>pom</packaging>
-  <name>Camel in Action 2 :: Chapter 21</name>
+  <name>Camel in Action 2 :: Chapter 20</name>
 
   <modules>
     <module>reactive-streams</module>

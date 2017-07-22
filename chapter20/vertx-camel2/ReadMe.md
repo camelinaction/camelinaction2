@@ -1,4 +1,4 @@
-chapter21 - vertx-camel2
+chapter20 - vertx-camel2
 ------------------------
 
 Using vert.x and Apache Camel to build a microservice which simulates a football
