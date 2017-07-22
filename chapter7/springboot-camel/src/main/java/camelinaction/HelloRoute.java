@@ -1,9 +1,6 @@
 package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.servlet.CamelHttpTransportServlet;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,18 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class HelloRoute extends RouteBuilder {
 
-    @Bean
-    ServletRegistrationBean camelServlet() {
-        // use a @Bean to register the Camel servlet which we need to do
-        // because we want to use the camel-servlet component for the Camel REST service
-        ServletRegistrationBean mapping = new ServletRegistrationBean();
-        mapping.setName("CamelServlet");
-        mapping.setLoadOnStartup(1);
-        // CamelHttpTransportServlet is the name of the Camel servlet to use
-        mapping.setServlet(new CamelHttpTransportServlet());
-        mapping.addUrlMappings("/camel/*");
-        return mapping;
-    }
+    // see the application.properties file how we map the context-path
+    // of the camel-servlet that the rest-dsl will use
 
     @Override
     public void configure() throws Exception {

@@ -59,7 +59,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-servlet</artifactId>
+      <artifactId>camel-servlet-starter</artifactId>
     </dependency>
   </dependencies>
 
