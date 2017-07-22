@@ -19,7 +19,6 @@
     <module>rx-java2</module>
     <module>vertx</module>
     <module>vertx-camel</module>
-    <module>vertx-camel2</module>
   </modules>
 
 </project>
