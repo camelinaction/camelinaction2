@@ -20,6 +20,11 @@ public class InventoryRoute extends RouteBuilder {
         JaxbDataFormat jaxb = new JaxbDataFormat();
         jaxb.setContextPath("camelinaction");
 
+        // TODO: due activemq bug we need to configure it here also
+        ActiveMQComponent jms = new ActiveMQComponent(getContext());
+        jms.setBrokerURL("tcp://localhost:61616");
+        getContext().addComponent("jms", jms);
+
         from("direct:inventory")
             .log("Calling inventory service using JMS")
             .hystrix()
@@ -28,6 +33,7 @@ public class InventoryRoute extends RouteBuilder {
                 // the returned data is in XML format so convert that to POJO using JAXB
                 .unmarshal(jaxb)
             .onFallback()
+                .log("Circuit breaker failed so using fallback response")
                 // fallback and read inventory from classpath which is in XML format
                 .transform().constant("resource:classpath:fallback-inventory.xml");
     }
