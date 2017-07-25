@@ -1,5 +1,7 @@
 package camelinaction;
 
+import org.apache.activemq.camel.component.ActiveMQComponent;
+
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
 import org.springframework.stereotype.Component;
