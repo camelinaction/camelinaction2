@@ -37,15 +37,15 @@ You can then see that every minute the cron job is triggered and because its clu
  
 You can stop either instance of the running Camel and the running node will ensure to run the job.
 
-For example here FOO runs the first two times, and the BAR runs the third time. Followed by FOO and BAR. 
+For example here Foo runs the first two times, and the Bar runs the third time. Followed by Foo and Bar. 
 Only one node runs the job at every minute.
 
 ```
-2017-02-26 18:27:00,036 [amel-1_Worker-2] INFO  route1                         - FOO running at Sun Feb 26 18:27:00 CET 2017
-2017-02-26 18:28:00,039 [amel-1_Worker-3] INFO  route1                         - FOO running at Sun Feb 26 18:28:00 CET 2017
-2017-02-26 18:29:00,053 [amel-1_Worker-1] INFO  route1                         - BAR running at Sun Feb 26 18:29:00 CET 2017
-2017-02-26 18:30:00,039 [amel-1_Worker-1] INFO  route1                         - FOO running at Sun Feb 26 18:30:00 CET 2017
-2017-02-26 18:31:00,048 [amel-1_Worker-2] INFO  route1                         - BAR running at Sun Feb 26 18:31:00 CET 2017
+2017-02-26 18:27:00,036 [amel-1_Worker-2] INFO  route1                         - Foo running at Sun Feb 26 18:27:00 CET 2017
+2017-02-26 18:28:00,039 [amel-1_Worker-3] INFO  route1                         - Foo running at Sun Feb 26 18:28:00 CET 2017
+2017-02-26 18:29:00,053 [amel-1_Worker-1] INFO  route1                         - Bar running at Sun Feb 26 18:29:00 CET 2017
+2017-02-26 18:30:00,039 [amel-1_Worker-1] INFO  route1                         - Foo running at Sun Feb 26 18:30:00 CET 2017
+2017-02-26 18:31:00,048 [amel-1_Worker-2] INFO  route1                         - Bar running at Sun Feb 26 18:31:00 CET 2017
 ```
 
 If you stop one of the nodes then the existing running node will run the job. And when the other node comes back online

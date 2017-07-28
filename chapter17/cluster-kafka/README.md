@@ -56,18 +56,18 @@ In another shell you can run the foo consumer which will receive the messages th
 You should then see in the console the words being printed, with an increasing counter as prefix:
     
 ```
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #21-Hawt
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #22-Bad
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #23-Dude
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #24-Beer
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #25-Dude
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #26-Beer
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #27-Donkey
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #28-Beer
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #29-Bad
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #30-Camel
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #31-Rocks
-[read #0 - KafkaConsumer[words]] route1                         INFO  FOO got word #32-Whiskey
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #21-Hawt
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #22-Bad
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #23-Dude
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #24-Beer
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #25-Dude
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #26-Beer
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #27-Donkey
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #28-Beer
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #29-Bad
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #30-Camel
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #31-Rocks
+[read #0 - KafkaConsumer[words]] route1                         INFO  Foo got word #32-Whiskey
 ```
 
 ### Failover the consumer

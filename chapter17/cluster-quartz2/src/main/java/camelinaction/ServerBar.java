@@ -23,7 +23,7 @@ public class ServerBar {
         main.bind("quartz2", quartz);
 
         // route which uses get/put operations
-        main.addRouteBuilder(new QuartzRoute("BAR"));
+        main.addRouteBuilder(new QuartzRoute("Bar"));
         main.run();
     }
 

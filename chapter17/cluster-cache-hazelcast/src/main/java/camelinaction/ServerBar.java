@@ -23,10 +23,10 @@ public class ServerBar {
 
         if (args.length == 0) {
             // route which uses get/put operations
-            main.addRouteBuilder(new CounterRoute("BAR", 9090));
+            main.addRouteBuilder(new CounterRoute("Bar", 9090));
         } else {
             // route which uses atomic counter
-            main.addRouteBuilder(new AtomicCounterRoute("BAR", 9090));
+            main.addRouteBuilder(new AtomicCounterRoute("Bar", 9090));
         }
         main.run();
     }

@@ -49,8 +49,8 @@ public class ServerFoo {
         main = new Main();
         // bind the hazelcast route policy to the name myPolicy which we refer to from the route
         main.bind("myPolicy", routePolicy);
-        // add the route and and let the route be named BAR and use a little delay when processing the files
-        main.addRouteBuilder(new FileConsumerRoute("FOO", 100));
+        // add the route and and let the route be named Bar and use a little delay when processing the files
+        main.addRouteBuilder(new FileConsumerRoute("Foo", 100));
         main.run();
     }
 

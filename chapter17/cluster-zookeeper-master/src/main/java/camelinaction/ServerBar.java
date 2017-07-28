@@ -20,8 +20,8 @@ public class ServerBar {
         master.setZooKeeperUrl("localhost:2181");
         main.bind("zookeeper-master", master);
 
-        // add the route and and let the route be named BAR and use a little delay when processing the files
-        main.addRouteBuilder(new FileConsumerRoute("BAR", 200));
+        // add the route and and let the route be named Bar and use a little delay when processing the files
+        main.addRouteBuilder(new FileConsumerRoute("Bar", 200));
         main.run();
     }
 

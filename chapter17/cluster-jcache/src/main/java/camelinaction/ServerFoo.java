@@ -26,7 +26,7 @@ public class ServerFoo {
         // register the component to Camel with the name jcache
         main.bind("jcache", jcache);
 
-        main.addRouteBuilder(new CounterRoute("FOO", 8888));
+        main.addRouteBuilder(new CounterRoute("Foo", 8888));
         main.run();
     }
 

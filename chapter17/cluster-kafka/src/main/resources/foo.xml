@@ -15,7 +15,7 @@
   <camelContext id="foo" xmlns="http://camel.apache.org/schema/spring">
     <route>
       <from uri="kafka:words?groupId=mygroup"/>
-      <log message="FOO got word ${body}"/>
+      <log message="Foo got word ${body}"/>
     </route>
   </camelContext>
 

@@ -42,34 +42,34 @@ The example requires to run at two JVMs concurrently by starting each Maven goal
 
 From another shell you can call either the foo or the bar JVMs from a web browser with
 
-To call the FOO server:
+To call the Foo server:
 
     http://localhost:8888   
 
-To call the BAR server:
+To call the Bar server:
 
     http://localhost:8889
 
 You should then be able to receive a response with a increasing counter that is distributed. So if you
 mix the calls between the two JVMs then the counter is correct increased by one each time.
 
-For example if we call the FOO route 4 times and then BAR route 3 times, and FOO route 2 times again, 
+For example if we call the Foo route 4 times and then Bar route 3 times, and Foo route 2 times again, 
 we can see from the logs of the two JVMs they output representative:
 
 ```
-FOO: counter is now 1
-FOO: counter is now 2
-FOO: counter is now 3
-FOO: counter is now 4
-FOO: counter is now 8
-FOO: counter is now 9
+Foo: counter is now 1
+Foo: counter is now 2
+Foo: counter is now 3
+Foo: counter is now 4
+Foo: counter is now 8
+Foo: counter is now 9
 
-BAR: counter is now 5
-BAR: counter is now 6
-BAR: counter is now 7
+Bar: counter is now 5
+Bar: counter is now 6
+Bar: counter is now 7
 ```
 
-You can try to restart either FOO or BAR which should ensure the counter survives in the cache and is updated correctly.
+You can try to restart either Foo or Bar which should ensure the counter survives in the cache and is updated correctly.
 
 From the Infinispan web console you should be able to see cache statistics as shown in the screenshot below:
 
