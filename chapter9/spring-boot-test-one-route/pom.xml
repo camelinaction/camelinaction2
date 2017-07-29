@@ -13,11 +13,6 @@
   <artifactId>chapter9-spring-boot-test-one-route</artifactId>
   <name>Camel in Action 2 :: Chapter 9 :: Test with only one route (RouteBuilder) enabled with Spring Boot</name>
 
-  <!-- TODO: requires Camel 2.19.2 or better -->
-  <properties>
-    <camel-version>2.20.0-SNAPSHOT</camel-version>
-  </properties>
-
   <!-- import Spring-Boot and Camel BOM -->
   <dependencyManagement>
     <dependencies>

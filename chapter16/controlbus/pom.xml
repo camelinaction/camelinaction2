@@ -25,14 +25,6 @@
       <artifactId>camel-restlet</artifactId>
     </dependency>
 
-    <!-- TODO: Remove me when upgrading to Camel 2.19.3 (or if we redo 2.19.2) or 2.20.0 -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-    </dependency>
-
-
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
