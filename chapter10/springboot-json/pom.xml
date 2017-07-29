@@ -13,10 +13,6 @@
   <artifactId>chapter10-spark-rest-json</artifactId>
   <name>Camel in Action 2 :: Chapter 10 :: REST with Spring Boot with JSon</name>
 
-  <properties>
-    <camel-version>2.20.0-SNAPSHOT</camel-version>
-  </properties>
-
   <!-- Spring-Boot and Camel BOM -->
   <dependencyManagement>
     <dependencies>
@@ -49,19 +45,16 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring-boot-starter</artifactId>
-      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-servlet-starter</artifactId>
-      <version>${camel-version}</version>
     </dependency>
 
     <!-- to use json -->
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jackson-starter</artifactId>
-      <version>${camel-version}</version>
     </dependency>
 
     <!-- testing -->
@@ -73,13 +66,11 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-http4-starter</artifactId>
-      <version>${camel-version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test-spring</artifactId>
-      <version>${camel-version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
