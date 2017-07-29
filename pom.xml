@@ -78,7 +78,7 @@
     <mock-javamail-version>1.9</mock-javamail-version>
     <slf4j-version>1.7.21</slf4j-version>
     <spring-version>4.3.10.RELEASE</spring-version>
-    <spring-boot-version>1.5.4.RELEASE</spring-boot-version>
+    <spring-boot-version>1.5.6.RELEASE</spring-boot-version>
     <swagger-version>1.5.16</swagger-version>
     <xbean-version>3.18</xbean-version>
     <verx-version>3.4.1</verx-version>
