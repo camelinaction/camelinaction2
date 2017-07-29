@@ -34,6 +34,7 @@
     <module>spark-rest</module>
     <module>spark-rest-json</module>
     <module>spark-rest-ping</module>
+    <module>springboot-json</module>
     <module>restlet-json</module>
     <module>undertow-rest-xml-json</module>
     <module>undertow-swagger</module>
