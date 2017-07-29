@@ -12,6 +12,3 @@ This chapters covers
 - Binding between POJOs and XML/JSon
 - Documenting your REST services using Swagger
 - Browsing Swagger API using Swagger UI
-- Web services using Apache CXF
-- Developing contract-first web services
-- Developing code-first web services
