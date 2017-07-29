@@ -17,9 +17,3 @@ The example can be run with:
     mvn test -Dtest=RouteScopeTest
     mvn test -Dtest=SpringRouteScopeTest
 
-### 11.3.6 - Handling faults
-
-The example can be run with:
-
-    mvn test -Dtest=HandleFaultTest
-    mvn test -Dtest=SpringHandleFaultTest
