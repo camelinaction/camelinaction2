@@ -1,13 +1,12 @@
-Chapter19 - JBoss Camel Developer Tools
----------------------------------------
+Chapter19 - JBoss Fuse Tooling
+------------------------------
 
-### 19.1.1 JBoss Camel Developer Tools
+### 19.1.1 JBoss Fuse Tooling
 
-This is a Camel example used to demonstrate the JBoss Camel Developer Tools
-which you can run from Eclipse.
+This is a Camel example used to demonstrate the JBoss Fuse Tooling that has Camel editing and debugging capabilities, which you can run from Eclipse.
 
 
-#### Installing JBoss Camel Developer Tools in Eclipse
+#### Installing JBoss Fuse Tooling in Eclipse
 
 You need to use Eclipse Neon 4.6
 
@@ -55,5 +54,5 @@ The tooling is providing several features:
 - Monitoring by connecting to the JMX Camel MBean
 - Deployment on different Runtimes: facilities to deploy locally, on Karaf/FUSE, on Wildfly/JBoss EAP and on OpenShift.
 
-For more details see: http://tools.jboss.org/features/apachecamel.html
+For more details see: http://tools.jboss.org/features/fusetools.html
 

@@ -14,7 +14,7 @@
   </parent>
 
   <artifactId>chapter19-fuse-ide</artifactId>
-  <name>Camel in Action 2 :: Chapter 19 :: JBoss Tools for Apache Camel Editor</name>
+  <name>Camel in Action 2 :: Chapter 19 :: JBoss Fuse Tooling</name>
 
   <dependencies>
 
