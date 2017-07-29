@@ -13,13 +13,18 @@ import org.springframework.test.annotation.DirtiesContext;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+// unit test with Camel and spring-boot
 @RunWith(CamelSpringBootRunner.class)
-@SpringBootTest(classes = OrderApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = OrderApplication.class,
+    // turn on web during test on the defined 8080 port
+    webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+// re-create Spring/Camel for each test
 @DirtiesContext
 public class OrderServiceTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(OrderServiceTest.class);
 
+    // inject template so we can use Camel to send a message to the order service via http
     @Autowired
     private ProducerTemplate template;
 
