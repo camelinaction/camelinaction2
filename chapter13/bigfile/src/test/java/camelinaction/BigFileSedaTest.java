@@ -11,8 +11,8 @@ public class BigFileSedaTest extends CamelTestSupport {
 
     @Test
     public void testBigFile() throws Exception {
-        // use 300 sec shutdown timeout
-        context.getShutdownStrategy().setTimeout(300);
+        // use 60 sec shutdown timeout
+        context.getShutdownStrategy().setTimeout(60);
 
         long start = System.currentTimeMillis();
 
