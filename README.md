@@ -29,7 +29,7 @@ Part 3 - Developing and Testing
 
 Part 4 - Going further with Camel
 
-- 10 [RESTful and SOAP Web Services](chapter10)
+- 10 [RESTful Web Services](chapter10)
 - 11 [Error Handling](chapter11)
 - 12 [Transactions and Idempotency](chapter12)
 - 13 [Parallel Processing](chapter13)
@@ -39,10 +39,10 @@ Part 5 - Running and Managing Camel
 
 - 15 [Running and Deploying Camel](chapter15)
 - 16 [Management and Monitoring](chapter16)
-- 17 [Clustering](chapter17)
 
 Part 6 - Out in the Wild
 
+- 17 [Clustering](chapter17)
 - 18 [Microservices with Docker and Kubernetes](chapter18)
 - 19 [Camel Tooling](chapter19)
 
