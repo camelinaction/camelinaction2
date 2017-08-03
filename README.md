@@ -14,7 +14,7 @@ Part 1 - First Steps
 - 1 [Meeting Camel](chapter1)
 - 2 [Routing with Camel](chapter2)
 
-Part 2 - Routing and Transformation
+Part 2 - Core Camel
 
 - 3 [Transforming data with Camel](chapter3)
 - 4 [Using Beans with Camel](chapter4)
@@ -26,10 +26,10 @@ Part 3 - Developing and Testing
 - 7 [Microservices](chapter7)
 - 8 [Developing Camel Projects](chapter8)
 - 9 [Testing](chapter9)
+- 10 [RESTful Web Services](chapter10)
 
 Part 4 - Going further with Camel
 
-- 10 [RESTful Web Services](chapter10)
 - 11 [Error Handling](chapter11)
 - 12 [Transactions and Idempotency](chapter12)
 - 13 [Parallel Processing](chapter13)
