@@ -2,6 +2,7 @@ package camelinaction;
 
 import org.apache.camel.ThreadPoolRejectedPolicy;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.builder.ThreadPoolProfileBuilder;
 import org.apache.camel.spi.ThreadPoolProfile;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
@@ -13,10 +14,10 @@ public class CustomThreadPoolProfileTest extends CamelTestSupport {
 
     public ThreadPoolProfile createCustomProfile() {
         // create a custom thread pool profile with the name bigPool
-        ThreadPoolProfile profile = new ThreadPoolProfile("bigPool");
-        profile.setMaxPoolSize(200);
-        profile.setRejectedPolicy(ThreadPoolRejectedPolicy.DiscardOldest);
-        return profile;
+        return new ThreadPoolProfileBuilder("bigPool")
+            .maxPoolSize(200)
+            .rejectedPolicy(ThreadPoolRejectedPolicy.DiscardOldest)
+            .build();
     }
 
     @Test
