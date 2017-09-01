@@ -10,7 +10,7 @@
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>chapter10-spark-rest-json</artifactId>
+  <artifactId>chapter10-springboot-json</artifactId>
   <name>Camel in Action 2 :: Chapter 10 :: REST with Spring Boot with JSon</name>
 
   <!-- Spring-Boot and Camel BOM -->
