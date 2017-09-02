@@ -3,6 +3,6 @@ Chapter 20 - Reactive Camel
 
 This chapters covers
 
-- Using Reactive Streams
-- Camel Reactive Streams
-- Vert.x and Camel
+- First steps with Reactive Streams
+- Using Reactive Streams with Camel
+- Using Eclipse Vert.x with Camel
