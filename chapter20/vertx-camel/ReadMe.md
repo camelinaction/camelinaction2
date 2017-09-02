@@ -7,9 +7,9 @@ live score ticker which authentic _bell_ sound when goals are scored.
 #### Note 
 
 This example uses the `camel-vertx` component which uses a regular Camel
-component to route between vert.x and Camel.
+component to route between Vert.x and Camel.
 
-### 21.2.2 Using Camel together with Vert.x
+### 20.2.2 Using Camel together with Vert.x
 
 You need to build this example first
 

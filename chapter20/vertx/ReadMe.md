@@ -4,7 +4,7 @@ chapter20 - vertx
 Using vert.x to build a microservice which simulates a football
 live score ticker which authentic _bell_ sound when goals are scored.
 
-### 21.2.1 Building a football simulator using Vert.x
+### 20.2.1 Building a football simulator using Vert.x
 
 You need to build this example first
 

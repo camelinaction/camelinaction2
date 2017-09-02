@@ -4,13 +4,13 @@ Chapter 20 - rx-java2
 This directory holds beginner examples with standalone RX-Java 2.x
 and when using it together with Camel.
 
-### 21.1.2 First steps with Reactive Streams
+### 20.1.2 First steps with Reactive Streams
 
 The example can be run with:
 
     mvn test -Dtest=FirstTest
 
-### 21.1.3 Using Camel with Reactive Streams
+### 20.1.3 Using Camel with Reactive Streams
 
 The example can be run with:
 
@@ -34,7 +34,7 @@ The example can be run with:
 
     mvn test -Dtest=CamelFilesTest
     
-### 21.1.4 Controlling back pressure from producer side
+### 20.1.4 Controlling back pressure from producer side
     
 The example can be run with:
 
@@ -52,7 +52,7 @@ The example can be run with:
 
     mvn test -Dtest=CamelLatestBackPressureTest
                 
-### 21.1.5 Controlling back pressure from consumer side
+### 20.1.5 Controlling back pressure from consumer side
                 
 The example can be run with:
 
