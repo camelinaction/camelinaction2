@@ -19,12 +19,12 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
-      <version>${verx-version}</version>
+      <version>${vertx-version}</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-web</artifactId>
-      <version>${verx-version}</version>
+      <version>${vertx-version}</version>
     </dependency>
 
     <!-- camel -->
