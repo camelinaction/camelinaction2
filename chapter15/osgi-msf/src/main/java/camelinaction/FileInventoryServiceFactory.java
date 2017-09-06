@@ -34,7 +34,8 @@ public class FileInventoryServiceFactory implements ManagedServiceFactory {
         properties.put( Constants.SERVICE_PID, "camelinaction.fileinventoryroutefactory");
         registration = bundleContext.registerService(ManagedServiceFactory.class.getName(), this, properties);
         
-        LOG.info("FileInventoryRouteCamelServiceFactory ready to accept new config with PID=camelinaction.fileinventoryroutefactory-xxx");
+        LOG.info("FileInventoryRouteCamelServiceFactory ready to accept " +
+        "new config with PID=camelinaction.fileinventoryroutefactory-xxx");
     }
     
     @Override
