@@ -21,7 +21,8 @@ public class InventoryService {
      * To convert from model to CSV in a simply way
      */
     public String xmlToCsv(UpdateInventoryInput input) {
-        return input.getSupplierId() + "," + input.getPartId() + "," + input.getName() + "," + input.getAmount();
+        return input.getSupplierId() + "," + input.getPartId() 
+            + "," + input.getName() + "," + input.getAmount();
     }
 
     /**
