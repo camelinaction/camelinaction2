@@ -43,7 +43,7 @@
     <!-- camel with spring-boot -->
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-spring-boot</artifactId>
+      <artifactId>camel-spring-boot-starter</artifactId>
       <version>${camel-version}</version>
     </dependency>
     <dependency>
@@ -77,7 +77,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.jaxrs</groupId>
       <artifactId>jackson-jaxrs-json-provider</artifactId>
-      <version>2.8.6</version>
+      <version>2.8.9</version>
     </dependency>
 
     <!-- testing -->
