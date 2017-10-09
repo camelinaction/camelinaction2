@@ -56,10 +56,10 @@
 
   <properties>
 
-    <activemq-version>5.14.5</activemq-version>
+    <activemq-version>5.15.1</activemq-version>
     <activemq-karaf-version>5.13.5</activemq-karaf-version>
-    <camel-version>2.19.3</camel-version>
-    <cxf-version>3.1.13</cxf-version>
+    <camel-version>2.20.0</camel-version>
+    <cxf-version>3.2.0</cxf-version>
     <hawtio-version>1.5.4</hawtio-version>
 
     <bundle-plugin-version>2.3.7</bundle-plugin-version>
@@ -83,7 +83,7 @@
     <xbean-version>3.18</xbean-version>
     <vertx-version>3.4.2</vertx-version>
     <weld-version>2.4.2.Final</weld-version>
-    <wildfly-swarm-version>2017.9.5</wildfly-swarm-version>
+    <wildfly-swarm-version>2017.10.0</wildfly-swarm-version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
