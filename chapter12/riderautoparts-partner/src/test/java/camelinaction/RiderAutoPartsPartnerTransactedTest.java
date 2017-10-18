@@ -43,7 +43,7 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
         assertEquals(0, rows);
 
-        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201611150815</date><code>200</code><time>4387</time></partner>";
+        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201702250815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete one message
@@ -77,7 +77,7 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
         assertEquals(0, rows);
 
-        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201611150815</date><code>200</code><time>4387</time></partner>";
+        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201702250815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete
@@ -123,7 +123,7 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
         assertEquals(0, rows);
 
-        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201611150815</date><code>200</code><time>4387</time></partner>";
+        String xml = "<?xml version=\"1.0\"?><partner id=\"123\"><date>201702250815</date><code>200</code><time>4387</time></partner>";
         template.sendBody("activemq:queue:partners", xml);
 
         // wait for the route to complete
