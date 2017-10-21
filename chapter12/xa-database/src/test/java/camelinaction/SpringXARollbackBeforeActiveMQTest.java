@@ -41,7 +41,7 @@ public class SpringXARollbackBeforeActiveMQTest extends CamelSpringTestSupport {
     public void testRollbackBeforeActiveMQ() throws Exception {
         NotifyBuilder notify = new NotifyBuilder(context).whenReceived(10).create();
 
-        jdbc.execute("insert into partner_metric (partner_id, time_occurred, status_code, perf_time) values ('123', '20161115183457', '200', '1503')");
+        jdbc.execute("insert into partner_metric (partner_id, time_occurred, status_code, perf_time) values ('123', '20170315183457', '200', '1503')");
 
         assertTrue(notify.matches(15, TimeUnit.SECONDS));
 

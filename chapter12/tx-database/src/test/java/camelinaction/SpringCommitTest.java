@@ -21,7 +21,7 @@ public class SpringCommitTest extends CamelSpringTestSupport {
 
         jdbc.execute("create table partner_metric "
                 + "( partner_id varchar(10), time_occurred varchar(20), status_code varchar(3), perf_time varchar(10) )");
-        jdbc.execute("insert into partner_metric (partner_id, time_occurred, status_code, perf_time) values ('123', '20161115183457', '200', '1503')");
+        jdbc.execute("insert into partner_metric (partner_id, time_occurred, status_code, perf_time) values ('123', '20170315183457', '200', '1503')");
     }
 
     @After
