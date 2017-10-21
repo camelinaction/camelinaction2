@@ -21,25 +21,25 @@ public class NotifyTest extends CamelTestSupport {
                 .from("seda:order").whenDone(1).create();
 
         template.sendBody("seda:quote", "Camel rocks");
-        template.sendBody("seda:order", "123,2016-04-20'T'15:47:59,4444,5555");
+        template.sendBody("seda:order", "123,2017-04-20'T'15:47:59,4444,5555");
 
         boolean matches = notify.matches(5, TimeUnit.SECONDS);
         assertTrue(matches);
 
         SedaEndpoint confirm = context.getEndpoint("seda:confirm", SedaEndpoint.class);
         assertEquals(1, confirm.getExchanges().size());
-        assertEquals("OK,123,2016-04-20'T'15:47:59,4444,5555", confirm.getExchanges().get(0).getIn().getBody());
+        assertEquals("OK,123,2017-04-20'T'15:47:59,4444,5555", confirm.getExchanges().get(0).getIn().getBody());
     }
 
     @Test
     public void testNotifyWhenAnyDoneMatches() throws Exception {
         // use a predicate to indicate when a certain message is done
         NotifyBuilder notify = new NotifyBuilder(context)
-                .from("seda:order").whenAnyDoneMatches(body().isEqualTo("OK,123,2016-04-20'T'15:48:00,2222,3333")).create();
+                .from("seda:order").whenAnyDoneMatches(body().isEqualTo("OK,123,2017-04-20'T'15:48:00,2222,3333")).create();
 
         // send in 2 messages. Its the 2nd message we want to test
-        template.sendBody("seda:order", "123,2016-04-20'T'15:47:59,4444,5555");
-        template.sendBody("seda:order", "123,2016-04-20'T'15:48:00,2222,3333");
+        template.sendBody("seda:order", "123,2017-04-20'T'15:47:59,4444,5555");
+        template.sendBody("seda:order", "123,2017-04-20'T'15:48:00,2222,3333");
 
         boolean matches = notify.matches(5, TimeUnit.SECONDS);
         assertTrue(matches);
@@ -48,7 +48,7 @@ public class NotifyTest extends CamelTestSupport {
         // there should be 2 messages on the confirm queue
         assertEquals(2, confirm.getExchanges().size());
         // and the 2nd message should be the message we wanted to test for
-        assertEquals("OK,123,2016-04-20'T'15:48:00,2222,3333", confirm.getExchanges().get(1).getIn().getBody());
+        assertEquals("OK,123,2017-04-20'T'15:48:00,2222,3333", confirm.getExchanges().get(1).getIn().getBody());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class NotifyTest extends CamelTestSupport {
                 .from("seda:quote").whenReceived(1).or().whenFailed(1).create();
 
         template.sendBody("seda:quote", "Camel rocks");
-        template.sendBody("seda:order", "123,2016-04-20'T'15:48:00,2222,3333");
+        template.sendBody("seda:order", "123,2017-04-20'T'15:48:00,2222,3333");
 
         boolean matches = notify.matches(5, TimeUnit.SECONDS);
         assertTrue(matches);

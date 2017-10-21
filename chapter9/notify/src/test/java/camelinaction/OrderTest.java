@@ -39,7 +39,7 @@ public class OrderTest extends CamelSpringTestSupport {
 
         // setup order information
         Calendar cal = Calendar.getInstance(Locale.US);
-        cal.set(Calendar.YEAR, 2016);
+        cal.set(Calendar.YEAR, 2017);
         cal.set(Calendar.MONTH, Calendar.APRIL);
         cal.set(Calendar.DAY_OF_MONTH, 20);
         cal.set(Calendar.HOUR_OF_DAY, 7);
@@ -61,7 +61,7 @@ public class OrderTest extends CamelSpringTestSupport {
         BrowsableEndpoint be = context.getEndpoint("activemq:queue:confirm", BrowsableEndpoint.class);
         List<Exchange> list = be.getExchanges();
         assertEquals(1, list.size());
-        assertEquals("OK,123,2016-04-20T07:47:58,4444,5555", list.get(0).getIn().getBody(String.class));
+        assertEquals("OK,123,2017-04-20T07:47:58,4444,5555", list.get(0).getIn().getBody(String.class));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class OrderTest extends CamelSpringTestSupport {
         NotifyBuilder notify = new NotifyBuilder(context).whenDone(1).create();
 
         Calendar cal = Calendar.getInstance(Locale.US);
-        cal.set(Calendar.YEAR, 2016);
+        cal.set(Calendar.YEAR, 2017);
         cal.set(Calendar.MONTH, Calendar.APRIL);
         cal.set(Calendar.DAY_OF_MONTH, 20);
         cal.set(Calendar.HOUR_OF_DAY, 7);
@@ -88,7 +88,7 @@ public class OrderTest extends CamelSpringTestSupport {
         BrowsableEndpoint be = context.getEndpoint("activemq:queue:invalid", BrowsableEndpoint.class);
         List<Exchange> list = be.getExchanges();
         assertEquals(1, list.size());
-        assertEquals("999,2016-04-20T07:47:58,5555,2222", list.get(0).getIn().getBody(String.class));
+        assertEquals("999,2017-04-20T07:47:58,5555,2222", list.get(0).getIn().getBody(String.class));
     }
 
     @Test
@@ -97,7 +97,7 @@ public class OrderTest extends CamelSpringTestSupport {
         NotifyBuilder notify = new NotifyBuilder(context).whenFailed(1).create();
 
         Calendar cal = Calendar.getInstance(Locale.US);
-        cal.set(Calendar.YEAR, 2016);
+        cal.set(Calendar.YEAR, 2017);
         cal.set(Calendar.MONTH, Calendar.APRIL);
         cal.set(Calendar.DAY_OF_MONTH, 20);
         cal.set(Calendar.HOUR_OF_DAY, 7);
