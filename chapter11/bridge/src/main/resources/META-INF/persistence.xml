@@ -14,8 +14,8 @@
     <class>camelinaction.BookOrder</class>
 
     <properties>
-      <!-- change the currention url if the settings are different on your computer -->
-      <property name="openjpa.ConnectionURL" value="jdbc:postgresql://192.168.59.103:5432/postgres"/>
+      <!-- Docker should bridge the container to your host operating system so we can access the container via 0.0.0.0 -->
+      <property name="openjpa.ConnectionURL" value="jdbc:postgresql://0.0.0.0:5432/postgres"/>
       <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
       <property name="openjpa.ConnectionUserName" value="postgres"/>
       <property name="openjpa.ConnectionPassword" value="secret"/>
