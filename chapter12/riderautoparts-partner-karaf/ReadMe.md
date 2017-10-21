@@ -14,7 +14,7 @@ To try this example you need to first build it
 
     mvn clean install
 
-And then start Apache Karaf (such as version 4.0.8)
+And then start Apache Karaf (such as version 4.1.2)
 
     bin/karaf
 
@@ -51,9 +51,9 @@ If all goes well, the message gets de-queued from the ActiveMQ queue and process
 In the Karaf log you will see something like:
 
 ```
-2016-11-21 16:09:02,402 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.16.0 | incoming message <?xml version="1.0"?><partner id="123"><date>201702250815</date><code>200</code><time>4387</time></partner>
-2016-11-21 16:09:02,419 | INFO  | nsumer[partners] | XPathBuilder                     | 74 - org.apache.camel.camel-core - 2.16.0 | Created default XPathFactory org.apache.xpath.jaxp.XPathFactoryImpl@4ada27a1
-2016-11-21 16:09:02,657 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.16.0 | inserted into database
+2017-02-26 16:09:02,402 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.20.0 | incoming message <?xml version="1.0"?><partner id="123"><date>201702250815</date><code>200</code><time>4387</time></partner>
+2017-02-26 16:09:02,419 | INFO  | nsumer[partners] | XPathBuilder                     | 74 - org.apache.camel.camel-core - 2.20.0 | Created default XPathFactory org.apache.xpath.jaxp.XPathFactoryImpl@4ada27a1
+2017-02-26 16:09:02,657 | INFO  | nsumer[partners] | partnerToDB                      | 74 - org.apache.camel.camel-core - 2.20.0 | inserted into database
 ```
 
 If you see `inserted into database` then it worked.
