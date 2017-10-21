@@ -15,7 +15,7 @@
 
   <properties>
     <!-- atomikos is the XA transaction manager -->
-    <atomikos-version>3.9.3</atomikos-version>
+    <atomikos-version>4.0.4</atomikos-version>
   </properties>
 
   <dependencies>
