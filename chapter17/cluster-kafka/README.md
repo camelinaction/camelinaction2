@@ -16,8 +16,8 @@ This example requires to run a Kafka Broker
 
 From Apache Kafka (http://kafka.apache.org/quickstart) you download Kafka and follow the instructions to run Kafka.
 
-    tar xf ~/Downloads/kafka_2.11-0.10.2.0.tgz
-    cd kafka_2.11-0.10.2.0
+    tar xf ~/Downloads/kafka_2.12-0.11.0.1.tgz
+    cd kafka_2.12-0.11.0.1
      
 Then you start Zookeeper
      
@@ -78,5 +78,4 @@ You can scale up the consumers by starting a new consumer from a shell
     mvn compile exec:java -P bar
 
 When the 2nd consumer is up and running, you should be able to stop or kill the running consumer, and then see that the 2nd consumer
-will failover and start processing the messages. You can then bring the first consumer back online and it should be able to failover if
-you kill the 2nd consumer and so on.
+will failover and start processing the messages. You can then bring the first consumer back online and it should be able to failover if you kill the 2nd consumer and so on.
