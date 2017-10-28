@@ -17,7 +17,7 @@
 
   <properties>
     <fabric8.maven.plugin.version>3.5.32</fabric8.maven.plugin.version>
-    <arquillian-cube-version>1.4.0</arquillian-cube-version>
+    <arquillian-cube-version>1.9.1</arquillian-cube-version>
 
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
