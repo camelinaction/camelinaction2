@@ -8,14 +8,14 @@ To package this application, execute the following command:
 
     mvn install
 
-To run this example in Apache Karaf 4.0.8 or better, then start Karaf with
+To run this example in Apache Karaf 4.1.2 or better, then start Karaf with
 
     bin/karaf        (Unix)
     bin/karaf.bat    (Windows)
 
 To add Apache Camel to Karaf, run the following command:
 
-    feature:repo-add camel 2.19.0
+    feature:repo-add camel 2.20.0
     feature:install http camel camel-cxf
 
 To install this application run the following command:
