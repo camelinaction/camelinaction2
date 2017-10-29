@@ -5,9 +5,11 @@ This example shows how to hook a web service up to a JAAS backend in Apache Kara
 
 ### 14.2.2 - Hooking web service auth into JAAS backend
 
-First start Apache Karaf such as using the following command:
 
-    bin/karaf
+To run this example in Apache Karaf 4.1.2 or better, start Karaf with:
+
+    bin/karaf        (Unix)
+    bin/karaf.bat    (Windows)
 
 Then install Camel and CXF WS Security support in Karaf:
 
