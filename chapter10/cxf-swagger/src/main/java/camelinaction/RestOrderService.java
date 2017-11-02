@@ -44,7 +44,7 @@ public class RestOrderService {
     @Path("/{id}")
     @ApiOperation(value = "Get order", response = Order.class)
     @ApiResponses({
-        @ApiResponse(code = 200, response = String.class, message = "The found order"),
+        @ApiResponse(code = 200, response = Order.class, message = "The found order"),
         @ApiResponse(code = 404, response = String.class, message = "Cannot find order with the id")
     })
     public Response getOrder(
