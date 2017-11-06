@@ -17,7 +17,7 @@ To try this example you need to first build it
 
 ### Running Apache Karaf
 
-And then start Apache Karaf (such as version 4.1.2)
+And then start Apache Karaf (such as version 4.1.3)
 
     bin/karaf
 

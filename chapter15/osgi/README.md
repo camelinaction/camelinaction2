@@ -8,7 +8,7 @@ To package this application, execute the following command:
 
     mvn install
 
-To run this example in Apache Karaf 4.1.2 or better, then start Karaf with
+To run this example in Apache Karaf 4.1.3 or better, then start Karaf with
 
     bin/karaf        (Unix)
     bin/karaf.bat    (Windows)
