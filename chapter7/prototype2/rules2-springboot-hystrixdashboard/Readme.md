@@ -20,7 +20,7 @@ This time we have enabled support for Hystrix Dashboard which can be streamed fr
 
 You need to download and run the Hystrix Dashboard from:
 
-  https://github.com/kennedyoliveira/standalone-hystrix-dashboard
+  https://bintray.com/kennedyoliveira/maven/standalone-hystrix-dashboard/1.5.6
    
 Which is a standalone JAR file you run with:
    
