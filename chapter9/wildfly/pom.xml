@@ -17,7 +17,7 @@
   <properties>
     <!-- arquillian application server properties -->
     <!-- see the file src/test/resources/arquillian.xml -->
-    <wildfly-version>10.0.1.Final</wildfly-version>
+    <wildfly-version>11.0.0.Final</wildfly-version>
     <jboss.home>${env.JBOSS_HOME}</jboss.home>
     <server.config>standalone.xml</server.config>
   </properties>
