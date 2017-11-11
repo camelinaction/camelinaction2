@@ -4,7 +4,7 @@ import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.camel.util.ObjectHelper;
+import org.apache.camel.util.StringHelper;
 import org.junit.Test;
 
 /**
@@ -39,7 +39,7 @@ public class MirandaJava8Test extends CamelTestSupport {
                 from("jetty://http://localhost:9080/service/order")
                     .transform().message(m -> "ID=" + m.getHeader("id"))
                     .to("mock:miranda")
-                    .transform().body(String.class, b -> ObjectHelper.after(b, "STATUS="));
+                    .transform().body(String.class, b -> StringHelper.after(b, "STATUS="));
             }
         };
     }

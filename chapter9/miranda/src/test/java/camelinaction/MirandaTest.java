@@ -5,7 +5,7 @@ import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.camel.util.ObjectHelper;
+import org.apache.camel.util.StringHelper;
 import org.junit.Test;
 
 /**
@@ -60,7 +60,7 @@ public class MirandaTest extends CamelTestSupport {
 
         public void process(Exchange exchange) throws Exception {
             String body = exchange.getIn().getBody(String.class);
-            String reply = ObjectHelper.after(body, "STATUS=");
+            String reply = StringHelper.after(body, "STATUS=");
             exchange.getIn().setBody(reply);
         }
 
