@@ -27,7 +27,7 @@
       <property key="delay" value="1000"/>
       <!-- bridge the consumer with Camel's error handler so if the consumer detects an error its being routed
            as an empty Exchange with the caused exception -->
-      <property key="consumer.bridgeErrorHandler" value="true"/>
+      <property key="bridgeErrorHandler" value="true"/>
       <!-- and in case of an error in the consumer, we do not want to poll so fast anymore, so backoff the
            delay x 10 times = 1s x 10 = 10s -->
       <property key="backoffMultiplier" value="10"/>
