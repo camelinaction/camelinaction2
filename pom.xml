@@ -12,7 +12,7 @@
   <inceptionYear>2015</inceptionYear>
 
   <prerequisites>
-    <maven>3.3.3</maven>
+    <maven>3.5.0</maven>
   </prerequisites>
 
   <developers>
