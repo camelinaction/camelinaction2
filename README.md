@@ -5,7 +5,6 @@ This project hosts the source code for the examples of the [Camel in Action](htt
 
 ![Camel in Action 2nd ed cover](/docs/images/cia2_cover150.jpg?raw=true)
 
-
 Table of Contents
 -----------------
 
@@ -46,14 +45,15 @@ Part 6 - Out in the Wild
 - 18 [Microservices with Docker and Kubernetes](chapter18)
 - 19 [Camel Tooling](chapter19)
 
-Appendixes
-
-- The Simple Language
-- Contributing to Apache Camel
-
 Bonus Chapters (online only)
+
 - 20 [Reactive Camel](chapter20)
 - 21 Camel IoT (by Henryk Konsek)
+
+Appendixes
+
+- A The Simple Language
+- B Contributing to Apache Camel
 
 
 Downloading the source code
