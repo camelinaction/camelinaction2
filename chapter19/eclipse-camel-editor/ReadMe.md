@@ -5,15 +5,21 @@ Chapter19 - JBoss Fuse Tooling
 
 This is a Camel example used to demonstrate the JBoss Fuse Tooling that has Camel editing and debugging capabilities, which you can run from Eclipse.
 
+The tooling is open source and free to use.
 
-#### Installing JBoss Fuse Tooling in Eclipse
+You can find the source code of the tooling at github: https://github.com/jbosstools/jbosstools-fuse
 
-You need to use Eclipse Neon 4.6
+
+#### Installing JBoss Fuse Tooling
+
+##### Installing JBoss Fuse Tooling in existing Eclipse installation
+
+You need to use Eclipse Oxygen 4.7
 
 From Eclipse you choose `Help` -> `Eclipse Marketplace...`
   and then type `Camel` in the find field and press the Go button. 
 
-In the selection list search select `Red Hat Developer Studio Integration Stack` which is the 
+In the selection list search select `Red Hat JBoss Developer Studio` which is the 
 name chosen for the Camel and integration tools as part of the Red Hat JBoss Fuse product.
 
 Then click `Install` on the selected and prepare for it to download and install a bunch of stuff which can take some time.
@@ -21,17 +27,17 @@ Then click `Install` on the selected and prepare for it to download and install 
 If the editor does not seem to be installing, then mind that its known to happen that a license agreement confirmation
 box may show up below the window so you have to move the windows to find it.
 
-After you restart Eclipse then you still need to install more. In the `Install/Update` page which is shown
-on the center of the screen, select
+After you restart Eclipse you're ready to go!
 
-    JBoss Fuse Development
-    
-And click the `Install` button. In any wizards that shows up, then click `Next` to install all the features
-and to accept any license agreements.
 
-The tooling is open source and free to use.
+##### Installing JBoss Fuse Tooling from installer with Runtimes
 
-You can find the source code of the tooling at github: https://github.com/jbosstools/jbosstools-fuse
+If you are based on Windows or Mac OS, the easiest way to install Fuse Tooling is to use the [Red Hat Development Suite installer](https://developers.redhat.com/products/devsuite/overview/). It allows to install different Fuse Tooling and possible deployment Runtimes in few clicks (JBoss Fuse Karaf, JBoss EAP with Camel pre-installed, local OpenShift). See steps [here](https://developers.redhat.com/blog/2017/10/10/fuse-development-environment-development-suite-installer/).
+
+
+##### Installing JBoss Fuse Tooling from installer without Runtimes
+
+There is also an [installer just for Development Studio containing Jboss Fuse Tooling](https://developers.redhat.com/products/devstudio/download/). Runtimes can then be used/downloaded/configured when needed.
    
     
 #### Using the editor
@@ -54,5 +60,9 @@ The tooling is providing several features:
 - Monitoring by connecting to the JMX Camel MBean
 - Deployment on different Runtimes: facilities to deploy locally, on Karaf/FUSE, on Wildfly/JBoss EAP and on OpenShift.
 
-For more details see: http://tools.jboss.org/features/fusetools.html
+For more details and stay up-to-date, see:
+- [The community presentation page](http://tools.jboss.org/features/fusetools.html)
+- [Getting started maintained by Red Hat](https://developers.redhat.com/products/fuse/hello-world/)
+- [Fuse Tooling blog](https://developers.redhat.com/blog/tag/fuse-tooling/)
+- Twitter account [@FuseTooling](https://twitter.com/fusetooling)
 
