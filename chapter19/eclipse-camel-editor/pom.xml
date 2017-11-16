@@ -13,7 +13,7 @@
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>chapter19-fuse-ide</artifactId>
+  <artifactId>chapter19-eclipse-camel-editor</artifactId>
   <name>Camel in Action 2 :: Chapter 19 :: JBoss Fuse Tooling</name>
 
   <dependencies>
