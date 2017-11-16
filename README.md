@@ -48,7 +48,7 @@ Part 6 - Out in the Wild
 Bonus Chapters (online only)
 
 - 20 [Reactive Camel](chapter20)
-- 21 Camel IoT (by Henryk Konsek)
+- 21 Camel IoT (by Henryk Konsek) (has no source code)
 
 Appendixes
 
