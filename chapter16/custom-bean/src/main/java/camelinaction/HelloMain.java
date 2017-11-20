@@ -13,9 +13,6 @@ public class HelloMain {
         // add the route
         main.addRouteBuilder(new HelloRoute());
 
-        // shutdown nicely when ctrl + c
-        main.enableHangupSupport();
-
         // run the application
         main.run();
     }
