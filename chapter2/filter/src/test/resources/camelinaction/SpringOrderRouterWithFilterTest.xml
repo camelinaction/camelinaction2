@@ -15,37 +15,37 @@
     </property>
   </bean>
 
- <camelContext trace="true" id="camel" xmlns="http://camel.apache.org/schema/spring">
-  <route>
-   <from uri="file:src/data?noop=true" />
-   <to uri="jms:incomingOrders" />
-  </route>
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <route>
+      <from uri="file:src/data?noop=true" />
+      <to uri="jms:incomingOrders" />
+    </route>
 
-  <route>
-   <from uri="jms:incomingOrders" />
-   <choice>
-    <when>
-     <simple>${header.CamelFileName} regex '^.*xml$'</simple>
-     <to uri="jms:xmlOrders" />
-    </when>
-    <when>
-     <simple>${header.CamelFileName} regex '^.*(csv|csl)$'</simple>
-     <to uri="jms:csvOrders" />
-    </when>
-    <otherwise>
-     <to uri="jms:badOrders" />
-    </otherwise>
-   </choice>
-  </route>
+    <route>
+      <from uri="jms:incomingOrders" />
+      <choice>
+        <when>
+          <simple>${header.CamelFileName} regex '^.*xml$'</simple>
+          <to uri="jms:xmlOrders" />
+        </when>
+        <when>
+          <simple>${header.CamelFileName} regex '^.*(csv|csl)$'</simple>
+          <to uri="jms:csvOrders" />
+        </when>
+        <otherwise>
+          <to uri="jms:badOrders" />
+        </otherwise>
+      </choice>
+    </route>
 
-  <route>
-   <from uri="jms:xmlOrders" />
-   <filter>
-    <xpath>/order[not(@test)]</xpath>
-    <log message="Received XML order: ${header.CamelFileName}"/>
-    <to uri="mock:xml" />
-   </filter>
-  </route>
- </camelContext>
+    <route>
+      <from uri="jms:xmlOrders" />
+      <filter>
+        <xpath>/order[not(@test)]</xpath>
+        <log message="Received XML order: ${header.CamelFileName}" />
+        <to uri="mock:xml" />
+      </filter>
+    </route>
+  </camelContext>
 
 </beans>
