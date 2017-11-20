@@ -15,53 +15,53 @@
     </property>
   </bean>
 
- <bean id="recipientsBean" class="camelinaction.RecipientsBean"/>
+  <bean id="recipientsBean" class="camelinaction.RecipientsBean"/>
 
- <camelContext trace="true" id="camel" xmlns="http://camel.apache.org/schema/spring">
-  <route>
-   <from uri="file:src/data?noop=true" />
-   <to uri="jms:incomingOrders" />
-  </route>
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <route>
+      <from uri="file:src/data?noop=true" />
+      <to uri="jms:incomingOrders" />
+    </route>
 
-  <route>
-   <from uri="jms:incomingOrders" />
-   <choice>
-    <when>
-     <simple>${header.CamelFileName} regex '^.*xml$'</simple>
-     <to uri="jms:xmlOrders" />
-    </when>
-    <when>
-     <simple>${header.CamelFileName} regex '^.*(csv|csl)$'</simple>
-     <to uri="jms:csvOrders" />
-    </when>
-    <otherwise>
-     <to uri="jms:badOrders" />
-    </otherwise>
-   </choice>
-  </route>
+    <route>
+      <from uri="jms:incomingOrders" />
+      <choice>
+        <when>
+          <simple>${header.CamelFileName} regex '^.*xml$'</simple>
+          <to uri="jms:xmlOrders" />
+        </when>
+        <when>
+          <simple>${header.CamelFileName} regex '^.*(csv|csl)$'</simple>
+          <to uri="jms:csvOrders" />
+        </when>
+        <otherwise>
+          <to uri="jms:badOrders" />
+        </otherwise>
+      </choice>
+    </route>
 
-  <route>
-    <from uri="jms:xmlOrders" />
-    <setHeader headerName="recipients">
-      <method ref="recipientsBean" method="recipients" />
-    </setHeader>    
-    <recipientList>
-      <header>recipients</header>
-    </recipientList>
-  </route>
-  
-  <route>
-   <from uri="jms:accounting" />
-   <log message="Accounting received order: ${header.CamelFileName}"/>
-   <to uri="mock:accounting" />
-  </route>
-  
-  <route>
-   <from uri="jms:production" />
-   <log message="Production received order: ${header.CamelFileName}"/>
-   <to uri="mock:production" />
-  </route>
+    <route>
+      <from uri="jms:xmlOrders" />
+      <setHeader headerName="recipients">
+        <method ref="recipientsBean" method="recipients" />
+      </setHeader>
+      <recipientList>
+        <header>recipients</header>
+      </recipientList>
+    </route>
 
- </camelContext>
+    <route>
+      <from uri="jms:accounting" />
+      <log message="Accounting received order: ${header.CamelFileName}" />
+      <to uri="mock:accounting" />
+    </route>
+
+    <route>
+      <from uri="jms:production" />
+      <log message="Production received order: ${header.CamelFileName}" />
+      <to uri="mock:production" />
+    </route>
+
+  </camelContext>
 
 </beans>
