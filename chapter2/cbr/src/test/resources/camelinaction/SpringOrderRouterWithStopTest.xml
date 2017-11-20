@@ -15,8 +15,7 @@
     </property>
   </bean>
 
-  <camelContext trace="true" id="camel"
-    xmlns="http://camel.apache.org/schema/spring">
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
     <route>
       <from uri="file:src/data_full?noop=true" />
       <to uri="jms:incomingOrders" />
