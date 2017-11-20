@@ -15,46 +15,47 @@
     </property>
   </bean>
 
- <camelContext trace="true" id="camel" xmlns="http://camel.apache.org/schema/spring">
-  <route>
-   <from uri="file:src/data_full?noop=true" />
-   <to uri="jms:incomingOrders" />
-  </route>
-  
-  <route>
-   <from uri="jms:incomingOrders" />
-   <choice>
-    <when>
-     <simple>${header.CamelFileName} ends with '.xml'</simple>
-     <to uri="jms:xmlOrders" />
-    </when>
-    <when>
-     <simple>${header.CamelFileName} regex '^.*(csv|csl)$'</simple>
-     <to uri="jms:csvOrders" />
-    </when>
-    <otherwise>
-     <to uri="jms:badOrders" />
-    </otherwise>
-   </choice>
-  </route>
+  <camelContext trace="true" id="camel"
+    xmlns="http://camel.apache.org/schema/spring">
+    <route>
+      <from uri="file:src/data_full?noop=true" />
+      <to uri="jms:incomingOrders" />
+    </route>
 
-  <route>
-   <from uri="jms:xmlOrders" />
-   <log message="Received XML order: ${header.CamelFileName}"/>
-   <to uri="mock:xml" />
-  </route>
-  
-  <route>
-   <from uri="jms:csvOrders" />
-   <log message="Received CSV order: ${header.CamelFileName}"/>
-   <to uri="mock:csv" />
-  </route>
-  
-  <route>
-   <from uri="jms:badOrders" />
-   <log message="Received bad order: ${header.CamelFileName}"/>
-   <to uri="mock:bad" />
-  </route>
- </camelContext>
+    <route>
+      <from uri="jms:incomingOrders" />
+      <choice>
+        <when>
+          <simple>${header.CamelFileName} ends with '.xml'</simple>
+          <to uri="jms:xmlOrders" />
+        </when>
+        <when>
+          <simple>${header.CamelFileName} regex '^.*(csv|csl)$'</simple>
+          <to uri="jms:csvOrders" />
+        </when>
+        <otherwise>
+          <to uri="jms:badOrders" />
+        </otherwise>
+      </choice>
+    </route>
+
+    <route>
+      <from uri="jms:xmlOrders" />
+      <log message="Received XML order: ${header.CamelFileName}" />
+      <to uri="mock:xml" />
+    </route>
+
+    <route>
+      <from uri="jms:csvOrders" />
+      <log message="Received CSV order: ${header.CamelFileName}" />
+      <to uri="mock:csv" />
+    </route>
+
+    <route>
+      <from uri="jms:badOrders" />
+      <log message="Received bad order: ${header.CamelFileName}" />
+      <to uri="mock:bad" />
+    </route>
+  </camelContext>
 
 </beans>
