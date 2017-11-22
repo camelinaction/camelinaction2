@@ -9,21 +9,3 @@ The example can be run with:
 
     mvn test -Dtest=ScalabilityTest
 
-### 13.4.5 - Use timeout when calling a remote system
-
-The example can be run with:
-
-    mvn test -Dtest=TimeoutTest
-
-### 13.4.5 - Calling done method with the right parameter
-
-The example can be run with:
-
-    mvn test -Dtest=DoneMethodTest
-
-### 13.4.7 - Dangers with blocked threads
-
-The example can be run with:
-
-    mvn test -Dtest=BlockedTest
-
