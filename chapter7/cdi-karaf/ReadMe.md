@@ -3,6 +3,9 @@ chapter7 - cdi-karaf
 
 A simple hello example running Camel microservice using CDI and OSGi.
 
+Note: Running camel-cdi on Apache Karaf is deprecated and not recommended to be used.
+This example was initially created before the Camel team decided to drop support CDI on OSGi.
+
 ### 7.2.1 CDI Camel as microservice 
 
 To try this example you need to first build it
