@@ -12,7 +12,8 @@ import org.apache.camel.spi.UriPath;
 /**
  * Represents a My endpoint.
  */
-@UriEndpoint(scheme = "mycomponent", title = "My", syntax="mycomponent:name", consumerClass = MyConsumer.class, label = "My")
+@UriEndpoint(firstVersion = "1.0-SNAPSHOT", scheme = "mycomponent", title = "My", syntax="mycomponent:name", 
+             consumerClass = MyConsumer.class, label = "custom")
 public class MyEndpoint extends DefaultEndpoint {
     @UriPath @Metadata(required = "true")
     private String name;
