@@ -7,8 +7,5 @@ This directory holds an example how to use transaction that starts from a databa
 
 The example can be run with:
 
-    mvn test -Dtest=CommitTest
-    mvn test -Dtest=RollbackTest
     mvn test -Dtest=SpringCommitTest
     mvn test -Dtest=SpringRollbackTest
-
