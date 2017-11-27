@@ -1,8 +1,8 @@
 Chapter 20 - rx-java2
 ---------------------
 
-This directory holds beginner examples with standalone RX-Java 2.x
-and when using it together with Camel.
+This directory holds beginner examples with standalone reactive streams
+(using RX-Java 2.x as engine) and when using it together with Camel.
 
 ### 20.1.2 First steps with Reactive Streams
 
