@@ -25,9 +25,9 @@ public class CamelConsumerBackPressureTest extends CamelTestSupport {
 
         // use stream engine create a publisher
         Flowable.fromArray(inbox)
-            .doOnRequest(l -> {
+            .doOnRequest(n -> {
                 // log each time we are request more data from the publisher
-                log.info("Requesting " + l + " messages");
+                log.info("Requesting {} messages", n);
             })
             .subscribe(rsCamel.streamSubscriber("inbox", String.class));
 
