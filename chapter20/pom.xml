@@ -15,7 +15,7 @@
   <name>Camel in Action 2 :: Chapter 20</name>
 
   <modules>
-    <module>reactive-streams</module>
+    <module>reactor-core</module>
     <module>rx-java2</module>
     <module>vertx</module>
     <module>vertx-camel</module>
