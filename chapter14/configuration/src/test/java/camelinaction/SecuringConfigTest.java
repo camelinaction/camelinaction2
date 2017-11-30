@@ -84,7 +84,8 @@ public class SecuringConfigTest extends CamelTestSupport {
             public void configure() throws Exception {
                 // the route is very simple, notice it uses the placeholders
                 from("file:target/inbox")
-                    .to("ftp://rider:{{ftp.password}}@localhost:21000/target/outbox");
+                    .to("ftp://rider:{{ftp.password}}@localhost:21000" 
+                        + "/target/outbox");
             }
         };
     }
