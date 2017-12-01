@@ -11,11 +11,13 @@
     
   <bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
 
-  <bean id="karafJaasValidator" class="org.apache.wss4j.dom.validate.JAASUsernameTokenValidator">
+  <bean id="karafJaasValidator" 
+        class="org.apache.wss4j.dom.validate.JAASUsernameTokenValidator">
     <property name="contextName" value="karaf"/>
   </bean>
 
-  <bean id="wss4jInInterceptor" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+  <bean id="wss4jInInterceptor" 
+        class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
     <argument>
       <map>
         <entry key="action" value="UsernameToken" />

@@ -17,7 +17,7 @@ import camelinaction.order.OrderResult;
 public class Client {
 
     public static void main(String[] args) {
-        List<Interceptor<? extends Message>> outInterceptors = new ArrayList<Interceptor<? extends Message>>();
+        List<Interceptor<? extends Message>> outInterceptors = new ArrayList();
 
         // Define WSS4j properties for flow outgoing
         Map<String, Object> outProps = new HashMap<String, Object>();
