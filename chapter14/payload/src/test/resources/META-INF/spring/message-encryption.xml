@@ -7,7 +7,7 @@
 
     <bean id="secretKey" class="camelinaction.SpringMessageEncryptionTest" factory-method="loadKey"/>
 
-    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">                   
+    <camelContext xmlns="http://camel.apache.org/schema/spring">                   
         <dataFormats>
             <crypto id="myCrypto" algorithm="DES" keyRef="secretKey" />
         </dataFormats>             

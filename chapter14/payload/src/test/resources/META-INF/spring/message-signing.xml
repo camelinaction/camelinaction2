@@ -10,7 +10,7 @@
     <keyStoreParameters xmlns="http://camel.apache.org/schema/spring" id="truststore" 
            resource="./cia_truststore.jks" password="supersecret" />
 
-    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">                                
+    <camelContext xmlns="http://camel.apache.org/schema/spring">                                
         <route>
             <from uri="direct:sign"/>
             <to uri="crypto:sign://keystore?keyStoreParameters=#keystore&amp;

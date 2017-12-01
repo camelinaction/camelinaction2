@@ -13,7 +13,7 @@
     <property name="password" value="supersecret"/>
   </bean>
 
-  <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
     <propertyPlaceholder id="properties"
                          location="classpath:rider-test.properties"
                          propertiesParserRef="jasypt"/>
