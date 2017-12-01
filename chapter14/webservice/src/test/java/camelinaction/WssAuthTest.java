@@ -28,7 +28,7 @@ public class WssAuthTest extends CamelSpringTestSupport {
     }
 
     protected static OrderEndpoint createCXFClient(String url, String user, String passwordCallbackClass) {
-        List<Interceptor<? extends Message>> outInterceptors = new ArrayList<Interceptor<? extends Message>>();
+        List<Interceptor<? extends Message>> outInterceptors = new ArrayList();
 
         // Define WSS4j properties for flow outgoing
         Map<String, Object> outProps = new HashMap<String, Object>();
