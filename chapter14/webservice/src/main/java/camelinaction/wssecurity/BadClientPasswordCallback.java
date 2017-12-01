@@ -10,9 +10,6 @@ import org.apache.wss4j.common.ext.WSPasswordCallback;
 
 public class BadClientPasswordCallback implements CallbackHandler {
     
-    public BadClientPasswordCallback() {
-    }
-
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         WSPasswordCallback pc = (WSPasswordCallback) callbacks[0];
         pc.setPassword("I am a wrong password.");
