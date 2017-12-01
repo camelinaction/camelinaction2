@@ -11,9 +11,6 @@ import org.apache.wss4j.common.ext.WSPasswordCallback;
 
 public class StdInPasswordCallback implements CallbackHandler {
     
-    public StdInPasswordCallback() {
-    }
-
     public void handle(Callback[] callbacks) throws IOException, UnsupportedCallbackException {
         WSPasswordCallback pc = (WSPasswordCallback) callbacks[0];
         Console console = System.console();
