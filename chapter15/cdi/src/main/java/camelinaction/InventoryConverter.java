@@ -1,7 +1,7 @@
 package camelinaction;
 
-import camelinaction.inventory.UpdateInventoryInput;
 import org.apache.camel.Converter;
+import camelinaction.inventory.UpdateInventoryInput;
 
 /**
  * A Camel converter which can convert from CSV (String) to model objects.
