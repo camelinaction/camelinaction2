@@ -17,7 +17,6 @@
   <modules>
     <module>cdi</module>
     <module>cdi-hello</module>
-    <module>cdi-karaf</module>
     <module>hystrix</module>
     <module>hystrix-camel</module>
     <module>prototype</module>
