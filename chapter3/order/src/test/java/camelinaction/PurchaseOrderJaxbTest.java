@@ -16,7 +16,7 @@ public class PurchaseOrderJaxbTest extends CamelSpringTestSupport {
 
         PurchaseOrder order = new PurchaseOrder();
         order.setName("Camel in Action");
-        order.setPrice(4995);
+        order.setPrice(6999);
         order.setAmount(1);
 
         template.sendBody("direct:order", order);
