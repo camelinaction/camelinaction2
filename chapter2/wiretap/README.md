@@ -1,13 +1,12 @@
 Chapter 2 - Wire Tap Example
 ----------------
 
-The first example shows you how to use a Wire Tap from Camel. 
+The first example shows you how to use a Wire Tap from Camel using the Java DSL. 
 To run this example, execute the following on the command line:
 
-    mvn compile exec:java -Dexec.mainClass=camelinaction.OrderRouterWithWireTap
+    mvn clean test -Dtest=OrderRouterWithWireTapTest
 
-The second example shows you how to use a processor to intercept the message
-from Camel route. To run this example, execute the following on the command line:
+The second example shows you the same using the XML DSL:
 
-    mvn compile exec:java -Dexec.mainClass=camelinaction.OrderRouterWithOutputProcessor
+    mvn clean test -Dtest=SpringOrderRouterWithWireTapTest
 
