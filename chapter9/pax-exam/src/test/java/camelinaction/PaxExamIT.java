@@ -69,7 +69,7 @@ public class PaxExamIT {
         return new Option[]{
                 // setup which karaf server we are using
                 karafDistributionConfiguration()
-                        .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.1.3").type("tar.gz"))
+                        .frameworkUrl(maven().groupId("org.apache.karaf").artifactId("apache-karaf").version("4.1.2").type("tar.gz"))
                         .karafVersion("4.1.3")
                         .name("Apache Karaf")
                         .useDeployFolder(false)
