@@ -16,44 +16,44 @@ Part 1 - First Steps
 Part 2 - Core Camel
 
 - 3 [Transforming data with Camel](chapter3)
-- 4 [Using Beans with Camel](chapter4)
-- 5 [Enterprise Integration Patterns](chapter5)
-- 6 [Using Components](chapter6)
+- 4 [Using beans with Camel](chapter4)
+- 5 [Enterprise integration patterns](chapter5)
+- 6 [Using components](chapter6)
 
 Part 3 - Developing and Testing
 
 - 7 [Microservices](chapter7)
-- 8 [Developing Camel Projects](chapter8)
+- 8 [Developing Camel projects](chapter8)
 - 9 [Testing](chapter9)
-- 10 [RESTful Web Services](chapter10)
+- 10 [RESTful web services](chapter10)
 
 Part 4 - Going further with Camel
 
-- 11 [Error Handling](chapter11)
-- 12 [Transactions and Idempotency](chapter12)
-- 13 [Parallel Processing](chapter13)
+- 11 [Error handling](chapter11)
+- 12 [Transactions and idempotency](chapter12)
+- 13 [Parallel processing](chapter13)
 - 14 [Securing Camel](chapter14)
 
 Part 5 - Running and Managing Camel
 
-- 15 [Running and Deploying Camel](chapter15)
-- 16 [Management and Monitoring](chapter16)
+- 15 [Running and deploying Camel](chapter15)
+- 16 [Management and monitoring](chapter16)
 
 Part 6 - Out in the Wild
 
 - 17 [Clustering](chapter17)
 - 18 [Microservices with Docker and Kubernetes](chapter18)
-- 19 [Camel Tooling](chapter19)
+- 19 [Camel tooling](chapter19)
 
-Bonus Chapters (online only)
+Bonus Chapters
 
 - 20 [Reactive Camel](chapter20)
-- 21 Camel IoT (by Henryk Konsek) (has no source code)
+- 21 Camel and the IoT by Henryk Konsek (has no source code)
 
 Appendixes
 
-- A The Simple Language
-- B Contributing to Apache Camel
+- A Simple, the expression language
+- B The Camel community
 
 
 Downloading the source code
