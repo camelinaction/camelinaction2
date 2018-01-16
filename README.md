@@ -20,7 +20,7 @@ Part 2 - Core Camel
 - 5 [Enterprise integration patterns](chapter5)
 - 6 [Using components](chapter6)
 
-Part 3 - Developing and Testing
+Part 3 - Developing and testing
 
 - 7 [Microservices](chapter7)
 - 8 [Developing Camel projects](chapter8)
@@ -34,7 +34,7 @@ Part 4 - Going further with Camel
 - 13 [Parallel processing](chapter13)
 - 14 [Securing Camel](chapter14)
 
-Part 5 - Running and Managing Camel
+Part 5 - Running and managing Camel
 
 - 15 [Running and deploying Camel](chapter15)
 - 16 [Management and monitoring](chapter16)
