@@ -16,7 +16,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <fabric8.maven.plugin.version>3.5.34</fabric8.maven.plugin.version>
+    <fabric8.maven.plugin.version>3.5.37</fabric8.maven.plugin.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
