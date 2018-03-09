@@ -12,7 +12,7 @@ public class OrderRoute extends RouteBuilder {
             .component("jetty").port(8080)
             // use a smaller thread pool in jetty as we do not have so high demand yet
             .componentProperty("minThreads", "1")
-            .componentProperty("maxThreads", "8")
+            .componentProperty("maxThreads", "16")
             // to setup jetty to use the security handler
             .endpointProperty("handlers", "#securityHandler");
 
