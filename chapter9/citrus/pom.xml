@@ -14,7 +14,7 @@
   <name>Camel in Action 2 :: Chapter 9 :: Testing Camel using Citrus Framework</name>
 
   <properties>
-    <citrus.version>2.7.3</citrus.version>
+    <citrus.version>2.7.4</citrus.version>
   </properties>
 
   <dependencies>
