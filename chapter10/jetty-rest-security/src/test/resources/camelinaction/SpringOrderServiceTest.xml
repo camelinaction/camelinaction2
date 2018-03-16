@@ -19,7 +19,7 @@
     <restConfiguration component="jetty" port="8080">
       <!-- use a smaller thread pool in jetty as we do not have so high demand yet -->
       <componentProperty key="minThread" value="1"/>
-      <componentProperty key="maxThread" value="8"/>
+      <componentProperty key="maxThread" value="16"/>
       <!-- to setup jetty to use the security handler -->
       <endpointProperty key="handlers" value="#securityHandler"/>
     </restConfiguration>
