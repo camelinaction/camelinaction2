@@ -80,7 +80,7 @@
     <swagger-version>1.5.16</swagger-version>
     <xbean-version>3.18</xbean-version>
     <vertx-version>3.5.0</vertx-version>
-    <weld-version>2.4.5.Final</weld-version>
+    <weld-version>2.4.7.Final</weld-version>
     <wildfly-swarm-version>2017.11.0</wildfly-swarm-version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
