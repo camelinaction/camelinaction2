@@ -60,7 +60,7 @@
     <activemq-karaf-version>5.13.5</activemq-karaf-version>
     <camel-version>2.21.0</camel-version>
     <cxf-version>3.2.4</cxf-version>
-    <hawtio-version>1.5.8</hawtio-version>
+    <hawtio-version>1.5.9</hawtio-version>
     <commons-dbcp2-version>2.1.1</commons-dbcp2-version>
     <deltaspike-version>1.7.2</deltaspike-version>
     <hystrix-version>1.5.12</hystrix-version>

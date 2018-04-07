@@ -29,6 +29,6 @@ you run exec:java instead
 
 And then from another terminal you download hawtio-app and run it as a standalone Java application:
 
-    java -jar hawtio-app-1.5.8.jar
+    java -jar hawtio-app-1.5.9.jar
 
-(where 1.5.8 is the version of hawtio)
+(where 1.5.9 is the version of hawtio)
