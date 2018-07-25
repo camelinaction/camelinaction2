@@ -7,7 +7,6 @@ import javax.inject.Named;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jms.JmsComponent;
-import org.apache.camel.converter.jaxb.JaxbDataFormat;
 
 /**
  * Camel route that calls the legacy system

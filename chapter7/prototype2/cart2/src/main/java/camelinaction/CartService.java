@@ -42,7 +42,7 @@ public class CartService {
 
         Set<CartDto> dtos = content.get(sessionId);
         if (dtos != null) {
-            dtos.remove(itemId);
+            dtos.removeIf(i -> i.getItemId() == itemId);
         }
     }
 
@@ -50,7 +50,7 @@ public class CartService {
         LOG.info("getItems {}", sessionId);
         Set<CartDto> answer = content.get(sessionId);
         if (answer == null) {
-            answer = Collections.EMPTY_SET;
+            answer = Collections.emptySet();
         }
         return answer;
     }
