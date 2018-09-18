@@ -1,6 +1,6 @@
 target
 activemq-data
-chapter1/file-copy/data/outbox/
+data/*
 .idea
 *.i??
 .classpath
@@ -8,3 +8,4 @@ chapter1/file-copy/data/outbox/
 .settings
 .vertx
 .metadata
+.factorypath
