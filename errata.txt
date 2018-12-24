@@ -1,0 +1,46 @@
+Camel in Action 2nd edition - Errata
+====================================
+
+p63
+
+Figure 2.13 the EIP diagram for multicast
+should ideally have been updated to include
+black lines connected to all 3 destinations. 
+
+
+p125 bottom
+
+- only the number of parameters would vary.
++ only the parameter types or number of parameters would vary.
+
+
+p137 bottom
+
+Last code example, closing parenthesis of msg.getHeader("customerId")
+is missing.
+
+
+p183 bottom
+
+- That means you shouldn’t use the Routing Slip EIP in the route
++ That means you shouldn’t use the Dynamic Router EIP in the route
+
+
+p275
+
+- 3 Start the rules service:
++ 3 Start the rating service:
+
+- 4 Start the recommendation service:
++ 4 Start the rules service:
+
+- 5 Start the rating service:
++ 5 Start the recommendation service:
+
+
+p831 and 832
+
+The built in operator examples which is using the ${in.header.xxx} syntax
+should be replaced with ${header.xxx} because the in.* syntax has been
+deprecated.
+

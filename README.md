@@ -68,6 +68,11 @@ Up to date source code
 We the authors, intended to keep this source code up to date with future releases of Apache Camel. Giving our readers the best experience with the book and using the latest Camel releases. 
 
 
+Errata
+------
+Any mistakes in the book can be reported to us via github issues tracker.
+The errata can be [viewed here](errata.txt)
+
 Getting in touch
 ----------------
 
