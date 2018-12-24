@@ -66,7 +66,7 @@
     <hystrix-version>1.5.18</hystrix-version>
     <jackson-version>2.9.7</jackson-version>
     <javax-mail-version>1.6.1</javax-mail-version>
-    <jolokia-version>1.5.0</jolokia-version>
+    <jolokia-version>1.6.0</jolokia-version>
     <jetty-plugin-version>8.1.17.v20150415</jetty-plugin-version>
     <jetty9-plugin-version>9.4.12.v20180830</jetty9-plugin-version>
     <junit-version>4.12</junit-version>
