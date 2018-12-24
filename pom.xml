@@ -75,8 +75,8 @@
     <maven-bundle-plugin-version>3.3.0</maven-bundle-plugin-version>
     <mock-javamail-version>1.9</mock-javamail-version>
     <slf4j-version>1.7.21</slf4j-version>
-    <spring-version>4.3.14.RELEASE</spring-version>
-    <spring-boot-version>1.5.12.RELEASE</spring-boot-version>
+    <spring-version>4.3.21.RELEASE</spring-version>
+    <spring-boot-version>1.5.18.RELEASE</spring-boot-version>
     <swagger-version>1.5.20</swagger-version>
     <xbean-version>3.18</xbean-version>
     <vertx-version>3.6.2</vertx-version>
