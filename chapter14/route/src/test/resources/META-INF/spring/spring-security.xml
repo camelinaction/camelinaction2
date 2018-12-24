@@ -21,8 +21,9 @@
   </spring-security:authentication-manager>
 
   <spring-security:user-service id="userDetailsService">
-    <spring-security:user name="jon" password="secret" authorities="ROLE_USER"/>
-    <spring-security:user name="claus" password="secret" authorities="ROLE_USER, ROLE_ADMIN"/>
+    <!-- use the noop password encoder for testing purpose -->
+    <spring-security:user name="jon" password="{noop}secret" authorities="ROLE_USER"/>
+    <spring-security:user name="claus" password="{noop}secret" authorities="ROLE_USER, ROLE_ADMIN"/>
   </spring-security:user-service>
 
   <authorizationPolicy id="admin" access="ROLE_ADMIN"
