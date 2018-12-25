@@ -32,7 +32,8 @@ public class RecommendController {
 
     @RequestMapping(value = "recommend", method = RequestMethod.GET, produces = "application/json")
     public List<ItemDto> recommend(HttpSession session) {
-        String id = session.getId();
+        // hardcoded session id to simplify testing (you should take it from session)
+        String id = "123";
         LOG.info("HTTP session id {}", id);
 
         // get the current item in the shopping cart associated with the HTTP session id
@@ -43,7 +44,7 @@ public class RecommendController {
 
         // call rules service with the items from the shopping cart to get list of items to be recommended
         LOG.info("Calling rules service {}", rulesUrl);
-        ItemDto[] items = restTemplate.getForObject(rulesUrl, ItemDto[].class, id, cartIds);
+        ItemDto[] items = restTemplate.getForObject(rulesUrl, ItemDto[].class, cartIds);
         String itemIds = itemsToCommaString(items);
         LOG.info("Inventory items {}", itemIds);
 
@@ -91,6 +92,9 @@ public class RecommendController {
     }
 
     private String cartsToCommaString(CartDto[] carts) {
+        if (carts.length == 0) {
+          return "-1";
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < carts.length; i++) {
             CartDto cart = carts[i];

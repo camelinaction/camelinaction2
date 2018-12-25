@@ -45,4 +45,9 @@ public class CartDto {
     public int hashCode() {
         return itemId.hashCode();
     }
+
+    @Override
+    public String toString() {
+      return "" + itemId;
+    }
 }
