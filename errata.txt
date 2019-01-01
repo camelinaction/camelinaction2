@@ -39,10 +39,16 @@ p275
 p510
 
 The example in section 11.5.1 Using onWhen on page 510 needs to add @ExchangeException
-to the parameter to bind the parameter to the caused exception.
+to the parameter to bind the parameter to the caused exception, in listing 11.16:
 
 - public static boolean isIllegalDataError(HttpOperationFailedException cause)
 + public static boolean isIllegalDataError(@ExchangeException HttpOperationFailedException cause)
+
+And the code snippet in the middle of page 510 needs to use the correct method name:
+
+- .onWhen(bean(MyHttpUtil.class, "isIllegalData"))
++ .onWhen(bean(MyHttpUtil.class, "isIllegalDataError"))
+
 
 p831 and 832
 
