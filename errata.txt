@@ -38,7 +38,8 @@ p275
 
 p510
 
-The example in section 11.5.1 Using onWhen on page 510 needs to add @ExchangeException to the parameter to bind the parameter to the caused exception.
+The example in section 11.5.1 Using onWhen on page 510 needs to add @ExchangeException
+to the parameter to bind the parameter to the caused exception.
 
 - public static boolean isIllegalDataError(HttpOperationFailedException cause)
 + public static boolean isIllegalDataError(@ExchangeException HttpOperationFailedException cause)
