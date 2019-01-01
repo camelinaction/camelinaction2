@@ -3,8 +3,7 @@ Camel in Action 2nd edition - Errata
 
 p63
 
-Figure 2.13 the EIP diagram for multicast
-should ideally have been updated to include
+Figure 2.13 the EIP diagram for multicast should ideally have been updated to include
 black lines connected to all 3 destinations. 
 
 
