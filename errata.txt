@@ -16,8 +16,7 @@ p125 bottom
 
 p137 bottom
 
-Last code example, closing parenthesis of msg.getHeader("customerId")
-is missing.
+Last code example, closing parenthesis of `msg.getHeader("customerId")` is missing.
 
 
 p183 bottom
@@ -38,9 +37,16 @@ p275
 + 5 Start the recommendation service:
 
 
+p510
+
+The example in section 11.5.1 _Using onWhen_ on page 510 needs to add `@ExchangeException` to the parameter to bind the parameter to the caused exception.
+
+- public static boolean isIllegalDataError(HttpOperationFailedException cause)
++ public static boolean isIllegalDataError(@ExchangeException HttpOperationFailedException cause)
+
 p831 and 832
 
-The built in operator examples which is using the ${in.header.xxx} syntax
-should be replaced with ${header.xxx} because the in.* syntax has been
+The built in operator examples which is using the `${in.header.xxx}` syntax
+should be replaced with `${header.xxx}` because the `in.*` syntax has been
 deprecated.
 
