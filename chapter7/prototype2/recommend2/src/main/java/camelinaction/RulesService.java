@@ -1,6 +1,9 @@
 package camelinaction;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,19 +18,19 @@ public class RulesService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @HystrixCommand(fallbackMethod = "standardItems")
-    public ItemDto[] rules(String rulesUrl, String id, String cartIds) {
+    public ItemDto[] rules(String rulesUrl, String cartIds) {
         LOG.info("Calling rules service {}", rulesUrl);
         ItemDto[] items;
         // if not existing items in the shopping cart then use item 999 as special
         if (cartIds == null || cartIds.isEmpty()) {
             cartIds = "999";
         }
-        items = restTemplate.getForObject(rulesUrl, ItemDto[].class, id, cartIds);
-        LOG.info("Inventory items {}", (Object[]) items);
+        items = restTemplate.getForObject(rulesUrl, ItemDto[].class, cartIds);
+        LOG.info("Inventory items {}", Arrays.toString(items));
         return items;
     }
 
-    public ItemDto[] standardItems(String rulesUrl, String id, String cartIds) {
+    public ItemDto[] standardItems(String rulesUrl, String cartIds) {
         // a special item to use as fallback
         ItemDto special = new ItemDto();
         special.setItemNo(999);

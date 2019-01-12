@@ -48,7 +48,7 @@ public class RecommendController {
         String cartIds = shoppingCart.shoppingCart(cartUrl, id);
 
         // call rules service with the items from the shopping cart to get list of items to be recommended
-        ItemDto[] items = rules.rules(rulesUrl, id, cartIds);
+        ItemDto[] items = rules.rules(rulesUrl, cartIds);
         String itemIds = itemsToCommaString(items);
 
         // call rating service
