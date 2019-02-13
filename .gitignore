@@ -10,3 +10,4 @@ data/*
 .metadata
 .factorypath
 .vscode
+.mvn/wrapper/maven-wrapper.jar
