@@ -1,6 +1,6 @@
 package camelinaction.internal;
 
-import org.apache.camel.util.component.ApiMethodPropertiesHelper;
+import org.apache.camel.support.component.ApiMethodPropertiesHelper;
 
 import camelinaction.HiWorldConfiguration;
 

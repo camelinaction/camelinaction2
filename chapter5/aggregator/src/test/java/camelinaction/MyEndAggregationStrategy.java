@@ -1,7 +1,7 @@
 package camelinaction;
 
+import org.apache.camel.AggregationStrategy;
 import org.apache.camel.Exchange;
-import org.apache.camel.processor.aggregate.AggregationStrategy;
 
 /**
  * This is the aggregation strategy which is java code for <i>aggregating</i>

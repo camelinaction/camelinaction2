@@ -4,22 +4,20 @@ import java.util.Date;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.impl.ScheduledPollConsumer;
+import org.apache.camel.support.ScheduledPollConsumer;
 
 /**
  * The My consumer.
  */
 public class MyConsumer extends ScheduledPollConsumer {
-    private final MyEndpoint endpoint;
 
     public MyConsumer(MyEndpoint endpoint, Processor processor) {
         super(endpoint, processor);
-        this.endpoint = endpoint;
     }
 
     @Override
     protected int poll() throws Exception {
-        Exchange exchange = endpoint.createExchange();
+        Exchange exchange = getEndpoint().createExchange();
 
         // create a message body
         Date now = new Date();

@@ -27,7 +27,7 @@ public class CartRoute extends RouteBuilder {
         // define the rest service
         rest("/cart").consumes("application/json").produces("application/json")
             // get returns List<CartDto>
-            .get().outTypeList(CartDto.class).description("Returns the items currently in the shopping cart")
+            .get().outType(CartDto[].class).description("Returns the items currently in the shopping cart")
                 .to("bean:cart?method=getItems")
             // get accepts CartDto
             .post().type(CartDto.class).description("Adds the item to the shopping cart")

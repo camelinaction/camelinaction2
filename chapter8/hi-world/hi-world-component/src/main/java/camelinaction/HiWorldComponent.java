@@ -2,7 +2,7 @@ package camelinaction;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Endpoint;
-import org.apache.camel.util.component.AbstractApiComponent;
+import org.apache.camel.support.component.AbstractApiComponent;
 
 import camelinaction.internal.HiWorldApiCollection;
 import camelinaction.internal.HiWorldApiName;

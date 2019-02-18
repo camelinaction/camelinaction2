@@ -2,6 +2,7 @@ package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
+import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
@@ -20,7 +21,7 @@ public class SpringFailoverInheritErrorHandlerLoadBalancerTest extends CamelSpri
     @Test
     public void testLoadBalancer() throws Exception {
         // simulate error when sending to service A
-        context.getRouteDefinition("start").adviceWith(context, new RouteBuilder() {
+        RouteReifier.adviceWith(context.getRouteDefinition("start"), context, new RouteBuilder() {
             @Override
             public void configure() throws Exception {
                 interceptSendToEndpoint("direct:a")

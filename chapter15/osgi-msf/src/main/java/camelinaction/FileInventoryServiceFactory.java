@@ -68,7 +68,7 @@ public class FileInventoryServiceFactory implements ManagedServiceFactory {
         try {
             FileInventoryRoute route = routes.get(pid);
             if (route != null) {
-                camelContext.stopRoute(route.getRouteId());
+                camelContext.getRouteController().stopRoute(route.getRouteId());
                 camelContext.removeRoute(route.getRouteId());
                 routes.remove(pid);
             }

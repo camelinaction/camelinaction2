@@ -1,7 +1,7 @@
 package camelinaction;
 
+import org.apache.camel.AggregationStrategy;
 import org.apache.camel.Exchange;
-import org.apache.camel.processor.aggregate.AggregationStrategy;
 
 public class MyIgnoreFailureAggregationStrategy implements AggregationStrategy {
 

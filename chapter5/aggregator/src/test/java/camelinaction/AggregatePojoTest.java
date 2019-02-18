@@ -1,9 +1,9 @@
 package camelinaction;
 
+import org.apache.camel.builder.AggregationStrategies;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.camel.util.toolbox.AggregationStrategies;
 import org.junit.Test;
 
 /**

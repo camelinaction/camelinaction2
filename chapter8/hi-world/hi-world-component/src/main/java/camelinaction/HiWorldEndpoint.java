@@ -8,9 +8,9 @@ import org.apache.camel.Producer;
 import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriEndpoint;
 import org.apache.camel.spi.UriPath;
-import org.apache.camel.util.component.AbstractApiEndpoint;
-import org.apache.camel.util.component.ApiMethod;
-import org.apache.camel.util.component.ApiMethodPropertiesHelper;
+import org.apache.camel.support.component.AbstractApiEndpoint;
+import org.apache.camel.support.component.ApiMethod;
+import org.apache.camel.support.component.ApiMethodPropertiesHelper;
 
 import camelinaction.api.HiWorldFileHello;
 import camelinaction.api.HiWorldJavadocHello;
@@ -25,7 +25,7 @@ import camelinaction.internal.HiWorldPropertiesHelper;
 @UriEndpoint(scheme = "hiworld", title = "HiWorld", syntax="hiworld:name", consumerClass = HiWorldConsumer.class, label = "HiWorld")
 public class HiWorldEndpoint extends AbstractApiEndpoint<HiWorldApiName, HiWorldConfiguration> {
 
-    @UriPath @Metadata(required = "true")
+    @UriPath @Metadata(required = true)
     private String name;
 
     // TODO create and manage API proxy

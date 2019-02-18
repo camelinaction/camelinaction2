@@ -3,32 +3,25 @@ package camelinaction.component;
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
 import org.apache.camel.Producer;
-import org.apache.camel.impl.DefaultEndpoint;
 import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriEndpoint;
 import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriPath;
+import org.apache.camel.support.DefaultEndpoint;
 
 /**
  * Represents a My endpoint.
  */
-@UriEndpoint(firstVersion = "1.0-SNAPSHOT", scheme = "mycomponent", title = "My", syntax="mycomponent:name", 
+@UriEndpoint(firstVersion = "2.0.0", scheme = "mycomponent", title = "My", syntax="mycomponent:name",
              consumerClass = MyConsumer.class, label = "custom")
 public class MyEndpoint extends DefaultEndpoint {
-    @UriPath @Metadata(required = "true")
+    @UriPath @Metadata(required = true)
     private String name;
     @UriParam(defaultValue = "10")
     private int option = 10;
 
-    public MyEndpoint() {
-    }
-
     public MyEndpoint(String uri, MyComponent component) {
         super(uri, component);
-    }
-
-    public MyEndpoint(String endpointUri) {
-        super(endpointUri);
     }
 
     public Producer createProducer() throws Exception {

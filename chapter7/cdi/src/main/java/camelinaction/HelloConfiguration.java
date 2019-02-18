@@ -6,7 +6,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.apache.camel.component.properties.PropertiesComponent;
-import org.apache.camel.management.event.CamelContextStartedEvent;
+import org.apache.camel.spi.CamelEvent;
 
 /**
  * CDI configuration of the hello application.
@@ -31,7 +31,7 @@ public class HelloConfiguration {
      * <p/>
      * You can listen for any of the Camel events from org.apache.camel.management.event package.
      */
-    void onContextStarted(@Observes CamelContextStartedEvent event) {
+    void onContextStarted(@Observes CamelEvent.CamelContextStartedEvent event) {
         System.out.println("***************************************");
         System.out.println("* Camel started " + event.getContext().getName());
         System.out.println("***************************************");
