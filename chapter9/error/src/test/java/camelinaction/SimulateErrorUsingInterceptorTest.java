@@ -9,6 +9,7 @@ import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.model.RouteDefinition;
+import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
@@ -37,7 +38,7 @@ public class SimulateErrorUsingInterceptorTest extends CamelSpringTestSupport {
 
         // advice the route by enriching it with the route builder where
         // we add a couple of interceptors to help simulate the error
-        route.adviceWith(context, new RouteBuilder() {
+        RouteReifier.adviceWith(route, context, new RouteBuilder() {
             @Override
             public void configure() throws Exception {
                 // intercept sending to http and detour to our processor instead

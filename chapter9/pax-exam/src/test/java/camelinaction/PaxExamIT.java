@@ -5,6 +5,7 @@ import javax.inject.Inject;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.api.management.ManagedCamelContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
@@ -46,7 +47,8 @@ public class PaxExamIT {
     @Test
     public void testPaxExam() throws Exception {
         // we should have completed 0 exchange
-        long total = camelContext.getManagedCamelContext().getExchangesTotal();
+        ManagedCamelContext managed = camelContext.getExtension(ManagedCamelContext.class);
+        long total = managed.getManagedCamelContext().getExchangesTotal();
         assertEquals("Should be 0 exchanges completed", 0, total);
 
         // need a little delay to be ready
@@ -60,7 +62,7 @@ public class PaxExamIT {
         LOG.info("Wiseman says: {}", json);
 
         // and we should have completed 1 exchange
-        total = camelContext.getManagedCamelContext().getExchangesTotal();
+        total = managed.getManagedCamelContext().getExchangesTotal();
         assertEquals("Should be 1 exchanges completed", 1, total);
     }
 

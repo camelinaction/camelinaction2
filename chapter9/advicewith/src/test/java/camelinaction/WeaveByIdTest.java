@@ -4,6 +4,7 @@ import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
+import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class WeaveByIdTest extends CamelTestSupport {
     @Test
     public void testWeaveById() throws Exception {
         RouteDefinition route = context.getRouteDefinition("quotes");
-        route.adviceWith(context, new AdviceWithRouteBuilder() {
+        RouteReifier.adviceWith(route, context, new AdviceWithRouteBuilder() {
             @Override
             public void configure() throws Exception {
                 // select the route node with the id=transform
