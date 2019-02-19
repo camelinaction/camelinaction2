@@ -42,10 +42,10 @@ public class ManualRouteWithStopTest extends CamelTestSupport {
         getMockEndpoint("mock:update").expectedMessageCount(2);
 
         // route should be stopped at startup
-        assertTrue("Route should be stopped at startup", context.getRouteStatus("manual").isStopped());
+        assertTrue("Route should be stopped at startup", context.getRouteController().getRouteStatus("manual").isStopped());
 
         // then start the route
-        context.startRoute("manual");
+        context.getRouteController().startRoute("manual");
 
         // send a file which is picked up and processed
         String input = "4444,57123,Bumper,50\n4444,57124,Fender,87";
@@ -61,7 +61,7 @@ public class ManualRouteWithStopTest extends CamelTestSupport {
         // we gotta wait just a little extra to stop, before querying status
         Thread.sleep(1000);
         // it should have stopped itself
-        assertTrue("Route should be stopped", context.getRouteStatus("manual").isStopped());
+        assertTrue("Route should be stopped", context.getRouteController().getRouteStatus("manual").isStopped());
     }
 
 }

@@ -19,7 +19,7 @@
             <from uri="cxf:bean:inventoryEndpoint"/>
             <to uri="direct:update"/>
             <transform>
-                <method bean="inventoryService" method="replyOk"/>
+                <method ref="inventoryService" method="replyOk"/>
             </transform>
         </route>
 

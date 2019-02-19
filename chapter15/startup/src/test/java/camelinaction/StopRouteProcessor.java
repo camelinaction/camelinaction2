@@ -28,6 +28,6 @@ public class StopRouteProcessor implements Processor {
         // 2) stop the route
         LOG.info("Stopping route: " + name);
         exchange.getContext().getInflightRepository().remove(exchange, name);
-        exchange.getContext().stopRoute(name);
+        exchange.getContext().getRouteController().stopRoute(name);
     }
 }

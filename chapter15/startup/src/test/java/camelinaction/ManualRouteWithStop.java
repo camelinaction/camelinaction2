@@ -43,7 +43,7 @@ public class ManualRouteWithStop extends RouteBuilder {
                         @Override
                         public Object call() throws Exception {
                             log.info("Stopping route manually");
-                            getContext().stopRoute("manual");
+                            getContext().getRouteController().stopRoute("manual");
                             return null;
                         }
                     });

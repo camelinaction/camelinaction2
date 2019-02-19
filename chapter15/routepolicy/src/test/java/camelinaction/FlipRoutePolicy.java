@@ -3,7 +3,7 @@ package camelinaction;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.Route;
-import org.apache.camel.impl.RoutePolicySupport;
+import org.apache.camel.support.RoutePolicySupport;
 
 public class FlipRoutePolicy extends RoutePolicySupport {
 
@@ -35,9 +35,9 @@ public class FlipRoutePolicy extends RoutePolicySupport {
             // 1) unregister from the inflight registry
             // 2) stop the route
             context.getInflightRepository().remove(exchange);
-            context.stopRoute(stop);
+            context.getRouteController().stopRoute(stop);
             // then we can start the other route
-            context.startRoute(start);
+            context.getRouteController().startRoute(start);
         } catch (Exception e) {
             // let the exception handle handle it, which is often just to log it
             getExceptionHandler().handleException("Error flipping routes", e);
