@@ -8,7 +8,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.crypto.CryptoDataFormat;
 import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
-import org.apache.camel.util.jsse.KeyStoreParameters;
+import org.apache.camel.support.jsse.KeyStoreParameters;
 import org.junit.Test;
 
 public class MessageEncryptionTest extends CamelTestSupport {
@@ -30,7 +30,6 @@ public class MessageEncryptionTest extends CamelTestSupport {
         return registry;
     }
 
-        
     @Test
     public void testEncryptAndDecryptMessage() throws Exception {
         getMockEndpoint("mock:unencrypted").expectedBodiesReceived("Hello World");

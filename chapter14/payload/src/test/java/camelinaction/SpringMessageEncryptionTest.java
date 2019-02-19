@@ -4,8 +4,8 @@ import java.security.Key;
 import java.security.KeyStore;
 
 import org.apache.camel.Exchange;
+import org.apache.camel.support.jsse.KeyStoreParameters;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
-import org.apache.camel.util.jsse.KeyStoreParameters;
 import org.junit.Test;
 import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

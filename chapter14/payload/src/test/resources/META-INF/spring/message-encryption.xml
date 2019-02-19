@@ -7,15 +7,19 @@
 
     <bean id="secretKey" class="camelinaction.SpringMessageEncryptionTest" factory-method="loadKey"/>
 
-    <camelContext xmlns="http://camel.apache.org/schema/spring">                   
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
         <dataFormats>
             <crypto id="myCrypto" algorithm="DES" keyRef="secretKey" />
-        </dataFormats>             
+        </dataFormats>
         <route>
             <from uri="direct:start" />
-            <marshal ref="myCrypto" />
+            <marshal>
+              <custom ref="myCrypto"/>
+            </marshal>
             <to uri="mock:encrypted" />
-            <unmarshal ref="myCrypto" />
+            <unmarshal>
+              <custom ref="myCrypto"/>
+            </unmarshal>
             <to uri="mock:unencrypted" />
         </route>
     </camelContext>
