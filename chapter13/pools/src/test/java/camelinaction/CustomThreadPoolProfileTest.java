@@ -1,10 +1,10 @@
 package camelinaction;
 
-import org.apache.camel.ThreadPoolRejectedPolicy;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.builder.ThreadPoolProfileBuilder;
 import org.apache.camel.spi.ThreadPoolProfile;
 import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.util.concurrent.ThreadPoolRejectedPolicy;
 import org.junit.Test;
 
 /**

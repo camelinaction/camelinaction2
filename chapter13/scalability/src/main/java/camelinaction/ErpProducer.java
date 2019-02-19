@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import org.apache.camel.AsyncCallback;
 import org.apache.camel.Endpoint;
 import org.apache.camel.Exchange;
-import org.apache.camel.impl.DefaultAsyncProducer;
+import org.apache.camel.support.DefaultAsyncProducer;
 
 /**
  * Producer to simulate asynchronous communication with ERP system.

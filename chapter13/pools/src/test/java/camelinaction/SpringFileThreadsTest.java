@@ -36,7 +36,7 @@ public class SpringFileThreadsTest extends CamelSpringTestSupport {
         NotifyBuilder notify = new NotifyBuilder(context).whenCompleted(files).create();
 
         // start route
-        context.startRoute("myRoute");
+        context.getRouteController().startRoute("myRoute");
 
         // wait for all files to be processed
         assertTrue("Should complete all files", notify.matches(60, TimeUnit.SECONDS));
