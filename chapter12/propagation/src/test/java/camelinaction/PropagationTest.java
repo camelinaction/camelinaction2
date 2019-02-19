@@ -9,6 +9,8 @@ import javax.sql.DataSource;
 import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.RouteDefinition;
+import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -137,7 +139,8 @@ public class PropagationTest extends CamelSpringTestSupport {
         NotifyBuilder notify = new NotifyBuilder(context).whenDone(1 + 6).create();
 
         // simulate the audit-log will fail
-        context.getRouteDefinition("audit").adviceWith(context, new AdviceWithRouteBuilder() {
+        RouteDefinition route = context.getRouteDefinition("audit");
+        RouteReifier.adviceWith(route, context, new AdviceWithRouteBuilder() {
             @Override
             public void configure() throws Exception {
                 // simulate error connecting to database

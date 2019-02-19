@@ -6,6 +6,8 @@ import javax.sql.DataSource;
 
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.RouteDefinition;
+import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -77,7 +79,8 @@ public class RiderAutoPartsPartnerTest extends CamelSpringTestSupport {
 
         // adviseWith enhances our route by adding the interceptor from the route builder
         // this allows us here directly in the unit test to add interceptors so we can simulate the connection failure
-        context.getRouteDefinition("partnerToDB").adviceWith(context, rb);
+        RouteDefinition route = context.getRouteDefinition("partnerToDB");
+        RouteReifier.adviceWith(route, context, rb);
 
         // start Camel after advice
         context.start();
