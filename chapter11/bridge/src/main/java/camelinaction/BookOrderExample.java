@@ -36,7 +36,7 @@ public class BookOrderExample {
         log.info("... sleeping for 5 seconds and then stopping the route");
 
         // now stop the route
-        context.stopRoute("books");
+        context.getRouteController().stopRoute("books");
 
         // insert a new order which will sit in the database
         BookOrder order2 = new BookOrder();
@@ -51,7 +51,7 @@ public class BookOrderExample {
 
         System.console().readLine();
 
-        context.startRoute("books");
+        context.getRouteController().startRoute("books");
         log.info("... starting route which should indicate some errors, which the bridge error handler should catch and handle");
         log.info("Notice that the consumer will backoff and not poll so fast, instead of every second, it now runs x10 sec.");
         log.info("Press CTRL+C to exit this application!");

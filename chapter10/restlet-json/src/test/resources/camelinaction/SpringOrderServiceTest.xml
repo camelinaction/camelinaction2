@@ -11,12 +11,12 @@
 
   <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
 
-    <properties>
+    <globalOptions>
       <!-- enable Jackson json type converter -->
-      <property key="CamelJacksonEnableTypeConverter" value="true"/>
+      <globalOption key="CamelJacksonEnableTypeConverter" value="true"/>
       <!-- allow Jackson json to convert to pojo types also -->
-      <property key="CamelJacksonTypeConverterToPojo" value="true"/>
-    </properties>
+      <globalOption key="CamelJacksonTypeConverterToPojo" value="true"/>
+    </globalOptions>
 
     <!-- the order service REST web services using restlet component -->
     <route>

@@ -9,8 +9,8 @@ public class OrderRouteBuilder extends BaseRouteBuilder {
 
         // route to process the order
         from("seda:queue.inbox")
-            .beanRef("orderService", "validate")
-            .beanRef("orderService", "enrich")
+            .bean("orderService", "validate")
+            .bean("orderService", "enrich")
             .to("mock:queue.order");
 
     }

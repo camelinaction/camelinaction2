@@ -8,7 +8,7 @@ public class InboxRouteBuilder extends BaseRouteBuilder {
         super.configure();
 
         from("file://target/orders?delay=10000")
-                .beanRef("orderService", "toCsv")
+                .bean("orderService", "toCsv")
                 .to("mock:file")
                 .to("seda:queue.inbox");
     }

@@ -7,9 +7,9 @@ public class OrderRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         // enable Jackson json type converter
-        getContext().getProperties().put("CamelJacksonEnableTypeConverter", "true");
+        getContext().getGlobalOptions().put("CamelJacksonEnableTypeConverter", "true");
         // allow Jackson json to convert to pojo types also
-        getContext().getProperties().put("CamelJacksonTypeConverterToPojo", "true");
+        getContext().getGlobalOptions().put("CamelJacksonTypeConverterToPojo", "true");
 
         from("restlet:http://0.0.0.0:8080/orders?restletMethods=POST")
             .bean("orderService", "createOrder");
