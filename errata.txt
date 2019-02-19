@@ -36,6 +36,11 @@ p275
 + 5 Start the recommendation service:
 
 
+p384
+
+In table 9.9, the description for the mockEndpoints, and mockEndpoints(pattern...) should be updated to not say "in the route" as these methods apply to all endpoints, also for other routes.
+
+
 p510
 
 The example in section 11.5.1 Using onWhen on page 510 needs to add @ExchangeException
