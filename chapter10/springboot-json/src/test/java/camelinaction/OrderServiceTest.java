@@ -41,7 +41,7 @@ public class OrderServiceTest {
         LOG.info("Created new order with id " + id);
 
         // should create a new order with id 3 or 4
-        assertTrue(id.equals("3") || id.equals("4"));
+        assertTrue(id.contains("3") || id.contains("4"));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class OrderServiceTest {
         LOG.info("Created new order with id " + id);
 
         // should create a new order with id 3 or 4
-        assertTrue(id.equals("3") || id.equals("4"));
+        assertTrue(id.contains("3") || id.contains("4"));
 
         // use http component to get the order
         String response = template.requestBody("http4://localhost:8080/api/orders/" + id, null, String.class);
