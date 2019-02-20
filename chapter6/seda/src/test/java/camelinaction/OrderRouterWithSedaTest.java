@@ -43,11 +43,11 @@ public class OrderRouterWithSedaTest extends CamelTestSupport {
         
                 // content-based router
                 from("seda:incomingOrders")
-                .choice()
-                    .when(header("CamelFileName").endsWith(".xml"))
-                        .to("seda:xmlOrders")  
-                    .when(header("CamelFileName").endsWith(".csv"))
-                        .to("seda:csvOrders");
+                    .choice()
+                        .when(header("CamelFileName").endsWith(".xml"))
+                            .to("seda:xmlOrders")
+                        .when(header("CamelFileName").endsWith(".csv"))
+                            .to("seda:csvOrders");
 
                 from("seda:xmlOrders?multipleConsumers=true").to("jms:accounting");  
                 from("seda:xmlOrders?multipleConsumers=true").to("jms:production");  
