@@ -15,11 +15,10 @@
         <route>
             <from uri="direct:start"/>
             <!--use the bigPool profile for creating the thread pool to be used-->
-            <threads executorServiceRef="bigPool">
-                <!-- this is executed in bigPool -->
-                <to uri="log:cool"/>
-                <to uri="mock:result"/>
-            </threads>
+            <threads executorServiceRef="bigPool"/>
+              <!-- this is executed in bigPool -->
+              <to uri="log:cool"/>
+              <to uri="mock:result"/>
         </route>
 
     </camelContext>

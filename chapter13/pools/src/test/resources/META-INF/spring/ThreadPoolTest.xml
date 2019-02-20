@@ -14,11 +14,10 @@
         <route>
             <from uri="direct:start"/>
             <!-- use our custom thread pool in a route -->
-            <threads executorServiceRef="myPool">
-                <!-- this is executed in myPool -->
-                <to uri="log:cool"/>
-                <to uri="mock:result"/>
-            </threads>
+            <threads executorServiceRef="myPool"/>
+            <!-- this is executed in myPool -->
+            <to uri="log:cool"/>
+            <to uri="mock:result"/>
         </route>
 
     </camelContext>
