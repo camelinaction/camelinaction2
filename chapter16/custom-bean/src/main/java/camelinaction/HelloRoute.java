@@ -12,7 +12,7 @@ public class HelloRoute extends RouteBuilder {
         // trigger the route every 5th second
         from("timer:foo?period=5s")
             // call the hello bean say method
-            .beanRef("hello", "say")
+            .bean("hello", "say")
             // log the response from the bean
             .log("${body}");
     }

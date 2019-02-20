@@ -25,8 +25,8 @@ public class MetricsTest extends CamelTestSupport {
         NotifyBuilder builder = new NotifyBuilder(context).whenDone(20).create();
         builder.matches(1, TimeUnit.MINUTES);
 
-        context.stopRoute("foo");
-        context.stopRoute("bar");
+        context.getRouteController().stopRoute("foo");
+        context.getRouteController().stopRoute("bar");
 
         // you can get access to dropwizard metrics from Java API as well
         MetricsRegistryService registryService = context.hasService(MetricsRegistryService.class);

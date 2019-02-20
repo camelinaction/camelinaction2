@@ -3,8 +3,10 @@ package camelinaction;
 import java.util.Date;
 import java.util.EventObject;
 
-import org.apache.camel.management.event.ExchangeFailedEvent;
+import org.apache.camel.spi.CamelEvent;
 import org.apache.camel.support.EventNotifierSupport;
+
+import static org.apache.camel.spi.CamelEvent.*;
 
 /**
  * A custom {@link org.apache.camel.spi.EventNotifier} which is used by
@@ -26,7 +28,8 @@ public class RiderEventNotifier extends EventNotifierSupport {
         return eventObject instanceof ExchangeFailedEvent;
     }
 
-    public void notify(EventObject eventObject) throws Exception {
+    @Override
+    public void notify(CamelEvent eventObject) throws Exception {
         if (eventObject instanceof ExchangeFailedEvent) {
             ExchangeFailedEvent event = (ExchangeFailedEvent) eventObject;
             String id = event.getExchange().getExchangeId();
@@ -50,4 +53,5 @@ public class RiderEventNotifier extends EventNotifierSupport {
     protected void doStop() throws Exception {
         // here you can cleanup services
     }
+
 }

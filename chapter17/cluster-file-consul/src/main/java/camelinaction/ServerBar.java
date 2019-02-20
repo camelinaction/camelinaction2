@@ -1,6 +1,6 @@
 package camelinaction;
 
-import org.apache.camel.component.consul.policy.ConsulRoutePolicy;
+import org.apache.camel.component.consul.cluster.ConsulClusterService;
 import org.apache.camel.main.Main;
 
 public class ServerBar {
@@ -13,17 +13,15 @@ public class ServerBar {
     }
 
     public void boot() throws Exception {
-        // setup the hazelcast route policy
-        ConsulRoutePolicy routePolicy = new ConsulRoutePolicy();
+        // setup the consul cluster service
+        ConsulClusterService cluster = new ConsulClusterService();
         // the service names must be same in the foo and bar server
-        routePolicy.setServiceName("myLock");
-        routePolicy.setTtl(5);
+        cluster.setId("bar");
+        cluster.setTtl(5);
 
         main = new Main();
-        // bind the hazelcast route policy to the name myPolicy which we refer to from the route
-        main.bind("myPolicy", routePolicy);
         // add the route and and let the route be named Bar and use a little delay when processing the files
-        main.addRouteBuilder(new FileConsumerRoute("Bar", 100));
+        main.addRouteBuilder(new FileConsumerRoute("Bar", 100, cluster));
         main.run();
     }
 

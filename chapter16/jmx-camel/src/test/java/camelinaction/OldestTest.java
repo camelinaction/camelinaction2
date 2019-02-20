@@ -3,6 +3,7 @@ package camelinaction;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.camel.api.management.ManagedCamelContext;
 import org.apache.camel.api.management.mbean.ManagedRouteMBean;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -22,7 +23,8 @@ public class OldestTest extends CamelTestSupport {
     public void testOldestReporter() throws Exception {
         getMockEndpoint("mock:done").expectedMessageCount(size);
 
-        ManagedRouteMBean route = context.getManagedRoute("myRoute", ManagedRouteMBean.class);
+        ManagedCamelContext managed = context.getExtension(ManagedCamelContext.class);
+        ManagedRouteMBean route = managed.getManagedRoute("myRoute", ManagedRouteMBean.class);
         OldestDurationReporter reporter = new OldestDurationReporter(route);
 
         // schedule a background task that logs the current throttle count

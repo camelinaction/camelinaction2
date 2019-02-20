@@ -2,6 +2,7 @@ package camelinaction;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.CamelContextAware;
+import org.apache.camel.api.management.ManagedCamelContext;
 import org.apache.camel.api.management.mbean.ManagedThrottlerMBean;
 
 /**
@@ -22,7 +23,8 @@ public class RiderThrottlerReporter implements CamelContextAware {
 
     public long reportThrottler() throws Exception {
         // use the JMX management API to get the mbean for the throttler EIP with the id orderThrottler
-        ManagedThrottlerMBean throttler = camelContext.getManagedProcessor("orderThrottler", ManagedThrottlerMBean.class);
+        ManagedCamelContext managed = camelContext.getExtension(ManagedCamelContext.class);
+        ManagedThrottlerMBean throttler = managed.getManagedProcessor("orderThrottler", ManagedThrottlerMBean.class);
         // get the number of current throttled messages
         return throttler.getExchangesInflight();
     }
