@@ -8,7 +8,7 @@
        http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
 
   <!-- define the activemq Camel component so we can integrate with the AMQ broker below -->
-  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+  <bean id="activemq" class="org.apache.camel.component.activemq.ActiveMQComponent">
     <property name="brokerURL" value="tcp://localhost:61616"/>
     <!-- tone down logging verbosity for unhandled exceptions -->
     <property name="errorHandlerLogStackTrace" value="false"/>

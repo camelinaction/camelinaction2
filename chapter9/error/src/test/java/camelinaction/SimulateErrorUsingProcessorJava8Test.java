@@ -3,6 +3,7 @@ package camelinaction;
 import java.io.IOException;
 import java.net.ConnectException;
 
+import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -21,7 +22,8 @@ public class SimulateErrorUsingProcessorJava8Test extends CamelTestSupport {
                 context.setTracing(true);
 
                 errorHandler(defaultErrorHandler()
-                        .maximumRedeliveries(5).redeliveryDelay(1000));
+                        .maximumRedeliveries(5).redeliveryDelay(1000)
+                        .retryAttemptedLogLevel(LoggingLevel.WARN));
 
                 onException(IOException.class).maximumRedeliveries(3)
                         .handled(true)

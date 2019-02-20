@@ -42,7 +42,8 @@ public class UseCaseRoute extends RouteBuilder {
             .to(ftp);
 
         // poll files send them to the HTTP server
-        from(file).to(http);
+        from(file)
+            .to(http);
     }
 
 }
