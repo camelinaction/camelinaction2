@@ -15,7 +15,7 @@
             <from uri="direct:start"/>
             <!-- use the load balancer EIP with a custom load balancer -->
             <loadBalance>
-                <custom ref="myCustom"/>
+                <customLoadBalancer ref="myCustom"/>
                 <to uri="seda:a"/>
                 <to uri="seda:b"/>
             </loadBalance>

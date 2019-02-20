@@ -24,13 +24,9 @@ public class SpringAggregateABCGroupTest extends CamelSpringTestSupport {
 	@Test
     public void testABCGroup() throws Exception {
         MockEndpoint mock = getMockEndpoint("mock:result");
-        // one message expected
         mock.expectedMessageCount(1);
-        // As the fix of CAMEL-6557, the message body is not empty anymore
-        // should not have a body
-        // mock.message(0).body().isNull();
-        // but have it stored in a property as a List
-        mock.message(0).exchangeProperty(Exchange.GROUPED_EXCHANGE).isInstanceOf(List.class);
+        // which should be a list
+        mock.message(0).body().isInstanceOf(List.class);
 
         template.sendBodyAndHeader("direct:start", "A", "myId", 1);
         template.sendBodyAndHeader("direct:start", "B", "myId", 1);
@@ -43,7 +39,7 @@ public class SpringAggregateABCGroupTest extends CamelSpringTestSupport {
         Exchange exchange = mock.getExchanges().get(0);
 
         // retrieve the List which contains the arrived exchanges
-        List list = exchange.getProperty(Exchange.GROUPED_EXCHANGE, List.class);
+        List list = exchange.getIn().getBody(List.class);
         assertEquals("Should contain the 3 arrived exchanges", 3, list.size());
 
         // assert the 3 exchanges are in order and contains the correct body

@@ -11,7 +11,7 @@
         <route>
             <from uri="direct:start"/>
             <transform>
-                <method bean="htmlBean" method="toHtml"/>
+                <method ref="htmlBean" method="toHtml"/>
             </transform>
             <to uri="mock:result"/>
         </route>

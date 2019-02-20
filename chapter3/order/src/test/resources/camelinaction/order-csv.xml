@@ -13,7 +13,7 @@
             <unmarshal><csv/></unmarshal>
             <split>
                 <!-- use simple language to refer to the body -->
-                <simple>body</simple>
+                <simple>${body}</simple>
                 <to uri="mock:queue.csv"/>
             </split>
         </route>

@@ -45,7 +45,7 @@ public class AggregateXMLTest extends CamelTestSupport {
                         // complete either when we have 2 messages or after 5 sec timeout
                         .completionSize(2).completionTimeout(5000)
                         // do a little logging for the published message
-                        .log("Completed by ${property.CamelAggregatedCompletedBy}")
+                        .log("Completed by ${exchangeProperty.CamelAggregatedCompletedBy}")
                         .log("Sending out ${body}")
                         // and send it to the mock
                         .to("mock:result");

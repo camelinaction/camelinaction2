@@ -13,13 +13,13 @@
 
         <route>
             <from uri="direct:order"/>
-            <marshal ref="jaxb"/>
+            <marshal><custom ref="jaxb"/></marshal>
             <to uri="seda:queue:order"/>
         </route>
 
         <route>
             <from uri="seda:queue:order"/>
-            <unmarshal ref="jaxb"/>
+            <unmarshal><custom ref="jaxb"/></unmarshal>
             <to uri="mock:order"/>
         </route>
 

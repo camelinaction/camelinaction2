@@ -16,7 +16,7 @@
             <split>
                 <!-- split using the bean, which is done by using
                      a method call expression -->
-                <method bean="customerService" method="splitDepartments"/>
+                <method ref="customerService" method="splitDepartments"/>
                 <!-- log each splitted message -->
                 <to uri="log:split"/>
                 <!-- and send it to a mock endpoint -->

@@ -6,6 +6,8 @@
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
          http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
+    <bean id="groupExchanges" class="org.apache.camel.processor.aggregate.GroupedExchangeAggregationStrategy"/>
+
     <camelContext xmlns="http://camel.apache.org/schema/spring">
 
         <route>
@@ -13,7 +15,7 @@
             <!-- log the incoming message -->
             <log message="Sending ${body} with correlation key ${header.myId}"/>
             <!-- group exchanges and complete when we have 3 messages -->
-            <aggregate completionSize="3" groupExchanges="true">
+            <aggregate completionSize="3" strategyRef="groupExchanges">
                 <!-- a correlation expression must be provided -->
                 <correlationExpression>
                     <!-- we use the header with key myId,
