@@ -3,7 +3,7 @@ package camelinaction.goal;
 import java.util.Map;
 
 import org.apache.camel.Endpoint;
-import org.apache.camel.impl.DefaultComponent;
+import org.apache.camel.support.DefaultComponent;
 
 /**
  * A component to support live scoring streams

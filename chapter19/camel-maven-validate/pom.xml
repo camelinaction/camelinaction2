@@ -51,10 +51,10 @@
 
     <plugins>
 
-      <!-- run using camel:validate -->
+      <!-- run using camel-report:validate -->
       <plugin>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-maven-plugin</artifactId>
+        <artifactId>camel-report-maven-plugin</artifactId>
         <version>${camel-version}</version>
         <executions>
           <execution>

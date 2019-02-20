@@ -1,13 +1,12 @@
 package camelinaction;
 
 import io.reactivex.Flowable;
-import org.apache.camel.LoggingLevel;
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.reactive.streams.api.CamelReactiveStreams;
 import org.apache.camel.component.reactive.streams.api.CamelReactiveStreamsService;
-import org.apache.camel.impl.ThrottlingInflightRoutePolicy;
 import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.camel.throttling.ThrottlingInflightRoutePolicy;
 import org.junit.Test;
 import org.reactivestreams.Publisher;
 
