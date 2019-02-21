@@ -40,7 +40,7 @@
             <!-- in case of still failure then lets handle it our self -->
             <handled><constant>true</constant></handled>
             <!-- where we transform a custom reply message with the error -->
-            <transform><method bean="order" method="replyError"/></transform>
+            <transform><method ref="order" method="replyError"/></transform>
             <!-- log a message in the log -->
             <log message="Order failed"/>
             <!-- and important to mark the transaction to still rollback even if we handled the exception -->
@@ -60,7 +60,7 @@
             <!-- log a message in the log -->
             <log message="Order successfully processed"/>
             <!-- and then create the OK reply for the webservice which is still waiting for a reply -->
-            <transform><method bean="order" method="replyOk"/></transform>
+            <transform><method ref="order" method="replyOk"/></transform>
         </route>
 
     </camelContext>

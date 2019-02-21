@@ -22,8 +22,7 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test-spring</artifactId>
-      <scope>test</scope>
+      <artifactId>camel-sql</artifactId>
     </dependency>
 
     <dependency>
@@ -31,40 +30,48 @@
       <artifactId>camel-jms</artifactId>
     </dependency>
 
-    <!-- include JMS api as we use that directly when using Client Acknowledge Mode -->
-    <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jms_1.1_spec</artifactId>
-      <version>1.1.1</version>
-    </dependency>
-
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-sql</artifactId>
+      <artifactId>camel-activemq</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-camel</artifactId>
-      <version>${activemq-version}</version>
-      <scope>test</scope>
-    </dependency>
+    <!-- embed ActiveMQ broker -->
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-broker</artifactId>
-      <version>${activemq-version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-spring</artifactId>
+    </dependency>
+
+    <!-- ActiveMQ client -->
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-client</artifactId>
-      <version>${activemq-version}</version>
-      <scope>test</scope>
+      <!-- lets use JMS 2.0 api but camel-jms still works with ActiveMQ 5.x that is JMS 1.1 only -->
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.geronimo.specs</groupId>
+          <artifactId>geronimo-jms_1.1_spec</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-pool</artifactId>
-      <version>${activemq-version}</version>
+      <!-- lets use JMS 2.0 api but camel-jms still works with ActiveMQ 5.x that is JMS 1.1 only -->
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.geronimo.specs</groupId>
+          <artifactId>geronimo-jms_1.1_spec</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test-spring</artifactId>
       <scope>test</scope>
     </dependency>
 
@@ -72,12 +79,6 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-pool2</artifactId>
       <version>2.4.2</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.xbean</groupId>
-      <artifactId>xbean-spring</artifactId>
       <scope>test</scope>
     </dependency>
 

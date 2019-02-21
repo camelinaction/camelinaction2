@@ -8,6 +8,7 @@
     <feature version="${activemq-karaf-version}">activemq-camel</feature>
     <feature version="${camel-version}">camel</feature>
     <feature version="${camel-version}">camel-jms</feature>
+    <feature version="${camel-version}">camel-activemq</feature>
     <feature version="${camel-version}">camel-sql</feature>
     <bundle>mvn:commons-pool/commons-pool/1.6</bundle>
     <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3</bundle>

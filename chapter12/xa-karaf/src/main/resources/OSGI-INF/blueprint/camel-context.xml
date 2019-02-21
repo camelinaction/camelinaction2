@@ -32,7 +32,7 @@
   </camelContext>
 
   <!-- define the activemq Camel component so we can integrate with the AMQ broker -->
-  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+  <bean id="activemq" class="org.apache.camel.component.activemq.ActiveMQComponent">
     <!-- due to a bug in activemq-camel we must configure using a nested configuration bean -->
     <property name="configuration">
       <bean class="org.apache.camel.component.jms.JmsConfiguration">
