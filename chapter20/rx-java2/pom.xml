@@ -14,7 +14,7 @@
   <name>Camel in Action 2 :: Chapter 20 :: RX-Java 2 and Apache Camel</name>
 
   <properties>
-    <rx-java-version>2.2.5</rx-java-version>
+    <rx-java-version>2.2.7</rx-java-version>
   </properties>
 
   <dependencies>
