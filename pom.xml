@@ -79,7 +79,7 @@
     <spring-boot-version>2.1.1.RELEASE</spring-boot-version>
     <swagger-version>1.5.21</swagger-version>
     <xbean-version>4.5</xbean-version>
-    <vertx-version>3.6.2</vertx-version>
+    <vertx-version>3.6.3</vertx-version>
     <weld-version>2.4.7.Final</weld-version>
     <wildfly-swarm-version>2017.11.0</wildfly-swarm-version>
 
