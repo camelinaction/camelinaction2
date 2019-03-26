@@ -25,7 +25,7 @@ public class SimulateErrorUsingInterceptorTest extends CamelSpringTestSupport {
     // TODO: Fix me as there is maybe a bug in 3.0.0-M1
 
     // inject the file endpoint which we need to use for starting the test
-    @EndpointInject(ref = "fileEndpoint")
+    @EndpointInject("ref:fileEndpoint")
     private Endpoint file;
 
     @Override

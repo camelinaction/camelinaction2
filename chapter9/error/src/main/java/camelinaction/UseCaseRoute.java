@@ -15,13 +15,13 @@ public class UseCaseRoute extends RouteBuilder {
 
     // inject the endpoints to use
 
-    @EndpointInject(ref = "fileEndpoint")
+    @EndpointInject("ref:fileEndpoint")
     private Endpoint file;
 
-    @EndpointInject(ref = "httpEndpoint")
+    @EndpointInject("ref:httpEndpoint")
     private Endpoint http;
 
-    @EndpointInject(ref = "ftpEndpoint")
+    @EndpointInject("ref:ftpEndpoint")
     private Endpoint ftp;
 
     @Override
