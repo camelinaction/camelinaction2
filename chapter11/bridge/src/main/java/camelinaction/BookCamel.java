@@ -10,7 +10,7 @@ public class BookCamel extends Main {
 
     @Override
     protected void afterStart() throws Exception {
-        BookOrderExample example = getCamelContexts().get(0).getRegistry().lookupByNameAndType("bookOrderExample", BookOrderExample.class);
+        BookOrderExample example = getCamelContext().getRegistry().lookupByNameAndType("bookOrderExample", BookOrderExample.class);
         example.orderSomeBooks();
     }
 }

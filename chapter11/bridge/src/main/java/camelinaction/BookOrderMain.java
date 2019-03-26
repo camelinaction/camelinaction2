@@ -17,7 +17,6 @@ public class BookOrderMain {
     public void boot() throws Exception {
         camel = new BookCamel();
         camel.setApplicationContext(new ClassPathXmlApplicationContext("camelinaction/camel-bridge.xml"));
-        camel.enableHangupSupport();
         camel.run();
     }
 }

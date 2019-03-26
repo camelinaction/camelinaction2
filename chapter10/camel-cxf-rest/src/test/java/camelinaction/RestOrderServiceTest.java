@@ -1,22 +1,16 @@
 package camelinaction;
 
+import org.apache.camel.BindToRegistry;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 public class RestOrderServiceTest extends CamelTestSupport {
 
     // use dummy service for testing purpose
+    @BindToRegistry
     private DummyOrderService orderService = new DummyOrderService();
-
-    @Override
-    protected JndiRegistry createRegistry() throws Exception {
-        JndiRegistry jndi = super.createRegistry();
-        jndi.bind("orderService", orderService);
-        return jndi;
-    }
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
