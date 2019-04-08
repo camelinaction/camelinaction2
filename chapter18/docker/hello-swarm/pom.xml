@@ -17,7 +17,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <docker.maven.plugin.version>0.25.2</docker.maven.plugin.version>
+    <docker.maven.plugin.version>0.29.0</docker.maven.plugin.version>
 
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
