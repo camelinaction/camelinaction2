@@ -10,23 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class RatingRoute extends RouteBuilder {
 
-    @Bean
-    ServletRegistrationBean camelServlet() {
-        // TODO: Camel 2.19 should support this OOTB
-        // use a @Bean to register the Camel servlet which we need to do
-        // because we want to use the camel-servlet component for the Camel REST service
-        ServletRegistrationBean mapping = new ServletRegistrationBean();
-        mapping.setName("CamelServlet");
-        mapping.setLoadOnStartup(1);
-        // CamelHttpTransportServlet is the name of the Camel servlet to use
-        mapping.setServlet(new CamelHttpTransportServlet());
-        mapping.addUrlMappings("/api/*");
-        return mapping;
-    }
-
     @Override
     public void configure() throws Exception {
-
+        // notice that we have also configured rest in the application.properties file
         restConfiguration()
             // turn on json binding in rest-dsl
             .bindingMode(RestBindingMode.json);

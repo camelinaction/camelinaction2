@@ -76,12 +76,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot-version}</version>
-        <configuration>
-          <arguments>
-            <!-- run on port 8383 to not clash with 8080 -->
-            <argument>--server.port=8383</argument>
-          </arguments>
-        </configuration>
         <executions>
           <execution>
             <goals>
