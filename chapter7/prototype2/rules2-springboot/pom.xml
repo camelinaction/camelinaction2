@@ -45,7 +45,7 @@
       <artifactId>spring-boot-starter-activemq</artifactId>
     </dependency>
 
-    <!-- TODO: due to activemq bug -->
+    <!-- needed to have the activemq jms client -->
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-camel</artifactId>
