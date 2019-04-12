@@ -22,16 +22,11 @@ public class InventoryRoute extends RouteBuilder {
         JaxbDataFormat jaxb = new JaxbDataFormat();
         jaxb.setContextPath("camelinaction");
 
-        // TODO: due activemq bug we need to configure it here also
-        ActiveMQComponent jms = new ActiveMQComponent(getContext());
-        jms.setBrokerURL("tcp://localhost:61616");
-        getContext().addComponent("jms", jms);
-
         from("direct:inventory")
             .log("Calling inventory service using JMS")
             .hystrix()
-                // call the legacy system using JMS
-                .to("jms:queue:inventory")
+                // call the legacy system using JMS (via activemq)
+                .to("activemq:queue:inventory")
                 // the returned data is in XML format so convert that to POJO using JAXB
                 .unmarshal(jaxb)
             .onFallback()
