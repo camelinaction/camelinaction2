@@ -13,7 +13,9 @@ This chapters covers
 
 ## Additional tools
 
-After the release of this book, a Camel plugin (with similar feature as IDEA based editor) has now been made for Eclipse, Eclipse Che and Visual Code as well. 
+After the release of this book, a [Camel Language Server](https://github.com/camel-tooling/camel-language-server) has been developed. It provides textual support for Camel with quite similar features as IDEA based editor. Clients have been provided for:
 
-- Camel plugin for Visual Code: https://marketplace.visualstudio.com/items?itemName=camel-tooling.apache-camel-extension-pack
-
+- [VS Code](https://marketplace.visualstudio.com/items?itemName=camel-tooling.apache-camel-extension-pack)
+- [Eclipse Desktop IDE](https://marketplace.eclipse.org/content/apache-camel-language-server)
+- [Eclipse Che](https://github.com/camel-tooling/camel-lsp-client-che)
+- [Eclipse Theia](https://github.com/camel-tooling/camel-lsp-client-theia)
