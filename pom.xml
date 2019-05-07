@@ -56,7 +56,7 @@
 
   <properties>
 
-    <activemq-version>5.15.9</activemq-version>
+    <activemq-version>5.15.7</activemq-version>
     <activemq-karaf-version>5.13.8</activemq-karaf-version>
     <camel-version>2.24.0</camel-version>
     <cxf-version>3.2.7</cxf-version>
