@@ -1,7 +1,7 @@
 package camelinaction;
 
 import org.apache.camel.Exchange;
-import org.apache.camel.language.XPath;
+import org.apache.camel.language.xpath.XPath;
 
 public class ValidatorBean {
 

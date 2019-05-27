@@ -20,7 +20,7 @@
             <!-- and tell Splitter to stop on exception -->
             <split strategyRef="myAggregationStrategy" stopOnException="true">
                 <!-- split the body -->
-                <simple>body</simple>
+                <simple>${body}</simple>
                 <!-- log each splitted message -->
                 <log message="Split line ${body}"/>
                 <!-- and have it translated -->

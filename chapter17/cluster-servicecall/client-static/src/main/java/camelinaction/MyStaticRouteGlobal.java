@@ -1,6 +1,7 @@
 package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.ModelCamelContext;
 import org.apache.camel.model.cloud.ServiceCallConfigurationDefinition;
 
 public class MyStaticRouteGlobal extends RouteBuilder {
@@ -18,7 +19,7 @@ public class MyStaticRouteGlobal extends RouteBuilder {
                 .servers("hello-service@localhost:8081,hello-service@localhost:8082");
 
         // set as global configuration on CamelContext
-        getContext().setServiceCallConfiguration(global);
+        getContext().adapt(ModelCamelContext.class).setServiceCallConfiguration(global);
 
         // Camel route that calls the service
         from("timer:trigger?period=2000")

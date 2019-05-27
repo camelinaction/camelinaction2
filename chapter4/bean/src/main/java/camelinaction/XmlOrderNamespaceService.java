@@ -1,9 +1,9 @@
 package camelinaction;
 
 import org.apache.camel.Body;
-import org.apache.camel.language.Bean;
-import org.apache.camel.language.NamespacePrefix;
-import org.apache.camel.language.XPath;
+import org.apache.camel.language.bean.Bean;
+import org.apache.camel.language.xpath.XPath;
+import org.apache.camel.support.language.NamespacePrefix;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

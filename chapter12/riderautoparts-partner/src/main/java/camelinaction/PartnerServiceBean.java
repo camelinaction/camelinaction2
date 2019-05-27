@@ -3,7 +3,7 @@ package camelinaction;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.camel.language.XPath;
+import org.apache.camel.language.xpath.XPath;
 
 public class PartnerServiceBean {
 

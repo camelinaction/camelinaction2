@@ -19,7 +19,7 @@
             <!-- refer to the aggregation strategy to be used -->
             <split strategyRef="myAggregationStrategy">
                 <!-- split the body -->
-                <simple>body</simple>
+                <simple>${body}</simple>
                 <!-- log each splitted message -->
                 <log message="Split line ${body}"/>
                 <!-- and have it translated -->

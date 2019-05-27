@@ -1,7 +1,7 @@
 package camelinaction;
 
 import org.apache.camel.jsonpath.JsonPath;
-import org.apache.camel.language.Bean;
+import org.apache.camel.language.bean.Bean;
 
 /**
  * A bean that acts as a JSon order service to handle incoming JSon orders
