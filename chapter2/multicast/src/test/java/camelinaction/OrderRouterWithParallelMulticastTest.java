@@ -15,19 +15,13 @@ import org.junit.Test;
 public class OrderRouterWithParallelMulticastTest extends CamelTestSupport {
 
     @Override
-    public void setUp() throws Exception {
-        deleteDirectory("activemq-data");
-        super.setUp();
-    }
-
-    @Override
     protected CamelContext createCamelContext() throws Exception {
         // create CamelContext
         CamelContext camelContext = super.createCamelContext();
         
         // connect to embedded ActiveMQ JMS broker
         ConnectionFactory connectionFactory = 
-            new ActiveMQConnectionFactory("vm://localhost");
+            new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
         camelContext.addComponent("jms",
             JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
         

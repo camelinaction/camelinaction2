@@ -8,12 +8,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringOrderRouterWithMulticastSOETest extends CamelSpringTestSupport {
 
     @Override
-    public void setUp() throws Exception {
-        deleteDirectory("activemq-data");
-        super.setUp();
-    }
-    
-    @Override
     protected AbstractXmlApplicationContext createApplicationContext() {
         return new ClassPathXmlApplicationContext("camelinaction/SpringOrderRouterWithMulticastSOETest.xml");
     }

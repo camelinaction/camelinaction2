@@ -1,7 +1,7 @@
 package camelinaction;
 
 import org.apache.camel.RecipientList;
-import org.apache.camel.language.XPath;
+import org.apache.camel.language.xpath.XPath;
 
 /**
  * Recipient List bean that sends orders to the production and 

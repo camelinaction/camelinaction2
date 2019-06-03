@@ -18,7 +18,7 @@ public class OrderRouterWithRecipientListAnnotationTest extends CamelTestSupport
         
         // connect to embedded ActiveMQ JMS broker
         ConnectionFactory connectionFactory = 
-            new ActiveMQConnectionFactory("vm://localhost");
+            new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
         camelContext.addComponent("jms",
             JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
         
