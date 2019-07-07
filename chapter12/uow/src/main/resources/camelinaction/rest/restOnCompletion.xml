@@ -15,7 +15,7 @@
 
     <!-- the on completion that insert the token header before the consumer sends the response back to the caller -->
     <onCompletion mode="BeforeConsumer">
-      <setHeader headerName="Token">
+      <setHeader name="Token">
         <method ref="tokenService"/>
       </setHeader>
     </onCompletion>

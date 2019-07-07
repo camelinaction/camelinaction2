@@ -21,7 +21,7 @@ public class HelloRouteTest {
     // inject FluentProducerTemplate to make it easy
     // to send a message to the endpoint
     @Inject
-    @Uri("jetty:http://localhost:8080/hello")
+    @Uri("http://localhost:8080/hello")
     private FluentProducerTemplate producer;
 
     @Test

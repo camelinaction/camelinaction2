@@ -43,7 +43,7 @@ public class GlobalSSLContextParametersTest extends CamelTestSupport {
     // this will utilize the truststore we defined globally using setUseGlobalSslContextParameters to access the HTTPS endpoint
     @Test
     public void testHttps() throws Exception {
-        String reply = template.requestBody("jetty:https://localhost:8080/early", "Hi Camel!", String.class);
+        String reply = template.requestBody("https://localhost:8080/early", "Hi Camel!", String.class);
         assertEquals("Hi", reply);
     }
     

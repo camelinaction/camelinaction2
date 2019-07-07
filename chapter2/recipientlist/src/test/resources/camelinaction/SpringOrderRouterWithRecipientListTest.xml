@@ -42,7 +42,7 @@
 
     <route>
       <from uri="jms:xmlOrders" />
-      <setHeader headerName="recipients">
+      <setHeader name="recipients">
         <method ref="recipientsBean" method="recipients" />
       </setHeader>
       <recipientList>

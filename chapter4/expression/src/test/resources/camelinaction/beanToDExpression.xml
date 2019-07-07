@@ -14,7 +14,7 @@
     <route>
       <from uri="file://target/order"/>
       <!-- set a header with the region from where the customer is from -->
-      <setHeader headerName="region">
+      <setHeader name="region">
         <!-- use a method call to call a bean as the expression -->
         <method ref="customerService" method="region"/>
       </setHeader>

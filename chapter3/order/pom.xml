@@ -55,6 +55,12 @@
       <artifactId>camel-jetty</artifactId>
     </dependency>
 
+    <!-- to use http client -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-http4</artifactId>
+    </dependency>
+
     <!-- when using Velocity templating -->
     <dependency>
       <groupId>org.apache.camel</groupId>

@@ -26,7 +26,7 @@ public class SpringEarlyReplyTest extends CamelSpringTestSupport {
 
         // send an InOut (= requestBody) to Camel
         log.info("Caller calling Camel with message: " + body);
-        String reply = template.requestBody("jetty:http://localhost:8080/early", body, String.class);
+        String reply = template.requestBody("http://localhost:8080/early", body, String.class);
 
         // we should get the reply early which means you should see this log line
         // before Camel has finished processed the message

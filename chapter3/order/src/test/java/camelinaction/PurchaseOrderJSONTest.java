@@ -28,7 +28,7 @@ public class PurchaseOrderJSONTest extends CamelTestSupport {
 
     @Test
     public void testJSON() throws Exception {
-        String out = template.requestBody("jetty:http://localhost:8080/order/service?id=123", null, String.class);
+        String out = template.requestBody("http://localhost:8080/order/service?id=123", null, String.class);
         LOG.info("Response from order service: " + out);
 
         assertNotNull(out);

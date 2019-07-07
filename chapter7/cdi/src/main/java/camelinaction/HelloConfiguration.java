@@ -32,7 +32,7 @@ public class HelloConfiguration {
      * You can listen for any of the Camel events from org.apache.camel.management.event package.
      */
     void onContextStarted(@Observes CamelEvent.CamelContextStartedEvent event) {
-        // TODO: workaround bug in camel 3.0.0-M1 for camel-cdi / properties
+        // TODO: workaround bug in camel 3 for camel-cdi / properties
         event.getContext().addComponent("properties", propertiesComponent());
 
         System.out.println("***************************************");

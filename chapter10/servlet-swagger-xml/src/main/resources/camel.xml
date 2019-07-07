@@ -14,7 +14,7 @@
     <onException>
       <exception>camelinaction.OrderInvalidException</exception>
       <handled><constant>true</constant></handled>
-      <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
+      <setHeader name="Exchange.HTTP_RESPONSE_CODE">
         <constant>400</constant>
       </setHeader>
       <setBody>
@@ -25,7 +25,7 @@
     <onException>
       <exception>camelinaction.OrderNotFoundException</exception>
       <handled><constant>true</constant></handled>
-      <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
+      <setHeader name="Exchange.HTTP_RESPONSE_CODE">
         <constant>404</constant>
       </setHeader>
       <setBody>
@@ -36,7 +36,7 @@
     <onException>
       <exception>java.lang.Exception</exception>
       <handled><constant>true</constant></handled>
-      <setHeader headerName="Exchange.HTTP_RESPONSE_CODE">
+      <setHeader name="Exchange.HTTP_RESPONSE_CODE">
         <constant>500</constant>
       </setHeader>
       <setBody>

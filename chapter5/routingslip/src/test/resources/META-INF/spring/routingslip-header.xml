@@ -11,7 +11,7 @@
         <route>
             <from uri="direct:start"/>
             <!-- prepare the routing slip header by using a bean to compute it -->
-            <setHeader headerName="mySlip">
+            <setHeader name="mySlip">
                 <!-- this is the bean which computes the header -->
                 <method beanType="camelinaction.ComputeSlip"/>
             </setHeader>

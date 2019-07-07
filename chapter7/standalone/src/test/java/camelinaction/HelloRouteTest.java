@@ -18,7 +18,7 @@ public class HelloRouteTest extends CamelTestSupport {
     @Test
     public void testHello() throws Exception {
         // call the url using the fluent template producer (with no body)
-        Object out = fluentTemplate.to("jetty:http://localhost:8080/hello").request(String.class);
+        Object out = fluentTemplate.to("http://localhost:8080/hello").request(String.class);
         // assert that the reply message is what we expect
         assertEquals("Hello from Camel", out);
     }
