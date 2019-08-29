@@ -12,7 +12,7 @@ public class HelloRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("timer:foo?period=2000")
-                .to("http4://0.0.0.0:8080")
+                .to("http://0.0.0.0:8080")
                 .log("${body}");
     }
 }

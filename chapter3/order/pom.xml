@@ -58,7 +58,7 @@
     <!-- to use http client -->
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-http4</artifactId>
+      <artifactId>camel-http</artifactId>
     </dependency>
 
     <!-- when using Velocity templating -->
@@ -75,7 +75,7 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-http4</artifactId>
+      <artifactId>camel-http</artifactId>
       <scope>test</scope>
     </dependency>
 

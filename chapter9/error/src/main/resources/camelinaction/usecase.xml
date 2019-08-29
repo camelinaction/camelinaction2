@@ -21,7 +21,7 @@
         <!-- we define endpoints which uses spring property placeholders -->
         <!-- we can then refer to these endpoints using their id -->
         <endpoint id="fileEndpoint" uri="file:${file.dir}?delay=5000&amp;readLock=none"/>
-        <endpoint id="httpEndpoint" uri="http4://${http.host}:${http.port}/rider"/>
+        <endpoint id="httpEndpoint" uri="http://${http.host}:${http.port}/rider"/>
         <endpoint id="ftpEndpoint" uri="${ftp.url}"/>
 
     </camelContext>

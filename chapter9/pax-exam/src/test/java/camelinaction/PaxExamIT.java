@@ -55,7 +55,7 @@ public class PaxExamIT {
         Thread.sleep(2000);
 
         // call the servlet, and log what it returns
-        String url = "http4://localhost:8181/camel/say";
+        String url = "http://localhost:8181/camel/say";
         ProducerTemplate template = camelContext.createProducerTemplate();
         String json = template.requestBody(url, null, String.class);
         System.out.println("Wiseman says: " + json);
@@ -93,7 +93,7 @@ public class PaxExamIT {
                 features(getCamelKarafFeatureUrl(), "camel", "camel-test"),
 
                 // and use camel-http for testing
-                features(getCamelKarafFeatureUrl(), "camel-http4"),
+                features(getCamelKarafFeatureUrl(), "camel-http"),
 
                 // install our example feature
                 features(maven().groupId("com.camelinaction").artifactId("chapter9-pax-exam").version("2.0.0").classifier("features").type("xml"), "camel-quote")

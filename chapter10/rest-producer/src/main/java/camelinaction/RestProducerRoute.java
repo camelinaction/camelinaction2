@@ -10,8 +10,8 @@ public class RestProducerRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        // use http4 with rest dsl producer
-        restConfiguration().producerComponent("http4")
+        // use http with rest dsl producer
+        restConfiguration().producerComponent("http")
             // to call rest service on localhost:8080 (the REST service from GeoRestController)
             .host("localhost").port(8080);
 

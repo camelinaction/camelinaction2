@@ -10,8 +10,8 @@ public class MyStaticRouteGlobal extends RouteBuilder {
     public void configure() throws Exception {
         // create a Service Call EIP configuration
         ServiceCallConfigurationDefinition global = new ServiceCallConfigurationDefinition();
-        // use the http4 component
-        global.component("http4")
+        // use the http component
+        global.component("http")
             // add the static list of servers
             .staticServiceDiscovery()
                 // the syntax is name@hostname:port
@@ -25,7 +25,7 @@ public class MyStaticRouteGlobal extends RouteBuilder {
         from("timer:trigger?period=2000")
             // `hello-service` = name of service
             // `/camel/hello` is used in uri templating which
-            // means this is used in the context-path of the actual http4 uri
+            // means this is used in the context-path of the actual http uri
             .serviceCall("hello-service/camel/hello")
             .log("Response ${body}");
     }

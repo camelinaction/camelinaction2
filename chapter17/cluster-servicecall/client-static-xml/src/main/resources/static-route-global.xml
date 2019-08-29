@@ -10,7 +10,7 @@
   <camelContext xmlns="http://camel.apache.org/schema/spring">
 
     <!-- setup default service call configuration -->
-    <defaultServiceCallConfiguration component="http4">
+    <defaultServiceCallConfiguration component="http">
       <staticServiceDiscovery>
         <!-- the syntax is name@hostname:port -->
         <!-- and you can separate multiple servers by comma -->
@@ -23,7 +23,7 @@
       <from uri="timer:trigger?period=2000"/>
       <!-- `hello-service` = name of service
            `/camel/hello` is used in uri templating which
-           means this is used in the context-path of the actual http4 uri -->
+           means this is used in the context-path of the actual http uri -->
       <serviceCall name="hello-service/camel/hello"/>
       <log message="Response ${body}"/>
     </route>

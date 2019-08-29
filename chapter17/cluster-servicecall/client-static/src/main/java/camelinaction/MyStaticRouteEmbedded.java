@@ -11,11 +11,11 @@ public class MyStaticRouteEmbedded extends RouteBuilder {
     public void configure() throws Exception {
         from("timer:trigger?period=2000")
             .serviceCall()
-                // use the http4 component to call the service
-                .component("http4")
+                // use the http component to call the service
+                .component("http")
                 // `hello-service` = name of service
                 // `/camel/hello` is used in uri templating which
-                // means this is used in the context-path of the actual http4 uri
+                // means this is used in the context-path of the actual http uri
                 .name("hello-service/camel/hello")
                 // add the static list of servers
                 .staticServiceDiscovery()

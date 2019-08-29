@@ -35,7 +35,7 @@ public class OrderServiceTest {
         LOG.info("Sending order using json payload: {}", json);
 
         // use http component to send the order
-        String id = template.requestBody("http4://localhost:8080/api/orders", json, String.class);
+        String id = template.requestBody("http://localhost:8080/api/orders", json, String.class);
         assertNotNull(id);
 
         LOG.info("Created new order with id " + id);
@@ -51,7 +51,7 @@ public class OrderServiceTest {
         LOG.info("Sending order using json payload: {}", json);
 
         // use http component to send the order
-        String id = template.requestBody("http4://localhost:8080/api/orders", json, String.class);
+        String id = template.requestBody("http://localhost:8080/api/orders", json, String.class);
         assertNotNull(id);
 
         LOG.info("Created new order with id " + id);
@@ -60,7 +60,7 @@ public class OrderServiceTest {
         assertTrue(id.contains("3") || id.contains("4"));
 
         // use http component to get the order
-        String response = template.requestBody("http4://localhost:8080/api/orders/" + id, null, String.class);
+        String response = template.requestBody("http://localhost:8080/api/orders/" + id, null, String.class);
         LOG.info("Response: {}", response);
     }
 
