@@ -23,7 +23,7 @@
     <module>cluster-kafka</module>
     <module>cluster-cache-hazelcast</module>
     <module>cluster-jcache</module>
-    <module>cluster-quartz2</module>
+    <module>cluster-quartz</module>
     <module>cluster-servicecall</module>
     <module>cluster-zookeeper-master</module>
     <module>cluster-zookeeper-master-routepolicy</module>

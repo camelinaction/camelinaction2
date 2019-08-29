@@ -10,7 +10,7 @@
     <relativePath>..</relativePath>
   </parent>
 
-  <artifactId>chapter17-cluster-quartz2</artifactId>
+  <artifactId>chapter17-cluster-quartz</artifactId>
   <name>Camel in Action 2 :: Chapter 17 :: Clustered Quartz 2.x scheduler</name>
 
   <dependencies>
@@ -27,7 +27,7 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-quartz2</artifactId>
+      <artifactId>camel-quartz</artifactId>
     </dependency>
 
     <!-- postgres sql driver -->

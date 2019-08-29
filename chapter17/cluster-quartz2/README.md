@@ -1,4 +1,4 @@
-Chapter 17 - cluster-quartz2
+Chapter 17 - cluster-quartz
 ----------------------------
 
 This directory holds an example how to use Quartz Scheduler to trigger routes to be

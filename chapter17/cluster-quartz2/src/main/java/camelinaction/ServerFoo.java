@@ -1,6 +1,6 @@
 package camelinaction;
 
-import org.apache.camel.component.quartz2.QuartzComponent;
+import org.apache.camel.component.quartz.QuartzComponent;
 import org.apache.camel.main.Main;
 
 public class ServerFoo {
@@ -20,7 +20,7 @@ public class ServerFoo {
         quartz.setPropertiesFile("quartz.properties");
 
         // add the component to Camel
-        main.bind("quartz2", quartz);
+        main.bind("quartz", quartz);
 
         main.addRouteBuilder(new QuartzRoute("Foo"));
         main.run();

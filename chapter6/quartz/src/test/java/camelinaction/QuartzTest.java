@@ -18,7 +18,7 @@ public class QuartzTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                from("quartz2://myTimer?trigger.repeatInterval=2000&trigger.repeatCount=-1")
+                from("quartz://myTimer?trigger.repeatInterval=2000&trigger.repeatCount=-1")
                 .setBody().simple("I was fired at ${header.fireTime}")
                 .to("stream:out")
                 .to("mock:end"); 
