@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter17-cluster-quartz</artifactId>
-  <name>Camel in Action 2 :: Chapter 17 :: Clustered Quartz 2.x scheduler</name>
+  <name>Camel in Action 2 :: Chapter 17 :: Clustered Quartz scheduler</name>
 
   <dependencies>
 
