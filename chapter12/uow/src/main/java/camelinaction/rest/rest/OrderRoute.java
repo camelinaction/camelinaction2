@@ -7,9 +7,9 @@ public class OrderRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        // configure rest to use netty4-http component as the HTTP server component
+        // configure rest to use netty-http component as the HTTP server component
         // enable json binding mode so we can leverage camel-jackson to bind json to/from pojos
-        restConfiguration().component("netty4-http").bindingMode(RestBindingMode.json)
+        restConfiguration().component("netty-http").bindingMode(RestBindingMode.json)
                 // expose the service as localhost:8080/service
                 .host("localhost").port(8080).contextPath("service");
 

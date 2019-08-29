@@ -20,9 +20,9 @@
       </setHeader>
     </onCompletion>
 
-    <!-- setup rest to use netty4-http as the HTTP server using localhost on port 8080 and context path service -->
+    <!-- setup rest to use netty-http as the HTTP server using localhost on port 8080 and context path service -->
     <!-- enable json binding mode so we can leverage camel-jackson to bind json to/from pojos -->
-    <restConfiguration component="netty4-http" bindingMode="json" host="localhost" port="8080" contextPath="service"/>
+    <restConfiguration component="netty-http" bindingMode="json" host="localhost" port="8080" contextPath="service"/>
 
     <!-- use rest-dsl to define the rest service to get the order -->
     <rest produces="application/json">

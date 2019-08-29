@@ -23,7 +23,7 @@ public class HelloRoute extends RouteBuilder {
         // use synchronous so we only have one concurrent thread from the timer
         from("timer:foo?period=2000&synchronous=true")
             // call the service using {{service:name}}
-            .to("netty4-http://{{service:helloswarm-kubernetes}}?disconnect=true&keepAlive=false")
+            .to("netty-http://{{service:helloswarm-kubernetes}}?disconnect=true&keepAlive=false")
             .log("${body}");
     }
 }

@@ -72,7 +72,7 @@
     <!-- notice we use -starter components from Camel which are designed to use with Spring Boot -->
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-netty4-http-starter</artifactId>
+      <artifactId>camel-netty-http-starter</artifactId>
     </dependency>
   </dependencies>
 

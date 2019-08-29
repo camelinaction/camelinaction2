@@ -14,7 +14,7 @@ public class HelloRoute extends RouteBuilder {
         from("timer:foo?period=2000")
             .hystrix()
                 // call the service using its DNS name and port number
-                .to("netty4-http:http://helloswarm-kubernetes:8080?disconnect=true&keepAlive=false")
+                .to("netty-http:http://helloswarm-kubernetes:8080?disconnect=true&keepAlive=false")
             .onFallback()
                 .transform().constant("Cannot call downstream service")
             .end()

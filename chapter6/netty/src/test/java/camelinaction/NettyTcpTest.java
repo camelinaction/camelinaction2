@@ -31,7 +31,7 @@ public class NettyTcpTest extends CamelTestSupport {
             
             @Override
             public void configure() throws Exception {
-                from("netty4:tcp://localhost:8999?textline=true&sync=false").to("jms:operations");
+                from("netty:tcp://localhost:8999?textline=true&sync=false").to("jms:operations");
                 
                 from("jms:operations").to("mock:end");
             }
@@ -43,7 +43,7 @@ public class NettyTcpTest extends CamelTestSupport {
         MockEndpoint mock = getMockEndpoint("mock:end");
         mock.expectedBodiesReceived(STATUS_GOOD);
 
-        template.sendBody("netty4:tcp://localhost:8999?textline=true&sync=false", STATUS_GOOD);
+        template.sendBody("netty:tcp://localhost:8999?textline=true&sync=false", STATUS_GOOD);
         
         mock.assertIsSatisfied();
     }
