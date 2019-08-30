@@ -1,13 +1,20 @@
 package camelinaction;
 
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import javax.net.ssl.X509TrustManager;
+
 import org.apache.camel.CamelContext;
 import org.apache.camel.SSLContextParametersAware;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.http.HttpComponent;
 import org.apache.camel.support.jsse.KeyManagersParameters;
 import org.apache.camel.support.jsse.KeyStoreParameters;
 import org.apache.camel.support.jsse.SSLContextParameters;
+import org.apache.camel.support.jsse.SSLContextServerParameters;
 import org.apache.camel.support.jsse.TrustManagersParameters;
 import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.junit.Test;
 
 public class GlobalSSLContextParametersTest extends CamelTestSupport {
@@ -16,6 +23,9 @@ public class GlobalSSLContextParametersTest extends CamelTestSupport {
         CamelContext context = super.createCamelContext();
         context.setSSLContextParameters(createSSLContextParameters());
         ((SSLContextParametersAware) context.getComponent("jetty")).setUseGlobalSslContextParameters(true);
+        ((SSLContextParametersAware) context.getComponent("https")).setUseGlobalSslContextParameters(true);
+        // turn off verifying hostname as this is just a self-signed certificate (usually you should not do this in production)
+        ((HttpComponent) context.getComponent("https")).setX509HostnameVerifier(new NoopHostnameVerifier());
         return context;
     }
     
@@ -36,7 +46,7 @@ public class GlobalSSLContextParametersTest extends CamelTestSupport {
         SSLContextParameters sslContextParameters = new SSLContextParameters();
         sslContextParameters.setKeyManagers(kmp);
         sslContextParameters.setTrustManagers(tmp);
-        
+
         return sslContextParameters;
     }
 

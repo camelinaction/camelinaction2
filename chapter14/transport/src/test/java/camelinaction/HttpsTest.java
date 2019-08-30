@@ -1,16 +1,27 @@
 package camelinaction;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.CamelExecutionException;
+import org.apache.camel.SSLContextParametersAware;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.http.HttpComponent;
 import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.support.jsse.KeyManagersParameters;
 import org.apache.camel.support.jsse.KeyStoreParameters;
 import org.apache.camel.support.jsse.SSLContextParameters;
 import org.apache.camel.support.jsse.TrustManagersParameters;
 import org.apache.camel.test.junit4.CamelTestSupport;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.junit.Test;
 
 public class HttpsTest extends CamelTestSupport {
+
+    protected CamelContext createCamelContext() throws Exception {
+        CamelContext context = super.createCamelContext();
+        // turn off verifying hostname as this is just a self-signed certificate (usually you should not do this in production)
+        ((HttpComponent) context.getComponent("https")).setX509HostnameVerifier(new NoopHostnameVerifier());
+        return context;
+    }
 
     @Override
     protected JndiRegistry createRegistry() throws Exception {
