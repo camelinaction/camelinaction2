@@ -41,8 +41,7 @@ public class OrderService {
             InputStream is = exchange.getContext().getClassResolver().loadResourceAsStream("camelinaction/soapFault.xml");
             Document dom = exchange.getContext().getTypeConverter().convertTo(Document.class, is);
 
-            // set a fault to indicate a failure
-            exchange.getOut().setFault(true);
+            // set a xml reply
             exchange.getOut().setBody(dom);
         } else {
             // load the soapOK.xml into a DOM
