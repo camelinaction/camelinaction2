@@ -2,7 +2,7 @@ package camelinaction;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.properties.PropertiesComponent;
+import org.apache.camel.spi.PropertiesComponent;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -12,9 +12,8 @@ public class SimplePropertiesTest extends CamelTestSupport {
     protected CamelContext createCamelContext() throws Exception {
         CamelContext context = super.createCamelContext();
 
-        PropertiesComponent pc = new PropertiesComponent();
-        pc.setLocations(new String[]{"camel.properties"});
-        context.addComponent("properties", pc);
+        PropertiesComponent pc = context.getPropertiesComponent();
+        pc.setLocation("camel.properties");
 
         return context;
     }

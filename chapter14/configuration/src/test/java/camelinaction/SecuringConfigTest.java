@@ -23,7 +23,7 @@ public class SecuringConfigTest extends CamelTestSupport {
     protected CamelContext createCamelContext() throws Exception {
         CamelContext context = super.createCamelContext();
 
-     // create the jasypt properties parser
+        // create the jasypt properties parser
         JasyptPropertiesParser jasypt = new JasyptPropertiesParser();
         // and set the master password
         jasypt.setPassword("supersecret");   
@@ -34,7 +34,7 @@ public class SecuringConfigTest extends CamelTestSupport {
         // jasypt.setPassword("sysenv:CAMEL_ENCRYPTION_PASSWORD");
         
         // setup the properties component to use the production file
-        PropertiesComponent prop = context.getComponent("properties", PropertiesComponent.class);
+        PropertiesComponent prop = (PropertiesComponent) context.getPropertiesComponent();
         prop.setLocation("classpath:rider-test.properties");
 
         // and use the jasypt properties parser so we can decrypt values

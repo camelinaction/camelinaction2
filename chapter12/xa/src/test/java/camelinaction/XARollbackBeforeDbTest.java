@@ -3,7 +3,7 @@ package camelinaction;
 import javax.sql.DataSource;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.properties.PropertiesComponent;
+import org.apache.camel.spi.PropertiesComponent;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -65,7 +65,7 @@ public class XARollbackBeforeDbTest extends CamelSpringTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                PropertiesComponent pc = context.getComponent("properties", PropertiesComponent.class);
+                PropertiesComponent pc = context.getPropertiesComponent();
                 pc.setLocation("camelinaction/sql.properties");
 
                 from("activemq:queue:partners")

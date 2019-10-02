@@ -5,8 +5,8 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.spi.CamelEvent;
+import org.apache.camel.spi.PropertiesComponent;
 
 /**
  * CDI configuration of the hello application.
@@ -20,7 +20,7 @@ public class HelloConfiguration {
     @Produces
     @Named("properties")
     PropertiesComponent propertiesComponent() {
-        PropertiesComponent component = new PropertiesComponent();
+        PropertiesComponent component = new org.apache.camel.component.properties.PropertiesComponent();
         // load properties file form the classpath
         component.setLocation("classpath:hello.properties");
         return component;
@@ -33,7 +33,7 @@ public class HelloConfiguration {
      */
     void onContextStarted(@Observes CamelEvent.CamelContextStartedEvent event) {
         // TODO: workaround bug in camel 3 for camel-cdi / properties
-        event.getContext().addComponent("properties", propertiesComponent());
+        event.getContext().setPropertiesComponent(propertiesComponent());
 
         System.out.println("***************************************");
         System.out.println("* Camel started " + event.getContext().getName());

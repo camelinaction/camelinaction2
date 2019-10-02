@@ -4,11 +4,9 @@ import javax.jms.ConnectionFactory;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
-import org.apache.camel.Exchange;
-import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jms.JmsComponent;
-import org.apache.camel.component.properties.PropertiesComponent;
+import org.apache.camel.spi.PropertiesComponent;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -26,7 +24,7 @@ public class FtpToJMSWithPropertyPlaceholderTest extends CamelTestSupport {
             JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
 
         // setup the properties component to use the test file
-        PropertiesComponent prop = camelContext.getComponent("properties", PropertiesComponent.class);
+        PropertiesComponent prop = camelContext.getPropertiesComponent();
         prop.setLocation("classpath:rider-test.properties");        
         
         return camelContext;
