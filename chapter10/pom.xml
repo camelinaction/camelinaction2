@@ -22,11 +22,6 @@
     <module>cxf-rest-camel</module>
     <module>cxf-rest-json</module>
     <module>cxf-swagger</module>
-    <module>restlet</module>
-    <module>camel-cxf-rest</module>
-    <module>camel-cxf-rest-cdi</module>
-    <module>camel-cxf-rest-karaf</module>
-    <module>camel-cxf-rest-spring-boot</module>
     <module>jetty-rest-security</module>
     <module>jetty-rest-security-cdi</module>
     <module>jetty-rest-security-karaf</module>
@@ -35,11 +30,20 @@
     <module>spark-rest-json</module>
     <module>spark-rest-ping</module>
     <module>springboot-json</module>
-    <module>restlet-json</module>
     <module>undertow-rest-xml-json</module>
     <module>undertow-swagger</module>
     <module>swagger-ui</module>
     <module>rest-producer</module>
+    <!-- camel-restlet is removed in Camel 3
+    <module>restlet</module>
+    <module>restlet-json</module>
+    -->
+    <!-- TODO: migrate to someting else
+    <module>camel-cxf-rest</module>
+    <module>camel-cxf-rest-cdi</module>
+    <module>camel-cxf-rest-karaf</module>
+    <module>camel-cxf-rest-spring-boot</module>
+    -->
   </modules>
 
 </project>

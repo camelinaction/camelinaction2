@@ -10,9 +10,9 @@ public class PingService extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        // use the restlet component on port 8080 as the REST server
+        // use the netty-http component on port 8080 as the REST server
         // no need for binding to json/jaxb as the rest services are using plain text
-        restConfiguration().component("restlet").port(8080);
+        restConfiguration().component("netty-http").port(8080);
 
         rest("/rest").consumes("application/text").produces("application/text")
 

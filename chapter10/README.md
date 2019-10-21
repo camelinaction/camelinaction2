@@ -12,3 +12,8 @@ This chapters covers
 - Binding between POJOs and XML/JSon
 - Documenting your REST services using Swagger
 - Browsing Swagger API using Swagger UI
+
+Important:
+
+In Apache Camel 3 the camel-restlet component has been removed; some of the
+examples are therefore disabled.

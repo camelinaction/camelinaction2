@@ -27,7 +27,7 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-restlet</artifactId>
+      <artifactId>camel-netty-http</artifactId>
     </dependency>
 
     <dependency>
