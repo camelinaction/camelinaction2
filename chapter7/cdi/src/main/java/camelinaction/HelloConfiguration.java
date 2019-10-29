@@ -1,12 +1,13 @@
 package camelinaction;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
-import javax.inject.Named;
 import javax.inject.Singleton;
 
+import org.apache.camel.CamelContext;
+import org.apache.camel.cdi.CdiCamelContext;
 import org.apache.camel.spi.CamelEvent;
-import org.apache.camel.spi.PropertiesComponent;
 
 /**
  * CDI configuration of the hello application.
@@ -14,16 +15,13 @@ import org.apache.camel.spi.PropertiesComponent;
 @Singleton
 public class HelloConfiguration {
 
-    /**
-     * Create the Camel properties component using CDI @Produces with the name: properties
-     */
     @Produces
-    @Named("properties")
-    PropertiesComponent propertiesComponent() {
-        PropertiesComponent component = new org.apache.camel.component.properties.PropertiesComponent();
-        // load properties file form the classpath
-        component.setLocation("classpath:hello.properties");
-        return component;
+    @ApplicationScoped
+    public CamelContext createCamel() {
+        // create CDI Camel and setup property placeholders
+        CdiCamelContext cdi = new CdiCamelContext();
+        cdi.getPropertiesComponent().setLocation("classpath:hello.properties");
+        return cdi;
     }
 
     /**
@@ -32,9 +30,6 @@ public class HelloConfiguration {
      * You can listen for any of the Camel events from org.apache.camel.management.event package.
      */
     void onContextStarted(@Observes CamelEvent.CamelContextStartedEvent event) {
-        // TODO: workaround bug in camel 3 for camel-cdi / properties
-        event.getContext().setPropertiesComponent(propertiesComponent());
-
         System.out.println("***************************************");
         System.out.println("* Camel started " + event.getContext().getName());
         System.out.println("***************************************");

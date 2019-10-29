@@ -28,6 +28,9 @@ public class HelloRouteTest {
     public void testHello() throws Exception {
         // call the url using the injected producer (with no body)
         String out = producer.request(String.class);
+
+        System.out.println(out);
+
         // assert that the reply message is what we expect
         assertTrue(out.startsWith("Hello from Camel CDI with properties"));
     }
