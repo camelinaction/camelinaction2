@@ -55,12 +55,12 @@
 
     <!-- camel -->
     <dependency>
-      <groupId>org.apache.camel</groupId>
+      <groupId>org.apache.camel.springboot</groupId>
       <artifactId>camel-spring-boot-starter</artifactId>
     </dependency>
     <!-- notice we use -starter components from Camel which are designed to use with Spring Boot -->
     <dependency>
-      <groupId>org.apache.camel</groupId>
+      <groupId>org.apache.camel.springboot</groupId>
       <artifactId>camel-http-starter</artifactId>
     </dependency>
   </dependencies>

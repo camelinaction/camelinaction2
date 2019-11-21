@@ -13,7 +13,7 @@
 
     <route>
       <from uri="direct:start"/>
-      <hystrix>
+      <circuitBreaker>
         <!-- protect calling the counter service using Hystrix -->
         <to uri="bean:counterService"/>
         <!-- notice you can have more Camel EIPs/nodes here -->
@@ -24,7 +24,7 @@
             <constant>No Counter</constant>
           </transform>
         </onFallback>
-      </hystrix>
+      </circuitBreaker>
       <!-- run outside hystrix -->
       <log message="After calling counter service: ${body}"/>
     </route>

@@ -7,7 +7,7 @@ public class HystrixWithFallbackRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("direct:start")
-            .hystrix()
+            .circuitBreaker()
                 // protect calling the counter service using Hystrix
                 .to("bean:counter")
                 // notice you can have more Camel EIPs/nodes here

@@ -10,13 +10,13 @@
 
     <route>
       <from uri="direct:start"/>
-      <hystrix>
+      <circuitBreaker>
         <!-- uses 2 second timeout -->
         <hystrixConfiguration executionTimeoutInMilliseconds="2000"/>
         <log message="Hystrix processing start: ${threadName}"/>
         <toD uri="direct:${body}"/>
         <log message="Hystrix processing end: ${threadName}"/>
-      </hystrix>
+      </circuitBreaker>
       <log message="After Hystrix ${body}"/>
     </route>
 

@@ -10,7 +10,7 @@
 
     <route>
       <from uri="direct:start"/>
-      <hystrix>
+      <circuitBreaker>
         <!-- uses 2 second timeout -->
         <hystrixConfiguration executionTimeoutInMilliseconds="2000"/>
         <log message="Hystrix processing start: ${threadName}"/>
@@ -24,7 +24,7 @@
           </transform>
           <log message="Hystrix fallback end: ${threadName}"/>
         </onFallback>
-      </hystrix>
+      </circuitBreaker>
       <log message="After Hystrix ${body}"/>
     </route>
 

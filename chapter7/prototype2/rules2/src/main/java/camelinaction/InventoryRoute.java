@@ -22,7 +22,7 @@ public class InventoryRoute extends RouteBuilder {
 
         from("direct:inventory")
             .log("Calling inventory service using JMS")
-            .hystrix()
+            .circuitBreaker()
                 // call the legacy system using JMS
                 .to("jms:queue:inventory")
                 // the returned data is in XML format so convert that to POJO using JAXB
