@@ -44,7 +44,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
                 .addOutboundPermitted(new PermittedOptions().setAddress("goals"));
 
         // route websocket to vertx
-        router.route("/eventbus/*").handler(SockJSHandler.create(vertx).bridge(options, event -> {
+        router.mountSubRouter("/eventbus/", SockJSHandler.create(vertx).bridge(options, event -> {
             if (event.type() == BridgeEventType.SOCKET_CREATED) {
                 System.out.println("Websocket connection created");
 
