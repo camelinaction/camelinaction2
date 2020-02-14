@@ -13,12 +13,6 @@
   <artifactId>chapter7-springboot</artifactId>
   <name>Camel in Action 2 :: Chapter 7 :: Spring Boot</name>
 
-  <properties>
-    <!-- TODO: use newer version -->
-    <spring-version>4.3.2.RELEASE</spring-version>
-    <spring-boot-version>1.4.0.RELEASE</spring-boot-version>
-  </properties>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
