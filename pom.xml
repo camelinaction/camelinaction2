@@ -58,28 +58,28 @@
 
     <activemq-version>5.15.11</activemq-version>
     <activemq-karaf-version>5.13.8</activemq-karaf-version>
-    <camel-version>3.0.1</camel-version>
-    <cxf-version>3.3.4</cxf-version>
+    <camel-version>3.1.0-SNAPSHOT</camel-version>
+    <cxf-version>3.3.5</cxf-version>
     <hawtio-version>1.4.68</hawtio-version>
     <commons-dbcp2-version>2.5.0</commons-dbcp2-version>
     <deltaspike-version>1.9.0</deltaspike-version>
     <hystrix-version>1.5.18</hystrix-version>
-    <jackson-version>2.10.1</jackson-version>
+    <jackson-version>2.10.2</jackson-version>
     <javax-mail-version>1.6.1</javax-mail-version>
     <jolokia-version>1.6.0</jolokia-version>
     <jetty-plugin-version>8.1.17.v20150415</jetty-plugin-version>
     <jetty9-plugin-version>9.4.20.v20190813</jetty9-plugin-version>
     <junit-version>4.12</junit-version>
-    <karaf-version>4.2.7</karaf-version>
+    <karaf-version>4.2.8</karaf-version>
     <log4j-version>1.2.17</log4j-version>
     <maven-bundle-plugin-version>4.2.1</maven-bundle-plugin-version>
     <mock-javamail-version>1.9</mock-javamail-version>
     <slf4j-version>1.7.29</slf4j-version>
-    <spring-version>5.2.1.RELEASE</spring-version>
-    <spring-boot-version>2.2.1.RELEASE</spring-boot-version>
+    <spring-version>5.2.3.RELEASE</spring-version>
+    <spring-boot-version>2.2.4.RELEASE</spring-boot-version>
     <swagger-version>1.5.24</swagger-version>
     <xbean-version>4.14</xbean-version>
-    <vertx-version>3.8.3</vertx-version>
+    <vertx-version>3.8.5</vertx-version>
     <weld-version>2.4.7.Final</weld-version>
     <wildfly-swarm-version>2017.11.0</wildfly-swarm-version>
 
