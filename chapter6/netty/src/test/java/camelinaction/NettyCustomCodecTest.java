@@ -34,7 +34,7 @@ public class NettyCustomCodecTest extends CamelTestSupport {
             
             @Override
             public void configure() throws Exception {
-                from("netty:tcp://localhost:8998?encoder=#welderEncoder&decoder=#welderDecoder&sync=false").to("jms:operations");
+                from("netty:tcp://localhost:8998?encoders=#welderEncoder&decoders=#welderDecoder&sync=false").to("jms:operations");
                 
                 from("jms:operations").to("mock:end");
             }
@@ -46,7 +46,7 @@ public class NettyCustomCodecTest extends CamelTestSupport {
         MockEndpoint mock = getMockEndpoint("mock:end");
         mock.expectedBodiesReceived(STATUS_GOOD);
 
-        template.sendBody("netty:tcp://localhost:8998?encoder=#welderEncoder&decoder=#welderDecoder&sync=false", "23717481");
+        template.sendBody("netty:tcp://localhost:8998?encoders=#welderEncoder&decoders=#welderDecoder&sync=false", "23717481");
 
         mock.assertIsSatisfied();
     }

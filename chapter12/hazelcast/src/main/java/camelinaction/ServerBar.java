@@ -26,7 +26,7 @@ public class ServerBar {
         // bind the hazelcast repository to the name myRepo which we refer to from the route
         main.bind("myRepo", repo);
         // add the route and and let the route be named BAR and use a little delay when processing the files
-        main.addRouteBuilder(new FileConsumerRoute("BAR", 100));
+        main.configure().addRoutesBuilder(new FileConsumerRoute("BAR", 100));
         main.run();
     }
 

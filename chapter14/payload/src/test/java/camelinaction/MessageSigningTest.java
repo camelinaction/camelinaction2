@@ -3,23 +3,24 @@ package camelinaction;
 import java.io.InputStream;
 import java.security.KeyStore;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 public class MessageSigningTest extends CamelTestSupport {
 
     @Override
-    protected JndiRegistry createRegistry() throws Exception {
-        JndiRegistry registry = super.createRegistry();
-        KeyStore keystore = loadKeystore("/cia_keystore.jks", "supersecret");
-        registry.bind("keystore", keystore);
-        KeyStore truststore = loadKeystore("/cia_truststore.jks", "supersecret");
-        registry.bind("truststore", truststore);
+    protected CamelContext createCamelContext() throws Exception {
+        CamelContext context = super.createCamelContext();
 
-        return registry;
+        KeyStore keystore = loadKeystore("/cia_keystore.jks", "supersecret");
+        context.getRegistry().bind("keystore", keystore);
+        KeyStore truststore = loadKeystore("/cia_truststore.jks", "supersecret");
+        context.getRegistry().bind("truststore", truststore);
+
+        return context;
     }
 
     public static KeyStore loadKeystore(String file, String password) throws Exception {

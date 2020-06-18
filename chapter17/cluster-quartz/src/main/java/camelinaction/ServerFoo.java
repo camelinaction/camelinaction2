@@ -22,7 +22,7 @@ public class ServerFoo {
         // add the component to Camel
         main.bind("quartz", quartz);
 
-        main.addRouteBuilder(new QuartzRoute("Foo"));
+        main.configure().addRoutesBuilder(new QuartzRoute("Foo"));
         main.run();
     }
 

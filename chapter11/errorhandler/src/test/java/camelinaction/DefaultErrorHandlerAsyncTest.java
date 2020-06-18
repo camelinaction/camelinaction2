@@ -1,9 +1,9 @@
 package camelinaction;
 
+import org.apache.camel.BindToRegistry;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -13,12 +13,8 @@ import org.junit.Test;
  */
 public class DefaultErrorHandlerAsyncTest extends CamelTestSupport {
 
-    @Override
-    protected JndiRegistry createRegistry() throws Exception {
-        JndiRegistry jndi = super.createRegistry();
-        jndi.bind("orderService", new OrderService());
-        return jndi;
-    }
+    @BindToRegistry("orderService")
+    private OrderService orderService = new OrderService();
 
     @Test
     public void testOrderOk() throws Exception {

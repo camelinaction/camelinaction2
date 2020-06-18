@@ -9,7 +9,6 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -42,21 +41,16 @@ public class JdbcTest extends CamelTestSupport {
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vm://localhost?broker.persistent=false");
         camelContext.addComponent("jms", jmsComponentClientAcknowledge(connectionFactory));
 
-        return camelContext;
-    }    
-    
-    protected JndiRegistry createRegistry() throws Exception {
-        JndiRegistry jndi = super.createRegistry();
-        jndi.bind("orderToSql", new OrderToSqlBean());
-        
+        camelContext.getRegistry().bind("orderToSql", new OrderToSqlBean());
+
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("org.apache.derby.jdbc.EmbeddedDriver");
         ds.setUrl("jdbc:derby:memory:order;create=true");
         ds.setUsername("sa");
         ds.setPassword("");
+        camelContext.getRegistry().bind("dataSource", ds);
 
-        jndi.bind("dataSource", ds);
-        return jndi;
+        return camelContext;
     }    
     
     @Override

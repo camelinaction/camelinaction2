@@ -11,7 +11,7 @@ public class HelloMain {
         // use org.apache.camel.main.Main to make it easier to run Camel standalone
         Main main = new Main();
         // add the routes
-        main.addRouteBuilder(new HelloRoute());
+        main.configure().addRoutesBuilder(new HelloRoute());
         // run the application (keep it running)
         main.run();
     }

@@ -10,7 +10,7 @@ public class MyClientEmbeddedApplication {
 
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-        main.addRouteBuilder(new MyStaticRouteEmbedded());
+        main.configure().addRoutesBuilder(new MyStaticRouteEmbedded());
         main.run();
     }
 

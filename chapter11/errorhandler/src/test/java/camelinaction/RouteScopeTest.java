@@ -1,10 +1,10 @@
 package camelinaction;
 
+import org.apache.camel.BindToRegistry;
 import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -13,18 +13,13 @@ import org.junit.Test;
  */
 public class RouteScopeTest extends CamelTestSupport {
 
+    @BindToRegistry("orderService")
+    private OrderService orderService = new OrderService();
+
     @Override
     public void setUp() throws Exception {
         deleteDirectory("target/orders");
         super.setUp();
-    }
-
-    @Override
-    protected JndiRegistry createRegistry() throws Exception {
-        // register our order service bean in the Camel registry
-        JndiRegistry jndi = super.createRegistry();
-        jndi.bind("orderService", new OrderService());
-        return jndi;
     }
 
     @Test

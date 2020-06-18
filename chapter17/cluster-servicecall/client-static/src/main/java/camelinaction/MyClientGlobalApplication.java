@@ -10,7 +10,7 @@ public class MyClientGlobalApplication {
 
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-        main.addRouteBuilder(new MyStaticRouteGlobal());
+        main.configure().addRoutesBuilder(new MyStaticRouteGlobal());
         main.run();
     }
 

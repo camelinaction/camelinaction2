@@ -26,9 +26,6 @@
     <module>jetty-rest-security-cdi</module>
     <module>jetty-rest-security-karaf</module>
     <module>servlet-swagger-xml</module>
-    <module>spark-rest</module>
-    <module>spark-rest-json</module>
-    <module>spark-rest-ping</module>
     <module>springboot-json</module>
     <module>undertow-rest-xml-json</module>
     <module>undertow-swagger</module>
@@ -37,6 +34,11 @@
     <!-- camel-restlet is removed in Camel 3
     <module>restlet</module>
     <module>restlet-json</module>
+    -->
+    <!-- camel-spark-rest is removed in Camel 3
+    <module>spark-rest</module>
+    <module>spark-rest-json</module>
+    <module>spark-rest-ping</module>
     -->
     <!-- TODO: migrate to someting else
     <module>camel-cxf-rest</module>

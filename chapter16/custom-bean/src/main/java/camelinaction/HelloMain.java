@@ -11,7 +11,7 @@ public class HelloMain {
         main.bind("hello", new HelloBean());
 
         // add the route
-        main.addRouteBuilder(new HelloRoute());
+        main.configure().addRoutesBuilder(new HelloRoute());
 
         // run the application
         main.run();

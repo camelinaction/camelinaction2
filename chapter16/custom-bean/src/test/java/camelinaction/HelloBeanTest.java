@@ -4,19 +4,15 @@ import javax.management.Attribute;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
+import org.apache.camel.BindToRegistry;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
 public class HelloBeanTest extends CamelTestSupport {
 
-    @Override
-    protected JndiRegistry createRegistry() throws Exception {
-        JndiRegistry jndi = super.createRegistry();
-        jndi.bind("hello", new HelloBean());
-        return jndi;
-    }
+    @BindToRegistry
+    private HelloBean hello = new HelloBean();
 
     @Override
     protected boolean useJmx() {

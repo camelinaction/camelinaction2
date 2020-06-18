@@ -10,6 +10,8 @@ public class PurchaseOrderConverterTest extends TestCase {
 
     public void testPurchaseOrderConverter() throws Exception {
         CamelContext context = new DefaultCamelContext();
+        // load 3rd party type converters
+        context.setLoadTypeConverters(true);
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {

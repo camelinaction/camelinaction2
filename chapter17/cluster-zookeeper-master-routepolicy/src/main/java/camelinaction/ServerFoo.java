@@ -22,7 +22,7 @@ public class ServerFoo {
         main.bind("zookeeper-master-policy", master);
 
         // add the route and and let the route be named Bar and use a little delay when processing the files
-        main.addRouteBuilder(new FileConsumerRoute("Foo", 200));
+        main.configure().addRoutesBuilder(new FileConsumerRoute("Foo", 200));
         main.run();
     }
 

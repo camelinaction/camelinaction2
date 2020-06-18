@@ -1,7 +1,7 @@
 package camelinaction;
 
+import org.apache.camel.BindToRegistry;
 import org.apache.camel.RoutesBuilder;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -10,13 +10,8 @@ import org.junit.Test;
  */
 public class CamelHystrixWithFallbackTest extends CamelTestSupport {
 
-    @Override
-    protected JndiRegistry createRegistry() throws Exception {
-        JndiRegistry jndi = super.createRegistry();
-        // register the counter service
-        jndi.bind("counter", new CounterService());
-        return jndi;
-    }
+    @BindToRegistry("counter")
+    private CounterService counter = new CounterService();
 
     @Override
     protected RoutesBuilder createRouteBuilder() throws Exception {

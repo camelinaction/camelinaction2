@@ -14,7 +14,7 @@ public class WordRoute extends RouteBuilder {
         KafkaComponent kafka = new KafkaComponent();
 
         // you can specify more brokers separated by comma
-        kafka.setBrokers("localhost:9092");
+        kafka.getConfiguration().setBrokers("localhost:9092");
 
         // add component to CamelContext
         getContext().addComponent("kafka", kafka);

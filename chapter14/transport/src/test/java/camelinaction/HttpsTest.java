@@ -2,10 +2,8 @@ package camelinaction;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.CamelExecutionException;
-import org.apache.camel.SSLContextParametersAware;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.http.HttpComponent;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.support.jsse.KeyManagersParameters;
 import org.apache.camel.support.jsse.KeyStoreParameters;
 import org.apache.camel.support.jsse.SSLContextParameters;
@@ -20,11 +18,7 @@ public class HttpsTest extends CamelTestSupport {
         CamelContext context = super.createCamelContext();
         // turn off verifying hostname as this is just a self-signed certificate (usually you should not do this in production)
         ((HttpComponent) context.getComponent("https")).setX509HostnameVerifier(new NoopHostnameVerifier());
-        return context;
-    }
 
-    @Override
-    protected JndiRegistry createRegistry() throws Exception {
         KeyStoreParameters ksp = new KeyStoreParameters();
         ksp.setResource("./cia_keystore.jks");
         ksp.setPassword("supersecret");
@@ -34,20 +28,19 @@ public class HttpsTest extends CamelTestSupport {
 
         KeyStoreParameters tsp = new KeyStoreParameters();
         tsp.setResource("./cia_truststore.jks");
-        tsp.setPassword("supersecret");      
+        tsp.setPassword("supersecret");
         TrustManagersParameters tmp = new TrustManagersParameters();
         tmp.setKeyStore(tsp);
-        
+
         SSLContextParameters sslContextParameters = new SSLContextParameters();
         sslContextParameters.setKeyManagers(kmp);
         sslContextParameters.setTrustManagers(tmp);
-        
-        JndiRegistry registry = super.createRegistry();
-        registry.bind("ssl", sslContextParameters);
 
-        return registry;
+        context.getRegistry().bind("ssl", sslContextParameters);
+
+        return context;
     }
-    
+
     // this will utilize the truststore we defined in sslContextParameters bean to access the HTTPS endpoint
     @Test
     public void testHttps() throws Exception {

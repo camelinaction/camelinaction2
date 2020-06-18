@@ -15,7 +15,7 @@ public class CartRoute extends RouteBuilder {
     public void configure() throws Exception {
 
         // use jetty for rest service
-        restConfiguration("jetty").port("{{port}}").contextPath("api")
+        restConfiguration().component("jetty").port("{{port}}").contextPath("api")
                 // turn on json binding
                 .bindingMode(RestBindingMode.json)
                 // turn off binding error on empty beans

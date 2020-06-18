@@ -1,7 +1,7 @@
 package camelinaction;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.spring.Main;
+import org.apache.camel.main.Main;
 
 /**
  * A Camel Router

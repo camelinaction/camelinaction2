@@ -2,6 +2,7 @@ package camelinaction;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
@@ -17,6 +18,14 @@ public class ManualRouteWithOnCompletionTest extends CamelTestSupport {
     public void setUp() throws Exception {
         deleteDirectory("target/inventory");
         super.setUp();
+    }
+
+    @Override
+    protected CamelContext createCamelContext() throws Exception {
+        CamelContext context = super.createCamelContext();
+        // load custom type converters
+        context.setLoadTypeConverters(true);
+        return context;
     }
 
     @Override

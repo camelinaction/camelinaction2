@@ -27,7 +27,7 @@ public class ServerBar {
         main.bind("jcache", jcache);
 
         // route which uses get/put operations
-        main.addRouteBuilder(new CounterRoute("Bar", 8889));
+        main.configure().addRoutesBuilder(new CounterRoute("Bar", 8889));
         main.run();
     }
 

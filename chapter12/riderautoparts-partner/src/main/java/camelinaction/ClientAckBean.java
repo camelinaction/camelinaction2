@@ -3,6 +3,7 @@ package camelinaction;
 import javax.jms.JMSException;
 
 import org.apache.camel.Exchange;
+import org.apache.camel.ExtendedExchange;
 import org.apache.camel.component.jms.JmsMessage;
 import org.apache.camel.support.SynchronizationAdapter;
 import org.slf4j.Logger;
@@ -39,7 +40,7 @@ public class ClientAckBean {
         // if the routing fails with an exception, then onComplete is not called, and the Spring JMS
         // message listener will fail as well and trigger a rollback
 
-        exchange.addOnCompletion(new SynchronizationAdapter() {
+        exchange.adapt(ExtendedExchange.class).addOnCompletion(new SynchronizationAdapter() {
             @Override
             public void onComplete(Exchange exchange) {
                 LOG.info("Using JMS client acknowledge to accept the JMS message consumed: {}", jms);

@@ -21,7 +21,7 @@ public class ServerBar {
 
         main = new Main();
         // add the route and and let the route be named Bar and use a little delay when processing the files
-        main.addRouteBuilder(new FileConsumerRoute("Bar", 100, cluster));
+        main.configure().addRoutesBuilder(new FileConsumerRoute("Bar", 100, cluster));
         main.run();
     }
 

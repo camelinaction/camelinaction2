@@ -16,7 +16,7 @@
     <bean id="inventoryRoute" class="camelinaction.InventoryRouteDefer"/>
 
     <!-- the camel context -->
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <camelContext loadTypeConverters="true" xmlns="http://camel.apache.org/schema/spring">
         <routeBuilder ref="inventoryRoute"/>
     </camelContext>
 

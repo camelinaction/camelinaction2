@@ -1,8 +1,8 @@
 package camelinaction;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.support.jsse.KeyStoreParameters;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
@@ -10,20 +10,22 @@ import org.junit.Test;
 public class MessageSigningWithKeyStoreParamsTest extends CamelTestSupport {
 
     @Override
-    protected JndiRegistry createRegistry() throws Exception {        
-        JndiRegistry registry = super.createRegistry();
+    protected CamelContext createCamelContext() throws Exception {
+        CamelContext context = super.createCamelContext();
+
         KeyStoreParameters keystore = new KeyStoreParameters();
         keystore.setPassword("supersecret");
         keystore.setResource("./cia_keystore.jks");
-        registry.bind("keystore", keystore);
-        
+        context.getRegistry().bind("keystore", keystore);
+
         KeyStoreParameters truststore = new KeyStoreParameters();
         truststore.setPassword("supersecret");
-        truststore.setResource("./cia_truststore.jks");        
-        registry.bind("truststore", truststore);
-        return registry;
+        truststore.setResource("./cia_truststore.jks");
+        context.getRegistry().bind("truststore", truststore);
+
+        return context;
     }
-        
+
     @Test
     public void testSignAndVerifyMessage() throws Exception {
         getMockEndpoint("mock:signed").expectedBodiesReceived("Hello World");

@@ -2,7 +2,6 @@ package camelinaction;
 
 import org.apache.camel.Header;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
@@ -18,14 +17,6 @@ public class PurchaseOrderJSONTest extends CamelTestSupport {
 
     private static Logger LOG = LoggerFactory.getLogger(PurchaseOrderJSONTest.class);
 
-    @Override
-    protected JndiRegistry createRegistry() throws Exception {
-        // register our service bean in the Camel registry
-        JndiRegistry jndi = super.createRegistry();
-        jndi.bind("orderService", new OrderServiceBean());
-        return jndi;
-    }
-
     @Test
     public void testJSON() throws Exception {
         String out = template.requestBody("http://localhost:8080/order/service?id=123", null, String.class);
@@ -40,6 +31,9 @@ public class PurchaseOrderJSONTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
+                // bind the bean to the registry
+                context().getRegistry().bind("orderService", new OrderServiceBean());
+
                 from("jetty://http://0.0.0.0:8080/order/service")
                     .bean("orderService", "lookup")
                     .marshal().json(JsonLibrary.Jackson);

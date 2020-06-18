@@ -13,7 +13,7 @@
     <bean id="inventoryService" class="camelinaction.InventoryService"/>
 
     <!-- the camel context -->
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <camelContext loadTypeConverters="true" xmlns="http://camel.apache.org/schema/spring">
 
         <!-- this is the webservice route which is started 3rd -->
         <route id="webservice" startupOrder="3">

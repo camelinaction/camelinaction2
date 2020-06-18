@@ -13,7 +13,8 @@
     <bean id="inventoryService" class="camelinaction.InventoryService"/>
 
     <!-- the camel context -->
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <!-- load custom type converters -->
+    <camelContext loadTypeConverters="true" xmlns="http://camel.apache.org/schema/spring">
 
         <route id="webservice" startupOrder="3">
             <from uri="cxf:bean:inventoryEndpoint"/>

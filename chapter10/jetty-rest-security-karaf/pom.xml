@@ -24,7 +24,7 @@
       <version>${camel-version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.camel</groupId>
+      <groupId>org.apache.camel.karaf</groupId>
       <artifactId>camel-blueprint</artifactId>
       <version>${camel-version}</version>
     </dependency>

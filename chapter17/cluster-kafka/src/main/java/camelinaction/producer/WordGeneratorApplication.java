@@ -6,7 +6,7 @@ public class WordGeneratorApplication {
 
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-        main.addRouteBuilder(new WordRoute());
+        main.configure().addRoutesBuilder(new WordRoute());
         main.run();
     }
 }

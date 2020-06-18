@@ -19,7 +19,8 @@
     </bean>
 
     <!-- the camel context -->
-    <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <!-- load custom type converters -->
+    <camelContext loadTypeConverters="true" xmlns="http://camel.apache.org/schema/spring">
 
         <!--  use autoStartup=false to indicate this route should NOT be started when Camel starts -->
         <route id="manual" autoStartup="false">

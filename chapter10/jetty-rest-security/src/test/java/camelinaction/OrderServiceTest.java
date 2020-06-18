@@ -1,28 +1,23 @@
 package camelinaction;
 
 import camelinaction.dummy.DummyOrderService;
+import org.apache.camel.BindToRegistry;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.impl.JndiRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
+import org.eclipse.jetty.security.ConstraintSecurityHandler;
 import org.junit.Test;
 
 public class OrderServiceTest extends CamelTestSupport {
 
     // use dummy service for testing purpose
+    @BindToRegistry("orderService")
     private OrderService orderService = new DummyOrderService();
+
+    @BindToRegistry("securityHandler")
+    private ConstraintSecurityHandler securityHandler = JettySecurity.createSecurityHandler();
 
     // authentication as jack when we call the rest service so we can access the secured service
     private String auth = "authMethod=Basic&authUsername=jack&authPassword=123";
-
-    @Override
-    protected JndiRegistry createRegistry() throws Exception {
-        JndiRegistry jndi = super.createRegistry();
-        // bidn the order service to the registry
-        jndi.bind("orderService", orderService);
-        // bind the jetty security handler to the registry
-        jndi.bind("securityHandler", JettySecurity.createSecurityHandler());
-        return jndi;
-    }
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {

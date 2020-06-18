@@ -4,7 +4,7 @@ import org.apache.camel.CamelExecutionException;
 import org.apache.camel.Predicate;
 import org.apache.camel.builder.PredicateBuilder;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.support.processor.validation.PredicateValidationException;
+import org.apache.camel.support.processor.PredicateValidationException;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 

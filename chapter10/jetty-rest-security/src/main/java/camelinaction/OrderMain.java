@@ -17,7 +17,7 @@ public class OrderMain {
         main.bind("securityHandler", JettySecurity.createSecurityHandler());
 
         // add the order route with the Rest services
-        main.addRouteBuilder(new OrderRoute());
+        main.configure().addRoutesBuilder(new OrderRoute());
 
         System.out.println("***************************************************");
         System.out.println("");

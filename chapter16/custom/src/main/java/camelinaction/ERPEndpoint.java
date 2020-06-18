@@ -15,7 +15,7 @@ import org.apache.camel.support.DefaultEndpoint;
 /**
  *  Endpoint to simulate communication with ERP system which we want to manage from JMX.
  */
-@UriEndpoint(scheme = "erp", title = "ERP", syntax = "erp:name", producerOnly = true, label = "legacy")
+@UriEndpoint(scheme = "erp", title = "ERP", syntax = "erp:name", producerOnly = true, label = "legacy", firstVersion = "2.0")
 @ManagedResource(description = "Managed ERPEndpoint")
 public class ERPEndpoint extends DefaultEndpoint {
 

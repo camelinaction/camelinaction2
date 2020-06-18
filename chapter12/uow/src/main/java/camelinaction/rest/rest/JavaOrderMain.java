@@ -13,7 +13,7 @@ public class JavaOrderMain {
         main.bind("orderService", new OrderService());
         main.bind("tokenService", new TokenService());
 
-        main.addRouteBuilder(new OrderRoute());
+        main.configure().addRoutesBuilder(new OrderRoute());
 
         System.out.println("=======================================================");
         System.out.println("Starting HTTP server on port 8080");
