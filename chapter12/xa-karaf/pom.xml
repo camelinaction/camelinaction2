@@ -22,8 +22,9 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.camel</groupId>
+      <groupId>org.apache.camel.karaf</groupId>
       <artifactId>camel-blueprint</artifactId>
+      <version>${camel-version}</version>
     </dependency>
 
     <dependency>
@@ -39,6 +40,7 @@
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
     </dependency>
 
   </dependencies>

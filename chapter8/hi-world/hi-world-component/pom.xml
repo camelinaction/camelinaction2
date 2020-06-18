@@ -35,19 +35,6 @@
       <version>2.0.0</version>
     </dependency>
 
-    <!-- support camel documentation -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>apt</artifactId>
-    </dependency>
-
-    <!-- Camel annotations in provided scope to avoid compile errors in IDEs -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>spi-annotations</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
     <!-- Component API javadoc in provided scope to read API signatures -->
     <dependency>
       <groupId>camelinaction</groupId>

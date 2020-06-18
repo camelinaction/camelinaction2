@@ -17,15 +17,10 @@
   <name>Camel in Action 2 :: Chapter 8 :: A Camel Component</name>
 
   <dependencies>
+
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
-    </dependency>
-
-    <!-- support camel documentation -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>apt</artifactId>
     </dependency>
 
     <!-- logging -->
@@ -77,21 +72,15 @@
       <!-- generate components meta-data and validate component includes documentation etc -->
       <plugin>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-package-maven-plugin</artifactId>
+        <artifactId>camel-component-maven-plugin</artifactId>
+        <version>${camel-version}</version>
         <executions>
           <execution>
             <id>prepare</id>
             <goals>
-              <goal>prepare-components</goal>
+              <goal>generate</goal>
             </goals>
             <phase>generate-resources</phase>
-          </execution>
-          <execution>
-            <id>validate</id>
-            <goals>
-              <goal>validate-components</goal>
-            </goals>
-            <phase>prepare-package</phase>
           </execution>
         </executions>
       </plugin>

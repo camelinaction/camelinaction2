@@ -35,8 +35,9 @@
 
     <!-- testing -->
     <dependency>
-      <groupId>org.apache.camel</groupId>
+      <groupId>org.apache.camel.karaf</groupId>
       <artifactId>camel-test-blueprint</artifactId>
+      <version>${camel-version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>

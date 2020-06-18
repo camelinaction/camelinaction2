@@ -17,7 +17,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <docker.maven.plugin.version>0.25.2</docker.maven.plugin.version>
+    <docker.maven.plugin.version>0.33.0</docker.maven.plugin.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -36,8 +36,8 @@
       </dependency>
       <!-- import Camel -->
       <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-parent</artifactId>
+        <groupId>org.apache.camel.springboot</groupId>
+        <artifactId>camel-spring-boot-dependencies</artifactId>
         <version>${camel-version}</version>
         <type>pom</type>
         <scope>import</scope>
