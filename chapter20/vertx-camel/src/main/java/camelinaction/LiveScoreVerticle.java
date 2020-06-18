@@ -5,7 +5,7 @@ import io.vertx.ext.bridge.BridgeEventType;
 import io.vertx.ext.bridge.PermittedOptions;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
-import io.vertx.ext.web.handler.sockjs.BridgeOptions;
+import io.vertx.ext.web.handler.sockjs.SockJSBridgeOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 import org.apache.camel.CamelContext;
 import org.apache.camel.FluentProducerTemplate;
@@ -37,7 +37,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
         Router router = Router.router(vertx);
 
         // configure allowed inbound and outbound traffics
-        BridgeOptions options = new BridgeOptions()
+        SockJSBridgeOptions options = new SockJSBridgeOptions()
                 .addInboundPermitted(new PermittedOptions().setAddress("control"))
                 .addOutboundPermitted(new PermittedOptions().setAddress("clock"))
                 .addOutboundPermitted(new PermittedOptions().setAddress("games"))
@@ -63,7 +63,7 @@ public class LiveScoreVerticle extends AbstractVerticle {
 
         // let router accept on port 8080
         System.out.println("Listening on http://localhost:8080");
-        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+        vertx.createHttpServer().requestHandler(router).listen(8080);
     }
 
     @Override

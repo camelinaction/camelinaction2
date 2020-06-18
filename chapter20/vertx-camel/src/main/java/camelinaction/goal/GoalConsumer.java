@@ -13,6 +13,9 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.Suspendable;
 import org.apache.camel.support.DefaultConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import static java.lang.Thread.sleep;
 
@@ -21,6 +24,8 @@ import static java.lang.Thread.sleep;
  * to stop the game clock as well.
  */
 public class GoalConsumer extends DefaultConsumer implements Suspendable {
+
+    private static final Logger LOG = LoggerFactory.getLogger(GoalConsumer.class);
 
     // to use fast mode where each 5 second is a minute
     private boolean fastMode = true;
@@ -39,7 +44,7 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
     protected void doStart() throws Exception {
         super.doStart();
 
-        log.info("Starting goal live stream");
+        LOG.info("Starting goal live stream");
         if (task == null) {
             task = new GoalTask();
             int period = fastMode ? 5 * 1000 : 60 * 1000;
@@ -49,7 +54,7 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
 
     @Override
     public void doResume() throws Exception {
-        log.info("Resuming goal live stream");
+        LOG.info("Resuming goal live stream");
 
         // signal the clock is started
         Exchange exchange = getEndpoint().createExchange();
@@ -60,7 +65,7 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
 
     @Override
     protected void doSuspend() throws Exception {
-        log.info("Suspending goal live stream");
+        LOG.info("Suspending goal live stream");
 
         // signal the clock is stopped
         Exchange exchange = getEndpoint().createExchange();
@@ -71,7 +76,7 @@ public class GoalConsumer extends DefaultConsumer implements Suspendable {
 
     @Override
     protected void doStop() throws Exception {
-        log.info("Stopping goal live stream");
+        LOG.info("Stopping goal live stream");
         timer.cancel();
         task = null;
 
