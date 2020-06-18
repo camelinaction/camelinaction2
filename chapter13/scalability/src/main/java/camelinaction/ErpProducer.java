@@ -6,11 +6,15 @@ import org.apache.camel.AsyncCallback;
 import org.apache.camel.Endpoint;
 import org.apache.camel.Exchange;
 import org.apache.camel.support.DefaultAsyncProducer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Producer to simulate asynchronous communication with ERP system.
  */
 public class ErpProducer extends DefaultAsyncProducer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ErpProducer.class);
 
     // use a thread pool for async communication with ERP
     private ExecutorService executor;
@@ -41,7 +45,7 @@ public class ErpProducer extends DefaultAsyncProducer {
         // which enables the Camel routing engine to know this and act accordingly
         // notice the ERPTask must invoke the callback.done(false) because what
         // we return here must match the boolean in the callback.done method.
-        log.info("Returning false (processing will continue asynchronously)");
+        LOG.info("Returning false (processing will continue asynchronously)");
         return false;
     }
 
@@ -56,14 +60,14 @@ public class ErpProducer extends DefaultAsyncProducer {
         }
 
         public void run() {
-            log.info("Calling ERP");
+            LOG.info("Calling ERP");
             // simulate communication with ERP takes 5 seconds
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
                 // ignore
             }
-            log.info("ERP reply received");
+            LOG.info("ERP reply received");
 
             // set reply
             String in = exchange.getIn().getBody(String.class);
@@ -71,7 +75,7 @@ public class ErpProducer extends DefaultAsyncProducer {
 
             // notify callback we are done
             // we must use done(false) because the process method returned false
-            log.info("Continue routing");
+            LOG.info("Continue routing");
             callback.done(false);
         }
     }

@@ -11,7 +11,7 @@ import org.apache.camel.support.DefaultEndpoint;
 /**
  * Component to simulate asynchronous communication with ERP system.
  */
-@UriEndpoint(scheme = "erp", title = "ERP", syntax = "erp:name", producerOnly = true, label = "legacy")
+@UriEndpoint(scheme = "erp", title = "ERP", syntax = "erp:name", producerOnly = true, label = "legacy", firstVersion = "2.0")
 public class ErpEndpoint extends DefaultEndpoint {
 
     @UriPath
