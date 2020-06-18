@@ -67,6 +67,9 @@ Up to date source code
 
 We the authors, intended to keep this source code up to date with future releases of Apache Camel. Giving our readers the best experience with the book and using the latest Camel releases. 
 
+The master branch is currently using the latest Camel 2.25.x release.
+You can find branches with Camel 3 versions such as `https://github.com/camelinaction/camelinaction2/tree/camel34`.
+
 
 Errata
 ------
