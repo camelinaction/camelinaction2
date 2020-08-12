@@ -56,12 +56,12 @@
 
   <properties>
 
-    <activemq-version>5.15.12</activemq-version>
+    <activemq-version>5.15.13</activemq-version>
     <activemq-karaf-version>5.13.8</activemq-karaf-version>
-    <camel-version>3.4.1</camel-version>
+    <camel-version>3.4.3</camel-version>
     <cxf-version>3.3.6</cxf-version>
     <hawtio-version>1.4.68</hawtio-version>
-    <commons-dbcp2-version>2.5.0</commons-dbcp2-version>
+    <commons-dbcp2-version>2.7.0</commons-dbcp2-version>
     <deltaspike-version>1.9.0</deltaspike-version>
     <hystrix-version>1.5.18</hystrix-version>
     <jackson-version>2.10.4</jackson-version>
@@ -76,7 +76,7 @@
     <mock-javamail-version>1.9</mock-javamail-version>
     <slf4j-version>1.7.30</slf4j-version>
     <spring-version>5.2.7.RELEASE</spring-version>
-    <spring-boot-version>2.3.0.RELEASE</spring-boot-version>
+    <spring-boot-version>2.3.2.RELEASE</spring-boot-version>
     <swagger-version>1.5.24</swagger-version>
     <xbean-version>4.14</xbean-version>
     <vertx-version>3.9.1</vertx-version>
