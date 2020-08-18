@@ -42,5 +42,24 @@
     <module>rest-producer</module>
   </modules>
 
+  <repositories>
+    <!-- For Lucene/Solr snapshots-->
+    <repository>
+      <id>apache.snapshots</id>
+      <name>Apache Snapshot Repository</name>
+      <url>http://repository.apache.org/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>restlet</id>
+      <name>Restlet</name>
+      <url>http://maven.restlet.com</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
 </project>
 
