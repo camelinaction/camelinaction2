@@ -11,6 +11,6 @@ import camelinaction.internal.HiWorldPropertiesHelper;
 public class HiWorldProducer extends AbstractApiProducer<HiWorldApiName, HiWorldConfiguration> {
 
     public HiWorldProducer(HiWorldEndpoint endpoint) {
-        super(endpoint, HiWorldPropertiesHelper.getHelper());
+        super(endpoint, HiWorldPropertiesHelper.getHelper(endpoint.getCamelContext()));
     }
 }

@@ -1,5 +1,6 @@
 package camelinaction.internal;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.support.component.ApiMethodPropertiesHelper;
 
 import camelinaction.HiWorldConfiguration;
@@ -11,13 +12,13 @@ public final class HiWorldPropertiesHelper extends ApiMethodPropertiesHelper<HiW
 
     private static HiWorldPropertiesHelper helper;
 
-    private HiWorldPropertiesHelper() {
-        super(HiWorldConfiguration.class, HiWorldConstants.PROPERTY_PREFIX);
+    private HiWorldPropertiesHelper(CamelContext camelContext) {
+        super(camelContext, HiWorldConfiguration.class, HiWorldConstants.PROPERTY_PREFIX);
     }
 
-    public static synchronized HiWorldPropertiesHelper getHelper() {
+    public static synchronized HiWorldPropertiesHelper getHelper(CamelContext camelContext) {
         if (helper == null) {
-            helper = new HiWorldPropertiesHelper();
+            helper = new HiWorldPropertiesHelper(camelContext);
         }
         return helper;
     }

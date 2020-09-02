@@ -54,7 +54,7 @@ public class HiWorldEndpoint extends AbstractApiEndpoint<HiWorldApiName, HiWorld
 
     @Override
     protected ApiMethodPropertiesHelper<HiWorldConfiguration> getPropertiesHelper() {
-        return HiWorldPropertiesHelper.getHelper();
+        return HiWorldPropertiesHelper.getHelper(getCamelContext());
     }
 
     protected String getThreadProfileName() {
