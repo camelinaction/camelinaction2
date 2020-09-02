@@ -1,9 +1,8 @@
 package camelinaction;
 
 import org.apache.camel.ProducerTemplate;
-import org.apache.camel.test.spring.CamelSpringBootRunner;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.apache.camel.test.spring.junit5.CamelSpringBootTest;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 // unit test with Camel and spring-boot
-@RunWith(CamelSpringBootRunner.class)
+@CamelSpringBootTest
 @SpringBootTest(classes = OrderApplication.class,
     // turn on web during test on the defined 8080 port
     webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
