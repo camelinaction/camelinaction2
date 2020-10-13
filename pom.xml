@@ -69,7 +69,7 @@
     <jolokia-version>1.6.0</jolokia-version>
     <jetty-plugin-version>8.1.17.v20150415</jetty-plugin-version>
     <jetty9-plugin-version>9.4.18.v20190429</jetty9-plugin-version>
-    <junit-version>4.12</junit-version>
+    <junit-version>4.13.1</junit-version>
     <karaf-version>4.2.1</karaf-version>
     <log4j-version>1.2.17</log4j-version>
     <maven-bundle-plugin-version>3.3.0</maven-bundle-plugin-version>
