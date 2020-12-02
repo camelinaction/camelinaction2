@@ -14,7 +14,7 @@
   <name>Camel in Action 2 :: Chapter 10 :: Apache CXF REST with Swagger</name>
 
   <properties>
-    <jetty-version>9.4.6.v20170531</jetty-version>
+    <jetty-version>9.4.35.v20201120</jetty-version>
   </properties>
 
   <dependencies>
