@@ -12,7 +12,7 @@
 
   <artifactId>appendixA</artifactId>
   <packaging>jar</packaging>
-  <name>Camel in Action 2 :: Appendix A - The Simple Language</name>
+  <name>Camel in Action 2 :: Appendix A :: Simple Language</name>
 
   <dependencies>
 
