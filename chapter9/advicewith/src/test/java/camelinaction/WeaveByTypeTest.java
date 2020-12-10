@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.camel.RoutesBuilder;
+import org.apache.camel.builder.AdviceWith;
 import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.model.SplitDefinition;
-import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
@@ -25,7 +25,7 @@ public class WeaveByTypeTest extends CamelTestSupport {
     @Test
     public void testWeaveByType() throws Exception {
         RouteDefinition route = context.getRouteDefinition("quotes");
-        RouteReifier.adviceWith(route, context, new AdviceWithRouteBuilder() {
+        AdviceWith.adviceWith(route, context, new AdviceWithRouteBuilder() {
             @Override
             public void configure() throws Exception {
                 // find the splitter and insert the route snippet before it

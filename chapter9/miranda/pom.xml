@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>chapter9-miranda</artifactId>
-  <name>Camel in Action 2 :: Chapter 6 :: Mocking a real component</name>
+  <name>Camel in Action 2 :: Chapter 9 :: Mocking a real component</name>
 
   <dependencies>
 

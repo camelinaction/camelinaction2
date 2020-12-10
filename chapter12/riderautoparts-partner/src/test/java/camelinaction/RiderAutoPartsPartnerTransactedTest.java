@@ -1,14 +1,13 @@
 package camelinaction;
 
+import javax.sql.DataSource;
 import java.net.ConnectException;
 import java.util.concurrent.TimeUnit;
 
-import javax.sql.DataSource;
-
+import org.apache.camel.builder.AdviceWith;
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -74,7 +73,7 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         // adviseWith enhances our route by adding the interceptor from the route builder
         // this allows us here directly in the unit test to add interceptors so we can simulate the connection failure
         RouteDefinition route = context.getRouteDefinition("partnerToDB");
-        RouteReifier.adviceWith(route, context, rb);
+        AdviceWith.adviceWith(route, context, rb);
 
         // there should be 0 row in the database when we start
         int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);
@@ -121,7 +120,7 @@ public class RiderAutoPartsPartnerTransactedTest extends CamelSpringTestSupport 
         // adviseWith enhances our route by adding the interceptor from the route builder
         // this allows us here directly in the unit test to add interceptors so we can simulate the connection failure
         RouteDefinition route = context.getRouteDefinition("partnerToDB");
-        RouteReifier.adviceWith(route, context, rb);
+        AdviceWith.adviceWith(route, context, rb);
 
         // there should be 0 row in the database when we start
         int rows = jdbc.queryForObject("select count(*) from partner_metric", Integer.class);

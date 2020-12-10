@@ -1,16 +1,16 @@
 package camelinaction;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import javax.sql.DataSource;
 
+import org.apache.camel.builder.AdviceWith;
 import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.NotifyBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.junit.After;
 import org.junit.Before;
@@ -140,7 +140,7 @@ public class PropagationTest extends CamelSpringTestSupport {
 
         // simulate the audit-log will fail
         RouteDefinition route = context.getRouteDefinition("audit");
-        RouteReifier.adviceWith(route, context, new AdviceWithRouteBuilder() {
+        AdviceWith.adviceWith(route, context, new AdviceWithRouteBuilder() {
             @Override
             public void configure() throws Exception {
                 // simulate error connecting to database
