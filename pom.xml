@@ -56,9 +56,9 @@
 
   <properties>
 
-    <activemq-version>5.15.13</activemq-version>
+    <activemq-version>5.16.0</activemq-version>
     <activemq-karaf-version>5.13.8</activemq-karaf-version>
-    <camel-version>3.7.0-SNAPSHOT</camel-version>
+    <camel-version>3.7.0</camel-version>
     <cxf-version>3.4.1</cxf-version>
     <hawtio-version>1.4.68</hawtio-version>
     <commons-dbcp2-version>2.7.0</commons-dbcp2-version>
