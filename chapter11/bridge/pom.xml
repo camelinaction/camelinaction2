@@ -14,7 +14,7 @@
   <name>Camel in Action 2 :: Chapter 11 :: Bridge Error Handler</name>
 
   <properties>
-    <openjpa-version>2.4.1</openjpa-version>
+    <openjpa-version>3.1.2</openjpa-version>
   </properties>
 
   <dependencies>
@@ -66,7 +66,7 @@
 
     <plugins>
 
-      <!-- openjpa needs to enahnce the JPA entity classes -->
+      <!-- openjpa needs to enhance the JPA entity classes -->
       <plugin>
         <groupId>org.apache.openjpa</groupId>
         <artifactId>openjpa-maven-plugin</artifactId>
