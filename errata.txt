@@ -24,6 +24,11 @@ p183 bottom
 + That means you shouldn’t use the Dynamic Router EIP in the route
 
 
+p272 top
+- Notice that @path and @PathParams map to the partIds
+- Notice that @path and @PathParams map to the cartIds
+
+
 p275
 
 - 3 Start the rules service:
