@@ -61,6 +61,12 @@ Downloading the source code
 
 You can either download a .zip with all the source code from the [releases page](https://github.com/camelinaction/camelinaction2/releases), or use the github way of cloning the repository on your computer.
 
+System requirements
+---------------------------
+You need JDK 8 installed on your system in order to compile the source code.   
+Maven version >= 3.5.  
+Apache Camel 2.20.1 or latest.  
+
 
 Up to date source code
 ----------------------
