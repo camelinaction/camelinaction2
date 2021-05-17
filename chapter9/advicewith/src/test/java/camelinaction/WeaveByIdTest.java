@@ -25,7 +25,7 @@ public class WeaveByIdTest extends CamelTestSupport {
                 // select the route node with the id=transform
                 // and then replace it with the following route parts
                 weaveById("transform").replace()
-                    .transform().simple("${body.toUpperCase()}");
+                    .transform(simple("${body.toUpperCase()}"));
 
                 // and add at the end of the route to route to this mock endpoint
                 weaveAddLast().to("mock:result");
