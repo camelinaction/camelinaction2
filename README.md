@@ -65,8 +65,9 @@ System requirements
 ---------------------------
 You need JDK 8 installed on your system in order to compile the source code.   
 Maven version >= 3.5.  
-Apache Camel 2.20.1 or latest.  
+Apache Camel 2.20.1 or newer 2.x version.  
 
+Camel 3.x support is *not* on the main branch, but provided as _best effort_ on [depdicated branches](https://github.com/camelinaction/camelinaction2/branches)
 
 Up to date source code
 ----------------------
