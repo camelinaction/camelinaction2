@@ -4,10 +4,15 @@ import java.io.File;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.NotifyBuilder;
-import org.apache.camel.test.spring.CamelSpringTestSupport;
-import org.junit.Test;
+import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+
+import static org.apache.camel.test.junit5.TestSupport.deleteDirectory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Our first unit test with the Camel Test Kit using Spring Java Config.
@@ -15,11 +20,11 @@ import org.springframework.context.support.AbstractApplicationContext;
  */
 public class FirstTest extends CamelSpringTestSupport {
 
-    public void setUp() throws Exception {
+    @BeforeAll
+    public void cleanDir() throws Exception {
         // delete directories so we have a clean start
         deleteDirectory("target/inbox");
         deleteDirectory("target/outbox");
-        super.setUp();
     }
 
     @Override
@@ -41,11 +46,11 @@ public class FirstTest extends CamelSpringTestSupport {
 
         // notifier will wait for the file to be processed
         // and if that never happen it will time out after 10 seconds (default mock timeout)
-        assertTrue(notify.matchesMockWaitTime());
+        assertTrue(notify.matchesWaitTime());
 
         // test the file was moved
         File target = new File("target/outbox/hello.txt");
-        assertTrue("File should have been moved", target.exists());
+        assertTrue(target.exists(), "File should have been moved");
 
         // test that its content is correct as well
         String content = context.getTypeConverter().convertTo(String.class, target);

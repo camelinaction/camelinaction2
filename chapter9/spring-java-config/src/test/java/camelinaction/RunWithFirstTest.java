@@ -6,20 +6,19 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.NotifyBuilder;
-import org.apache.camel.test.spring.CamelSpringDelegatingTestContextLoader;
-import org.apache.camel.test.spring.CamelSpringRunner;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.apache.camel.test.spring.junit5.CamelSpringTest;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
-import static org.apache.camel.test.junit4.TestSupport.deleteDirectory;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.apache.camel.test.junit5.TestSupport.deleteDirectory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(CamelSpringRunner.class)
-@ContextConfiguration(classes = MyApplication.class, loader = CamelSpringDelegatingTestContextLoader.class)
+
+@CamelSpringTest
+@ContextConfiguration(classes = MyApplication.class)
 public class RunWithFirstTest {
 
     @Autowired
@@ -28,7 +27,7 @@ public class RunWithFirstTest {
     @Autowired
     private ProducerTemplate template;
 
-    @Before
+    @BeforeAll
     public void cleanDir() throws Exception {
         // delete directories so we have a clean start
         deleteDirectory("target/inbox");
@@ -45,11 +44,11 @@ public class RunWithFirstTest {
 
         // notifier will wait for the file to be processed
         // and if that never happen it will time out after 10 seconds (default mock timeout)
-        assertTrue(notify.matchesMockWaitTime());
+        assertTrue(notify.matchesWaitTime());
 
         // test the file was moved
         File target = new File("target/outbox/hello.txt");
-        assertTrue("File should have been moved", target.exists());
+        assertTrue(target.exists(), "File should have been moved");
 
         // test that its content is correct as well
         String content = context.getTypeConverter().convertTo(String.class, target);
