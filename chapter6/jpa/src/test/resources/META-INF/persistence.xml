@@ -3,6 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
 
   <persistence-unit name="camel" transaction-type="RESOURCE_LOCAL">
+    <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
     <class>camelinaction.PurchaseOrder</class>
 
     <properties>
