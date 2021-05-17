@@ -6,18 +6,18 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.NotifyBuilder;
-import org.apache.camel.test.spring.CamelSpringBootRunner;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.apache.camel.test.spring.junit5.CamelSpringBootTest;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.apache.camel.test.junit4.TestSupport.deleteDirectory;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.apache.camel.test.junit5.TestSupport.deleteDirectory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 
-@RunWith(CamelSpringBootRunner.class)
+@CamelSpringBootTest
 @SpringBootTest(classes = MyApplication.class)
 public class FirstTest {
 
@@ -27,8 +27,8 @@ public class FirstTest {
     @Autowired
     private ProducerTemplate template;
 
-    @Before
-    public void cleanDir() throws Exception {
+    @BeforeAll
+    public static void cleanDir() throws Exception {
         // delete directories so we have a clean start
         deleteDirectory("target/inbox");
         deleteDirectory("target/outbox");
@@ -44,7 +44,7 @@ public class FirstTest {
 
         // notifier will wait for the file to be processed
         // and if that never happen it will time out after 10 seconds (default mock timeout)
-        assertTrue(notify.matchesMockWaitTime());
+        assertTrue(notify.matchesWaitTime());
 
         // test the file was moved
         File target = new File("target/outbox/hello.txt");
