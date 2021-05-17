@@ -23,7 +23,6 @@ public class ERPEndpointConfigurer extends PropertyConfigurerSupport implements 
         switch (ignoreCase ? name.toLowerCase() : name) {
         case "lazystartproducer":
         case "lazyStartProducer": target.setLazyStartProducer(property(camelContext, boolean.class, value)); return true;
-        case "synchronous": target.setSynchronous(property(camelContext, boolean.class, value)); return true;
         case "verbose": target.setVerbose(property(camelContext, boolean.class, value)); return true;
         default: return false;
         }
@@ -34,7 +33,6 @@ public class ERPEndpointConfigurer extends PropertyConfigurerSupport implements 
         switch (ignoreCase ? name.toLowerCase() : name) {
         case "lazystartproducer":
         case "lazyStartProducer": return boolean.class;
-        case "synchronous": return boolean.class;
         case "verbose": return boolean.class;
         default: return null;
         }
@@ -46,7 +44,6 @@ public class ERPEndpointConfigurer extends PropertyConfigurerSupport implements 
         switch (ignoreCase ? name.toLowerCase() : name) {
         case "lazystartproducer":
         case "lazyStartProducer": return target.isLazyStartProducer();
-        case "synchronous": return target.isSynchronous();
         case "verbose": return target.isVerbose();
         default: return null;
         }
