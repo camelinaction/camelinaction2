@@ -28,11 +28,13 @@
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-spring</artifactId>
+      <artifactId>camel-spring-xml</artifactId>
+      <version>${camel-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-servlet</artifactId>
+      <version>${camel-version}</version>
     </dependency>
 
     <!-- we need spring web -->
