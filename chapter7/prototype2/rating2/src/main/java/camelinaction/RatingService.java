@@ -25,7 +25,7 @@ public class RatingService {
             RatingDto dto = new RatingDto();
             answer.add(dto);
 
-            dto.setItemNo(Integer.valueOf(id));
+            dto.setItemNo(Integer.parseInt(id));
             // generate some random ratings
             dto.setRating(new Random().nextInt(100));
         }
