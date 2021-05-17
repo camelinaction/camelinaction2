@@ -14,7 +14,7 @@
 
   <!-- create a Camel ActiveMQ component to use, using the Spring bean style -->
   <!-- we use the vm protocol to communicate intra-jvm which is much faster than tcp -->
-  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+  <bean id="activemq" class="org.apache.camel.component.activemq.ActiveMQComponent">
     <!-- vm is the vm protocol, and inventoryBroker is the broker name -->
     <property name="brokerURL" value="vm://inventoryBroker?create=false&amp;waitForStart=5000"/>
   </bean>
