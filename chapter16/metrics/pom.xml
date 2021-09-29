@@ -30,6 +30,13 @@
       <artifactId>camel-main</artifactId>
     </dependency>
 
+    <!-- need to use compatible Jackson -->
+    <!-- TODO: is fixed in Camel 3.13 -->
+    <!-- can then remove camel-jackson -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jackson</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-metrics</artifactId>

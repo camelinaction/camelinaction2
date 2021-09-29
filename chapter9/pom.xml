@@ -21,7 +21,6 @@
     <module>blueprint-xml</module>
     <module>blueprint-xml-service</module>
     <module>cdi</module>
-    <module>citrus</module>
     <module>error</module>
     <module>java</module>
     <module>miranda</module>
@@ -34,6 +33,7 @@
     <module>spring-xml</module>
     <module>wildfly</module>
     <module>wildfly-swarm</module>
+    <module>citrus</module>
   </modules>
 
 </project>
