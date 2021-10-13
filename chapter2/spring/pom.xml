@@ -22,13 +22,18 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test-spring</artifactId>
-      <scope>test</scope>
+      <artifactId>camel-spring-xml</artifactId>
     </dependency>
 
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jms</artifactId>
+    </dependency>
+
+    <!-- to run via mvn camel:run -->
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring-main</artifactId>
     </dependency>
 
     <!-- embed ActiveMQ broker -->
@@ -67,6 +72,12 @@
           <artifactId>geronimo-jms_1.1_spec</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test-spring</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
