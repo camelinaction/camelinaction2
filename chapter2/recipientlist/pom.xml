@@ -37,6 +37,11 @@
       <artifactId>activemq-all</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+    </dependency>
+
     <!-- xbean is needed for ActiveMQ broker XML configuration in Spring XML files -->
     <dependency>
       <groupId>org.apache.xbean</groupId>
