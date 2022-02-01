@@ -29,7 +29,7 @@
     <module>pax-exam</module>
     <module>spring-boot</module>
     <module>spring-boot-test-one-route</module>
-    <module>spring-java-config</module>
+    <!-- <module>spring-java-config</module> spring-java-config is removed -->
     <module>spring-xml</module>
     <module>wildfly</module>
     <module>wildfly-swarm</module>
