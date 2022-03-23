@@ -16,7 +16,7 @@
 
     <!-- rest services under the orders context-path -->
     <rest path="/orders">
-      <get uri="{id}">
+      <get path="{id}">
         <to uri="bean:orderService?method=getOrder(${header.id})"/>
       </get>
       <post>
@@ -25,7 +25,7 @@
       <put>
         <to uri="bean:orderService?method=updateOrder"/>
       </put>
-      <delete uri="{id}">
+      <delete path="{id}">
         <to uri="bean:orderService?method=cancelOrder(${header.id})"/>
       </delete>
     </rest>

@@ -21,7 +21,7 @@
     <!-- rest services under the orders context-path -->
     <rest path="/orders">
       <!-- need to specify the POJO types the binding is using (otherwise json binding defaults to Map based) -->
-      <get uri="{id}" outType="camelinaction.Order">
+      <get path="{id}" outType="camelinaction.Order">
         <to uri="bean:orderService?method=getOrder(${header.id})"/>
       </get>
       <!-- need to specify the POJO types the binding is using (otherwise json binding defaults to Map based) -->

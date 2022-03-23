@@ -28,7 +28,7 @@
         <!-- portal route which can combine a customer order overview -->
         <route>
             <from uri="direct:portal"/>
-            <multicast strategyRef="aggregatedData">
+            <multicast aggregationStrategy="aggregatedData">
                 <to uri="direct:crm"/>
                 <to uri="direct:erp"/>
                 <to uri="direct:shipping"/>

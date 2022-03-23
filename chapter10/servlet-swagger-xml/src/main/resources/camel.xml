@@ -46,7 +46,7 @@
 
     <restConfiguration component="servlet" bindingMode="json"
                        contextPath="chapter10-servlet-swagger-xml/rest" port="8080"
-                       apiContextPath="api-doc" apiContextListing="true"
+                       apiContextPath="api-doc"
                        enableCORS="true">
 
       <!-- we want json output in pretty mode -->
@@ -64,7 +64,7 @@
     <rest path="/orders" consumes="application/json" produces="application/json">
       <description>Order Service</description>
 
-      <get uri="/{id}" outType="camelinaction.Order">
+      <get path="/{id}" outType="camelinaction.Order">
         <description>Service to get details of an existing order</description>
         <param name="id" type="path" description="The order id"/>
         <responseMessage code="200" message="The order with the given id"/>
@@ -88,7 +88,7 @@
         <to uri="bean:orderService?method=updateOrder"/>
       </put>
 
-      <delete uri="{id}">
+      <delete path="{id}">
         <description>Service to cancel an existing order</description>
         <param name="id" type="path" description="The order id"/>
         <responseMessage code="404" message="Order not found"/>

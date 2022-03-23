@@ -16,7 +16,7 @@
       <log message="Incoming order ${header.orderId}"/>
       <to uri="mock:inbox"/>
       <!-- idempotent consumer EIP using the memory repo -->
-      <idempotentConsumer messageIdRepositoryRef="repo">
+      <idempotentConsumer idempotentRepository="repo">
         <!-- use orderId header as the unique key -->
         <header>orderId</header>
         <!-- processing the order is done once and only once -->

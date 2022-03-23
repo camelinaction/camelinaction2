@@ -12,7 +12,7 @@
             <from uri="file:target/inventory?noop=true"/>
             <log message="Starting to process big file: ${header.CamelFileName}"/>
             <!-- split the file using concurrency using the myPool thread pool -->
-            <split streaming="true" executorServiceRef="myPool">
+            <split streaming="true" executorService="myPool">
                 <!-- split the file line by line -->
                 <tokenize token="\n"/>
                 <!-- convert the line from CSV to Object -->

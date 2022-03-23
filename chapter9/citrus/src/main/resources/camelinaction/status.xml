@@ -14,7 +14,7 @@
     <!-- a rest service using rest-dsl that can return wisdom -->
     <rest produces="text/xml">
       <!-- a GET service on /status -->
-      <get uri="/status">
+      <get path="/status">
         <to uri="direct:status"/>
       </get>
     </rest>

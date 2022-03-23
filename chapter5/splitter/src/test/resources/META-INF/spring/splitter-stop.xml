@@ -18,7 +18,7 @@
             <from uri="direct:start"/>
             <!-- refer to the aggregation strategy to be used -->
             <!-- and tell Splitter to stop on exception -->
-            <split strategyRef="myAggregationStrategy" stopOnException="true">
+            <split aggregationStrategy="myAggregationStrategy" stopOnException="true">
                 <!-- split the body -->
                 <simple>${body}</simple>
                 <!-- log each splitted message -->

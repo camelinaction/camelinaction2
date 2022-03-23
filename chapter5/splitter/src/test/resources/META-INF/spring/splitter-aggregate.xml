@@ -17,7 +17,7 @@
         <route>
             <from uri="direct:start"/>
             <!-- refer to the aggregation strategy to be used -->
-            <split strategyRef="myAggregationStrategy">
+            <split aggregationStrategy="myAggregationStrategy">
                 <!-- split the body -->
                 <simple>${body}</simple>
                 <!-- log each splitted message -->

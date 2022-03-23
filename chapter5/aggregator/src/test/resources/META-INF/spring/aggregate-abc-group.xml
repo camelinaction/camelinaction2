@@ -15,7 +15,7 @@
             <!-- log the incoming message -->
             <log message="Sending ${body} with correlation key ${header.myId}"/>
             <!-- group exchanges and complete when we have 3 messages -->
-            <aggregate completionSize="3" strategyRef="groupExchanges">
+            <aggregate completionSize="3" aggregationStrategy="groupExchanges">
                 <!-- a correlation expression must be provided -->
                 <correlationExpression>
                     <!-- we use the header with key myId,

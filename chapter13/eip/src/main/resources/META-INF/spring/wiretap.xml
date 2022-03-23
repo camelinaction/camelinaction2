@@ -15,7 +15,7 @@
             <from uri="direct:start"/>
             <log message="Incoming message ${body}"/>
             <!-- which we want the WireTap to use -->
-            <wireTap uri="direct:tap" executorServiceRef="lowPool"/>
+            <wireTap uri="direct:tap" executorService="lowPool"/>
             <to uri="mock:result"/>
         </route>
 

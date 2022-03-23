@@ -29,7 +29,7 @@
         <route>
             <from uri="direct:portal"/>
             <!-- enable concurrency by using parallel processing -->
-            <multicast strategyRef="aggregatedData" parallelProcessing="true">
+            <multicast aggregationStrategy="aggregatedData" parallelProcessing="true">
                 <to uri="direct:crm"/>
                 <to uri="direct:erp"/>
                 <to uri="direct:shipping"/>

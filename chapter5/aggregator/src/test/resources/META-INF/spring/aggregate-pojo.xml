@@ -17,7 +17,7 @@
             <log message="Sending ${body} with correlation key ${header.myId}"/>
             <!-- aggregate using the aggregation strategy and complete when 3 messages
                  has been aggregated -->
-            <aggregate strategyRef="myAggregationStrategy" completionSize="3">
+            <aggregate aggregationStrategy="myAggregationStrategy" completionSize="3">
                 <!-- a correlation expression must be provided -->
                 <correlationExpression>
                     <!-- we use the header with key myId,

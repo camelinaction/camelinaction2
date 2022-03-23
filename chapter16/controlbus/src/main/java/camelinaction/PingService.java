@@ -3,8 +3,8 @@ package camelinaction;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
- * The ping service route, which is using rest-dsl to setup the ping service as a REST service.
- * In addition there is REST service to control the route such as starting and stopping and more.
+ * The ping service route, which is using rest-dsl to set up the ping service as a REST service.
+ * In addition, there is REST service to control the route such as starting and stopping and more.
  */
 public class PingService extends RouteBuilder {
 
@@ -15,18 +15,19 @@ public class PingService extends RouteBuilder {
         restConfiguration().component("netty-http").port(8080);
 
         rest("/rest").consumes("application/text").produces("application/text")
-
             // ping rest service
             .get("ping")
-                .route().routeId("ping")
-                .transform(constant("PONG\n"))
-            .endRest()
-
+                .to("direct:ping")
             // controlbus to start/stop the route
             .get("route/{action}")
+                .to("direct:action");
+
+        from("direct:ping").routeId("ping")
+                .transform(constant("PONG\n"));
+
+        from("direct:action").routeId("action")
                 // use dynamic-to so the action is provided from the url
                 .toD("controlbus:route?routeId=ping&action=${header.action}");
-
     }
 
 }

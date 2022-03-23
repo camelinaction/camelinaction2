@@ -17,7 +17,7 @@
             <log message="Sending ${body} with correlation key ${header.myId}"/>
             <!-- aggregate using the aggregation strategy and complete when 3 messages aggregated
                  and ignore invalid correlation keys -->
-            <aggregate strategyRef="myEndAggregationStrategy"
+            <aggregate aggregationStrategy="myEndAggregationStrategy"
                        ignoreInvalidCorrelationKeys="true" completionSize="3">
                 <!-- a correlation expression must be provided -->
                 <correlationExpression>

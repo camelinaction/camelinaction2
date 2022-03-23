@@ -17,7 +17,7 @@
             <log message="Sending ${body}"/>
             <!-- aggregate using the aggregation strategy and complete when either
                  2 messages has been aggregated or 5 sec timeout occurred -->
-            <aggregate strategyRef="myAggregationStrategy" completionSize="2" completionTimeout="5000">
+            <aggregate aggregationStrategy="myAggregationStrategy" completionSize="2" completionTimeout="5000">
                 <!-- a correlation expression must be provided -->
                 <correlationExpression>
                     <!-- we use the xpath expression,

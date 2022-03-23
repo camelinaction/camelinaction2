@@ -14,7 +14,7 @@
         <route>
             <from uri="direct:start"/>
             <!-- use our custom thread pool in a route -->
-            <threads executorServiceRef="myPool"/>
+            <threads executorService="myPool"/>
             <!-- this is executed in myPool -->
             <to uri="log:cool"/>
             <to uri="mock:result"/>

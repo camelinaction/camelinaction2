@@ -6,7 +6,7 @@ import org.apache.camel.Endpoint;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.http.common.HttpOperationFailedException;
+import org.apache.camel.http.base.HttpOperationFailedException;
 
 /**
  * The use case route.

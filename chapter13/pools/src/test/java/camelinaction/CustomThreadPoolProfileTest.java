@@ -40,7 +40,7 @@ public class CustomThreadPoolProfileTest extends CamelTestSupport {
 
                 from("direct:start")
                     // use the bigPool profile for creating the thread pool to be used
-                    .threads().executorServiceRef("bigPool")
+                    .threads().executorService("bigPool")
                     .to("log:foo")
                     .to("mock:result");
             }

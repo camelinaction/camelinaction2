@@ -17,7 +17,7 @@
     <!-- a rest service using rest-dsl that can return wisdom -->
     <rest produces="application/json">
       <!-- a GET service on /say -->
-      <get uri="/say">
+      <get path="/say">
         <!-- that calls this bean -->
         <to uri="bean:quote"/>
       </get>

@@ -16,7 +16,7 @@
             <!-- log the incoming message -->
             <log message="Sending ${body} with correlation key ${header.myId}"/>
             <!-- aggregate using the aggregation strategy and check eager for completion -->
-            <aggregate strategyRef="myEndAggregationStrategy" eagerCheckCompletion="true">
+            <aggregate aggregationStrategy="myEndAggregationStrategy" eagerCheckCompletion="true">
                 <!-- a correlation expression must be provided -->
                 <correlationExpression>
                     <!-- we use the header with key myId,

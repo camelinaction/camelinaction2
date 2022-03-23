@@ -38,8 +38,8 @@
             <log message="Sending ${body} with correlation key ${header.myId}"/>
             <!-- aggregate using the aggregation strategy and complete when 3 messages
                  has been aggregated -->
-            <aggregate strategyRef="myAggregationStrategy" completionSize="3"
-                       aggregationRepositoryRef="myRepo">
+            <aggregate aggregationStrategy="myAggregationStrategy" completionSize="3"
+                       aggregationRepository="myRepo">
                 <!-- a correlation expression must be provided -->
                 <correlationExpression>
                     <!-- aggregate all messages into the same group -->
