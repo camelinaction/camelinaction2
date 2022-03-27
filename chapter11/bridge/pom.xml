@@ -14,7 +14,7 @@
   <name>Camel in Action 2 :: Chapter 11 :: Bridge Error Handler</name>
 
   <properties>
-    <openjpa-version>2.4.1</openjpa-version>
+    <openjpa-version>3.2.2</openjpa-version>
   </properties>
 
   <dependencies>
@@ -27,6 +27,10 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-spring-xml</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -47,7 +51,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>9.4-1201-jdbc4</version>
+      <version>42.3.3</version>
     </dependency>
 
     <dependency>
