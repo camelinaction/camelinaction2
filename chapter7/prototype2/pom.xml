@@ -20,8 +20,10 @@
     <module>rating2</module>
     <module>recommend2</module>
     <module>rules2</module>
+    <!-- hystrix removed from Camel 3.17 onwards
     <module>rules2-springboot</module>
     <module>rules2-springboot-hystrixdashboard</module>
+    -->
   </modules>
 
 </project>

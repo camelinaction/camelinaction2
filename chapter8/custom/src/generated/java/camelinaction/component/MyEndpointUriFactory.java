@@ -22,11 +22,11 @@ public class MyEndpointUriFactory extends org.apache.camel.support.component.End
     private static final Set<String> MULTI_VALUE_PREFIXES;
     static {
         Set<String> props = new HashSet<>(6);
-        props.add("lazyStartProducer");
         props.add("bridgeErrorHandler");
-        props.add("name");
-        props.add("exchangePattern");
         props.add("exceptionHandler");
+        props.add("exchangePattern");
+        props.add("lazyStartProducer");
+        props.add("name");
         props.add("option");
         PROPERTY_NAMES = Collections.unmodifiableSet(props);
         SECRET_PROPERTY_NAMES = Collections.emptySet();

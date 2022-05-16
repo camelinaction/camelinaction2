@@ -18,7 +18,9 @@
     <module>cdi</module>
     <module>cdi-hello</module>
     <module>hystrix</module>
+    <!-- camel-hystrix removed from Camel 3.17 onwards
     <module>hystrix-camel</module>
+    -->
     <module>prototype</module>
     <module>prototype2</module>
     <module>springboot</module>

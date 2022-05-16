@@ -2,7 +2,7 @@ package camelinaction;
 
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.http.common.HttpOperationFailedException;
+import org.apache.camel.http.base.HttpOperationFailedException;
 
 /**
  * The route for the use case
