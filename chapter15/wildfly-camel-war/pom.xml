@@ -30,7 +30,7 @@
 
     <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-cxf</artifactId>
+      <artifactId>camel-cxf-spring-soap</artifactId>
       <scope>provided</scope>
     </dependency>
 
