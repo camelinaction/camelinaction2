@@ -58,7 +58,7 @@
 
     <activemq-version>5.16.5</activemq-version>
     <activemq-karaf-version>5.13.8</activemq-karaf-version>
-    <camel-version>3.18.1</camel-version>
+    <camel-version>3.18.2</camel-version>
     <cxf-version>3.5.3</cxf-version>
     <hawtio-version>1.4.68</hawtio-version>
     <commons-dbcp2-version>2.9.0</commons-dbcp2-version>
@@ -76,10 +76,10 @@
     <mock-javamail-version>1.9</mock-javamail-version>
     <slf4j-version>1.7.36</slf4j-version>
     <spring-version>5.3.22</spring-version>
-    <spring-boot-version>2.7.2</spring-boot-version>
+    <spring-boot-version>2.7.3</spring-boot-version>
     <swagger-version>1.6.4</swagger-version>
     <xbean-version>4.21</xbean-version>
-    <vertx-version>4.3.2</vertx-version>
+    <vertx-version>4.3.3</vertx-version>
     <weld-version>3.1.8.Final</weld-version>
     <wildfly-swarm-version>2017.11.0</wildfly-swarm-version>
 
