@@ -38,7 +38,7 @@ public class ExistingRouteBuilderTest extends CamelTestSupport {
 
         // notifier will wait for the file to be processed
         // and if that never happen it will time out after 10 seconds (default mock timeout)
-        assertTrue(notify.matchesMockWaitTime());
+        assertTrue(notify.matchesWaitTime());
 
         // test the file was moved
         File target = new File("target/outbox/hello.txt");
